@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('css')
 <!--Internal  Font Awesome -->
-<link href="{{URL::asset('assets/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+<link href="{{ asset('Dashboard/plugins/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 <!--Internal   Notify -->
 <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 <!--Internal  treeview -->

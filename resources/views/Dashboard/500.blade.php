@@ -1,7 +1,7 @@
 @extends('layouts.master2')
 @section('css')
 <!--- Internal Fontawesome css-->
-<link href="{{URL::asset('assets/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+<link href="{{ asset('Dashboard/plugins/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 <!---Ionicons css-->
 <link href="{{URL::asset('assets/plugins/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
 <!---Internal Typicons css-->
