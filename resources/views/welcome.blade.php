@@ -1,6 +1,6 @@
-@extends('WebSite.layouts.master')
+    @extends('WebSite.layouts.master')
 
-@section('content')
+    @section('content')
     <!-- Main Slider Three -->
     <section class="main-slider-three">
         <div class="banner-carousel">
@@ -14,14 +14,13 @@
                             <!-- Content Column -->
                             <div class="content-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column">
-                                    <h2>شريكك الصحي الأكثر ثقة مدى الحياة</h2>
+                                    <h2>{{trans('HomePage/HomePage.MainHead1')}}</h2>
                                     <div class="text">
-                                        نحن نقدم استشارات مجانية وأفضل إدارة مشروع لك
-                                        الأفكار ، 100٪ التسليم مضمون
+                                        {{trans('HomePage/HomePage.SubHead1')}}
                                     </div>
                                     <div class="btn-box">
-                                        <a href="contact.html" class="theme-btn appointment-btn"><span class="txt">المواعيد</span></a>
-                                        <a href="services.html" class="theme-btn services-btn">الخدمات</a>
+                                        <a href="contact.html" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}</span></a>
+                                        <a href="services.html" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -30,7 +29,7 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column">
                                     <div class="image">
-                                        <img src="{{URL::asset('WebSite/images/main-slider/3.png')}}" alt=""/>
+                                        <img src="{{URL::asset('WebSite/images/main-slider/3.png')}}" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -48,13 +47,13 @@
                             <!-- Content Column -->
                             <div class="content-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column">
-                                    <h2>Your Most Trusted Health Partner For Life.</h2>
-                                    <div class="text">We offer free consulting and the best project management for your
-                                        ideas, 100% delivery guaranteed.
+                                    <h2>{{trans('HomePage/HomePage.MainHead2')}}</h2>
+                                    <div class="text">{{trans('HomePage/HomePage.SubHead2')}}
                                     </div>
                                     <div class="btn-box">
-                                        <a href="contact.html" class="theme-btn appointment-btn"><span class="txt">Appointment</span></a>
-                                        <a href="services.html" class="theme-btn services-btn">Services</a>
+                                        <a href="contact.html" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}
+                                            </span></a>
+                                        <a href="services.html" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +62,7 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column">
                                     <div class="image">
-                                        <img src="{{URL::asset('WebSite/images/main-slider/3.jpg')}}" alt=""/>
+                                        <img src="{{URL::asset('WebSite/images/main-slider/3.jpg')}}" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -81,13 +80,13 @@
                             <!-- Content Column -->
                             <div class="content-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column">
-                                    <h2>Your Most Trusted Health Partner For Life.</h2>
-                                    <div class="text">We offer free consulting and the best project management for your
-                                        ideas, 100% delivery guaranteed.
+                                    <h2>{{trans('HomePage/HomePage.MainHead3')}}</h2>
+                                    <div class="text">{{trans('HomePage/HomePage.SubHead3')}}
                                     </div>
                                     <div class="btn-box">
-                                        <a href="contact.html" class="theme-btn appointment-btn"><span class="txt">Appointment</span></a>
-                                        <a href="services.html" class="theme-btn services-btn">Services</a>
+                                        <a href="contact.html" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}
+                                                < /span></a>
+                                        <a href="services.html" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +95,7 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column">
                                     <div class="image">
-                                        <img src="{{URL::asset('WebSite/images/main-slider/3.jpg')}}" alt=""/>
+                                        <img src="{{URL::asset('WebSite/images/main-slider/3.jpg')}}" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -127,12 +126,12 @@
                             <div class="border-line"></div>
                             <!-- Sec Title -->
                             <div class="sec-title">
-                                <h2>من نحن <br> الريادة في الصحة</h2>
+                                <h2>{{trans('HomePage/HomePage.Pioneer')}}</h2>
                                 <div class="separator"></div>
                             </div>
-                            <div class="text">أين أنت في قلب مهمتنا. نأمل أن تعتبرنا منزلك الطبي - المكان الذي تشعر فيه بالأمان والراحة والرعاية. كمجموعة طبية متعددة التخصصات
+                            <div class="text">{{trans('HomePage/HomePage.PioneerSub')}}
                             </div>
-                            <a href="about.html" class="theme-btn btn-style-one"><span class="txt">المزيد عنا</span></a>
+                            <a href="about.html" class="theme-btn btn-style-one"><span class="txt">{{trans('HomePage/HomePage.More')}}</span></a>
                         </div>
                     </div>
 
@@ -140,7 +139,7 @@
                     <div class="image-column col-lg-5 col-md-12 col-sm-12">
                         <div class="inner-column wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="image">
-                                <img src="{{URL::asset('WebSite/images/resource/image-3.jpg')}}" alt=""/>
+                                <img src="{{URL::asset('WebSite/images/resource/image-3.jpg')}}" alt="" />
                             </div>
                         </div>
                     </div>
@@ -162,9 +161,9 @@
                     <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                         <div class="upper-box">
                             <div class="icon flaticon-doctor-stethoscope"></div>
-                            <h3><a href="#">العلاج الطبي</a></h3>
+                            <h3><a href="#">{{trans('HomePage/HomePage.MarkHead1')}}</a></h3>
                         </div>
-                        <div class="text">سواء أكنت تتخذ خطواتك الأولى ، أو مجرد إيجاد خطوتك</div>
+                        <div class="text">{{trans('HomePage/HomePage.MarkSubHead1')}}</div>
                     </div>
                 </div>
 
@@ -173,9 +172,9 @@
                     <div class="inner-box wow fadeInLeft" data-wow-delay="250ms" data-wow-duration="1500ms">
                         <div class="upper-box">
                             <div class="icon flaticon-ambulance-side-view"></div>
-                            <h3><a href="#">مساعدة الطوارئ</a></h3>
+                            <h3><a href="#">{{trans('HomePage/HomePage.MarkHead2')}}</a></h3>
                         </div>
-                        <div class="text">سواء أكنت تتخذ خطواتك الأولى ، أو مجرد إيجاد خطوتك</div>
+                        <div class="text">{{trans('HomePage/HomePage.MarkSubHead2')}}</div>
                     </div>
                 </div>
 
@@ -184,9 +183,9 @@
                     <div class="inner-box wow fadeInLeft" data-wow-delay="500ms" data-wow-duration="1500ms">
                         <div class="upper-box">
                             <div class="icon fas fa-user-md"></div>
-                            <h3><a href="#">أطباء مؤهلين</a></h3>
+                            <h3><a href="#">{{trans('HomePage/HomePage.MarkHead3')}}</a></h3>
                         </div>
-                        <div class="text">سواء أكنت تتخذ خطواتك الأولى ، أو مجرد إيجاد خطوتك</div>
+                        <div class="text">{{trans('HomePage/HomePage.MarkSubHead3')}}</div>
                     </div>
                 </div>
 
@@ -195,9 +194,9 @@
                     <div class="inner-box wow fadeInLeft" data-wow-delay="750ms" data-wow-duration="1500ms">
                         <div class="upper-box">
                             <div class="icon fas fa-briefcase-medical"></div>
-                            <h3><a href="#">محترفين طبيا</a></h3>
+                            <h3><a href="#">{{trans('HomePage/HomePage.MarkHead4')}}</a></h3>
                         </div>
-                        <div class="text">سواء أكنت تتخذ خطواتك الأولى ، أو مجرد إيجاد خطوتك</div>
+                        <div class="text">{{trans('HomePage/HomePage.MarkSubHead4')}}</div>
                     </div>
                 </div>
 
@@ -222,11 +221,11 @@
                         </div>
                         <!--Tab Btns-->
                         <ul class="tab-btns tab-buttons clearfix">
-                            <li data-tab="#tab-urology" class="tab-btn active-btn">قسم المسالك البولية</li>
-                            <li data-tab="#tab-department" class="tab-btn">قسم المخ والأعصاب</li>
-                            <li data-tab="#tab-gastrology" class="tab-btn">قسم أمراض الجهاز الهضمي</li>
-                            <li data-tab="#tab-cardiology" class="tab-btn">قسم أمراض القلب</li>
-                            <li data-tab="#tab-eye" class="tab-btn">قسم العناية بالعيون</li>
+                            <li data-tab="#tab-urology" class="tab-btn active-btn">{{trans('HomePage/HomePage.Sec1')}}</li>
+                            <li data-tab="#tab-department" class="tab-btn">{{trans('HomePage/HomePage.Sec2')}}</li>
+                            <li data-tab="#tab-gastrology" class="tab-btn">{{trans('HomePage/HomePage.Sec3')}}</li>
+                            <li data-tab="#tab-cardiology" class="tab-btn">{{trans('HomePage/HomePage.Sec4')}}</li>
+                            <li data-tab="#tab-eye" class="tab-btn">{{trans('HomePage/HomePage.Sec5')}}</li>
                         </ul>
                     </div>
                     <!--Column-->
@@ -237,170 +236,120 @@
                             <!-- Tab -->
                             <div class="tab" id="tab-urology">
                                 <div class="content">
-                                    <h2>قسم المسالك البولية</h2>
-                                    <div class="title">Department of Neurology</div>
+                                    <h2>{{trans('HomePage/HomePage.Sec1')}}</h2>
+                                    <div class="title">{{trans('HomePage/HomePage.SecHead1')}}</div>
                                     <div class="text">
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                                            ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-                                            parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                                            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
-                                            pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                        <p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
-                                            nec, vulputate eget, arcu.</p>
+                                        <p>{{trans('HomePage/HomePage.SecDesc1')}}</p>
                                     </div>
                                     <div class="two-column row clearfix">
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
-                                            <h3>01 - Neurology Service</h3>
-                                            <div class="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                                elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                penatibus
+                                            <h3>{{trans('HomePage/HomePage.Sec1.1')}}</h3>
+                                            <div class="column-text">{{trans('HomePage/HomePage.SecDesc1.1')}}
                                             </div>
                                         </div>
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
-                                            <h3>02 - Neurology Service</h3>
-                                            <div class="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                                elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                penatibus
+                                            <h3>{{trans('HomePage/HomePage.Sec1.2')}}</h3>
+                                            <div class="column-text">{{trans('HomePage/HomePage.SecDesc1.2')}}
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">View More</span></a>
+                                    <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
                                 </div>
                             </div>
 
                             <!-- Tab -->
                             <div class="tab active-tab" id="tab-department">
                                 <div class="content">
-                                    <h2>Neurology Department</h2>
-                                    <div class="title">Department of Neurology</div>
+                                    <h2>{{trans('HomePage/HomePage.Sec2')}}</h2>
+                                    <div class="title">{{trans('HomePage/HomePage.SecHead2')}}</div>
                                     <div class="text">
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                                            ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-                                            parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                                            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
-                                            pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                        <p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
-                                            nec, vulputate eget, arcu.</p>
+                                        <p>{{trans('HomePage/HomePage.SecDesc2')}}</p>
                                     </div>
                                     <div class="two-column row clearfix">
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
-                                            <h3>01 - Neurology Service</h3>
-                                            <div class="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                                elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                penatibus
+                                            <h3>{{trans('HomePage/HomePage.Sec2.1')}}</h3>
+                                            <div class="column-text">{{trans('HomePage/HomePage.SecDesc2.1')}}
                                             </div>
                                         </div>
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
-                                            <h3>02 - Neurology Service</h3>
-                                            <div class="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                                elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                penatibus
+                                            <h3>{{trans('HomePage/HomePage.Sec2.2')}}</h3>
+                                            <div class="column-text">{{trans('HomePage/HomePage.SecDesc2.2')}}
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">View More</span></a>
+                                    <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
                                 </div>
                             </div>
 
                             <!-- Tab -->
                             <div class="tab" id="tab-gastrology">
                                 <div class="content">
-                                    <h2>Gastrology Department</h2>
-                                    <div class="title">Department of Neurology</div>
+                                    <h2>{{trans('HomePage/HomePage.Sec3')}}</h2>
+                                    <div class="title">{{trans('HomePage/HomePage.SecHead3')}}</div>
                                     <div class="text">
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                                            ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-                                            parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                                            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
-                                            pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                        <p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
-                                            nec, vulputate eget, arcu.</p>
+                                        <p>{{trans('HomePage/HomePage.SecDesc3')}}</p>
                                     </div>
                                     <div class="two-column row clearfix">
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
-                                            <h3>01 - Neurology Service</h3>
-                                            <div class="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                                elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                penatibus
+                                            <h3>{{trans('HomePage/HomePage.Sec3.1')}}</h3>
+                                            <div class="column-text">{{trans('HomePage/HomePage.SecDesc3.1')}}
                                             </div>
                                         </div>
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
-                                            <h3>02 - Neurology Service</h3>
-                                            <div class="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                                elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                penatibus
+                                            <h3>{{trans('HomePage/HomePage.Sec3.2')}}</h3>
+                                            <div class="column-text">{{trans('HomePage/HomePage.SecDesc3.2')}}
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">View More</span></a>
+                                    <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
                                 </div>
                             </div>
 
                             <!-- Tab -->
                             <div class="tab" id="tab-cardiology">
                                 <div class="content">
-                                    <h2>Cardiology Department</h2>
-                                    <div class="title">Department of Neurology</div>
+                                    <h2>{{trans('HomePage/HomePage.Sec4')}}</h2>
+                                    <div class="title">{{trans('HomePage/HomePage.SecHead4')}}</div>
                                     <div class="text">
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                                            ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-                                            parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                                            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
-                                            pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                        <p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
-                                            nec, vulputate eget, arcu.</p>
+                                        <p>{{trans('HomePage/HomePage.SecDesc4')}}</p>
                                     </div>
                                     <div class="two-column row clearfix">
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
-                                            <h3>01 - Neurology Service</h3>
-                                            <div class="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                                elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                penatibus
+                                            <h3>{{trans('HomePage/HomePage.Sec4.1')}}</h3>
+                                            <div class="column-text">{{trans('HomePage/HomePage.SecDesc4.1')}}
                                             </div>
                                         </div>
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
-                                            <h3>02 - Neurology Service</h3>
-                                            <div class="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                                elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                penatibus
+                                            <h3>{{trans('HomePage/HomePage.Sec4.2')}}</h3>
+                                            <div class="column-text">{{trans('HomePage/HomePage.SecDesc4.2')}}
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">View More</span></a>
+                                    <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
                                 </div>
                             </div>
 
                             <!-- Tab -->
                             <div class="tab" id="tab-eye">
                                 <div class="content">
-                                    <h2>Eye Care Department</h2>
-                                    <div class="title">Department of Neurology</div>
+                                    <h2>{{trans('HomePage/HomePage.Sec5')}}</h2>
+                                    <div class="title">{{trans('HomePage/HomePage.SecHead5')}}</div>
                                     <div class="text">
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                                            ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-                                            parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                                            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
-                                            pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                        <p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
-                                            nec, vulputate eget, arcu.</p>
+                                        <p>{{trans('HomePage/HomePage.SecDesc5')}}</p>
                                     </div>
                                     <div class="two-column row clearfix">
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
-                                            <h3>01 - Neurology Service</h3>
-                                            <div class="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                                elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                penatibus
+                                            <h3>{{trans('HomePage/HomePage.Sec5.1')}}</h3>
+                                            <div class="column-text">{{trans('HomePage/HomePage.SecDesc5.1')}}
                                             </div>
                                         </div>
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
-                                            <h3>02 - Neurology Service</h3>
-                                            <div class="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                                elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                penatibus
+                                            <h3>{{trans('HomePage/HomePage.Sec5.2')}}</h3>
+                                            <div class="column-text">{{trans('HomePage/HomePage.SecDesc5.2')}}
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">View More</span></a>
+                                    <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
                                 </div>
                             </div>
 
@@ -419,17 +368,17 @@
 
             <!-- Sec Title -->
             <div class="sec-title centered">
-                <h2>الأخصائيون الطبيون</h2>
+                <h2>{{ trans('HomePage/HomePage.TeamHead') }}</h2>
                 <div class="separator"></div>
             </div>
 
             <div class="row clearfix">
 
-                <!-- Team Block -->
+                <!-- Team Block 1 -->
                 <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                         <div class="image">
-                            <img src="images/resource/team-1.jpg" alt=""/>
+                            <img src="images/resource/team-1.jpg" alt="" />
                             <div class="overlay-box">
                                 <ul class="social-icons">
                                     <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
@@ -438,21 +387,21 @@
                                     <li><a href="#"><span class="fab fa-skype"></span></a></li>
                                     <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
                                 </ul>
-                                <a href="#" class="appointment">Make Appointment</a>
+                                <a href="#" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
                             </div>
                         </div>
                         <div class="lower-content">
-                            <h3><a href="#">الدكتورة أندريا جونيا</a></h3>
-                            <div class="designation">أخصائي السرطان</div>
+                            <h3><a href="#">{{ trans('HomePage/HomePage.Team1Name') }}</a></h3>
+                            <div class="designation">{{ trans('HomePage/HomePage.Team1Title') }}</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Team Block -->
+                <!-- Team Block 2 -->
                 <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="inner-box wow fadeInLeft" data-wow-delay="250ms" data-wow-duration="1500ms">
                         <div class="image">
-                            <img src="images/resource/team-2.jpg" alt=""/>
+                            <img src="images/resource/team-2.jpg" alt="" />
                             <div class="overlay-box">
                                 <ul class="social-icons">
                                     <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
@@ -461,21 +410,21 @@
                                     <li><a href="#"><span class="fab fa-skype"></span></a></li>
                                     <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
                                 </ul>
-                                <a href="#" class="appointment">Make Appointment</a>
+                                <a href="#" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
                             </div>
                         </div>
                         <div class="lower-content">
-                            <h3><a href="#">د. روبت سميث</a></h3>
-                            <div class="designation">جراح قلب</div>
+                            <h3><a href="#">{{ trans('HomePage/HomePage.Team2Name') }}</a></h3>
+                            <div class="designation">{{ trans('HomePage/HomePage.Team2Title') }}</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Team Block -->
+                <!-- Team Block 3 -->
                 <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="inner-box wow fadeInLeft" data-wow-delay="500ms" data-wow-duration="1500ms">
                         <div class="image">
-                            <img src="images/resource/team-3.jpg" alt=""/>
+                            <img src="images/resource/team-3.jpg" alt="" />
                             <div class="overlay-box">
                                 <ul class="social-icons">
                                     <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
@@ -484,21 +433,21 @@
                                     <li><a href="#"><span class="fab fa-skype"></span></a></li>
                                     <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
                                 </ul>
-                                <a href="#" class="appointment">Make Appointment</a>
+                                <a href="#" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
                             </div>
                         </div>
                         <div class="lower-content">
-                            <h3><a href="#">دكتور ويل لورا</a></h3>
-                            <div class="designation">طبيب الأسرة</div>
+                            <h3><a href="#">{{ trans('HomePage/HomePage.Team3Name') }}</a></h3>
+                            <div class="designation">{{ trans('HomePage/HomePage.Team3Title') }}</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Team Block -->
+                <!-- Team Block 4 -->
                 <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="inner-box wow fadeInLeft" data-wow-delay="750ms" data-wow-duration="1500ms">
                         <div class="image">
-                            <img src="images/resource/team-4.jpg" alt=""/>
+                            <img src="images/resource/team-4.jpg" alt="" />
                             <div class="overlay-box">
                                 <ul class="social-icons">
                                     <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
@@ -507,33 +456,37 @@
                                     <li><a href="#"><span class="fab fa-skype"></span></a></li>
                                     <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
                                 </ul>
-                                <a href="#" class="appointment">Make Appointment</a>
+                                <a href="#" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
                             </div>
                         </div>
                         <div class="lower-content">
-                            <h3><a href="#">الدكتور أليكس فورغسين</a></h3>
-                            <div class="designation">أخصائي تقويم العظام</div>
+                            <h3><a href="#">{{ trans('HomePage/HomePage.Team4Name') }}</a></h3>
+                            <div class="designation">{{ trans('HomePage/HomePage.Team4Title') }}</div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </section>
     <!-- End Team Section -->
+
 
     <!-- Video Section -->
     <section class="video-section" style="background-image:url(images/background/5.jpg)">
         <div class="auto-container">
             <div class="content">
-                <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image play-box"><span
-                        class="flaticon-play-button"><i class="ripple"></i></span></a>
-                <div class="text">نحن نهتم بصحتك<h2>نحن نهتم بك</h2>
+                <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image play-box">
+                    <span class="flaticon-play-button"><i class="ripple"></i></span>
+                </a>
+                <div class="text">
+                    {{ trans('HomePage/HomePage.VideoDesc') }}
+                    <h2>{{ trans('HomePage/HomePage.VideoHead') }}</h2>
                 </div>
             </div>
+        </div>
     </section>
     <!-- End Video Section -->
+
 
     <!-- Appointment Section Two -->
     <section class="appointment-section-two">
@@ -545,7 +498,7 @@
                     <div class="image-column col-lg-6 col-md-12 col-sm-12">
                         <div class="inner-column wow slideInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="image">
-                                <img src="images/resource/doctor-2.png" alt=""/>
+                                <img src="images/resource/doctor-2.png" alt="" />
                             </div>
                         </div>
                     </div>
@@ -555,13 +508,13 @@
                         <div class="inner-column">
                             <!-- Sec Title -->
                             <div class="sec-title">
-                                <h2>حجز موعد</h2>
+                                <h2>{{ trans('HomePage/HomePage.Appointment') }}</h2>
                                 <div class="separator"></div>
                             </div>
 
                             <!-- Appointment Form -->
                             <div class="appointment-form">
-                                <livewire:appointments.create/>
+                                <livewire:appointments.create />
                             </div>
 
                         </div>
@@ -571,126 +524,103 @@
             </div>
         </div>
     </section>
-
     <!-- Testimonial Section Two -->
     <section class="testimonial-section-two">
         <div class="auto-container">
             <!-- Sec Title -->
             <div class="sec-title centered">
-                <h2>ماذا يقول المرضى</h2>
+                <h2>{{ trans('HomePage/HomePage.TestimonialHead') }}</h2>
                 <div class="separator"></div>
             </div>
             <div class="testimonial-carousel owl-carousel owl-theme">
 
-                <!-- Tesimonial Block Two -->
+                <!-- Tesimonial Block 1 -->
                 <div class="testimonial-block-two">
                     <div class="inner-box">
                         <div class="image">
-                            <img src="images/resource/author-4.jpg" alt=""/>
+                            <img src="images/resource/author-4.jpg" alt="" />
                         </div>
-                        <div class="text">
-                            يعد المركز الطبي مكانًا رائعًا للحصول على جميع احتياجاتك الطبية. دخلت
-                            لإجراء فحص ولم تنتظر أكثر من 5 دقائق قبل رؤيتي. يمكنني أن أتصور
-                            نوع الخدمة التي تحصل عليها في حالة المشكلات الأكثر خطورة. شكرًا!
-                        </div>
+                        <div class="text">{{ trans('HomePage/HomePage.TestimonialText1') }}</div>
                         <div class="lower-box">
                             <div class="clearfix">
-
                                 <div class="pull-left">
                                     <div class="quote-icon flaticon-quote"></div>
                                 </div>
                                 <div class="pull-right">
                                     <div class="author-info">
-                                        <h3>ماكس وينشستر</h3>
-                                        <div class="author">مريض الكلى</div>
+                                        <h3>{{ trans('HomePage/HomePage.TestimonialName1') }}</h3>
+                                        <div class="author">{{ trans('HomePage/HomePage.TestimonialRole1') }}</div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tesimonial Block Two -->
+                <!-- Tesimonial Block 2 -->
                 <div class="testimonial-block-two">
                     <div class="inner-box">
                         <div class="image">
-                            <img src="images/resource/author-5.jpg" alt=""/>
+                            <img src="images/resource/author-5.jpg" alt="" />
                         </div>
-                        <div class="text">
-                            يعد المركز الطبي مكانًا رائعًا للحصول على جميع احتياجاتك الطبية. دخلت
-                            لإجراء فحص ولم تنتظر أكثر من 5 دقائق قبل رؤيتي. يمكنني أن أتصور
-                            نوع الخدمة التي تحصل عليها في حالة المشكلات الأكثر خطورة. شكرًا!
-                        </div>
+                        <div class="text">{{ trans('HomePage/HomePage.TestimonialText2') }}</div>
                         <div class="lower-box">
                             <div class="clearfix">
-
                                 <div class="pull-left">
                                     <div class="quote-icon flaticon-quote"></div>
                                 </div>
                                 <div class="pull-right">
                                     <div class="author-info">
-                                        <h3>جاك مونيتا</h3>
-                                        <div class="author">مريض الكلى</div>
+                                        <h3>{{ trans('HomePage/HomePage.TestimonialName2') }}</h3>
+                                        <div class="author">{{ trans('HomePage/HomePage.TestimonialRole2') }}</div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tesimonial Block Two -->
+                <!-- Tesimonial Block 3 -->
                 <div class="testimonial-block-two">
                     <div class="inner-box">
                         <div class="image">
-                            <img src="images/resource/author-4.jpg" alt=""/>
+                            <img src="images/resource/author-4.jpg" alt="" />
                         </div>
-                        <div class="text">Medical Centre is a great place to get all of your medical needs. I came in
-                            for a check up and did not wait more than 5 minutes before I was seen. I can only imagine
-                            the type of service you get for more serious issues. Thanks!
-                        </div>
+                        <div class="text">{{ trans('HomePage/HomePage.TestimonialText3') }}</div>
                         <div class="lower-box">
                             <div class="clearfix">
-
                                 <div class="pull-left">
                                     <div class="quote-icon flaticon-quote"></div>
                                 </div>
                                 <div class="pull-right">
                                     <div class="author-info">
-                                        <h3>Max Winchester</h3>
-                                        <div class="author">Kidny Patient</div>
+                                        <h3>{{ trans('HomePage/HomePage.TestimonialName3') }}</h3>
+                                        <div class="author">{{ trans('HomePage/HomePage.TestimonialRole3') }}</div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tesimonial Block Two -->
+                <!-- Tesimonial Block 4 -->
                 <div class="testimonial-block-two">
                     <div class="inner-box">
                         <div class="image">
-                            <img src="images/resource/author-5.jpg" alt=""/>
+                            <img src="images/resource/author-5.jpg" alt="" />
                         </div>
-                        <div class="text">Medical Centre is a great place to get all of your medical needs. I came in
-                            for a check up and did not wait more than 5 minutes before I was seen. I can only imagine
-                            the type of service you get for more serious issues. Thanks!
-                        </div>
+                        <div class="text">{{ trans('HomePage/HomePage.TestimonialText4') }}</div>
                         <div class="lower-box">
                             <div class="clearfix">
-
                                 <div class="pull-left">
                                     <div class="quote-icon flaticon-quote"></div>
                                 </div>
                                 <div class="pull-right">
                                     <div class="author-info">
-                                        <h3>Jack Monita</h3>
-                                        <div class="author">Kidny Patient</div>
+                                        <h3>{{ trans('HomePage/HomePage.TestimonialName4') }}</h3>
+                                        <div class="author">{{ trans('HomePage/HomePage.TestimonialRole4') }}</div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -700,11 +630,9 @@
         </div>
     </section>
     <!-- End Testimonial Section Two -->
-
     <!-- Counter Section -->
     <section class="counter-section style-two" style="background-image: url(images/background/pattern-3.png)">
         <div class="auto-container">
-
             <!-- Fact Counter -->
             <div class="fact-counter style-two">
                 <div class="row clearfix">
@@ -717,7 +645,7 @@
                                 <div class="count-outer count-box">
                                     <span class="count-text" data-speed="2500" data-stop="2350">0</span>
                                 </div>
-                                <h4 class="counter-title">مرضى راضون</h4>
+                                <h4 class="counter-title">{{ trans('HomePage/HomePage.Counter1') }}</h4>
                             </div>
                         </div>
                     </div>
@@ -730,7 +658,7 @@
                                 <div class="count-outer count-box alternate">
                                     +<span class="count-text" data-speed="3000" data-stop="350">0</span>
                                 </div>
-                                <h4 class="counter-title">فريق الطبيب</h4>
+                                <h4 class="counter-title">{{ trans('HomePage/HomePage.Counter2') }}</h4>
                             </div>
                         </div>
                     </div>
@@ -743,7 +671,7 @@
                                 <div class="count-outer count-box">
                                     <span class="count-text" data-speed="3000" data-stop="2150">0</span>
                                 </div>
-                                <h4 class="counter-title">مهمة النجاح</h4>
+                                <h4 class="counter-title">{{ trans('HomePage/HomePage.Counter3') }}</h4>
                             </div>
                         </div>
                     </div>
@@ -756,14 +684,13 @@
                                 <div class="count-outer count-box">
                                     +<span class="count-text" data-speed="2500" data-stop="225">0</span>
                                 </div>
-                                <h4 class="counter-title">جراحات ناجحة</h4>
+                                <h4 class="counter-title">{{ trans('HomePage/HomePage.Counter4') }}</h4>
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-
         </div>
     </section>
     <!-- End Counter Section -->
@@ -777,39 +704,34 @@
                     <!-- Doctor Block -->
                     <div class="doctor-block col-lg-4 col-md-6 col-sm-12">
                         <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-                            <h3>ساعات العمل</h3>
+                            <h3>{{ trans('HomePage/HomePage.DoctorTimesTitle') }}</h3>
                             <ul class="doctor-time-list">
-                                <li>من الإثنين إلى الجمعة<span>8:00am–7:00pm</span></li>
-                                <li>السبت <span>9:00am–5:00pm</span></li>
-                                <li>الأحد<span>9:00am–3:00pm</span></li>
+                                <li>{{ trans('HomePage/HomePage.DoctorTimesMonFri') }}</li>
+                                <li>{{ trans('HomePage/HomePage.DoctorTimesSat') }}</li>
+                                <li>{{ trans('HomePage/HomePage.DoctorTimesSun') }}</li>
                             </ul>
-                            <h4>حالات الطوارئ</h4>
-                            <div class="phone">اتصل بنا ! <strong>+898 68679 575 09</strong></div>
+                            <h4>{{ trans('HomePage/HomePage.EmergencyTitle') }}</h4>
+                            <div class="phone">{{ trans('HomePage/HomePage.EmergencyCall') }} <strong>+898 68679 575 09</strong></div>
                         </div>
                     </div>
 
                     <!-- Doctor Block -->
                     <div class="doctor-block col-lg-4 col-md-6 col-sm-12">
                         <div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                            <h3>جدول الأطباء</h3>
+                            <h3>{{ trans('HomePage/HomePage.DoctorScheduleTitle') }}</h3>
                             <div class="text">
-                                ما يلي هو للإرشاد فقط لمساعدتك في التخطيط لموعدك
-                                طبيب أو ممرضة مفضلة. لا تضمن توافر الأطباء أو الممرضات
-                                قد يكون في بعض الأحيان يحضر إلى واجبات أخرى
+                                {{ trans('HomePage/HomePage.DoctorScheduleText') }}
                             </div>
-                            <a href="#" class="detail">تفاصيل اكثر</a>
+                            <a href="#" class="detail">{{ trans('HomePage/HomePage.MoreDetails') }}</a>
                         </div>
                     </div>
 
                     <!-- Doctor Block -->
                     <div class="doctor-block col-lg-4 col-md-6 col-sm-12">
                         <div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-                            <h3>العناية الصحية الاولية</h3>
-                            <div class="text">عندما تعلم أنك تستخدم أفضل مواهبك من أجل شيء تحبه ، فأنت
-                                لا تستطيع ذلك. التواصل الفعال هو الأساس لبناء علامات تجارية صلبة مثل
-                                علاقة السفن بالبناء مع عملائنا
-                            </div>
-                            <a href="#" class="detail">اتصل الآن</a>
+                            <h3>{{ trans('HomePage/HomePage.PrimaryCareTitle') }}</h3>
+                            <div class="text">{{ trans('HomePage/HomePage.PrimaryCareText') }}</div>
+                            <a href="#" class="detail">{{ trans('HomePage/HomePage.CallNow') }}</a>
                         </div>
                     </div>
 
@@ -819,12 +741,13 @@
     </section>
     <!-- End Doctor Info Section -->
 
+
     <!-- News Section Two -->
     <section class="news-section-two">
         <div class="auto-container">
             <!-- Sec Title -->
             <div class="sec-title centered">
-                <h2>آخر الأخبار والمقالات</h2>
+                <h2>{{ trans('HomePage/HomePage.NewsHead') }}</h2>
                 <div class="separator style-three"></div>
             </div>
             <div class="row clearfix">
@@ -833,28 +756,30 @@
                 <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
-                            <a href="blog-detail.html"><img src="images/resource/news-4.jpg" alt=""/></a>
+                            <a href="blog-detail.html"><img src="images/resource/news-4.jpg" alt="" /></a>
                         </div>
                         <div class="lower-content">
                             <div class="content">
                                 <ul class="post-info">
-                                    <li><span
-                                            class="icon flaticon-chat-comment-oval-speech-bubble-with-text-lines"></span>
-                                        02
+                                    <li>
+                                        <span class="icon flaticon-chat-comment-oval-speech-bubble-with-text-lines"></span>
+                                        {{ trans('HomePage/HomePage.NewsComments1') }}
                                     </li>
-                                    <li><span class="icon flaticon-heart"></span> 126</li>
+                                    <li>
+                                        <span class="icon flaticon-heart"></span> {{ trans('HomePage/HomePage.NewsLikes1') }}
+                                    </li>
                                 </ul>
                                 <ul class="post-meta">
-                                    <li>21 يونيو 2018 الساعة 8:12 مساءً</li>
-                                    <li>Post بواسطة: Admin</li>
+                                    <li>{{ trans('HomePage/HomePage.NewsDate1') }}</li>
+                                    <li>{{ trans('HomePage/HomePage.NewsPostedBy1') }}</li>
                                 </ul>
-                                <h3><a href="blog-detail.html">خدمات التشخيص لانتقاء نتائج فعالة بشكل صحيح</a></h3>
+                                <h3><a href="blog-detail.html">{{ trans('HomePage/HomePage.NewsTitle1') }}</a></h3>
                                 <div class="text">
-                                    هناك الكثير من النساء اللواتي يجهلن المخاطر العديدة
-                                    المرتبطة بصحتهم وتجاهل في النهاية
+                                    {{ trans('HomePage/HomePage.NewsText1') }}
                                 </div>
-                                <a href="blog-detail.html" class="theme-btn btn-style-five"><span
-                                        class="txt">اقرا المزيد</span></a>
+                                <a href="blog-detail.html" class="theme-btn btn-style-five">
+                                    <span class="txt">{{ trans('HomePage/HomePage.ReadMore') }}</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -864,35 +789,38 @@
                 <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
-                            <a href="blog-detail.html"><img src="images/resource/news-5.jpg" alt=""/></a>
+                            <a href="blog-detail.html"><img src="images/resource/news-5.jpg" alt="" /></a>
                         </div>
                         <div class="lower-content">
                             <div class="content">
                                 <ul class="post-info">
-                                    <li><span
-                                            class="icon flaticon-chat-comment-oval-speech-bubble-with-text-lines"></span>
-                                        02
+                                    <li>
+                                        <span class="icon flaticon-chat-comment-oval-speech-bubble-with-text-lines"></span>
+                                        {{ trans('HomePage/HomePage.NewsComments2') }}
                                     </li>
-                                    <li><span class="icon flaticon-heart"></span> 126</li>
+                                    <li>
+                                        <span class="icon flaticon-heart"></span> {{ trans('HomePage/HomePage.NewsLikes2') }}
+                                    </li>
                                 </ul>
                                 <ul class="post-meta">
-                                    <li>21 يونيو 2018 الساعة 8:12 مساءً</li>
-                                    <li>Post بواسطة: Admin</li>
+                                    <li>{{ trans('HomePage/HomePage.NewsDate2') }}</li>
+                                    <li>{{ trans('HomePage/HomePage.NewsPostedBy2') }}</li>
                                 </ul>
-                                <h3><a href="blog-detail.html">خدمات التشخيص لانتقاء نتائج فعالة بشكل صحيح</a></h3>
+                                <h3><a href="blog-detail.html">{{ trans('HomePage/HomePage.NewsTitle2') }}</a></h3>
                                 <div class="text">
-                                    هناك الكثير من النساء اللواتي يجهلن المخاطر العديدة
-                                    المرتبطة بصحتهم وتجاهل في النهاية
+                                    {{ trans('HomePage/HomePage.NewsText2') }}
                                 </div>
-                                <a href="blog-detail.html" class="theme-btn btn-style-five"><span
-                                        class="txt">اقرا المزيد</span></a>
+                                <a href="blog-detail.html" class="theme-btn btn-style-five">
+                                    <span class="txt">{{ trans('HomePage/HomePage.ReadMore') }}</span>
+                                </a>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+        </div>
     </section>
+
 
     <!--Clients Section-->
     <section class="clients-section">
@@ -928,4 +856,4 @@
         </div>
     </section>
     <!--End Clients Section-->
-@endsection
+    @endsection

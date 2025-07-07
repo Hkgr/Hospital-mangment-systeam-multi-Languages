@@ -45,8 +45,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900|Lora:400,400i,700,700i');
 
-/* font-family: 'Cairo', sans-serif;
-font-family: 'Cairo', sans-serif; */
+/* font-family: 'Tajawal', sans-serif;
+font-family: 'Tajawal', sans-serif; */
 
 @import url('pe-icon-7-stroke.css');
 @import url('simple-line-icons.css');
@@ -93,7 +93,7 @@ body{
 	background:#ffffff;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 a{
@@ -116,7 +116,7 @@ h1,h2,h3,h4,h5,h6 {
 	background:none;
 	line-height:1.2em;
 	letter-spacing: -0.02em;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 textarea{
@@ -212,7 +212,7 @@ ul,li{
 	background: none;
 	border:1px solid #aaaaaa;
 	text-transform: capitalize;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .btn-style-one .txt{
@@ -285,7 +285,7 @@ ul,li{
 	border-radius:50px;
 	background-color: #004cda;
 	text-transform: capitalize;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .btn-style-two .txt{
@@ -382,7 +382,7 @@ ul,li{
 	border-radius:50px;
 	background-color: #004cda;
 	text-transform: capitalize;
-	font-family: 'Cairo', sans-serif;'' 'Quicksand', sans-serif;
+	font-family: 'Tajawal', sans-serif;'' 'Quicksand', sans-serif;
 }
 
 .btn-style-three .txt{
@@ -438,7 +438,7 @@ ul,li{
 	border:2px solid #ffffff;
 	background-color: #ffffff;
 	text-transform: capitalize;
-	font-family: 'Cairo', sans-serif;'' 'Quicksand', sans-serif;
+	font-family: 'Tajawal', sans-serif;'' 'Quicksand', sans-serif;
 }
 
 .btn-style-four:hover{
@@ -460,7 +460,7 @@ ul,li{
 	border-radius:50px;
 	background-color: #004cda;
 	text-transform: capitalize;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .btn-style-five .txt{
@@ -515,7 +515,7 @@ ul,li{
 	font-weight:700;
 	padding-left:32px;
 	margin-bottom: 20px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .list-style-one li .icon{
@@ -542,7 +542,7 @@ ul,li{
 	font-weight:400;
 	padding-left:32px;
 	margin-bottom: 20px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .list-style-two li:last-child{
@@ -879,7 +879,7 @@ img{
 	-ms-transition:all 300ms ease;
 	-o-transition:all 300ms ease;
 	transition:all 300ms ease;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .main-menu .navigation > li > a:before{
@@ -952,7 +952,7 @@ img{
 	-moz-transition:all 300ms ease;
 	-ms-transition:all 300ms ease;
 	transition:all 300ms ease;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .main-menu .navigation > li > ul > li > a:after{
@@ -983,7 +983,7 @@ img{
 }
 
 .main-menu .navigation > li > ul > li.dropdown > a:after{
-	font-family: 'Cairo', sans-serif;'' 'Font Awesome 5 Free';
+	font-family: 'Tajawal', sans-serif;'' 'Font Awesome 5 Free';
 	content: "\f105";
 	position:absolute;
 	right:0px;
@@ -1038,7 +1038,7 @@ img{
 	-moz-transition:all 300ms ease;
 	-ms-transition:all 300ms ease;
 	transition:all 300ms ease;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .main-menu .navigation > li > ul > li  > ul > li > a:after{
@@ -1212,7 +1212,7 @@ img{
 	color:#222222;
 	font-size:20px;
 	font-weight:700;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 
@@ -2340,7 +2340,7 @@ img{
 	-ms-transition:all 0.5s ease;
 	-o-transition:all 0.5s ease;
 	transition:all 0.5s ease;
-	font-family: 'Cairo', sans-serif;'' "Flaticon";
+	font-family: 'Tajawal', sans-serif;'' "Flaticon";
 }
 
 .main-slider .swiper-button-prev{
@@ -2375,7 +2375,7 @@ img{
 	-ms-transition:all 0.5s ease;
 	-o-transition:all 0.5s ease;
 	transition:all 0.5s ease;
-	font-family: 'Cairo', sans-serif;'' "Flaticon";
+	font-family: 'Tajawal', sans-serif;'' "Flaticon";
 }
 
 .main-slider .swiper-button-next:hover,
@@ -2540,7 +2540,7 @@ img{
 	padding-right:30px;
 	display:inline-block;
 	background-color:#ffffff;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	transition:all 900ms ease;
 	-moz-transition:all 900ms ease;
 	-webkit-transition:all 900ms ease;
@@ -2962,7 +2962,7 @@ img{
 	font-size:48px;
 	line-height:1em;
 	display:inline-block;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .fact-counter .column .inner .counter-title{
@@ -2971,7 +2971,7 @@ img{
 	font-weight:400;
 	margin-top:14px;
 	color:rgba(255,255,255,0.90);
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .fact-counter.style-two .column .inner .content{
@@ -3215,7 +3215,7 @@ img{
 	color:#777777;
 	font-size:20px;
 	font-weight:400;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .fullwidth-section .left-column .inner-column .content h2{
@@ -3358,7 +3358,7 @@ img{
 	margin-top:40px;
 	letter-spacing:1px;
 	text-transform:uppercase;
-	font-family: 'Cairo', sans-serif;'' 'Gotham-Bold';
+	font-family: 'Tajawal', sans-serif;'' 'Gotham-Bold';
 }
 
 .testimonial-block .inner-box .designation{
@@ -3366,7 +3366,7 @@ img{
 	color:#666666;
 	font-size:14px;
 	margin-top:0px;
-	font-family: 'Cairo', sans-serif;'' 'Gotham-Book';
+	font-family: 'Tajawal', sans-serif;'' 'Gotham-Book';
 }
 
 .testimonial-section .client-thumb-outer{
@@ -3397,7 +3397,7 @@ img{
 	color:#004cda;
 	font-size:18px;
 	line-height:1.3em;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .testimonial-section .client-thumb-outer .designation{
@@ -3794,7 +3794,7 @@ img{
 	cursor:pointer;
 	font-weight:700;
 	font-size:18px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .subscribe-form .form-group input[type="submit"]:hover,
@@ -3953,7 +3953,7 @@ img{
 	top:0px;
 	font-size:14px;
 	font-weight:800;
-	font-family: 'Cairo', sans-serif;'' "Font Awesome 5 Free";
+	font-family: 'Tajawal', sans-serif;'' "Font Awesome 5 Free";
 }
 
 .main-footer .footer-list li a:hover{
@@ -4048,7 +4048,7 @@ img{
 	color:#222222;
 	font-size:20px;
 	font-weight:700;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .main-footer .footer-bottom{
@@ -4529,7 +4529,7 @@ img{
 	-ms-transition:all 0.5s ease;
 	-o-transition:all 0.5s ease;
 	transition:all 0.5s ease;
-	font-family: 'Cairo', sans-serif;'' "Flaticon";
+	font-family: 'Tajawal', sans-serif;'' "Flaticon";
 }
 
 .main-slider-two .swiper-button-prev{
@@ -4563,7 +4563,7 @@ img{
 	-ms-transition:all 0.5s ease;
 	-o-transition:all 0.5s ease;
 	transition:all 0.5s ease;
-	font-family: 'Cairo', sans-serif;'' "Flaticon";
+	font-family: 'Tajawal', sans-serif;'' "Flaticon";
 }
 
 .main-slider-two .swiper-button-next:hover,
@@ -4875,7 +4875,7 @@ img{
 	font-size:16px;
 	font-weight:700;
 	background-color:#dddddd;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	transition: all 300ms ease;
 	-webkit-transition: all 300ms ease;
 	-ms-transition: all 300ms ease;
@@ -4943,7 +4943,7 @@ img{
 	font-weight:700;
 	line-height:1em;
 	margin-top:20px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .price-block .inner-box .upper-box .price sub{
@@ -4974,7 +4974,7 @@ img{
 	-ms-transition: all 300ms ease;
 	-o-transition: all 300ms ease;
 	-moz-transition: all 300ms ease;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .price-block .inner-box:hover .plan-outer .plan{
@@ -5013,7 +5013,7 @@ img{
 	color: #777777;
 	content: "\f176";
 	font-weight:700;
-	font-family: 'Cairo', sans-serif;'' "Flaticon";
+	font-family: 'Tajawal', sans-serif;'' "Flaticon";
 }
 
 .price-block .inner-box .appointment{
@@ -5459,7 +5459,7 @@ img{
 	line-height: 40px;
 	color: #ffffff;
 	content: "\f115";
-	font-family: 'Cairo', sans-serif;'' "flaticon";
+	font-family: 'Tajawal', sans-serif;'' "flaticon";
 	-webkit-transform: scale(0);
 	-moz-transform: scale(0);
 	-ms-transform: scale(0);
@@ -5551,7 +5551,7 @@ img{
 	color:#222222;
 	display:inline-block;
 	margin-bottom:10px;
-	font-family: 'Cairo', sans-serif;'' 'Poppins', sans-serif;
+	font-family: 'Tajawal', sans-serif;'' 'Poppins', sans-serif;
 }
 
 .progress-levels .progress-box .inner .percent{
@@ -5561,7 +5561,7 @@ img{
 	color:#222222;
 	display:inline-block;
 	margin-bottom:10px;
-	font-family: 'Cairo', sans-serif;'' 'Poppins', sans-serif;
+	font-family: 'Tajawal', sans-serif;'' 'Poppins', sans-serif;
 }
 
 .progress-levels .progress-box .bar{
@@ -6202,7 +6202,7 @@ img{
 	font-weight:700;
 	line-height:1.8em;
 	margin-top:30px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	opacity: 0;
 	-webkit-transition: all 1000ms ease;
 	-moz-transition: all 100ms ease;
@@ -6270,7 +6270,7 @@ img{
 	background: #ffffff;
 	border:2px solid #ffffff;
 	text-transform: capitalize;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .main-slider-three .content-column .btn-box .appointment-btn:hover{
@@ -6292,7 +6292,7 @@ img{
 	background: none;
 	border:2px solid #ffffff;
 	text-transform: capitalize;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .main-slider-three .content-column .btn-box .services-btn:hover{
@@ -6484,7 +6484,7 @@ img{
 	letter-spacing:1px;
 	margin-top:40px;
 	text-transform:uppercase;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .video-section .content h2{
@@ -6495,7 +6495,7 @@ img{
 	letter-spacing:1px;
 	margin-top:10px;
 	font-weight:700;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 /***
@@ -6766,7 +6766,7 @@ img{
 }
 
 .doctor-block .inner-box .phone strong{
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .doctor-block .inner-box .text{
@@ -6775,7 +6775,7 @@ img{
 	font-size:16px;
 	line-height:1.8em;
 	margin-bottom:21px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .doctor-block .inner-box .detail{
@@ -6784,7 +6784,7 @@ img{
 	font-size:18px;
 	font-weight:700;
 	text-decoration:underline;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 /***
@@ -7058,7 +7058,7 @@ img{
 	text-transform:capitalize;
 	background-color:#ffffff;
 	border-radius:0px 50px 50px 50px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .department-section-three .department-tabs .tab-btns .tab-btn:before{
@@ -7118,7 +7118,7 @@ img{
 	font-weight:700;
 	line-height:1.3em;
 	margin-bottom:18px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .department-section-three .department-tabs .tabs-content .text{
@@ -7217,7 +7217,7 @@ img{
 	position:relative;
 	color:#ffffff;
 	font-size:18px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .page-title .bread-crumb{
@@ -7264,7 +7264,7 @@ img{
 	font-size: 16px;
 	line-height: 30px;
 	display: inline-block;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	-webkit-transition:all 300ms ease;
 	-moz-transition:all 300ms ease;
 	-ms-transition:all 300ms ease;
@@ -7283,7 +7283,7 @@ img{
 	font-weight: 800;
 	top:0px;
 	color:#ffffff;
-	font-family: 'Cairo', sans-serif;'' 'Font Awesome 5 Free';
+	font-family: 'Tajawal', sans-serif;'' 'Font Awesome 5 Free';
 }
 
 .page-title .bread-crumb li:last-child::after{
@@ -7532,7 +7532,7 @@ img{
 	-o-transition:all 300ms ease;
 	-moz-transition:all 300ms ease;
 	transition:all 300ms ease;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .styled-pagination li a i{
@@ -7977,7 +7977,7 @@ img{
 	font-size:20px;
 	line-height:1.7em;
 	font-style:italic;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .news-detail .inner-box .lower-content .text blockquote .quote-box{
@@ -8026,7 +8026,7 @@ img{
 	font-weight:700;
 	margin:0;
 	display: inline-block;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .news-detail .post-share-options .tags{
@@ -8104,7 +8104,7 @@ img{
 	font-weight:700;
 	display:block;
 	line-height:1.7em;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	-webkit-transition: all 300ms ease;
 	-moz-transition: all 300ms ease;
 	-ms-transition: all 300ms ease;
@@ -8461,7 +8461,7 @@ img{
 	display:inline-block;
 	text-transform:capitalize;
 	transition:all 500ms ease;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	border-right:1px solid #222222;
 }
 
@@ -8521,7 +8521,7 @@ img{
 	-moz-transition:all 500ms ease;
 	-webkit-transition:all 500ms ease;
 	border:1px solid #cccccc;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .accordion-box .block .acc-btn.active{
@@ -8695,7 +8695,7 @@ img{
 .faq-form button{
 	margin-top:15px;
 	padding:11px 42px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 
@@ -8784,7 +8784,7 @@ img{
 	color: #222222;
 	font-weight: 700;
 	display: block;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .doctor-detail .detail-column .info-list li p{
@@ -9050,7 +9050,7 @@ img{
 	-webkit-transition:all 500ms ease;
 	-ms-transition:all 500ms ease;
 	-o-transition:all 500ms ease;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .blog-cat li a:after{
@@ -9061,7 +9061,7 @@ img{
 	color:#000048;
 	font-size:18px;
 	font-weight:800;
-	font-family: 'Cairo', sans-serif;'' 'Font Awesome 5 Free';
+	font-family: 'Tajawal', sans-serif;'' 'Font Awesome 5 Free';
 }
 
 .blog-cat li:hover a:after,
@@ -9150,7 +9150,7 @@ img{
 	-webkit-transition:all 500ms ease;
 	-ms-transition:all 500ms ease;
 	-o-transition:all 500ms ease;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .brochure-widget .brouchers li a:hover{
@@ -9287,7 +9287,7 @@ img{
 	font-weight: 400;
 	background-color: #ffffff;
 	padding-right: 5px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .price-feature .price{
@@ -9387,7 +9387,7 @@ img{
 .contact-form button{
 	margin-top:15px;
 	padding:11px 42px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .contact-form input.error,
@@ -9809,7 +9809,7 @@ img{
 	font-weight:700;
 	min-height:50px;
 	background-color:#191b1d;
-	font-family: 'Cairo', sans-serif;'' 'Montserrat', sans-serif;
+	font-family: 'Tajawal', sans-serif;'' 'Montserrat', sans-serif;
 }
 
 .product-block .inner-box .image .options li:last-child a{
@@ -10928,7 +10928,7 @@ img{
 	text-align: center;
 	color: #bbbbbb;
 	content:"\f078";
-	font-family: 'Cairo', sans-serif;'' "FontAwesome";
+	font-family: 'Tajawal', sans-serif;'' "FontAwesome";
 }
 
 .checkout-form .ui-button .ui-icon{
@@ -12093,7 +12093,7 @@ img{
 	font-weight:600;
 	font-size:14px;
 	color:#333333;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	text-transform:capitalize;
 	transition:all 500ms ease;
 	-moz-transition:all 500ms ease;
@@ -12206,7 +12206,7 @@ img{
 	left:0px;
 	top:0px;
 	color:#ffffff;
-	font-family: 'Cairo', sans-serif;'' "Flaticon";
+	font-family: 'Tajawal', sans-serif;'' "Flaticon";
 }
 
 .service-block-four .inner-box .list-two li:last-child{
@@ -12416,7 +12416,7 @@ img{
 	letter-spacing:1px;
 	text-transform:uppercase;
 	background-color:#222222;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 /*Custom Select*/
@@ -12444,7 +12444,7 @@ img{
 }
 
 .form-group .ui-button .ui-icon:before{
-	font-family: 'Cairo', sans-serif;'' 'Font Awesome 5 Free';
+	font-family: 'Tajawal', sans-serif;'' 'Font Awesome 5 Free';
 	content: "\f107";
 	position:absolute;
 	right:0px;
@@ -12609,7 +12609,7 @@ img{
 	font-size:18px;
 	font-weight:700;
 	margin-bottom:20px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .about-section-two .content-column .about-list-info .list-inner:before{
@@ -12621,7 +12621,7 @@ img{
 	font-size:16px;
 	line-height:1em;
 	font-weight:400;
-	font-family: 'Cairo', sans-serif;'' 'Font Awesome 5 Free';
+	font-family: 'Tajawal', sans-serif;'' 'Font Awesome 5 Free';
 }
 
 .about-section-two .info-column{
@@ -12670,7 +12670,7 @@ img{
 	letter-spacing:1px;
 	padding:18px 15px 18px;
 	transition:all 500ms ease;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	text-transform:capitalize;
 }
 
@@ -12804,7 +12804,7 @@ img{
 	font-size:30px;
 	line-height:1em;
 	margin-top:20px;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .fact-counter-two .column .inner .counter-title{
@@ -12813,7 +12813,7 @@ img{
 	font-weight:400;
 	margin-top:14px;
 	color:#777777;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 /***
@@ -12902,7 +12902,7 @@ img{
 	letter-spacing:1px;
 	padding:18px 15px 18px;
 	transition:all 500ms ease;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	text-transform:capitalize;
 	background-color:#ffffff;
 	border-right:1px solid #dddddd;
@@ -13136,7 +13136,7 @@ img{
 	font-weight:700;
 	display:inline-block;
 	background-color:#004cda;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	border-right:2px solid rgba(255,255,255,0.50);
 }
 
@@ -13158,7 +13158,7 @@ img{
 	font-weight:700;
 	display:inline-block;
 	background-color:#ffffff;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	border-right:2px solid #d7d7d7;
 	border-bottom:2px solid #d7d7d7;
 }
@@ -13218,7 +13218,7 @@ img{
 	letter-spacing:1px;
 	text-transform:uppercase;
 	background-color:#222222;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 /***
@@ -13292,7 +13292,7 @@ img{
 	letter-spacing:1px;
 	text-transform:uppercase;
 	background-color:#222222;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 }
 
 .service-block-six{
@@ -13486,7 +13486,7 @@ img{
 	letter-spacing:1px;
 	padding:35px 15px 30px;
 	transition:all 500ms ease;
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	text-transform:capitalize;
 	background-color:none;
 	border-top:2px solid transparent;

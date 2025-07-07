@@ -164,7 +164,7 @@
 													<option value="Africa/Algiers">(GMT+01:00) West Central Africa</option>
 													<option value="Africa/Windhoek">(GMT+01:00) Windhoek</option>
 													<option value="Asia/Beirut">(GMT+02:00) Beirut</option>
-													<option value="Africa/Cairo">(GMT+02:00) Cairo</option>
+													<option value="Africa/Tajawal">(GMT+02:00) Tajawal</option>
 													<option value="Asia/Gaza">(GMT+02:00) Gaza</option>
 													<option value="Africa/Blantyre">(GMT+02:00) Harare, Pretoria</option>
 													<option value="Asia/Jerusalem">(GMT+02:00) Jerusalem</option>
