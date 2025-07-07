@@ -6612,7 +6612,7 @@ img{
 	height:50px;
 	text-align:center;
 	background:none;
-	border-radius:0px 50px 50px 0px;
+	border-radius:50px 0px 0px 50px;
 	border:1px solid #000000;
 	-webkit-transition:all 300ms ease;
 	-ms-transition:all 300ms ease;
@@ -6632,7 +6632,7 @@ img{
 	text-align:center;
 	background:none;
 	border:1px solid #000000;
-	border-radius:50px 0px 0px 50px;
+	border-radius:0px 50px 50px 0px;
 	-webkit-transition:all 300ms ease;
 	-ms-transition:all 300ms ease;
 	-o-transition:all 300ms ease;

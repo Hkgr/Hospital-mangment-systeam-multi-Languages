@@ -62,7 +62,7 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column">
                                     <div class="image">
-                                        <img src="{{URL::asset('WebSite/images/main-slider/3.jpg')}}" alt="" />
+                                        <img src="{{URL::asset('WebSite/images/main-slider/4.png')}}" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="btn-box">
                                         <a href="contact.html" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}
-                                                < /span></a>
+                                            </span></a>
                                         <a href="services.html" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column">
                                     <div class="image">
-                                        <img src="{{URL::asset('WebSite/images/main-slider/3.jpg')}}" alt="" />
+                                        <img src="{{URL::asset('WebSite/images/main-slider/5.png')}}" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                     <div class="image-column col-lg-5 col-md-12 col-sm-12">
                         <div class="inner-column wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="image">
-                                <img src="{{URL::asset('WebSite/images/resource/image-3.jpg')}}" alt="" />
+                                <img style="border-radius: 15px; margin: 15px;" src="{{URL::asset('WebSite/images/resource/image-3.png')}}"  alt="" />
                             </div>
                         </div>
                     </div>
@@ -207,7 +207,7 @@
 
     <!-- Department Section Three -->
     <section class="department-section-three">
-        <div class="image-layer" style="background-image:url(images/background/6.jpg)"></div>
+        <div class="image-layer" style="background-image: url({{ URL::asset('WebSite/images/background/6.png') }})"></div>
         <div class="auto-container">
             <!-- Department Tabs-->
             <div class="department-tabs tabs-box">
@@ -378,7 +378,7 @@
                 <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                         <div class="image">
-                            <img src="images/resource/team-1.jpg" alt="" />
+                            <img src="{{ URL::asset('WebSite/images/resource/team-1.jpg') }}" alt="" />
                             <div class="overlay-box">
                                 <ul class="social-icons">
                                     <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
@@ -401,7 +401,7 @@
                 <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="inner-box wow fadeInLeft" data-wow-delay="250ms" data-wow-duration="1500ms">
                         <div class="image">
-                            <img src="images/resource/team-2.jpg" alt="" />
+                            <img src="{{ URL::asset('WebSite/images/resource/team-2.jpg') }}" alt="" />
                             <div class="overlay-box">
                                 <ul class="social-icons">
                                     <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
@@ -424,7 +424,7 @@
                 <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="inner-box wow fadeInLeft" data-wow-delay="500ms" data-wow-duration="1500ms">
                         <div class="image">
-                            <img src="images/resource/team-3.jpg" alt="" />
+                            <img src="{{ URL::asset('WebSite/images/resource/team-3.jpg') }}" alt="" />
                             <div class="overlay-box">
                                 <ul class="social-icons">
                                     <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
@@ -447,7 +447,7 @@
                 <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="inner-box wow fadeInLeft" data-wow-delay="750ms" data-wow-duration="1500ms">
                         <div class="image">
-                            <img src="images/resource/team-4.jpg" alt="" />
+                            <img src="{{ URL::asset('WebSite/images/resource/team-4.jpg') }}" alt="" />
                             <div class="overlay-box">
                                 <ul class="social-icons">
                                     <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
@@ -472,7 +472,7 @@
 
 
     <!-- Video Section -->
-    <section class="video-section" style="background-image:url(images/background/5.jpg)">
+    <section class="video-section" style="background-image: url({{ URL::asset('WebSite/images/background/5.jpg') }})">
         <div class="auto-container">
             <div class="content">
                 <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image play-box">
@@ -498,7 +498,7 @@
                     <div class="image-column col-lg-6 col-md-12 col-sm-12">
                         <div class="inner-column wow slideInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="image">
-                                <img src="images/resource/doctor-2.png" alt="" />
+                                <img src="{{ URL::asset('WebSite/images/resource/doctor-2.png') }}" alt="" />
                             </div>
                         </div>
                     </div>
@@ -538,7 +538,7 @@
                 <div class="testimonial-block-two">
                     <div class="inner-box">
                         <div class="image">
-                            <img src="images/resource/author-4.jpg" alt="" />
+                            <img src="{{ URL::asset('WebSite/images/resource/author-4.jpg') }}" alt="" />
                         </div>
                         <div class="text">{{ trans('HomePage/HomePage.TestimonialText1') }}</div>
                         <div class="lower-box">
@@ -561,7 +561,7 @@
                 <div class="testimonial-block-two">
                     <div class="inner-box">
                         <div class="image">
-                            <img src="images/resource/author-5.jpg" alt="" />
+                            <img src="{{ URL::asset('WebSite/images/resource/author-4-1.jpg') }}" alt="" />
                         </div>
                         <div class="text">{{ trans('HomePage/HomePage.TestimonialText2') }}</div>
                         <div class="lower-box">
@@ -584,7 +584,7 @@
                 <div class="testimonial-block-two">
                     <div class="inner-box">
                         <div class="image">
-                            <img src="images/resource/author-4.jpg" alt="" />
+                            <img src="{{ URL::asset('WebSite/images/resource/author-4-2.jpg') }}" alt="" />
                         </div>
                         <div class="text">{{ trans('HomePage/HomePage.TestimonialText3') }}</div>
                         <div class="lower-box">
@@ -607,7 +607,7 @@
                 <div class="testimonial-block-two">
                     <div class="inner-box">
                         <div class="image">
-                            <img src="images/resource/author-5.jpg" alt="" />
+                            <img src="{{ URL::asset('WebSite/images/resource/author-4-3.jpg') }}" alt="" />
                         </div>
                         <div class="text">{{ trans('HomePage/HomePage.TestimonialText4') }}</div>
                         <div class="lower-box">
@@ -631,7 +631,7 @@
     </section>
     <!-- End Testimonial Section Two -->
     <!-- Counter Section -->
-    <section class="counter-section style-two" style="background-image: url(images/background/pattern-3.png)">
+    <section class="counter-section style-two" style="background-image: url({{URL::asset('WebSite/images/background/pattern-3.png') }})">
         <div class="auto-container">
             <!-- Fact Counter -->
             <div class="fact-counter style-two">
@@ -641,7 +641,7 @@
                     <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
                         <div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="content">
-                                <div class="icon flaticon-logout"></div>
+                                <div class="icon flaticon-login"></div>
                                 <div class="count-outer count-box">
                                     <span class="count-text" data-speed="2500" data-stop="2350">0</span>
                                 </div>
@@ -756,7 +756,7 @@
                 <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
-                            <a href="blog-detail.html"><img src="images/resource/news-4.jpg" alt="" /></a>
+                            <a href="blog-detail.html"><img src="{{ URL::asset('WebSite/images/resource/news-4.jpg') }}" alt="" /></a>
                         </div>
                         <div class="lower-content">
                             <div class="content">
@@ -789,7 +789,7 @@
                 <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
-                            <a href="blog-detail.html"><img src="images/resource/news-5.jpg" alt="" /></a>
+                            <a href="blog-detail.html"><img src="{{ URL::asset('WebSite/images/resource/news-5.jpg') }}" alt="" /></a>
                         </div>
                         <div class="lower-content">
                             <div class="content">
