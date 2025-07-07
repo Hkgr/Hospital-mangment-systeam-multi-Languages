@@ -17,6 +17,8 @@
     <link rel="icon" href="{{URL::asset('Dashboard/img/brand/favicon.png')}}" type="image/x-icon"/>
     <!-- Icons css -->
     <link href="{{URL::asset('Dashboard/css/icons.css')}}" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="{{ asset('Dashboard/plugins/fontawesome-free/css/all.min.css') }}">
     <!--  Custom Scroll bar-->
     <link href="{{URL::asset('Dashboard/plugins/mscrollbar/jquery.mCustomScrollbar.css')}}" rel="stylesheet"/>
     <!--  Sidebar css -->
@@ -36,6 +38,8 @@
     <link rel="icon" href="{{URL::asset('Dashboard/img/brand/favicon.png')}}" type="image/x-icon"/>
     <!-- Icons css -->
     <link href="{{URL::asset('Dashboard/css/icons.css')}}" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="{{ asset('Dashboard/plugins/fontawesome-free/css/all.min.css') }}">
     <!--  Custom Scroll bar-->
     <link href="{{URL::asset('Dashboard/plugins/mscrollbar/jquery.mCustomScrollbar.css')}}" rel="stylesheet"/>
     <!--  Right-sidemenu css -->
