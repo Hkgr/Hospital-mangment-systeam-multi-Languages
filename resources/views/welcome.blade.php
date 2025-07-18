@@ -641,7 +641,7 @@
                     <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
                         <div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="content">
-                                <div class="icon flaticon-login"></div>
+                                <div class="icon fa fa-syringe"></div>
                                 <div class="count-outer count-box">
                                     <span class="count-text" data-speed="2500" data-stop="2350">0</span>
                                 </div>
@@ -654,7 +654,7 @@
                     <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
                         <div class="inner wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
                             <div class="content">
-                                <div class="icon flaticon-logout"></div>
+                            <i class="fa-brands fa-font-awesome"></i>
                                 <div class="count-outer count-box alternate">
                                     +<span class="count-text" data-speed="3000" data-stop="350">0</span>
                                 </div>
