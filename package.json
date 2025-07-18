@@ -21,6 +21,7 @@
         "tailwindcss": "^2.0.2"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.7.2",
         "flag-icons": "^7.3.2",
         "laravel-echo": "^1.11.7",
         "pusher-js": "^7.1.0-beta"

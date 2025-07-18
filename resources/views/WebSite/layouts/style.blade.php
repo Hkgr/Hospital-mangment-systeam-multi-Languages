@@ -3,6 +3,8 @@
 <link href="{{asset('WebSite/css/bootstrap.css')}}" rel="stylesheet">
 <link href="{{asset('WebSite/css/style.css')}}" rel="stylesheet">
 <link href="{{asset('WebSite/css/responsive.css')}}" rel="stylesheet">
+<!-- FontAwesome -->
+<link rel="stylesheet" href="{{ asset('Dashboard/plugins/@fortawesome/fontawesome-free/css/all.min.css') }}">
 <!--Color Switcher Mockup-->
 <link href="{{asset('WebSite/css/color-switcher-design.css')}}" rel="stylesheet">
 <!--Color Themes-->
