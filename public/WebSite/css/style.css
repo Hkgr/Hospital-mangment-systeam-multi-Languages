@@ -11846,7 +11846,7 @@ img{
 .rtl .fact-counter .column .inner .icon{
 	right:0px;
 	left:auto;
-	transform:rotate(180deg);
+	transform:rotate(0deg);
 }
 
 .rtl .accordion-box .block .icon-outer{

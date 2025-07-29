@@ -207,7 +207,7 @@
 
     <!-- Department Section Three -->
     <section class="department-section-three">
-        <div class="image-layer" style="background-image: url({{ URL::asset('WebSite/images/background/6.png') }})"></div>
+        <div class="image-layer"style="background-image: url({{ URL::asset('WebSite/images/background/6.png') }})"></div>
         <div class="auto-container">
             <!-- Department Tabs-->
             <div class="department-tabs tabs-box">
@@ -472,7 +472,7 @@
 
 
     <!-- Video Section -->
-    <section class="video-section" style="background-image: url({{ URL::asset('WebSite/images/background/5.jpg') }})">
+    <section class="video-section"style="background-image: url('{{ asset('WebSite/images/background/5.jpg') }}');">
         <div class="auto-container">
             <div class="content">
                 <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image play-box">
@@ -631,7 +631,7 @@
     </section>
     <!-- End Testimonial Section Two -->
     <!-- Counter Section -->
-    <section class="counter-section style-two" style="background-image: url({{URL::asset('WebSite/images/background/pattern-3.png') }})">
+    <section class="counter-section style-two"style="background-image: url({{URL::asset('WebSite/images/background/pattern-3.png') }})">
         <div class="auto-container">
             <!-- Fact Counter -->
             <div class="fact-counter style-two">
@@ -641,7 +641,9 @@
                     <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
                         <div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="content">
-                                <div class="icon fa fa-syringe"></div>
+                                <div class="icon">
+                                <i class="icon flaticon-like" style="color: #ffffff;"></i>
+                                </div>
                                 <div class="count-outer count-box">
                                     <span class="count-text" data-speed="2500" data-stop="2350">0</span>
                                 </div>
@@ -654,8 +656,8 @@
                     <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
                         <div class="inner wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
                             <div class="content">
-                            <i class="fa-brands fa-font-awesome"></i>
-                                <div class="count-outer count-box alternate">
+                            <div class="icon flaticon-users"></div>   
+                                <div class="count-outer count-box">
                                     +<span class="count-text" data-speed="3000" data-stop="350">0</span>
                                 </div>
                                 <h4 class="counter-title">{{ trans('HomePage/HomePage.Counter2') }}</h4>
@@ -667,7 +669,7 @@
                     <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
                         <div class="inner wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
                             <div class="content">
-                                <div class="icon flaticon-logout"></div>
+                                <div class="icon flaticon-success"></div>
                                 <div class="count-outer count-box">
                                     <span class="count-text" data-speed="3000" data-stop="2150">0</span>
                                 </div>
@@ -677,10 +679,11 @@
                     </div>
 
                     <!--Column-->
+                    
                     <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
                         <div class="inner wow fadeInLeft" data-wow-delay="900ms" data-wow-duration="1500ms">
                             <div class="content">
-                                <div class="icon flaticon-logout"></div>
+                                <div class="icon flaticon-surgery-room"></div>
                                 <div class="count-outer count-box">
                                     +<span class="count-text" data-speed="2500" data-stop="225">0</span>
                                 </div>
