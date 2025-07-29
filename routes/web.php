@@ -31,6 +31,10 @@ Route::group(
         return view('Services');
     });
 
+    Route::get('/deps/Neurology', function () {
+        return view('Neurology');
+    });
+
 
 });
 
