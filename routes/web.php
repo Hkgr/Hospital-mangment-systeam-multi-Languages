@@ -44,6 +44,16 @@ Route::group(
     });
 
 
+    Route::get('/deps/Cardiology', function () {
+        return view('Cardiology');
+    });
+
+    Route::get('/deps/eye', function () {
+        return view('eye');
+    });
+    
+
+
 });
 
 
