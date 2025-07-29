@@ -35,6 +35,9 @@ Route::group(
         return view('Neurology');
     });
 
+    Route::get('/deps/Urology', function () {
+        return view('Urology');
+    });
 
 });
 
