@@ -39,6 +39,11 @@ Route::group(
         return view('Urology');
     });
 
+    Route::get('/deps/Gastroenterology', function () {
+        return view('Gastroenterology');
+    });
+
+
 });
 
 
