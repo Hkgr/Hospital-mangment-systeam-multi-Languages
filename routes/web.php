@@ -56,6 +56,10 @@ Route::group(
     Route::get('/Articles/1', function () {
         return view('art1');
     });
+
+    Route::get('/Articles/2', function () {
+        return view('art2');
+    });
     
 
 
