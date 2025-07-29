@@ -52,6 +52,11 @@ Route::group(
         return view('eye');
     });
     
+    
+    Route::get('/Articles/1', function () {
+        return view('art1');
+    });
+    
 
 
 });
