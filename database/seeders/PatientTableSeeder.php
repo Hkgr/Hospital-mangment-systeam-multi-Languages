@@ -17,7 +17,7 @@ class PatientTableSeeder extends Seeder
         $Patients->Date_Birth = '1988-12-01';
         $Patients->Phone = '123456789';
         $Patients->Gender = 1;
-        $Patients->Blood_Group = 'A+';
+        $Patients->Blood_Group = 'A+';          
         $Patients->save();
 
         //insert trans
