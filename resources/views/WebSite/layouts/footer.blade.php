@@ -12,7 +12,7 @@
                         <div class="footer-column col-lg-7 col-md-6 col-sm-12">
                             <div class="footer-widget logo-widget">
                                 <div class="logo">
-                                    <a href="index.html"><img src="images/logo-3.png" alt=""/></a>
+                                    <a href="index.html"><img src="images/logo-3.png" alt="" /></a>
                                 </div>
                                 <ul class="social-icons">
                                     <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
@@ -28,16 +28,15 @@
                         <div class="footer-column col-lg-5 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
                                 <div class="footer-title  clearfix">
-                                    <h2>الإدارات</h2>
+                                    <h2>الاقسام</h2>
                                     <div class="separator"></div>
                                 </div>
                                 <ul class="footer-list">
-                                    <li><a href="#">الجراحة والأشعة</a></li>
-                                    <li><a href="#">طب الأسرة</a></li>
-                                    <li><a href="#">صحة المرأة</a></li>
-                                    <li><a href="#">اخصائي نظارات</a></li>
-                                    <li><a href="#">طب الأطفال</a></li>
-                                    <li><a href="#">الجلدية</a></li>
+                                    <li><a href="http://127.0.0.1:8000/deps/Urology">{{trans('HomePage/HomePage.Sec1')}}</a></li>
+                                    <li><a href="http://127.0.0.1:8000/deps/Neurology">{{trans('HomePage/HomePage.Sec2')}}</a></li>
+                                    <li><a href="http://127.0.0.1:8000/deps/Gastroenterology">{{trans('HomePage/HomePage.Sec3')}}</a></li>
+                                    <li><a href="http://127.0.0.1:8000/deps/Cardiology">{{trans('HomePage/HomePage.Sec4')}}</a></li>
+                                    <li><a href="http://127.0.0.1:8000/deps/eye">{{trans('HomePage/HomePage.Sec5')}}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -53,7 +52,7 @@
                         <div class="footer-column col-lg-6 col-md-6 col-sm-12">
                             <div class="footer-widget news-widget">
                                 <div class="footer-title  clearfix">
-                                    <h2>تحديث الأخبار</h2>
+                                    <h2>أخر المقالات</h2>
                                     <div class="separator"></div>
                                 </div>
 
@@ -61,11 +60,11 @@
                                 <div class="news-widget-block">
                                     <div class="widget-inner">
                                         <div class="image">
-                                            <img src="images/resource/news-image-1.jpg" alt=""/>
+                                            <img src="{{URL::asset('WebSite/images/articals/1/min.png')}}" alt="photo" />
                                         </div>
-                                        <h3><a href="blog-detail.html">الطب التكاملي وعلاج السرطان</a>
+                                        <h3><a href="blog-detail.html">النوبة القلبية الصامتة</a>
                                         </h3>
-                                        <div class="post-date">11 يوليو 2022</div>
+                                        <div class="post-date">11 يونيو 2025</div>
                                     </div>
                                 </div>
 
@@ -73,10 +72,10 @@
                                 <div class="news-widget-block">
                                     <div class="widget-inner">
                                         <div class="image">
-                                            <img src="images/resource/news-image-2.jpg" alt=""/>
+                                            <img src="{{URL::asset('WebSite/images/articals/2/min.png')}}" alt="" />
                                         </div>
-                                        <h3><a href="blog-detail.html">الحصول على رعاية صحية أفضل لمريض واحد</a></h3>
-                                        <div class="post-date">11 يوليو 2022</div>
+                                        <h3><a href="blog-detail.html">الجلطات الدماغية</a></h3>
+                                        <div class="post-date">11 يوليو 2025</div>
                                     </div>
                                 </div>
 
@@ -92,13 +91,13 @@
                                 </div>
 
                                 <ul class="contact-list">
-                                    <li><span class="icon flaticon-placeholder"></span>2130 شارع فولتون في سان دييغو<br> CA 94117-1080 الولايات المتحدة الأمريكية
+                                    <li><span class="icon flaticon-placeholder"></span>جامعة حلب في المناطق المحررة<br> سوريا - حلب - اعزاز</li>
 
                                     </li>
                                     <li><span class="icon flaticon-call"></span>من الإثنين إلى الجمعة: من الساعة 8:30 صباحًا حتى الساعة 18:00 مساءً<br> <a
-                                            href="tel:+898-68679-575-09">+898 68679 575 09</a></li>
+                                            href="tel:+905528779087">+90 552 877 90 87   </a></li>
                                     <li><span class="icon flaticon-message"></span>هل لديك سؤال ؟ <a
-                                            href="mailto:info@gmail.com">info@gmail.com</a></li>
+                                            href="mailto:info@moh.gov.sy">info@moh.gov.sy</a></li>
                                 </ul>
 
                             </div>
@@ -114,7 +113,8 @@
     <!-- Footer Bottom -->
     <div class="footer-bottom">
         <div class="auto-container">
-            <div class="copyright">MediTech Helth Care &copy; All Rights Reserved By MoraSoft</div>
+            <div class="copyright">Helth Care &copy; All Rights Reserved By Free Aleepo University with love <i  class="flaticon-heart heart-icon"></i>
+            </div>
         </div>
     </div>
 

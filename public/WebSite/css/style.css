@@ -3953,7 +3953,9 @@ img{
 	top:0px;
 	font-size:14px;
 	font-weight:800;
-	font-family: 'Tajawal', sans-serif;'' "Font Awesome 5 Free";
+	font-family:"Font Awesome 5 Free";
+	display: none;
+	
 }
 
 .main-footer .footer-list li a:hover{
