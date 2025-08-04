@@ -30,22 +30,28 @@ class AppointmentController extends Controller
             'appointment'=>$request->appointment
         ]);
 
-        // send email
-        Mail::to($appointment->email)->send(new AppointmentConfirmation($appointment->name,$appointment->appointment));
+        // // send email
+        // Mail::to($appointment->email)->send(new AppointmentConfirmation($appointment->name,$appointment->appointment));
 
-        // send message mob
-        $receiverNumber = $appointment->phone;
-        $message = "عزيزي المريض" . " " . $appointment->name . " " . "تم حجز موعدك بتاريخ " . $appointment->appointment;
+        // // send message mob
+        // $receiverNumber = $appointment->phone;
+        // $message = "عزيزي المريض" . " " . $appointment->name . " " . "تم حجز موعدك بتاريخ " . $appointment->appointment;
 
-        $account_sid = getenv("TWILIO_SID");
-        $auth_token = getenv("TWILIO_TOKEN");
-        $twilio_number = getenv("TWILIO_FROM");
-        $client = new Client($account_sid, $auth_token);
-        $client->messages->create($receiverNumber,[
-            'from' => $twilio_number,
-            'body' => $message
-        ]);
+        // $account_sid = getenv("TWILIO_SID");
+        // $auth_token = getenv("TWILIO_TOKEN");
+        // $twilio_number = getenv("TWILIO_FROM");
+        // $client = new Client($account_sid, $auth_token);
+        // $client->messages->create($receiverNumber,[
+        //     'from' => $twilio_number,
+        //     'body' => $message
+        // ]);
         session()->flash('add');
+        return back();
+    }
+
+    public function destroy($id){
+         Appointment::destroy($id);
+        session()->flash('delete');
         return back();
     }
 }
