@@ -86,7 +86,7 @@
             <ul class="slide-menu">
                 <li><a class="slide-item" href="{{ route('appointments.index') }}">قائمة المواعيد</a></li>
                 <li><a class="slide-item" href="{{ route('appointments.index2') }}">قائمة المواعيد المؤكدة</a></li>
-                <li><a class="slide-item" href="{{ url('/' . $page='map-vector') }}">قائمة المواعيد المنتهية</a></li>
+                <li><a class="slide-item" href="{{ route('appointments.ExpiredDates') }}">قائمة المواعيد المنتهية</a></li>
             </ul>
         </li>
         <li class="side-item side-item-category">Pages</li>

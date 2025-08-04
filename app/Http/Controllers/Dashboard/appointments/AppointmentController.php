@@ -22,6 +22,11 @@ class AppointmentController extends Controller
         $appointments = Appointment::where('type','مؤكد')->get();
         return view('Dashboard.appointments.index2',compact('appointments'));
     }
+    public function ExpiredDates(){
+
+        $appointments = Appointment::where('type','منتهي')->get();
+        return view('Dashboard.appointments.ExpiredDates',compact('appointments'));
+    }
 
     public function approval(Request $request,$id){
         $appointment = Appointment::findorFail($id);
@@ -49,8 +54,12 @@ class AppointmentController extends Controller
         return back();
     }
 
-    public function destroy($id){
-         Appointment::destroy($id);
+    public function destroy(Request $request, $id){
+        $appointment = Appointment::findorFail($id);
+        $appointment->update([
+            'type'=>'منتهي',
+            'appointment'=>$request->appointment
+        ]);
         session()->flash('delete');
         return back();
     }
