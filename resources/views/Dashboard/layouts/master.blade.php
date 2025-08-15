@@ -31,17 +31,7 @@
 			@include('Dashboard.layouts.footer')
 			@include('Dashboard.layouts.footer-scripts')
 
-			<script>
-				Pusher.logToConsole = true;
-				var pusher = new Pusher('648ef7b79d69a1013f5d', {
-					cluster: 'mt1'
-				});
 
-				var channel = pusher.subscribe('my-channel');
-				channel.bind('my-event', function(data) {
-					alert(JSON.stringify(data));
-				});
-			</script>
 
 </body>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Events\CreateInvoice;
+use App\Events\MyEvent;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\FundAccount;
@@ -169,7 +170,13 @@ class SingleInvoices extends Component
                     $fund_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
-
+                       
+                    // $data =     [
+                    //     'patient_id' => $this->patient_id,
+                    //     'invoice_id' => $single_invoices->id,
+                    //     'doctor_id' => $this->doctor_id,
+                    // ];
+                    // event(new MyEvent($data));
                     $notifications = new Notification();
                     $notifications->user_id = $this->doctor_id;
                     $patient = Patient::find($this->patient_id);

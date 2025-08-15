@@ -4052,7 +4052,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: '575a24b342b94c92fd1d',
+  key: '648ef7b79d69a1013f5d',
   cluster: 'mt1',
   forceTLS: true
 });
@@ -4069,8 +4069,20 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Channel": () => (/* binding */ Channel),
+/* harmony export */   "Connector": () => (/* binding */ Connector),
+/* harmony export */   "EventFormatter": () => (/* binding */ EventFormatter),
 /* harmony export */   "default": () => (/* binding */ Echo)
 /* harmony export */ });
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, _typeof(obj);
+}
+
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -4248,7 +4260,7 @@ var EventFormatter = /*#__PURE__*/function () {
   function EventFormatter(namespace) {
     _classCallCheck(this, EventFormatter);
 
-    this.setNamespace(namespace);
+    this.namespace = namespace; //
   }
   /**
    * Format the given event name.
@@ -4258,8 +4270,8 @@ var EventFormatter = /*#__PURE__*/function () {
   _createClass(EventFormatter, [{
     key: "format",
     value: function format(event) {
-      if (event.charAt(0) === '.' || event.charAt(0) === '\\') {
-        return event.substr(1);
+      if (['.', '\\'].includes(event.charAt(0))) {
+        return event.substring(1);
       } else if (this.namespace) {
         event = this.namespace + '.' + event;
       }
@@ -4279,6 +4291,16 @@ var EventFormatter = /*#__PURE__*/function () {
 
   return EventFormatter;
 }();
+
+function isConstructor(obj) {
+  try {
+    new obj();
+  } catch (err) {
+    if (err.message.includes('is not a constructor')) return false;
+  }
+
+  return true;
+}
 
 /**
  * This class represents a Pusher channel.
@@ -4445,7 +4467,7 @@ var PusherPrivateChannel = /*#__PURE__*/function (_PusherChannel) {
     key: "whisper",
     value:
     /**
-     * Trigger client event on the channel.
+     * Send a whisper event to other clients in the channel.
      */
     function whisper(eventName, data) {
       this.pusher.channels.channels[this.name].trigger("client-".concat(eventName), data);
@@ -4475,7 +4497,7 @@ var PusherEncryptedPrivateChannel = /*#__PURE__*/function (_PusherChannel) {
     key: "whisper",
     value:
     /**
-     * Trigger client event on the channel.
+     * Send a whisper event to other clients in the channel.
      */
     function whisper(eventName, data) {
       this.pusher.channels.channels[this.name].trigger("client-".concat(eventName), data);
@@ -4490,8 +4512,8 @@ var PusherEncryptedPrivateChannel = /*#__PURE__*/function (_PusherChannel) {
  * This class represents a Pusher presence channel.
  */
 
-var PusherPresenceChannel = /*#__PURE__*/function (_PusherChannel) {
-  _inherits(PusherPresenceChannel, _PusherChannel);
+var PusherPresenceChannel = /*#__PURE__*/function (_PusherPrivateChannel) {
+  _inherits(PusherPresenceChannel, _PusherPrivateChannel);
 
   var _super = _createSuper(PusherPresenceChannel);
 
@@ -4528,6 +4550,16 @@ var PusherPresenceChannel = /*#__PURE__*/function (_PusherChannel) {
       return this;
     }
     /**
+     * Send a whisper event to other clients in the channel.
+     */
+
+  }, {
+    key: "whisper",
+    value: function whisper(eventName, data) {
+      this.pusher.channels.channels[this.name].trigger("client-".concat(eventName), data);
+      return this;
+    }
+    /**
      * Listen for someone leaving the channel.
      */
 
@@ -4539,20 +4571,10 @@ var PusherPresenceChannel = /*#__PURE__*/function (_PusherChannel) {
       });
       return this;
     }
-    /**
-     * Trigger client event on the channel.
-     */
-
-  }, {
-    key: "whisper",
-    value: function whisper(eventName, data) {
-      this.pusher.channels.channels[this.name].trigger("client-".concat(eventName), data);
-      return this;
-    }
   }]);
 
   return PusherPresenceChannel;
-}(PusherChannel);
+}(PusherPrivateChannel);
 
 /**
  * This class represents a Socket.io channel.
@@ -4745,7 +4767,7 @@ var SocketIoPrivateChannel = /*#__PURE__*/function (_SocketIoChannel) {
     key: "whisper",
     value:
     /**
-     * Trigger client event on the channel.
+     * Send a whisper event to other clients in the channel.
      */
     function whisper(eventName, data) {
       this.socket.emit('client event', {
@@ -4798,6 +4820,20 @@ var SocketIoPresenceChannel = /*#__PURE__*/function (_SocketIoPrivateChann) {
     value: function joining(callback) {
       this.on('presence:joining', function (member) {
         return callback(member.user_info);
+      });
+      return this;
+    }
+    /**
+     * Send a whisper event to other clients in the channel.
+     */
+
+  }, {
+    key: "whisper",
+    value: function whisper(eventName, data) {
+      this.socket.emit('client event', {
+        channel: this.name,
+        event: "client-".concat(eventName),
+        data: data
       });
       return this;
     }
@@ -4856,6 +4892,15 @@ var NullChannel = /*#__PURE__*/function (_Channel) {
   }, {
     key: "listen",
     value: function listen(event, callback) {
+      return this;
+    }
+    /**
+     * Listen for all events on the channel instance.
+     */
+
+  }, {
+    key: "listenToAll",
+    value: function listenToAll(callback) {
       return this;
     }
     /**
@@ -4918,7 +4963,7 @@ var NullPrivateChannel = /*#__PURE__*/function (_NullChannel) {
     key: "whisper",
     value:
     /**
-     * Trigger client event on the channel.
+     * Send a whisper event to other clients in the channel.
      */
     function whisper(eventName, data) {
       return this;
@@ -4929,11 +4974,40 @@ var NullPrivateChannel = /*#__PURE__*/function (_NullChannel) {
 }(NullChannel);
 
 /**
+ * This class represents a null private channel.
+ */
+
+var NullEncryptedPrivateChannel = /*#__PURE__*/function (_NullChannel) {
+  _inherits(NullEncryptedPrivateChannel, _NullChannel);
+
+  var _super = _createSuper(NullEncryptedPrivateChannel);
+
+  function NullEncryptedPrivateChannel() {
+    _classCallCheck(this, NullEncryptedPrivateChannel);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(NullEncryptedPrivateChannel, [{
+    key: "whisper",
+    value:
+    /**
+     * Send a whisper event to other clients in the channel.
+     */
+    function whisper(eventName, data) {
+      return this;
+    }
+  }]);
+
+  return NullEncryptedPrivateChannel;
+}(NullChannel);
+
+/**
  * This class represents a null presence channel.
  */
 
-var NullPresenceChannel = /*#__PURE__*/function (_NullChannel) {
-  _inherits(NullPresenceChannel, _NullChannel);
+var NullPresenceChannel = /*#__PURE__*/function (_NullPrivateChannel) {
+  _inherits(NullPresenceChannel, _NullPrivateChannel);
 
   var _super = _createSuper(NullPresenceChannel);
 
@@ -4962,6 +5036,15 @@ var NullPresenceChannel = /*#__PURE__*/function (_NullChannel) {
       return this;
     }
     /**
+     * Send a whisper event to other clients in the channel.
+     */
+
+  }, {
+    key: "whisper",
+    value: function whisper(eventName, data) {
+      return this;
+    }
+    /**
      * Listen for someone leaving the channel.
      */
 
@@ -4970,19 +5053,10 @@ var NullPresenceChannel = /*#__PURE__*/function (_NullChannel) {
     value: function leaving(callback) {
       return this;
     }
-    /**
-     * Trigger client event on the channel.
-     */
-
-  }, {
-    key: "whisper",
-    value: function whisper(eventName, data) {
-      return this;
-    }
   }]);
 
   return NullPresenceChannel;
-}(NullChannel);
+}(NullPrivateChannel);
 
 var Connector = /*#__PURE__*/function () {
   /**
@@ -4999,8 +5073,13 @@ var Connector = /*#__PURE__*/function () {
         headers: {}
       },
       authEndpoint: '/broadcasting/auth',
+      userAuthentication: {
+        endpoint: '/broadcasting/user-auth',
+        headers: {}
+      },
       broadcaster: 'pusher',
       csrfToken: null,
+      bearerToken: null,
       host: null,
       key: null,
       namespace: 'App.Events'
@@ -5017,9 +5096,18 @@ var Connector = /*#__PURE__*/function () {
     key: "setOptions",
     value: function setOptions(options) {
       this.options = _extends(this._defaultOptions, options);
+      var token = this.csrfToken();
 
-      if (this.csrfToken()) {
-        this.options.auth.headers['X-CSRF-TOKEN'] = this.csrfToken();
+      if (token) {
+        this.options.auth.headers['X-CSRF-TOKEN'] = token;
+        this.options.userAuthentication.headers['X-CSRF-TOKEN'] = token;
+      }
+
+      token = this.options.bearerToken;
+
+      if (token) {
+        this.options.auth.headers['Authorization'] = 'Bearer ' + token;
+        this.options.userAuthentication.headers['Authorization'] = 'Bearer ' + token;
       }
 
       return options;
@@ -5080,9 +5168,20 @@ var PusherConnector = /*#__PURE__*/function (_Connector) {
     value: function connect() {
       if (typeof this.options.client !== 'undefined') {
         this.pusher = this.options.client;
+      } else if (this.options.Pusher) {
+        this.pusher = new this.options.Pusher(this.options.key, this.options);
       } else {
         this.pusher = new Pusher(this.options.key, this.options);
       }
+    }
+    /**
+     * Sign in the user via Pusher user authentication (https://pusher.com/docs/channels/using_channels/user-authentication/).
+     */
+
+  }, {
+    key: "signin",
+    value: function signin() {
+      this.pusher.signin();
     }
     /**
      * Listen for an event on a channel instance.
@@ -5154,7 +5253,7 @@ var PusherConnector = /*#__PURE__*/function (_Connector) {
     value: function leave(name) {
       var _this2 = this;
 
-      var channels = [name, 'private-' + name, 'presence-' + name];
+      var channels = [name, 'private-' + name, 'private-encrypted-' + name, 'presence-' + name];
       channels.forEach(function (name, index) {
         _this2.leaveChannel(name);
       });
@@ -5408,6 +5507,15 @@ var NullConnector = /*#__PURE__*/function (_Connector) {
       return new NullPrivateChannel();
     }
     /**
+     * Get a private encrypted channel instance by name.
+     */
+
+  }, {
+    key: "encryptedPrivateChannel",
+    value: function encryptedPrivateChannel(name) {
+      return new NullEncryptedPrivateChannel();
+    }
+    /**
      * Get a presence channel instance by name.
      */
 
@@ -5489,14 +5597,20 @@ var Echo = /*#__PURE__*/function () {
   }, {
     key: "connect",
     value: function connect() {
-      if (this.options.broadcaster == 'pusher') {
+      if (this.options.broadcaster == 'reverb') {
+        this.connector = new PusherConnector(_extends(_extends({}, this.options), {
+          cluster: ''
+        }));
+      } else if (this.options.broadcaster == 'pusher') {
         this.connector = new PusherConnector(this.options);
       } else if (this.options.broadcaster == 'socket.io') {
         this.connector = new SocketIoConnector(this.options);
       } else if (this.options.broadcaster == 'null') {
         this.connector = new NullConnector(this.options);
-      } else if (typeof this.options.broadcaster == 'function') {
+      } else if (typeof this.options.broadcaster == 'function' && isConstructor(this.options.broadcaster)) {
         this.connector = new this.options.broadcaster(this.options);
+      } else {
+        throw new Error("Broadcaster ".concat(_typeof(this.options.broadcaster), " ").concat(this.options.broadcaster, " is not supported."));
       }
     }
     /**
@@ -5536,6 +5650,17 @@ var Echo = /*#__PURE__*/function () {
       this.connector.leaveChannel(channel);
     }
     /**
+     * Leave all channels.
+     */
+
+  }, {
+    key: "leaveAllChannels",
+    value: function leaveAllChannels() {
+      for (var channel in this.connector.channels) {
+        this.leaveChannel(channel);
+      }
+    }
+    /**
      * Listen for an event on a channel instance.
      */
 
@@ -5560,6 +5685,10 @@ var Echo = /*#__PURE__*/function () {
   }, {
     key: "encryptedPrivate",
     value: function encryptedPrivate(channel) {
+      if (this.connector instanceof SocketIoConnector) {
+        throw new Error("Broadcaster ".concat(_typeof(this.options.broadcaster), " ").concat(this.options.broadcaster, " does not support encrypted private channels."));
+      }
+
       return this.connector.encryptedPrivateChannel(channel);
     }
     /**
@@ -5589,6 +5718,10 @@ var Echo = /*#__PURE__*/function () {
 
       if (typeof jQuery === 'function') {
         this.registerjQueryAjaxSetup();
+      }
+
+      if ((typeof Turbo === "undefined" ? "undefined" : _typeof(Turbo)) === 'object') {
+        this.registerTurboRequestInterceptor();
       }
     }
     /**
@@ -5641,6 +5774,19 @@ var Echo = /*#__PURE__*/function () {
           }
         });
       }
+    }
+    /**
+     * Register the Turbo Request interceptor to add the X-Socket-ID header.
+     */
+
+  }, {
+    key: "registerTurboRequestInterceptor",
+    value: function registerTurboRequestInterceptor() {
+      var _this4 = this;
+
+      document.addEventListener('turbo:before-fetch-request', function (event) {
+        event.detail.fetchOptions.headers['X-Socket-Id'] = _this4.socketId();
+      });
     }
   }]);
 
@@ -23078,7 +23224,7 @@ process.umask = function() { return 0; };
 /***/ ((module) => {
 
 /*!
- * Pusher JavaScript Library v7.0.6
+ * Pusher JavaScript Library v7.6.0
  * https://pusher.com/
  *
  * Copyright 2020, Pusher
@@ -23667,7 +23813,7 @@ var ScriptReceivers = new ScriptReceiverFactory('_pusher_script_', 'Pusher.Scrip
 
 // CONCATENATED MODULE: ./src/core/defaults.ts
 var Defaults = {
-    VERSION: "7.0.6",
+    VERSION: "7.6.0",
     PROTOCOL: 7,
     wsPort: 80,
     wssPort: 443,
@@ -23936,6 +24082,12 @@ var ajax = function (context, query, authOptions, authRequestType, callback) {
     for (var headerName in authOptions.headers) {
         xhr.setRequestHeader(headerName, authOptions.headers[headerName]);
     }
+    if (authOptions.headersProvider != null) {
+        var dynamicHeaders = authOptions.headersProvider();
+        for (var headerName in dynamicHeaders) {
+            xhr.setRequestHeader(headerName, dynamicHeaders[headerName]);
+        }
+    }
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
@@ -23959,7 +24111,7 @@ var ajax = function (context, query, authOptions, authRequestType, callback) {
                         suffix = url_store.buildLogSuffix('authenticationEndpoint');
                         break;
                     case AuthRequestType.ChannelAuthorization:
-                        suffix = "Clients must be authenticated to join private or presence channels. " + url_store.buildLogSuffix('authorizationEndpoint');
+                        suffix = "Clients must be authorized to join private or presence channels. " + url_store.buildLogSuffix('authorizationEndpoint');
                         break;
                 }
                 callback(new HTTPAuthError(xhr.status, "Unable to retrieve auth string from " + authRequestType.toString() + " endpoint - " +
@@ -24375,7 +24527,8 @@ var logger_Logger = (function () {
 // CONCATENATED MODULE: ./src/runtimes/web/auth/jsonp_auth.ts
 
 var jsonp = function (context, query, authOptions, authRequestType, callback) {
-    if (authOptions.headers !== undefined) {
+    if (authOptions.headers !== undefined ||
+        authOptions.headersProvider != null) {
         logger.warn("To send headers with the " + authRequestType.toString() + " request, you must use AJAX, rather than JSONP.");
     }
     var callbackName = context.nextAuthCallbackID.toString();
@@ -25382,6 +25535,9 @@ var channel_Channel = (function (_super) {
         if (eventName === 'pusher_internal:subscription_succeeded') {
             this.handleSubscriptionSucceededEvent(event);
         }
+        else if (eventName === 'pusher_internal:subscription_count') {
+            this.handleSubscriptionCountEvent(event);
+        }
         else if (eventName.indexOf('pusher_internal:') !== 0) {
             var metadata = {};
             this.emit(eventName, data, metadata);
@@ -25396,6 +25552,12 @@ var channel_Channel = (function (_super) {
         else {
             this.emit('pusher:subscription_succeeded', event.data);
         }
+    };
+    Channel.prototype.handleSubscriptionCountEvent = function (event) {
+        if (event.data.subscription_count) {
+            this.subscriptionCount = event.data.subscription_count;
+        }
+        this.emit('pusher:subscription_count', event.data);
     };
     Channel.prototype.subscribe = function () {
         var _this = this;
@@ -25538,6 +25700,42 @@ var presence_channel_extends = ( false) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __awaiter = ( false) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = ( false) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 
 
 
@@ -25551,21 +25749,38 @@ var presence_channel_PresenceChannel = (function (_super) {
     }
     PresenceChannel.prototype.authorize = function (socketId, callback) {
         var _this = this;
-        _super.prototype.authorize.call(this, socketId, function (error, authData) {
-            if (!error) {
-                authData = authData;
-                if (authData.channel_data === undefined) {
-                    var suffix = url_store.buildLogSuffix('authenticationEndpoint');
-                    logger.error("Invalid auth response for channel '" + _this.name + "'," +
-                        ("expected 'channel_data' field. " + suffix));
-                    callback('Invalid auth response');
-                    return;
+        _super.prototype.authorize.call(this, socketId, function (error, authData) { return __awaiter(_this, void 0, void 0, function () {
+            var channelData, suffix;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!!error) return [3, 3];
+                        authData = authData;
+                        if (!(authData.channel_data != null)) return [3, 1];
+                        channelData = JSON.parse(authData.channel_data);
+                        this.members.setMyID(channelData.user_id);
+                        return [3, 3];
+                    case 1: return [4, this.pusher.user.signinDonePromise];
+                    case 2:
+                        _a.sent();
+                        if (this.pusher.user.user_data != null) {
+                            this.members.setMyID(this.pusher.user.user_data.id);
+                        }
+                        else {
+                            suffix = url_store.buildLogSuffix('authorizationEndpoint');
+                            logger.error("Invalid auth response for channel '" + this.name + "', " +
+                                ("expected 'channel_data' field. " + suffix + ", ") +
+                                "or the user should be signed in.");
+                            callback('Invalid auth response');
+                            return [2];
+                        }
+                        _a.label = 3;
+                    case 3:
+                        callback(error, authData);
+                        return [2];
                 }
-                var channelData = JSON.parse(authData.channel_data);
-                _this.members.setMyID(channelData.user_id);
-            }
-            callback(error, authData);
-        });
+            });
+        }); });
     };
     PresenceChannel.prototype.handleEvent = function (event) {
         var eventName = event.event;
@@ -25587,6 +25802,9 @@ var presence_channel_PresenceChannel = (function (_super) {
         switch (eventName) {
             case 'pusher_internal:subscription_succeeded':
                 this.handleSubscriptionSucceededEvent(event);
+                break;
+            case 'pusher_internal:subscription_count':
+                this.handleSubscriptionCountEvent(event);
                 break;
             case 'pusher_internal:member_added':
                 var addedMember = this.members.addMember(data);
@@ -26885,7 +27103,7 @@ function replaceHost(url, hostname) {
     return urlParts[1] + hostname + urlParts[3];
 }
 function randomNumber(max) {
-    return Math.floor(Math.random() * max);
+    return runtime.randomInt(max);
 }
 function randomString(length) {
     var result = [];
@@ -27131,6 +27349,14 @@ var Runtime = {
         else if (window.detachEvent !== undefined) {
             window.detachEvent('onunload', listener);
         }
+    },
+    randomInt: function (max) {
+        var random = function () {
+            var crypto = window.crypto || window['msCrypto'];
+            var random = crypto.getRandomValues(new Uint32Array(1))[0];
+            return random / Math.pow(2, 32);
+        };
+        return Math.floor(random() * max);
     }
 };
 /* harmony default export */ var runtime = (Runtime);
@@ -27357,12 +27583,22 @@ var strategy_builder_UnsupportedStrategy = {
 
 var composeChannelQuery = function (params, authOptions) {
     var query = 'socket_id=' + encodeURIComponent(params.socketId);
-    for (var i in authOptions.params) {
+    for (var key in authOptions.params) {
         query +=
             '&' +
-                encodeURIComponent(i) +
+                encodeURIComponent(key) +
                 '=' +
-                encodeURIComponent(authOptions.params[i]);
+                encodeURIComponent(authOptions.params[key]);
+    }
+    if (authOptions.paramsProvider != null) {
+        var dynamicParams = authOptions.paramsProvider();
+        for (var key in dynamicParams) {
+            query +=
+                '&' +
+                    encodeURIComponent(key) +
+                    '=' +
+                    encodeURIComponent(dynamicParams[key]);
+        }
     }
     return query;
 };
@@ -27383,12 +27619,22 @@ var UserAuthenticator = function (authOptions) {
 var channel_authorizer_composeChannelQuery = function (params, authOptions) {
     var query = 'socket_id=' + encodeURIComponent(params.socketId);
     query += '&channel_name=' + encodeURIComponent(params.channelName);
-    for (var i in authOptions.params) {
+    for (var key in authOptions.params) {
         query +=
             '&' +
-                encodeURIComponent(i) +
+                encodeURIComponent(key) +
                 '=' +
-                encodeURIComponent(authOptions.params[i]);
+                encodeURIComponent(authOptions.params[key]);
+    }
+    if (authOptions.paramsProvider != null) {
+        var dynamicParams = authOptions.paramsProvider();
+        for (var key in dynamicParams) {
+            query +=
+                '&' +
+                    encodeURIComponent(key) +
+                    '=' +
+                    encodeURIComponent(dynamicParams[key]);
+        }
     }
     return query;
 };
@@ -27510,7 +27756,7 @@ function getEnableStatsConfig(opts) {
     return false;
 }
 function buildUserAuthenticator(opts) {
-    var userAuthentication = __assign({}, defaults.userAuthentication, opts.userAuthentication);
+    var userAuthentication = __assign(__assign({}, defaults.userAuthentication), opts.userAuthentication);
     if ('customHandler' in userAuthentication &&
         userAuthentication['customHandler'] != null) {
         return userAuthentication['customHandler'];
@@ -27520,7 +27766,7 @@ function buildUserAuthenticator(opts) {
 function buildChannelAuth(opts, pusher) {
     var channelAuthorization;
     if ('channelAuthorization' in opts) {
-        channelAuthorization = __assign({}, defaults.channelAuthorization, opts.channelAuthorization);
+        channelAuthorization = __assign(__assign({}, defaults.channelAuthorization), opts.channelAuthorization);
     }
     else {
         channelAuthorization = {
@@ -27547,6 +27793,62 @@ function buildChannelAuthorizer(opts, pusher) {
     return channel_authorizer(channelAuthorization);
 }
 
+// CONCATENATED MODULE: ./src/core/watchlist.ts
+var watchlist_extends = ( false) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+var watchlist_WatchlistFacade = (function (_super) {
+    watchlist_extends(WatchlistFacade, _super);
+    function WatchlistFacade(pusher) {
+        var _this = _super.call(this, function (eventName, data) {
+            logger.debug("No callbacks on watchlist events for " + eventName);
+        }) || this;
+        _this.pusher = pusher;
+        _this.bindWatchlistInternalEvent();
+        return _this;
+    }
+    WatchlistFacade.prototype.handleEvent = function (pusherEvent) {
+        var _this = this;
+        pusherEvent.data.events.forEach(function (watchlistEvent) {
+            _this.emit(watchlistEvent.name, watchlistEvent);
+        });
+    };
+    WatchlistFacade.prototype.bindWatchlistInternalEvent = function () {
+        var _this = this;
+        this.pusher.connection.bind('message', function (pusherEvent) {
+            var eventName = pusherEvent.event;
+            if (eventName === 'pusher_internal:watchlist_events') {
+                _this.handleEvent(pusherEvent);
+            }
+        });
+    };
+    return WatchlistFacade;
+}(dispatcher));
+/* harmony default export */ var watchlist = (watchlist_WatchlistFacade);
+
+// CONCATENATED MODULE: ./src/core/utils/flat_promise.ts
+function flatPromise() {
+    var resolve, reject;
+    var promise = new Promise(function (res, rej) {
+        resolve = res;
+        reject = rej;
+    });
+    return { promise: promise, resolve: resolve, reject: reject };
+}
+/* harmony default export */ var flat_promise = (flatPromise);
+
 // CONCATENATED MODULE: ./src/core/user.ts
 var user_extends = ( false) || (function () {
     var extendStatics = function (d, b) {
@@ -27564,6 +27866,8 @@ var user_extends = ( false) || (function () {
 
 
 
+
+
 var user_UserFacade = (function (_super) {
     user_extends(UserFacade, _super);
     function UserFacade(pusher) {
@@ -27573,16 +27877,31 @@ var user_UserFacade = (function (_super) {
         _this.signin_requested = false;
         _this.user_data = null;
         _this.serverToUserChannel = null;
+        _this.signinDonePromise = null;
+        _this._signinDoneResolve = null;
+        _this._onAuthorize = function (err, authData) {
+            if (err) {
+                logger.warn("Error during signin: " + err);
+                _this._cleanup();
+                return;
+            }
+            _this.pusher.send_event('pusher:signin', {
+                auth: authData.auth,
+                user_data: authData.user_data
+            });
+        };
         _this.pusher = pusher;
-        _this.pusher.connection.bind('connected', function () {
-            _this._signin();
+        _this.pusher.connection.bind('state_change', function (_a) {
+            var previous = _a.previous, current = _a.current;
+            if (previous !== 'connected' && current === 'connected') {
+                _this._signin();
+            }
+            if (previous === 'connected' && current !== 'connected') {
+                _this._cleanup();
+                _this._newSigninPromiseIfNeeded();
+            }
         });
-        _this.pusher.connection.bind('connecting', function () {
-            _this._disconnect();
-        });
-        _this.pusher.connection.bind('disconnected', function () {
-            _this._disconnect();
-        });
+        _this.watchlist = new watchlist(pusher);
         _this.pusher.connection.bind('message', function (event) {
             var eventName = event.event;
             if (eventName === 'pusher:signin_success') {
@@ -27603,26 +27922,16 @@ var user_UserFacade = (function (_super) {
         this._signin();
     };
     UserFacade.prototype._signin = function () {
-        var _this = this;
         if (!this.signin_requested) {
             return;
         }
+        this._newSigninPromiseIfNeeded();
         if (this.pusher.connection.state !== 'connected') {
             return;
         }
-        var onAuthorize = function (err, authData) {
-            if (err) {
-                logger.warn("Error during signin: " + err);
-                return;
-            }
-            _this.pusher.send_event('pusher:signin', {
-                auth: authData.auth,
-                user_data: authData.user_data
-            });
-        };
         this.pusher.config.userAuthenticator({
             socketId: this.pusher.connection.socket_id
-        }, onAuthorize);
+        }, this._onAuthorize);
     };
     UserFacade.prototype._onSigninSuccess = function (data) {
         try {
@@ -27630,12 +27939,15 @@ var user_UserFacade = (function (_super) {
         }
         catch (e) {
             logger.error("Failed parsing user data after signin: " + data.user_data);
+            this._cleanup();
             return;
         }
         if (typeof this.user_data.id !== 'string' || this.user_data.id === '') {
             logger.error("user_data doesn't contain an id. user_data: " + this.user_data);
+            this._cleanup();
             return;
         }
+        this._signinDoneResolve();
         this._subscribeChannels();
     };
     UserFacade.prototype._subscribeChannels = function () {
@@ -27659,13 +27971,32 @@ var user_UserFacade = (function (_super) {
         });
         ensure_subscribed(this.serverToUserChannel);
     };
-    UserFacade.prototype._disconnect = function () {
+    UserFacade.prototype._cleanup = function () {
         this.user_data = null;
         if (this.serverToUserChannel) {
             this.serverToUserChannel.unbind_all();
             this.serverToUserChannel.disconnect();
             this.serverToUserChannel = null;
         }
+        if (this.signin_requested) {
+            this._signinDoneResolve();
+        }
+    };
+    UserFacade.prototype._newSigninPromiseIfNeeded = function () {
+        if (!this.signin_requested) {
+            return;
+        }
+        if (this.signinDonePromise && !this.signinDonePromise.done) {
+            return;
+        }
+        var _a = flat_promise(), promise = _a.promise, resolve = _a.resolve, _ = _a.reject;
+        promise.done = false;
+        var setDone = function () {
+            promise.done = true;
+        };
+        promise.then(setDone)["catch"](setDone);
+        this.signinDonePromise = promise;
+        this._signinDoneResolve = resolve;
     };
     return UserFacade;
 }(dispatcher));
@@ -27701,7 +28032,7 @@ var pusher_Pusher = (function () {
         this.config = getConfig(options, this);
         this.channels = factory.createChannels();
         this.global_emitter = new dispatcher();
-        this.sessionID = Math.floor(Math.random() * 1000000000);
+        this.sessionID = runtime.randomInt(1000000000);
         this.timeline = new timeline_timeline(this.key, this.sessionID, {
             cluster: this.config.cluster,
             features: Pusher.getClientFeatures(),
