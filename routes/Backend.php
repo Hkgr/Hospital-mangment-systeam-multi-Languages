@@ -42,6 +42,7 @@ Route::group(
 
    //################################ dashboard user ##########################################
     Route::get('/dashboard/user', function () {
+
         return view('Dashboard.User.dashboard');
     })->middleware(['auth'])->name('dashboard.user');
     //################################ end dashboard user #####################################
@@ -50,6 +51,7 @@ Route::group(
 
     //################################ dashboard admin ########################################
     Route::get('/dashboard/admin', function () {
+        event(new MyEvent('hello'));
         return view('Dashboard.Admin.dashboard');
     })->middleware(['auth:admin'])->name('dashboard.admin');
 
@@ -65,6 +67,7 @@ Route::group(
     //############################# sections route ##########################################
 
         Route::resource('Sections', SectionController::class);
+        Route::get('create_section',[SectionController::class,'create'])->name('Sections.index2');
 
     //############################# end sections route ######################################
 
@@ -106,6 +109,7 @@ Route::group(
         //############################# Patients route ##########################################
 
         Route::resource('Patients', PatientController::class);
+        
 
         //############################# end Patients route ######################################
 

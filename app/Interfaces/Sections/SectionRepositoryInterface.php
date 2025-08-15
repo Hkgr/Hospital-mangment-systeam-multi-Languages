@@ -7,7 +7,8 @@ interface SectionRepositoryInterface
 
     // get All Sections
     public function index();
-
+    // Create New Sections
+    public function create();
     // store Sections
     public function store($request);
 

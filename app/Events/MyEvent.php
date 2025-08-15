@@ -17,13 +17,17 @@ class MyEvent implements ShouldBroadcast
 
     public $patient_id;
     public $invoice_id;
+    public $message;
 
-    public function __construct($data)
+    public function __construct($message)
     {
-        $patient = Patient::find($data['patient_id']);
-        $this->patient_id = $patient->name;
-        $this->invoice_id = $data['invoice_id'];
+        $this->message = $message;
     }
+    // {
+    //     $patient = Patient::find($data['patient_id']);
+    //     $this->patient_id = $patient->name;
+    //     $this->invoice_id = $data['invoice_id'];
+    // }
 
     public function broadcastOn()
     {

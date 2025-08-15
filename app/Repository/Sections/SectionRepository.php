@@ -13,11 +13,16 @@ class SectionRepository implements SectionRepositoryInterface
       $sections = Section::all();
       return view('Dashboard.Sections.index',compact('sections'));
     }
+    public function create()
+    {
+      //  return view('Dashboard.Sections.index2');
+    }
 
     public function store($request)
     {
         Section::create([
             'name' => $request->input('name'),
+            'description' => $request->input('description'),
         ]);
 
         session()->flash('add');
@@ -29,6 +34,8 @@ class SectionRepository implements SectionRepositoryInterface
         $section = Section::findOrFail($request->id);
         $section->update([
             'name' => $request->input('name'),
+            'description' => $request->input('description'),
+
         ]);
         session()->flash('edit');
         return redirect()->route('Sections.index');

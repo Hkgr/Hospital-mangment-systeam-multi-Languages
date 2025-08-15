@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard_Ray_Employee\InvoiceController;
 use App\Http\Livewire\Chat\Createchat;
 use App\Http\Livewire\Chat\Main;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------

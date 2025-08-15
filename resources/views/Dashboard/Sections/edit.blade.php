@@ -18,6 +18,10 @@
                     <input type="hidden" name="id" value="{{ $section->id }}">
                     <input type="text" name="name" value="{{ $section->name }}" class="form-control">
                 </div>
+                <div class="modal-body">
+                    <label for="exampleInputPassword1">الوصف</label>
+                    <input type="text" name="description" value="{{$section->description}}" class="form-control">
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Dashboard/sections_trans.Close')}}</button>
                     <button type="submit" class="btn btn-primary">{{trans('Dashboard/sections_trans.submit')}}</button>
