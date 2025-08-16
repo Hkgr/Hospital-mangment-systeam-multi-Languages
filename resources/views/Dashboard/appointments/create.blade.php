@@ -42,12 +42,25 @@
                     @csrf
                     <div class="pd-30 pd-sm-40 bg-gray-200">
 
+                    <div class="row row-xs align-items-center mg-b-20">
+                            <div class="col-md-1">
+                                <label for="patient_id">المريض</label>
+                            </div>
+                            <div class="col-md-11 mg-t-5 mg-md-t-0">
+                                <select id="patient_id" name="patient_id" class="form-control SlectBox">
+                                    <option value="" selected>مريض جديد</option>
+                                    @foreach($patients as $patient)
+                                        <option value="{{ $patient->id }}">{{ $patient->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
                                 <label for="name">اسم المريض</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <input id="name" class="form-control" name="name" type="text" autofocus required>
+                                <input id="name" class="form-control" name="name" type="text" autofocus>
                             </div>
                         </div>
 
@@ -57,7 +70,7 @@
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <input id="email" class="form-control" name="email" type="email"
-                                       placeholder="البريد الالكتروني" required>
+                                       placeholder="البريد الالكتروني" >
                             </div>
                         </div>
 
@@ -66,7 +79,7 @@
                                 <label for="section_id">{{ trans('doctors.section') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <select id="section_id" name="section_id" class="form-control SlectBox" required>
+                                <select id="section_id" name="section_id" class="form-control SlectBox" >
                                     <option value="" selected disabled>------</option>
                                     @foreach($Section as $section)
                                         <option value="{{ $section->id }}">{{ $section->name }}</option>
@@ -80,7 +93,7 @@
                                 <label for="doctor_id">الدكتور</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <select id="doctor_id" name="doctor_id" class="form-control SlectBox" required>
+                                <select id="doctor_id" name="doctor_id" class="form-control SlectBox" >
                                     <option value="" selected disabled>------</option>
                                     @foreach($doctors as $doctor)
                                         <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>

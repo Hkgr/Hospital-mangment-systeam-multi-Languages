@@ -4,7 +4,9 @@ namespace App\Http\Livewire\Appointments;
 
 use App\Models\Appointment;
 use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Section;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class Create extends Component
@@ -17,42 +19,59 @@ class Create extends Component
     public $email;
     public $phone;
     public $notes;
-    public $message= false;
+    public $patients;
+    public $patient_id;
+    public $message = false;
 
-    public function mount(){
+    public function mount()
+    {
 
-      $this->sections = Section::get();
-      $this->doctors = collect();
-
+        $this->sections = Section::get();
+        $this->doctors = collect();
+        $this->patients = Patient::get();
     }
 
     public function render()
     {
-        return view('livewire.appointments.create',
+        return view(
+            'livewire.appointments.create',
             [
-                'sections' => Section::get()
-            ]);
+                'sections' => Section::get(),
+                'patients' => $this->patients
+            ]
+        );
     }
 
-    public function updatedSection($section_id){
+    public function updatedSection($section_id)
+    {
 
-       $this->doctors = Doctor::where('section_id',$section_id)->get();
+        $this->doctors = Doctor::where('section_id', $section_id)->get();
     }
 
-    public function store(){
+    public function store()
+    {
+        if ($this->patient_id) {
+            $patient = Patient::find($this->patient_id);
+        } else {
+            $patient = Patient::firstOrCreate(
+                ['email' => $this->email, 'Phone' => $this->phone],
+                [
+                    'Password' => Hash::make($this->phone),
+                    'Date_Birth' => now(),
+                    'Gender' => 'غير محدد',
+                    'Blood_Group' => 'غير محدد',
+                ]
+            );
+            $patient->name = $this->name;
+            $patient->save();
+        }
 
         $appointments = new Appointment();
         $appointments->doctor_id = $this->doctor;
         $appointments->section_id = $this->section;
-        $appointments->name = $this->name;
-        $appointments->email = $this->email;
-        $appointments->phone = $this->phone;
+        $appointments->patient_id = $patient->id;
         $appointments->notes = $this->notes;
         $appointments->save();
-        $this->message =true;
-
+        $this->message = true;
     }
-
-
-
 }

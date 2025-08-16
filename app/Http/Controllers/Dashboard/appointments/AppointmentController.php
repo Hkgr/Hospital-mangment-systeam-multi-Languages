@@ -5,25 +5,50 @@ namespace App\Http\Controllers\Dashboard\appointments;
 use App\Http\Controllers\Controller;
 use App\Mail\AppointmentConfirmation;
 use App\Models\Appointment;
+use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Twilio\Rest\Client;
-
 class AppointmentController extends Controller
 {
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name'       => 'required|string',
-            'email'      => 'required|email',
-            'phone'      => 'required',
+            'patient_id' => 'nullable|exists:patients,id',
+            'name'       => 'required_without:patient_id|string',
+            'email'      => 'required_without:patient_id|email',
+            'phone'      => 'required_without:patient_id',
             'section_id' => 'required|exists:sections,id',
             'doctor_id'  => 'required|exists:doctors,id',
             'appointment'=> 'nullable|date',
             'notes'      => 'nullable|string',
         ]);
  
-        Appointment::create($data);
+        if (!empty($data['patient_id'])) {
+            $patient = Patient::find($data['patient_id']);
+        } else {
+            $patient = Patient::firstOrCreate(
+                ['email' => $data['email'], 'Phone' => $data['phone']],
+                [
+                    'Password' => Hash::make($data['phone']),
+                    'Date_Birth' => now(),
+                    'Gender' => 'غير محدد',
+                    'Blood_Group' => 'غير محدد',
+                ]
+            );
+            $patient->name = $data['name'];
+            $patient->save();
+        }
+
+        Appointment::create([
+            'patient_id'  => $patient->id,
+            'section_id'  => $data['section_id'],
+            'doctor_id'   => $data['doctor_id'],
+            'appointment' => $data['appointment'] ?? null,
+            'notes'       => $data['notes'] ?? null,
+        ]);
+
         return redirect()->route('appointments.index')
                          ->with('add', 'تم إضافة الموعد بنجاح');
     }
@@ -31,7 +56,8 @@ class AppointmentController extends Controller
 {
     $Section = \App\Models\Section::all();
     $doctors = \App\Models\Doctor::all();
-    return view('Dashboard.appointments.create', compact('Section','doctors'));
+    $patients = Patient::all();
+    return view('Dashboard.appointments.create', compact('Section','doctors','patients'));
 }
 
     public function index()

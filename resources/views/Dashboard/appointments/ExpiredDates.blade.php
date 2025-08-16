@@ -44,14 +44,13 @@
                             <tbody>
                             @foreach($appointments as $appointment)
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$appointment->name}}</a></td>
+                                <td>{{$appointment->patient->name}}</a></td>
+                                <td>{{$appointment->patient->email}}</td>
                                     <td>{{$appointment->email}}</td>
                                     <td>{{$appointment->section->name}}</td>
                                     <td>{{$appointment->doctor->name}}</td>
                                     <td>{{$appointment->appointment}}</td>
-                                    <td>{{$appointment->phone}}</td>
-                                </tr>
+                                    <td>{{$appointment->patient->Phone}}</td>                                </tr>
 
 
                             @endforeach
