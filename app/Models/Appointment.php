@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,8 +10,8 @@ class Appointment extends Model
     //use Translatable;
     use HasFactory;
     //public $translatedAttributes = ['name'];
-    public $fillable= ['patient_id','notes','doctor_id','section_id','type','appointment'];    
-    public function doctor()
+    public $fillable = ['patient_id', 'notes', 'doctor_id', 'section_id', 'type', 'appointment'];
+        public function doctor()
     {
         return $this->belongsTo(Doctor::class,'doctor_id');
     }
