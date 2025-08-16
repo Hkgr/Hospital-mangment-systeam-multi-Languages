@@ -37,8 +37,8 @@ class AppointmentController extends Controller
                     'Blood_Group' => 'غير محدد',
                 ]
             );
-            $patient->name = $data['name'];
-            $patient->save();
+            $patient->setTranslation('name', app()->getLocale(), $data['name']);
+                        $patient->save();
         }
 
         Appointment::create([

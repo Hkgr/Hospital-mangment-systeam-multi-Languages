@@ -62,8 +62,8 @@ class Create extends Component
                     'Blood_Group' => 'غير محدد',
                 ]
             );
-            $patient->name = $this->name;
-            $patient->save();
+            $patient->setTranslation('name', app()->getLocale(), $this->name);
+                        $patient->save();
         }
 
         $appointments = new Appointment();
