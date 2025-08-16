@@ -37,6 +37,8 @@ class CreateInvoice implements ShouldBroadcast
     public function broadcastOn()
     {
         return new PrivateChannel('create-invoice.'.$this->doctor_id);
+       // new PrivateChannel('create-invoice.'.$this->doctor_id),
+       return new PrivateChannel('create-invoice.admin');
         //return ['create-invoice'];
     }
 
