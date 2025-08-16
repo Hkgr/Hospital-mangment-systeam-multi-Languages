@@ -11,34 +11,55 @@ use Twilio\Rest\Client;
 
 class AppointmentController extends Controller
 {
-    public function create(){
-        $Section = \App\Models\Section::all();
-        $doctors = \App\Models\Doctor::all();
-        return view('Dashboard.appointments.create', compact('Section', 'doctors'));
-
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'name'       => 'required|string',
+            'email'      => 'required|email',
+            'phone'      => 'required',
+            'section_id' => 'required|exists:sections,id',
+            'doctor_id'  => 'required|exists:doctors,id',
+            'appointment'=> 'nullable|date',
+            'notes'      => 'nullable|string',
+        ]);
+ 
+        Appointment::create($data);
+        return redirect()->route('appointments.index')
+                         ->with('add', 'تم إضافة الموعد بنجاح');
     }
-    public function index(){
+    public function create()
+{
+    $Section = \App\Models\Section::all();
+    $doctors = \App\Models\Doctor::all();
+    return view('Dashboard.appointments.create', compact('Section','doctors'));
+}
 
-        $appointments = Appointment::where('type','غير مؤكد')->get();
-        return view('Dashboard.appointments.index',compact('appointments'));
+    public function index()
+    {
+
+        $appointments = Appointment::where('type', 'غير مؤكد')->get();
+        return view('Dashboard.appointments.index', compact('appointments'));
     }
 
-    public function index2(){
+    public function index2()
+    {
 
-        $appointments = Appointment::where('type','مؤكد')->get();
-        return view('Dashboard.appointments.index2',compact('appointments'));
+        $appointments = Appointment::where('type', 'مؤكد')->get();
+        return view('Dashboard.appointments.index2', compact('appointments'));
     }
-    public function ExpiredDates(){
+    public function ExpiredDates()
+    {
 
-        $appointments = Appointment::where('type','منتهي')->get();
-        return view('Dashboard.appointments.ExpiredDates',compact('appointments'));
+        $appointments = Appointment::where('type', 'منتهي')->get();
+        return view('Dashboard.appointments.ExpiredDates', compact('appointments'));
     }
 
-    public function approval(Request $request,$id){
+    public function approval(Request $request, $id)
+    {
         $appointment = Appointment::findorFail($id);
         $appointment->update([
-            'type'=>'مؤكد',
-            'appointment'=>$request->appointment
+            'type' => 'مؤكد',
+            'appointment' => $request->appointment
         ]);
 
         // // send email
@@ -60,11 +81,12 @@ class AppointmentController extends Controller
         return back();
     }
 
-    public function destroy(Request $request, $id){
+    public function destroy(Request $request, $id)
+    {
         $appointment = Appointment::findorFail($id);
         $appointment->update([
-            'type'=>'منتهي',
-            'appointment'=>$request->appointment
+            'type' => 'منتهي',
+            'appointment' => $request->appointment
         ]);
         session()->flash('delete');
         return back();

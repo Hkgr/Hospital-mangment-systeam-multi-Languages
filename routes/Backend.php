@@ -163,7 +163,8 @@ Route::group(
         Route::get('appointments/ExpiredDates',[AppointmentController::class,'ExpiredDates'])->name('appointments.ExpiredDates');
         Route::delete('appointments/destroy/{id}',[AppointmentController::class,'destroy'])->name('appointments.destroy');
         Route::get('appointments/create',[AppointmentController::class,'create'])->name('appointments.create');
-
+        Route::post('appointments/store', [AppointmentController::class, 'store'])
+        ->name('appointments.store');
 
 
     });
