@@ -9,6 +9,7 @@ use App\Models\PatientAccount;
 use App\Models\Ray;
 use App\Models\ReceiptAccount;
 use Illuminate\Http\Request;
+use App\Models\Appointment;
 
 class PatientController extends Controller
 {
@@ -52,5 +53,10 @@ class PatientController extends Controller
 
         $payments = ReceiptAccount::where('patient_id',auth()->user()->id)->get();
         return view('Dashboard.dashboard_patient.payments',compact('payments'));
+    }
+    public function appointments(){
+
+        $appointments = Appointment::where('patient_id',auth()->id())->get();
+        return view('Dashboard.dashboard_patient.appointments',compact('appointments'));
     }
 }
