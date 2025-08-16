@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Twilio\Rest\Client;
+
 class AppointmentController extends Controller
 {
     public function store(Request $request)
@@ -21,10 +22,10 @@ class AppointmentController extends Controller
             'phone'      => 'required_without:patient_id',
             'section_id' => 'required|exists:sections,id',
             'doctor_id'  => 'required|exists:doctors,id',
-            'appointment'=> 'nullable|date',
+            'appointment' => 'nullable|date',
             'notes'      => 'nullable|string',
         ]);
- 
+
         if (!empty($data['patient_id'])) {
             $patient = Patient::find($data['patient_id']);
         } else {
@@ -37,8 +38,8 @@ class AppointmentController extends Controller
                     'Blood_Group' => 'غير محدد',
                 ]
             );
-            $patient->setTranslation('name', app()->getLocale(), $data['name']);
-                        $patient->save();
+            $patient->translateOrNew(app()->getLocale())->name = $data['name'];
+            $patient->save();
         }
 
         Appointment::create([
@@ -50,15 +51,15 @@ class AppointmentController extends Controller
         ]);
 
         return redirect()->route('appointments.index')
-                         ->with('add', 'تم إضافة الموعد بنجاح');
+            ->with('add', 'تم إضافة الموعد بنجاح');
     }
     public function create()
-{
-    $Section = \App\Models\Section::all();
-    $doctors = \App\Models\Doctor::all();
-    $patients = Patient::all();
-    return view('Dashboard.appointments.create', compact('Section','doctors','patients'));
-}
+    {
+        $Section = \App\Models\Section::all();
+        $doctors = \App\Models\Doctor::all();
+        $patients = Patient::all();
+        return view('Dashboard.appointments.create', compact('Section', 'doctors', 'patients'));
+    }
 
     public function index()
     {
