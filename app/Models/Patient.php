@@ -22,4 +22,9 @@ class Patient extends Authenticatable
     {
         return $this->belongsTo(Invoice::class,'Service_id');
     }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'patient_id');
+    }
 }
