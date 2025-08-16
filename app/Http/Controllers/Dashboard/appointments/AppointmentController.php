@@ -11,6 +11,12 @@ use Twilio\Rest\Client;
 
 class AppointmentController extends Controller
 {
+    public function create(){
+        $Section = \App\Models\Section::all();
+        $doctors = \App\Models\Doctor::all();
+        return view('Dashboard.appointments.create', compact('Section', 'doctors'));
+
+    }
     public function index(){
 
         $appointments = Appointment::where('type','غير مؤكد')->get();

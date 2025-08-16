@@ -20,9 +20,9 @@ class MyEvent implements ShouldBroadcast
 
     public function __construct($data)
     {
-        $patient = Patient::find($data['patient_id']);
-        $this->patient_id = $patient->name;
-        $this->invoice_id = $data['invoice_id'];
+        // $patient = Patient::find($data['patient_id']);
+        // $this->patient_id = $patient->name;
+        // $this->invoice_id = $data['invoice_id'];
     }
 
     public function broadcastOn()
