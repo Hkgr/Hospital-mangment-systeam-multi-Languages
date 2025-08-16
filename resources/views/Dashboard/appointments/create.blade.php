@@ -38,8 +38,8 @@
     <div class="col-lg-12 col-md-12">
         <div class="card">
             <div class="card-body">
-
-                <form action="{{ route('appointments.store') }}" method="POST">
+                
+            <form wire:submit.prevent="store">
                     @csrf
                     <div class="pd-30 pd-sm-40 bg-gray-200">
 
