@@ -17,13 +17,11 @@ class Patient extends Authenticatable
 
     public function doctor()
     {
-        return $this->belongsTo(Invoice::class,'doctor_id');
         return $this->belongsTo(Doctor::class, 'doctor_id');
     }
 
     public function service()
     {
-        return $this->belongsTo(Invoice::class,'Service_id');
         return $this->belongsTo(Service::class, 'Service_id');
     }
 
