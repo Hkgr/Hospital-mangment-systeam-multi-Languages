@@ -21,11 +21,11 @@ class AppointmentController extends Controller
             'email'      => 'required_without:patient_id|email',
             'phone'      => 'required_without:patient_id',
             'Gender'     => 'required_without:patient_id|integer|in:1,2',
-            'Blood_Group'=> 'required_without:patient_id',
+            'Blood_Group' => 'required_without:patient_id',
             'Address'    => 'required_without:patient_id|string',
             'section_id' => 'required|exists:sections,id',
             'doctor_id'  => 'required|exists:doctors,id',
-            'appointment'=> 'nullable|date',
+            'appointment' => 'nullable|date',
             'notes'      => 'nullable|string',
         ]);
 
@@ -34,12 +34,12 @@ class AppointmentController extends Controller
         } else {
             $patient = Patient::firstOrCreate(
                 ['email' => $data['email']],
-                                [
-                                    'Password'   => Hash::make($data['phone']),
-                                    'Date_Birth' => $request->input('Date_Birth', now()->toDateString()),
-                                    'Phone'      => $data['phone'],
-                                    'Gender'     => $data['Gender'],
-                                    'Blood_Group'=> $data['Blood_Group'],
+                [
+                    'Password'   => Hash::make($data['phone']),
+                    'Date_Birth' => $request->input('Date_Birth', now()->toDateString()),
+                    'Phone'      => $data['phone'],
+                    'Gender'     => $data['Gender'],
+                    'Blood_Group' => $data['Blood_Group'],
                 ]
             );
             $patient->translateOrNew(app()->getLocale())->name    = $data['name'];
@@ -53,18 +53,14 @@ class AppointmentController extends Controller
         $data['phone'] = $patient->Phone;
 
         $appointmentData = [
-            'name'       => $data['name'],
-            'email'      => $data['email'],
-            'phone'      => $data['phone'],
+            'patient_id' => $patient_id,
             'section_id' => $data['section_id'],
             'doctor_id'  => $data['doctor_id'],
-            'appointment'=> $data['appointment'] ?? null,
+            'appointment' => $data['appointment'] ?? null,
             'notes'      => $data['notes'] ?? null,
         ];
 
         $appointment = Appointment::create($appointmentData);
-        $appointment->patient_id = $patient_id;
-        $appointment->save();
 
         return redirect()->route('appointments.index')
             ->with('add', 'تم إضافة الموعد بنجاح');
