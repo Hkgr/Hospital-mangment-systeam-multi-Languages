@@ -33,38 +33,24 @@ class AppointmentController extends Controller
             $patient = Patient::find($data['patient_id']);
         } else {
             $patient = Patient::firstOrCreate(
-                ['email' => $data['email'], 'Phone' => $data['phone']],
-                [
-                    'Password' => Hash::make($data['phone']),
-                    'Date_Birth' => now(),
-                    'Gender' => 'غير محدد',
-                    'Blood_Group' => 'غير محدد',
+                ['email' => $data['email']],
+                                [
+                                    'Password'   => Hash::make($data['phone']),
+                                    'Date_Birth' => $request->input('Date_Birth', now()->toDateString()),
+                                    'Phone'      => $data['phone'],
+                                    'Gender'     => $data['Gender'],
+                                    'Blood_Group'=> $data['Blood_Group'],
                 ]
             );
-            $patient->translateOrNew(app()->getLocale())->name = $data['name'];
+            $patient->translateOrNew(app()->getLocale())->name    = $data['name'];
+            $patient->translateOrNew(app()->getLocale())->Address = $data['Address'];
             $patient->save();
         }
 
-        if ($request->filled('patient_id')) {
-            $patient       = Patient::findOrFail($request->patient_id);
-            $patient_id    = $patient->id;
-            $data['name']  = $patient->name;
-            $data['email'] = $patient->email;
-            $data['phone'] = $patient->Phone;
-        } else {
-            $patient = new Patient();
-            $patient->email      = $data['email'];
-            $patient->Password   = Hash::make($data['phone']);
-            $patient->Date_Birth = $request->input('Date_Birth', now()->toDateString());
-            $patient->Phone      = $data['phone'];
-            $patient->Gender     = $data['Gender'];
-            $patient->Blood_Group= $data['Blood_Group'];
-            $patient->save();
-            $patient->name    = $data['name'];
-            $patient->Address = $data['Address'];
-            $patient->save();
-            $patient_id = $patient->id;
-        }
+        $patient_id    = $patient->id;
+        $data['name']  = $patient->name;
+        $data['email'] = $patient->email;
+        $data['phone'] = $patient->Phone;
 
         $appointmentData = [
             'name'       => $data['name'],
