@@ -50,7 +50,15 @@
                                 <select id="patient_id" name="patient_id" class="form-control SlectBox">
                                     <option value="" selected>مريض جديد</option>
                                     @foreach($patients as $patient)
-                                    <option value="{{ $patient->id }}">{{ $patient->name }}</option>
+                                    <option value="{{ $patient->id }}"
+                                        data-name="{{ $patient->name }}"
+                                        data-email="{{ $patient->email }}"
+                                        data-phone="{{ $patient->Phone }}"
+                                        data-gender="{{ $patient->Gender }}"
+                                        data-blood-group="{{ $patient->Blood_Group }}"
+                                        data-address="{{ $patient->Address }}">
+                                        {{ $patient->name }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -60,7 +68,7 @@
                                 <label for="name">اسم المريض</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <input id="name" class="form-control" name="name" type="text" autofocus>
+                                <input id="name" class="form-control" name="name" type="text" autofocus readonly>
                             </div>
                         </div>
 
@@ -70,7 +78,7 @@
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <input id="email" class="form-control" name="email" type="email"
-                                    placeholder="البريد الالكتروني">
+                                    placeholder="البريد الالكتروني" readonly>
                             </div>
                         </div>
 
@@ -108,7 +116,7 @@
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <input id="phone" class="form-control" name="phone" type="text"
-                                    placeholder="رقم الهاتف" required>
+                                    placeholder="رقم الهاتف" required readonly>
                             </div>
                         </div>
 
@@ -117,7 +125,7 @@
                                 <label for="Gender">الجنس</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <select id="Gender" class="form-control" name="Gender">
+                                <select id="Gender" class="form-control" name="Gender" disabled>
                                     <option value="">------</option>
                                     <option value="1">ذكر</option>
                                     <option value="2">انثي</option>
@@ -130,7 +138,7 @@
                                 <label for="Blood_Group">فصلية الدم</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <select id="Blood_Group" class="form-control" name="Blood_Group">
+                                <select id="Blood_Group" class="form-control" name="Blood_Group" disabled>
                                     <option value="">------</option>
                                     <option value="O-">O-</option>
                                     <option value="O+">O+</option>
@@ -149,7 +157,7 @@
                                 <label for="Address">العنوان</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <textarea id="Address" class="form-control" name="Address"></textarea>
+                                <textarea id="Address" class="form-control" name="Address" disabled></textarea>
                             </div>
                         </div>
 
@@ -190,19 +198,57 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var patientSelect = document.getElementById('patient_id');
-        var fields = document.querySelectorAll('.new-patient-field');
+        var nameInput = document.getElementById('name');
+        var emailInput = document.getElementById('email');
+        var phoneInput = document.getElementById('phone');
+        var genderSelect = document.getElementById('Gender');
+        var bloodGroupSelect = document.getElementById('Blood_Group');
+        var addressInput = document.getElementById('Address');
+        var newPatientRows = document.querySelectorAll('.new-patient-field');
 
-        function toggleFields() {
+        function handlePatientChange() {
+            var selectedOption = patientSelect.options[patientSelect.selectedIndex];
             var isNew = patientSelect.value === '';
-            fields.forEach(function(row) {
-                row.style.display = isNew ? '' : 'none';
-                row.querySelectorAll('input, select, textarea').forEach(function(el) {
-                    el.disabled = !isNew;
+            if (isNew) {
+                nameInput.value = '';
+                emailInput.value = '';
+                phoneInput.value = '';
+                genderSelect.value = '';
+                bloodGroupSelect.value = '';
+                addressInput.value = '';
+
+                nameInput.readOnly = false;
+                emailInput.readOnly = false;
+                phoneInput.readOnly = false;
+                genderSelect.disabled = false;
+                bloodGroupSelect.disabled = false;
+                addressInput.disabled = false;
+
+                newPatientRows.forEach(function(row) {
+                    row.style.display = '';
                 });
-            });
+            } else {
+                nameInput.value = selectedOption.dataset.name || '';
+                emailInput.value = selectedOption.dataset.email || '';
+                phoneInput.value = selectedOption.dataset.phone || '';
+                genderSelect.value = selectedOption.dataset.gender || '';
+                bloodGroupSelect.value = selectedOption.dataset.bloodGroup || '';
+                addressInput.value = selectedOption.dataset.address || '';
+
+                nameInput.readOnly = true;
+                emailInput.readOnly = true;
+                phoneInput.readOnly = true;
+                genderSelect.disabled = true;
+                bloodGroupSelect.disabled = true;
+                addressInput.disabled = true;
+
+                newPatientRows.forEach(function(row) {
+                    row.style.display = 'none';
+                });
+            }
         }
-        patientSelect.addEventListener('change', toggleFields);
-        toggleFields();
+        patientSelect.addEventListener('change', handlePatientChange);
+        handlePatientChange();
     });
 </script>
 <!--Internal  Form-elements js-->
