@@ -21,6 +21,9 @@ class Create extends Component
     public $notes;
     public $patients;
     public $patient_id;
+    public $gender;
+    public $blood_group;
+    public $address;
     public $message = false;
 
     public function mount()
@@ -28,7 +31,8 @@ class Create extends Component
 
         $this->sections = Section::get();
         $this->doctors = collect();
-        $this->patients = Patient::get();
+        $this->patients = Patient::all();
+        $this->patient_id = 'new';
     }
 
     public function render()
@@ -50,19 +54,19 @@ class Create extends Component
 
     public function store()
     {
-        if ($this->patient_id) {
-            $patient = Patient::find($this->patient_id);
+        if ($this->patient_id && $this->patient_id !== 'new') {
+            $patient = Patient::findOrFail($this->patient_id);
         } else {
-            $patient = Patient::firstOrCreate(
-                ['email' => $this->email, 'Phone' => $this->phone],
-                [
-                    'Password' => Hash::make($this->phone),
-                    'Date_Birth' => now(),
-                    'Gender' => 'غير محدد',
-                    'Blood_Group' => 'غير محدد',
-                ]
-            );
+            $patient = Patient::create([
+                'email' => $this->email,
+                'Password' => Hash::make($this->phone),
+                'Date_Birth' => now(),
+                'Phone' => $this->phone,
+                'Gender' => $this->gender,
+                'Blood_Group' => $this->blood_group,
+            ]);
             $patient->translateOrNew(app()->getLocale())->name = $this->name;
+            $patient->translateOrNew(app()->getLocale())->Address = $this->address;
             $patient->save();
         }
 

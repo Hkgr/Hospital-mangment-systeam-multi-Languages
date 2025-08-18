@@ -10,14 +10,14 @@
             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                 <label>المريض</label>
                 <select wire:model="patient_id" class="form-select">
-                    <option value="">مريض جديد</option>
+                    <option value="new">مريض جديد</option>
                     @foreach($patients as $patient)
                     <option value="{{$patient->id}}">{{$patient->name}}</option>
                     @endforeach
                 </select>
             </div>
 
-            @if(!$patient_id)
+            @if($patient_id === 'new')
             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                 <input type="text" name="username" wire:model="name" placeholder="اسمك"> <span class="icon fa fa-user"></span>
             </div>
@@ -25,6 +25,35 @@
             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                 <input type="email" name="email" wire:model="email" placeholder="البريد الالكتروني">
                 <span class="icon fa fa-envelope"></span>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                <label>الجنس</label>
+                <select wire:model="gender" class="form-select">
+                    <option value="">-- اختر --</option>
+                    <option value="ذكر">ذكر</option>
+                    <option value="أنثى">أنثى</option>
+                </select>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                <label>فصيلة الدم</label>
+                <select wire:model="blood_group" class="form-select">
+                    <option value="">-- اختر --</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                <input type="text" name="address" wire:model="address" placeholder="العنوان">
+                <span class="icon fa fa-map-marker"></span>
             </div>
             @endif
 
@@ -49,8 +78,7 @@
 
                 </select>
             </div>
-            @if(!$patient_id)
-            <div class="col-lg-12 col-md-6 col-sm-12 form-group">
+            @if($patient_id === 'new') <div class="col-lg-12 col-md-6 col-sm-12 form-group">
                 <input type="tel" name="phone" wire:model="phone" placeholder="رقم الهاتف">
                 <span class="icon fas fa-phone"></span>
             </div>
