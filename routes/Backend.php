@@ -158,13 +158,13 @@ Route::group(
 
             //############################# end single_invoices route ######################################
 
-           Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+            Route::get('appointments/index', [AppointmentController::class, 'index'])->name('appointments.index');
             Route::put('appointments/approval/{id}', [AppointmentController::class, 'approval'])->name('appointments.approval');
             Route::get('appointments/approval', [AppointmentController::class, 'index2'])->name('appointments.index2');
             Route::get('appointments/ExpiredDates', [AppointmentController::class, 'ExpiredDates'])->name('appointments.ExpiredDates');
             Route::delete('appointments/destroy/{id}', [AppointmentController::class, 'destroy'])->name('appointments.destroy');
             Route::get('appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
-            Route::post('appointments/store', [AppointmentController::class, 'store'])                ->name('appointments.store');
+            Route::post('appointments/store', [AppointmentController::class, 'store'])->name('appointments.store');
 
         });
 

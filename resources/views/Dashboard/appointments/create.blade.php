@@ -114,11 +114,42 @@
 
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="appointment">الموعد</label>
+                            <label for="Gender">الجنس</label>
+                                                    </div>
+                            <div class="col-md-11 mg-t-5 mg-md-t-0">
+                            <select id="Gender" class="form-control" name="Gender">
+                                    <option value="" selected>------</option>
+                                    <option value="1">ذكر</option>
+                                    <option value="2">انثي</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row row-xs align-items-center mg-b-20">
+                            <div class="col-md-1">
+                                <label for="Blood_Group">فصلية الدم</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <input id="appointment" class="form-control" name="appointment" type="datetime-local">
+                                <select id="Blood_Group" class="form-control" name="Blood_Group">
+                                    <option value="" selected>------</option>
+                                    <option value="O-">O-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                </select>
                             </div>
+                        </div>
+
+                        <div class="row row-xs align-items-center mg-b-20">
+                            <div class="col-md-1">
+                                <label for="Address">العنوان</label>
+                            </div>
+                            <div class="col-md-11 mg-t-5 mg-md-t-0">
+                                <textarea id="Address" class="form-control" name="a ddress"></textarea>                            </div>
                         </div>
 
                         <div class="row row-xs align-items-center mg-b-20">
