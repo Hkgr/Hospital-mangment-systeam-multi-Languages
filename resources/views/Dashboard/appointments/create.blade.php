@@ -42,7 +42,7 @@
                     @csrf
                     <div class="pd-30 pd-sm-40 bg-gray-200">
 
-                    <div class="row row-xs align-items-center mg-b-20">
+                        <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
                                 <label for="patient_id">المريض</label>
                             </div>
@@ -50,7 +50,7 @@
                                 <select id="patient_id" name="patient_id" class="form-control SlectBox">
                                     <option value="" selected>مريض جديد</option>
                                     @foreach($patients as $patient)
-                                        <option value="{{ $patient->id }}">{{ $patient->name }}</option>
+                                    <option value="{{ $patient->id }}">{{ $patient->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <input id="email" class="form-control" name="email" type="email"
-                                       placeholder="البريد الالكتروني" >
+                                    placeholder="البريد الالكتروني">
                             </div>
                         </div>
 
@@ -79,10 +79,10 @@
                                 <label for="section_id">{{ trans('doctors.section') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <select id="section_id" name="section_id" class="form-control SlectBox" >
+                                <select id="section_id" name="section_id" class="form-control SlectBox">
                                     <option value="" selected disabled>------</option>
                                     @foreach($Section as $section)
-                                        <option value="{{ $section->id }}">{{ $section->name }}</option>
+                                    <option value="{{ $section->id }}">{{ $section->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -93,10 +93,10 @@
                                 <label for="doctor_id">الدكتور</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <select id="doctor_id" name="doctor_id" class="form-control SlectBox" >
+                                <select id="doctor_id" name="doctor_id" class="form-control SlectBox">
                                     <option value="" selected disabled>------</option>
                                     @foreach($doctors as $doctor)
-                                        <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                                    <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -108,30 +108,30 @@
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <input id="phone" class="form-control" name="phone" type="text"
-                                       placeholder="رقم الهاتف" required>
+                                    placeholder="رقم الهاتف" required>
                             </div>
                         </div>
 
-                        <div class="row row-xs align-items-center mg-b-20">
+                        <div class="row row-xs align-items-center mg-b-20 new-patient-field">
                             <div class="col-md-1">
-                            <label for="Gender">الجنس</label>
-                                                    </div>
+                                <label for="Gender">الجنس</label>
+                            </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                            <select id="Gender" class="form-control" name="Gender">
-                                    <option value="" selected>------</option>
+                                <select id="Gender" class="form-control" name="Gender">
+                                    <option value="">------</option>
                                     <option value="1">ذكر</option>
                                     <option value="2">انثي</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="row row-xs align-items-center mg-b-20">
+                        <div class="row row-xs align-items-center mg-b-20 new-patient-field">
                             <div class="col-md-1">
                                 <label for="Blood_Group">فصلية الدم</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <select id="Blood_Group" class="form-control" name="Blood_Group">
-                                    <option value="" selected>------</option>
+                                    <option value="">------</option>
                                     <option value="O-">O-</option>
                                     <option value="O+">O+</option>
                                     <option value="A+">A+</option>
@@ -144,12 +144,13 @@
                             </div>
                         </div>
 
-                        <div class="row row-xs align-items-center mg-b-20">
+                        <div class="row row-xs align-items-center mg-b-20 new-patient-field">
                             <div class="col-md-1">
                                 <label for="Address">العنوان</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <textarea id="Address" class="form-control" name="a ddress"></textarea>                            </div>
+                                <textarea id="Address" class="form-control" name="Address"></textarea>
+                            </div>
                         </div>
 
                         <div class="row row-xs align-items-center mg-b-20">
@@ -186,6 +187,24 @@
     };
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var patientSelect = document.getElementById('patient_id');
+        var fields = document.querySelectorAll('.new-patient-field');
+
+        function toggleFields() {
+            var isNew = patientSelect.value === '';
+            fields.forEach(function(row) {
+                row.style.display = isNew ? '' : 'none';
+                row.querySelectorAll('input, select, textarea').forEach(function(el) {
+                    el.disabled = !isNew;
+                });
+            });
+        }
+        patientSelect.addEventListener('change', toggleFields);
+        toggleFields();
+    });
+</script>
 <!--Internal  Form-elements js-->
 <script src="{{ URL::asset('Dashboard/js/select2.js') }}"></script>
 <script src="{{ URL::asset('Dashboard/js/advanced-form-elements.js') }}"></script>
