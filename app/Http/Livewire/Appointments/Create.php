@@ -19,11 +19,12 @@ class Create extends Component
     public $email;
     public $phone;
     public $notes;
-    public $patients;
-    public $patient_id;
+    // public $patients;
+    // public $patient_id;
     public $gender;
     public $blood_group;
     public $address;
+    public $date_birth;
     public $message = false;
 
     public function mount()
@@ -31,19 +32,20 @@ class Create extends Component
 
         $this->sections = Section::get();
         $this->doctors = collect();
-        $this->patients = Patient::all();
-        $this->patient_id = 'new';
+        // $this->patients = Patient::all();
+        // $this->patient_id = 'new';
     }
 
     public function render()
     {
-        return view(
-            'livewire.appointments.create',
-            [
-                'sections' => Section::get(),
-                'patients' => $this->patients
-            ]
-        );
+        // return view(
+        //     'livewire.appointments.create',
+        //     [
+        //         'sections' => Section::get(),
+        //         'patients' => $this->patients
+        //     ]
+        // );
+        return view('livewire.appointments.create');
     }
 
     public function updatedSection($section_id)
@@ -54,21 +56,32 @@ class Create extends Component
 
     public function store()
     {
-        if ($this->patient_id && $this->patient_id !== 'new') {
-            $patient = Patient::findOrFail($this->patient_id);
-        } else {
-            $patient = Patient::create([
-                'email' => $this->email,
-                'Password' => Hash::make($this->phone),
-                'Date_Birth' => now(),
-                'Phone' => $this->phone,
-                'Gender' => $this->gender,
-                'Blood_Group' => $this->blood_group,
-            ]);
-            $patient->translateOrNew(app()->getLocale())->name = $this->name;
-            $patient->translateOrNew(app()->getLocale())->Address = $this->address;
-            $patient->save();
-        }
+        // if ($this->patient_id && $this->patient_id !== 'new') {
+        //     $patient = Patient::findOrFail($this->patient_id);
+        // } else {
+        //     $patient = Patient::create([
+        //         'email' => $this->email,
+        //         'Password' => Hash::make($this->phone),
+        //         'Date_Birth' => now(),
+        //         'Phone' => $this->phone,
+        //         'Gender' => $this->gender,
+        //         'Blood_Group' => $this->blood_group,
+        //     ]);
+        //     $patient->translateOrNew(app()->getLocale())->name = $this->name;
+        //     $patient->translateOrNew(app()->getLocale())->Address = $this->address;
+        //     $patient->save();
+        // }
+        $patient = Patient::create([
+            'email' => $this->email,
+            'Password' => Hash::make($this->phone),
+            'Date_Birth' => $this->date_birth,
+            'Phone' => $this->phone,
+            'Gender' => $this->gender,
+            'Blood_Group' => $this->blood_group,
+        ]);
+        $patient->translateOrNew(app()->getLocale())->name = $this->name;
+        $patient->translateOrNew(app()->getLocale())->Address = $this->address;
+        $patient->save();
 
         $appointments = new Appointment();
         $appointments->doctor_id = $this->doctor;
