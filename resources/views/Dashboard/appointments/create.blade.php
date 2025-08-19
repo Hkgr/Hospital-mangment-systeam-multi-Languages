@@ -54,6 +54,7 @@
                                         data-name="{{ $patient->name }}"
                                         data-email="{{ $patient->email }}"
                                         data-phone="{{ $patient->Phone }}"
+                                                                                data-date-birth="{{ $patient->Date_Birth }}"
                                         data-gender="{{ $patient->Gender }}"
                                         data-blood-group="{{ $patient->Blood_Group }}"
                                         data-address="{{ $patient->Address }}">
@@ -117,6 +118,15 @@
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <input id="phone" class="form-control" name="phone" type="text"
                                     placeholder="رقم الهاتف" required readonly>
+                            </div>
+                        </div>
+
+                        <div class="row row-xs align-items-center mg-b-20 new-patient-field">
+                            <div class="col-md-1">
+                                <label for="Date_Birth">تاريخ الميلاد</label>
+                            </div>
+                            <div class="col-md-11 mg-t-5 mg-md-t-0">
+                                <input id="Date_Birth" class="form-control" name="Date_Birth" type="date" disabled required>
                             </div>
                         </div>
 
@@ -205,6 +215,7 @@
         var bloodGroupSelect = document.getElementById('Blood_Group');
         var addressInput = document.getElementById('Address');
         var newPatientRows = document.querySelectorAll('.new-patient-field');
+        var dateBirthInput = document.getElementById('Date_Birth');
 
         function handlePatientChange() {
             var selectedOption = patientSelect.options[patientSelect.selectedIndex];
@@ -216,6 +227,7 @@
                 genderSelect.value = '';
                 bloodGroupSelect.value = '';
                 addressInput.value = '';
+                dateBirthInput.value = '';
 
                 nameInput.readOnly = false;
                 emailInput.readOnly = false;
@@ -223,6 +235,7 @@
                 genderSelect.disabled = false;
                 bloodGroupSelect.disabled = false;
                 addressInput.disabled = false;
+                dateBirthInput.disabled = false;
 
                 newPatientRows.forEach(function(row) {
                     row.style.display = '';
@@ -233,6 +246,7 @@
                 phoneInput.value = selectedOption.dataset.phone || '';
                 genderSelect.value = selectedOption.dataset.gender || '';
                 bloodGroupSelect.value = selectedOption.dataset.bloodGroup || '';
+                dateBirthInput.value = selectedOption.dataset.dateBirth || '';
                 addressInput.value = selectedOption.dataset.address || '';
 
                 nameInput.readOnly = true;
@@ -240,6 +254,7 @@
                 phoneInput.readOnly = true;
                 genderSelect.disabled = true;
                 bloodGroupSelect.disabled = true;
+                dateBirthInput.disabled = true;
                 addressInput.disabled = true;
 
                 newPatientRows.forEach(function(row) {

@@ -20,6 +20,7 @@ class AppointmentController extends Controller
             'name'       => 'required_without:patient_id|string',
             'email'      => 'required_without:patient_id|email',
             'phone'      => 'required_without:patient_id',
+            'Date_Birth' => 'required_without:patient_id|date',
             'Gender'     => 'required_without:patient_id|integer|in:1,2',
             'Blood_Group' => 'required_without:patient_id',
             'Address'    => 'required_without:patient_id|string',
@@ -36,7 +37,7 @@ class AppointmentController extends Controller
                 ['email' => $data['email']],
                 [
                     'Password'   => Hash::make($data['phone']),
-                    'Date_Birth' => $request->input('Date_Birth', now()->toDateString()),
+                    'Date_Birth'  => $data['Date_Birth'],
                     'Phone'      => $data['phone'],
                     'Gender'     => $data['Gender'],
                     'Blood_Group' => $data['Blood_Group'],
