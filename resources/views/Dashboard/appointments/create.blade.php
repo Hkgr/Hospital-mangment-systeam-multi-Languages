@@ -121,8 +121,8 @@
                             </div>
                         </div>
 
-                        <div class="row row-xs align-items-center mg-b-20 new-patient-field">
-                            <div class="col-md-1">
+                        <div class="row row-xs align-items-center mg-b-20">
+                                                        <div class="col-md-1">
                                 <label for="Date_Birth">تاريخ الميلاد</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
@@ -130,8 +130,8 @@
                             </div>
                         </div>
 
-                        <div class="row row-xs align-items-center mg-b-20 new-patient-field">
-                            <div class="col-md-1">
+                        <div class="row row-xs align-items-center mg-b-20">
+                                                        <div class="col-md-1">
                                 <label for="Gender">الجنس</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
@@ -143,8 +143,8 @@
                             </div>
                         </div>
 
-                        <div class="row row-xs align-items-center mg-b-20 new-patient-field">
-                            <div class="col-md-1">
+                        <div class="row row-xs align-items-center mg-b-20">
+                                                        <div class="col-md-1">
                                 <label for="Blood_Group">فصلية الدم</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
@@ -162,8 +162,8 @@
                             </div>
                         </div>
 
-                        <div class="row row-xs align-items-center mg-b-20 new-patient-field">
-                            <div class="col-md-1">
+                        <div class="row row-xs align-items-center mg-b-20">
+                                                        <div class="col-md-1">
                                 <label for="Address">العنوان</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
@@ -214,7 +214,7 @@
         var genderSelect = document.getElementById('Gender');
         var bloodGroupSelect = document.getElementById('Blood_Group');
         var addressInput = document.getElementById('Address');
-        var newPatientRows = document.querySelectorAll('.new-patient-field');
+     //   var newPatientRows = document.querySelectorAll('.new-patient-field');
         var dateBirthInput = document.getElementById('Date_Birth');
 
         function handlePatientChange() {
@@ -237,9 +237,9 @@
                 addressInput.disabled = false;
                 dateBirthInput.disabled = false;
 
-                newPatientRows.forEach(function(row) {
-                    row.style.display = '';
-                });
+                // newPatientRows.forEach(function(row) {
+                //     row.style.display = '';
+                // });
             } else {
                 nameInput.value = selectedOption.dataset.name || '';
                 emailInput.value = selectedOption.dataset.email || '';
@@ -257,9 +257,9 @@
                 dateBirthInput.disabled = true;
                 addressInput.disabled = true;
 
-                newPatientRows.forEach(function(row) {
-                    row.style.display = 'none';
-                });
+                // newPatientRows.forEach(function(row) {
+                //     row.style.display = 'none';
+                // });
             }
         }
         patientSelect.addEventListener('change', handlePatientChange);
