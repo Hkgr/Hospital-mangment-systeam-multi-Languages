@@ -205,7 +205,7 @@
     };
 </script>
 
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         var patientSelect = document.getElementById('patient_id');
         var nameInput = document.getElementById('name');
@@ -265,7 +265,7 @@
         patientSelect.addEventListener('change', handlePatientChange);
         handlePatientChange();
     });
-</script>
+</script> -->
 <!--Internal  Form-elements js-->
 <script src="{{ URL::asset('Dashboard/js/select2.js') }}"></script>
 <script src="{{ URL::asset('Dashboard/js/advanced-form-elements.js') }}"></script>
@@ -295,4 +295,36 @@
 <script src="{{ URL::asset('dashboard/plugins/pickerjs/picker.min.js') }}"></script>
 <!-- Internal form-elements js -->
 <script src="{{ URL::asset('dashboard/js/form-elements.js') }}"></script>
+
+<script>
+    $(function () {
+        function handlePatientChange() {
+            var patientSelect = $('#patient_id');
+            var selectedOption = patientSelect.find(':selected');
+            var isNew = patientSelect.val() === '';
+
+            if (isNew) {
+                $('#name').val('').prop('readOnly', false);
+                $('#email').val('').prop('readOnly', false);
+                $('#phone').val('').prop('readOnly', false);
+                $('#Gender').val('').prop('disabled', false);
+                $('#Blood_Group').val('').prop('disabled', false);
+                $('#Address').val('').prop('disabled', false);
+                $('#Date_Birth').val('').prop('disabled', false);
+            } else {
+                $('#name').val(selectedOption.data('name') || '').prop('readOnly', true);
+                $('#email').val(selectedOption.data('email') || '').prop('readOnly', true);
+                $('#phone').val(selectedOption.data('phone') || '').prop('readOnly', true);
+                $('#Gender').val(selectedOption.data('gender') || '').prop('disabled', true);
+                $('#Blood_Group').val(selectedOption.data('bloodGroup') || '').prop('disabled', true);
+                $('#Address').val(selectedOption.data('address') || '').prop('disabled', true);
+                $('#Date_Birth').val(selectedOption.data('dateBirth') || '').prop('disabled', true);
+            }
+        }
+
+        $('#patient_id').on('change', handlePatientChange);
+        handlePatientChange();
+    });
+</script>
+
 @endsection
