@@ -9,8 +9,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class RayEmployee extends Authenticatable
 {
     use HasFactory;
-    protected $guarded=[];
-      /**
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'description',
+    ];      /**
      * Get the ray employee's profile image.
      */
     public function image()
