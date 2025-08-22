@@ -10,4 +10,11 @@ class RayEmployee extends Authenticatable
 {
     use HasFactory;
     protected $guarded=[];
+      /**
+     * Get the ray employee's profile image.
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

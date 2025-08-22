@@ -29,4 +29,8 @@ class Patient extends Authenticatable
     {
         return $this->hasMany(Appointment::class, 'patient_id');
     }
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

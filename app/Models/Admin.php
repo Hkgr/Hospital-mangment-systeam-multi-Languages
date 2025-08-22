@@ -10,6 +10,13 @@ use Illuminate\Notifications\Notifiable;
 class Admin extends Authenticatable
 {
     use HasFactory, Notifiable;
+    /**
+     * Get the admin's profile image.
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 
     /**
      * The attributes that are mass assignable.

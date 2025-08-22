@@ -10,7 +10,10 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
     /**
      * The attributes that are mass assignable.
      *

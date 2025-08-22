@@ -9,4 +9,12 @@ class LaboratorieEmployee extends Authenticatable
 {
     use HasFactory;
     protected $guarded=[];
+    
+    /**
+     * Get the laboratorie employee's profile image.
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
