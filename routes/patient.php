@@ -37,6 +37,9 @@ Route::group(
     //################################ end dashboard patient #####################################
 
     Route::middleware(['auth:patient'])->group(function () {
+        
+        Route::view('patient/profile', 'Dashboard.profile')->name('profile.patient');
+        Route::view('patient/profile/edit', 'Dashboard.editprofile')->name('profile.edit.patient');
 
         //############################# patients route ##########################################
         Route::get('invoices', [PatientController::class,'invoices'])->name('invoices.patient');

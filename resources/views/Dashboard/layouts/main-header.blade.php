@@ -253,8 +253,25 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="dropdown-item" href=""><i class="bx bx-user-circle"></i>الملف الشخصي</a>
-                        <a class="dropdown-item" href=""><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @if(auth('web')->check())
+                        <a class="dropdown-item" href="{{ route('profile.user') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.user') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @elseif(auth('admin')->check())
+                        <a class="dropdown-item" href="{{ route('profile.admin') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.admin') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @elseif(auth('doctor')->check())
+                        <a class="dropdown-item" href="{{ route('profile.doctor') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.doctor') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @elseif(auth('ray_employee')->check())
+                        <a class="dropdown-item" href="{{ route('profile.ray_employee') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.ray_employee') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @elseif(auth('laboratorie_employee')->check())
+                        <a class="dropdown-item" href="{{ route('profile.laboratorie_employee') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.laboratorie_employee') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @else
+                        <a class="dropdown-item" href="{{ route('profile.patient') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.patient') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @endif
                         @if(auth('web')->check())
                         <form method="POST" action="{{ route('logout.user') }}">
                             @elseif(auth('admin')->check())

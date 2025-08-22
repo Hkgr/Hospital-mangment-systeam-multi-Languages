@@ -46,6 +46,12 @@ Route::group(
 
             return view('Dashboard.User.dashboard');
         })->middleware(['auth'])->name('dashboard.user');
+
+        Route::middleware(['auth'])->group(function () {
+            Route::view('user/profile', 'Dashboard.profile')->name('profile.user');
+            Route::view('user/profile/edit', 'Dashboard.editprofile')->name('profile.edit.user');
+        });
+
         //################################ end dashboard user #####################################
 
 
@@ -64,6 +70,9 @@ Route::group(
 
 
         Route::middleware(['auth:admin'])->group(function () {
+            Route::view('admin/profile', 'Dashboard.profile')->name('profile.admin');
+            Route::view('admin/profile/edit', 'Dashboard.editprofile')->name('profile.edit.admin');
+
 
             //############################# sections route ##########################################
 
