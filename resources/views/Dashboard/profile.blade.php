@@ -6,10 +6,22 @@
 <div class="breadcrumb-header justify-content-between">
 	<div class="my-auto">
 		<div class="d-flex">
-			<h4 class="content-title mb-0 my-auto">Pages</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Profile</span>
+			<h4 class="content-title mb-0 my-auto">{{ $user->name ?? '' }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ @if(auth('admin')->check())
+				{{ __('مسؤول') }}
+				@elseif(auth('doctor')->check())
+				{{ __('دكتور') }}
+				@elseif(auth('patient')->check())
+				{{ __('مريض') }}
+				@elseif(auth('laboratorie_employee')->check())
+				{{ __('موظف مخبر') }}
+				@elseif(auth('ray_employee')->check())
+				{{ __('موظف أشعة') }}
+				@else
+				{{ __('User') }}
+				@endif</span>
 		</div>
 	</div>
-	<div class="d-flex my-xl-auto right-content">
+	<!-- <div class="d-flex my-xl-auto right-content">
 		<div class="pr-1 mb-3 mb-xl-0">
 			<button type="button" class="btn btn-info btn-icon ml-2"><i class="mdi mdi-filter-variant"></i></button>
 		</div>
@@ -33,7 +45,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
 <!-- breadcrumb -->
 @endsection
@@ -79,14 +91,28 @@
 						<div class="d-flex justify-content-between mg-b-20">
 							<div>
 								<h5 class="main-profile-name">{{ $user->name ?? '' }}</h5>
-								<p class="main-profile-name-text">{{ $role }}</p>
+								<p class="main-profile-name-text">
+									@if(auth('admin')->check())
+									{{ __('مسؤول') }}
+									@elseif(auth('doctor')->check())
+									{{ __('دكتور') }}
+									@elseif(auth('patient')->check())
+									{{ __('مريض') }}
+									@elseif(auth('laboratorie_employee')->check())
+									{{ __('موظف مخبر') }}
+									@elseif(auth('ray_employee')->check())
+									{{ __('موظف أشعة') }}
+									@else
+									{{ __('User') }}
+									@endif
+								</p>
 							</div>
 						</div>
 						<h6>Bio</h6>
 						<div class="main-profile-bio">
 							{{ $user->description ?? __('No description available.') }}
 						</div><!-- main-profile-bio -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-4 col mb20">
 								<h5>947</h5>
 								<h6 class="text-small text-muted mb-0">Followers</h6>
@@ -99,13 +125,13 @@
 								<h5>48</h5>
 								<h6 class="text-small text-muted mb-0">Posts</h6>
 							</div>
-						</div>
+						</div> -->
 						<hr class="mg-y-30">
-						<label class="main-content-label tx-13 mg-b-20">Social</label>
+						<label class="main-content-label tx-13 mg-b-20">وسائل التواصل الاجتماعي</label>
 						<div class="main-profile-social-list">
 							<div class="media">
 								<div class="media-icon bg-primary-transparent text-primary">
-									<i class="icon ion-logo-github"></i>
+									<i class="icon ion-logo-facebook"></i>
 								</div>
 								<div class="media-body">
 									<span>Github</span> <a href="">github.com/spruko</a>
@@ -129,38 +155,38 @@
 							</div>
 							<div class="media">
 								<div class="media-icon bg-danger-transparent text-danger">
-									<i class="icon ion-md-link"></i>
+									<i class="icon ion-md-call"></i>
 								</div>
 								<div class="media-body">
-									<span>My Portfolio</span> <a href="">spruko.com/</a>
+									<span>Whats App</span> <a href="">spruko.com/</a>
 								</div>
 							</div>
 						</div>
 						<hr class="mg-y-30">
-						<h6>Skills</h6>
+						<h6>الخصائص</h6>
 						<div class="skill-bar mb-4 clearfix mt-3">
-							<span>HTML5 / CSS3</span>
+							<span>التواصل الاجتماعي</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-primary-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"></div>
 							</div>
 						</div>
 						<!--skill bar-->
 						<div class="skill-bar mb-4 clearfix">
-							<span>Javascript</span>
+							<span>الصحة الجسدية</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-danger-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 89%"></div>
 							</div>
 						</div>
 						<!--skill bar-->
 						<div class="skill-bar mb-4 clearfix">
-							<span>Bootstrap</span>
+							<span>الصحة النفسية</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-success-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
 							</div>
 						</div>
 						<!--skill bar-->
 						<div class="skill-bar clearfix">
-							<span>Coffee</span>
+							<span>الصحة العقلية</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-info-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
 							</div>
@@ -181,7 +207,7 @@
 								<i class="icon-layers text-primary"></i>
 							</div>
 							<div class="mr-auto">
-								<h5 class="tx-13">Orders</h5>
+								<h5 class="tx-13">عدد الاطباء</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">1,587</h2>
 								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
 							</div>
@@ -197,7 +223,7 @@
 								<i class="icon-paypal text-danger"></i>
 							</div>
 							<div class="mr-auto">
-								<h5 class="tx-13">Revenue</h5>
+								<h5 class="tx-13">عدد المرضى</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">46,782</h2>
 								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
 							</div>
@@ -213,7 +239,7 @@
 								<i class="icon-rocket text-success"></i>
 							</div>
 							<div class="mr-auto">
-								<h5 class="tx-13">Product sold</h5>
+								<h5 class="tx-13">عدد الاقسام</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">1,890</h2>
 								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
 							</div>
@@ -228,21 +254,21 @@
 					<!-- Tabs -->
 					<ul class="nav nav-tabs profile navtab-custom panel-tabs">
 						<li class="active">
-							<a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">ABOUT ME</span> </a>
+							<a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">نبذة عني</span> </a>
 						</li>
-						<li class="">
+						<!-- <li class="">
 							<a href="#profile" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">GALLERY</span> </a>
 						</li>
 						<li class="">
 							<a href="#settings" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-cog tx-16 mr-1"></i></span> <span class="hidden-xs">SETTINGS</span> </a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				<div class="tab-content border-left border-bottom border-right border-top-0 p-4">
 					<div class="tab-pane active" id="home">
-						<h4 class="tx-15 text-uppercase mb-3">BIOdata</h4>
-						<p class="m-b-5">Hi I'm Petey Cruiser,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-						<div class="m-t-30">
+						<h4 class="tx-15 text-uppercase mb-3">{{ $user->name ?? '' }}</h4>
+						<p class="m-b-5">{{ $user->description ?? __('No description available.') }}</p>
+						<!-- <div class="m-t-30">
 							<h4 class="tx-15 text-uppercase mt-3">Experience</h4>
 							<div class=" p-t-10">
 								<h5 class="text-primary m-b-5 tx-14">Lead designer / Developer</h5>
@@ -257,7 +283,7 @@
 								<p><b>2007-2009</b></p>
 								<p class="text-muted tx-13 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<div class="tab-pane" id="profile">
 						<div class="row">
