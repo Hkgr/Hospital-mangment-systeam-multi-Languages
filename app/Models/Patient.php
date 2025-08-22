@@ -13,8 +13,22 @@ class Patient extends Authenticatable
     use Translatable;
     use HasFactory;
     public $translatedAttributes = ['name','Address'];
-    public $fillable= ['email','Password','Date_Birth','Phone','Gender','Blood_Group','description'];
-    public function doctor()
+    public $fillable= [
+        'email',
+        'Password',
+        'Date_Birth',
+        'Phone',
+        'Gender',
+        'Blood_Group',
+        'facebook_url',
+        'twitter_url',
+        'linkedin_url',
+        'social_score',
+        'mental_health_score',
+        'psychological_health_score',
+        'physical_health_score',
+        'description',
+    ];    public function doctor()
     {
         return $this->belongsTo(Doctor::class, 'doctor_id');
     }

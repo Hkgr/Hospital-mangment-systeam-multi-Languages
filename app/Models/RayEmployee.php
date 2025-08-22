@@ -13,6 +13,14 @@ class RayEmployee extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'facebook_url',
+        'twitter_url',
+        'linkedin_url',
+        'social_score',
+        'mental_health_score',
+        'psychological_health_score',
+        'physical_health_score',
         'description',
     ];      /**
      * Get the ray employee's profile image.

@@ -21,6 +21,15 @@ class UserTableSeeder extends Seeder
             'name' => 'user',
             'email' => 'user@gmail.com',
             'password' => Hash::make('12345678'),
+            'phone' => '123456789',
+            'facebook_url' => 'https://facebook.com/user',
+            'twitter_url' => 'https://twitter.com/user',
+            'linkedin_url' => 'https://linkedin.com/in/user',
+            'social_score' => 0,
+            'mental_health_score' => 0,
+            'psychological_health_score' => 0,
+            'physical_health_score' => 0,
+            'description' => 'Default system user',
         ]);
     }
 }

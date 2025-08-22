@@ -108,7 +108,7 @@
 								</p>
 							</div>
 						</div>
-						<h6>Bio</h6>
+						<h6>توصيف</h6>
 						<div class="main-profile-bio">
 							{{ $user->description ?? __('No description available.') }}
 						</div><!-- main-profile-bio -->
@@ -134,7 +134,7 @@
 									<i class="icon ion-logo-facebook"></i>
 								</div>
 								<div class="media-body">
-									<span>Github</span> <a href="">github.com/spruko</a>
+									<span>Facebook</span> <a href="">github.com/spruko</a>
 								</div>
 							</div>
 							<div class="media">
@@ -188,7 +188,7 @@
 						<div class="skill-bar clearfix">
 							<span>الصحة العقلية</span>
 							<div class="progress mt-2">
-								<div class="progress-bar bg-info-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
+								<div class="progress-bar bg-info-gradient" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%"></div>
 							</div>
 						</div>
 						<!--skill bar-->
@@ -209,7 +209,7 @@
 							<div class="mr-auto">
 								<h5 class="tx-13">عدد الاطباء</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">1,587</h2>
-								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
+								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>    زيادة     </p>
 							</div>
 						</div>
 					</div>
@@ -225,7 +225,7 @@
 							<div class="mr-auto">
 								<h5 class="tx-13">عدد المرضى</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">46,782</h2>
-								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
+								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>    زيادة     </p>
 							</div>
 						</div>
 					</div>
@@ -241,7 +241,7 @@
 							<div class="mr-auto">
 								<h5 class="tx-13">عدد الاقسام</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">1,890</h2>
-								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>increase</p>
+								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>    زيادة     </p>
 							</div>
 						</div>
 					</div>
