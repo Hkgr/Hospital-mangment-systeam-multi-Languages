@@ -6,6 +6,7 @@ use App\Interfaces\Patients\PatientRepositoryInterface;
 use App\Models\Invoice;
 use App\Models\Patient;
 use App\Models\PatientAccount;
+use App\Models\Appointment;
 use App\Models\ReceiptAccount;
 use App\Models\single_invoice;
 use Illuminate\Database\Eloquent\Model;
@@ -25,9 +26,9 @@ class PatientRepository implements PatientRepositoryInterface
         $invoices = Invoice::where('patient_id', $id)->get();
         $receipt_accounts = ReceiptAccount::where('patient_id', $id)->get();
         $Patient_accounts = PatientAccount::where('patient_id', $id)->get();
+        $appointments = Appointment::where('patient_id', $id)->get();
 
-        return view('Dashboard.Patients.show', compact('Patient', 'invoices', 'receipt_accounts', 'Patient_accounts'));
-    }
+        return view('Dashboard.Patients.show', compact('Patient', 'invoices', 'receipt_accounts', 'Patient_accounts', 'appointments'));    }
 
     public function create()
    {
