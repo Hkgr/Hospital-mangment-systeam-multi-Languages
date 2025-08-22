@@ -166,6 +166,9 @@ Route::group(
             Route::get('appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
             Route::post('appointments/store', [AppointmentController::class, 'store'])->name('appointments.store');
 
+            //############################# end RayEmployee route ######################################
+
+
         });
 
 
