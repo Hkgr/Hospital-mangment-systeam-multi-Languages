@@ -18,7 +18,9 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
 
             $this->invoice_status($request->invoice_id, 3);
             $diagnosis = new Diagnostic();
-            $diagnosis->review_date = $request->review_date;
+            if ($request->filled('review_date')) {
+                $diagnosis->review_date = $request->review_date;
+            }
             $diagnosis->diagnosis = $request->diagnosis;
             $diagnosis->medicine = $request->medicine;
             $diagnosis->invoice_id = $request->invoice_id;
@@ -50,7 +52,9 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
             $this->invoice_status($request->invoice_id, 2);
             $diagnosis = new Diagnostic();
             $diagnosis->date = now();
-                        $diagnosis->review_date = Carbon::parse($request->review_date);
+            if ($request->filled('review_date')) {
+                $diagnosis->review_date = Carbon::parse($request->review_date);
+            }
             $diagnosis->diagnosis = $request->diagnosis;
             $diagnosis->medicine = $request->medicine;
             $diagnosis->invoice_id = $request->invoice_id;
