@@ -1,4 +1,27 @@
 <!-- main-header opened -->
+@php
+$user = null;
+$folder = '';
+if(auth('admin')->check()){
+$user = auth('admin')->user();
+$folder = 'admins';
+}elseif(auth('doctor')->check()){
+$user = auth('doctor')->user();
+$folder = 'doctors';
+}elseif(auth('patient')->check()){
+$user = auth('patient')->user();
+$folder = 'patients';
+}elseif(auth('laboratorie_employee')->check()){
+$user = auth('laboratorie_employee')->user();
+$folder = 'laboratorie_employees';
+}elseif(auth('ray_employee')->check()){
+$user = auth('ray_employee')->user();
+$folder = 'ray_employees';
+}elseif(auth()->check()){
+$user = auth()->user();
+$folder = 'users';
+}
+@endphp
 <div class="main-header sticky side-header nav nav-item">
     <div class="container-fluid">
         <div class="main-header-left ">
@@ -241,20 +264,39 @@
                     </a>
                 </div>
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
-                    <a class="profile-user d-flex" href=""><img alt=""
-                            src="{{URL::asset('Dashboard/img/faces/6.jpg')}}"></a>
+                    <a class="profile-user d-flex" href="">
+                        <img alt="" src="{{ $user?->image ? URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) : URL::asset('Dashboard/img/faces/6.jpg') }}">
+                    </a>
                     <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
-                                <div class="main-img-user"><img alt="" src="{{URL::asset('Dashboard/img/faces/6.jpg')}}"
-                                        class=""></div>
+                                <div class="main-img-user">
+                                    <img alt="" src="{{ $user?->image ? URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) : URL::asset('Dashboard/img/faces/6.jpg') }}" class="">
+                                </div>
                                 <div class="mr-3 my-auto">
-                                    <h6>{{auth()->user()->name}}</h6><span>{{auth()->user()->email}}</span>
+                                    <h6>{{ $user?->name }}</h6><span>{{ $user?->email }}</span>
                                 </div>
                             </div>
                         </div>
-                        <a class="dropdown-item" href=""><i class="bx bx-user-circle"></i>الملف الشخصي</a>
-                        <a class="dropdown-item" href=""><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @if(auth('web')->check())
+                        <a class="dropdown-item" href="{{ route('profile.user') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.user') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @elseif(auth('admin')->check())
+                        <a class="dropdown-item" href="{{ route('profile.admin') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.admin') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @elseif(auth('doctor')->check())
+                        <a class="dropdown-item" href="{{ route('profile.doctor') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.doctor') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @elseif(auth('ray_employee')->check())
+                        <a class="dropdown-item" href="{{ route('profile.ray_employee') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.ray_employee') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @elseif(auth('laboratorie_employee')->check())
+                        <a class="dropdown-item" href="{{ route('profile.laboratorie_employee') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.laboratorie_employee') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @else
+                        <a class="dropdown-item" href="{{ route('profile.patient') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit.patient') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                        @endif
                         @if(auth('web')->check())
                         <form method="POST" action="{{ route('logout.user') }}">
                             @elseif(auth('admin')->check())
@@ -301,31 +343,31 @@
 
 <script>
     //$user = auth('doctor')->user() ?? auth('admin')->user());
-    var notificationsWrapper   = $('.dropdown-notifications');
+    var notificationsWrapper = $('.dropdown-notifications');
     var notificationsCountElem = notificationsWrapper.find('p[data-count]');
-    var notificationsCount     = parseInt(notificationsCountElem.data('count')) || 0;
+    var notificationsCount = parseInt(notificationsCountElem.data('count')) || 0;
 
     var notifications = notificationsWrapper.find('h4.notification-label');
-    var new_message   = notificationsWrapper.find('.new_message');
+    var new_message = notificationsWrapper.find('.new_message');
     new_message.hide();
 
 
-    `Echo.private('create-invoice.{{ auth('doctor')->id() }}')` 
-        .listen('.create-invoice', (data) => {
-            const text = $('<div>').text(data.message + data.patient).html();
-            const time = $('<div>').text(data.created_at).html();
+    `Echo.private('create-invoice.{{ auth('doctor')->id() }}')`
+    .listen('.create-invoice', (data) => {
+        const text = $('<div>').text(data.message + data.patient).html();
+        const time = $('<div>').text(data.created_at).html();
 
-            const newNotificationHtml = `
+        const newNotificationHtml = `
                 <h4 class="notification-label mb-1">${text}</h4>
                 <div class="notification-subtext">${time}</div>`;
 
-            new_message.show();
-            notifications.html(newNotificationHtml);
-            notificationsCount += 1;
-            notificationsCountElem.attr('data-count', notificationsCount);
-            notificationsWrapper.find('.notif-count').text(notificationsCount);
-            notificationsWrapper.show();
-        });
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    });
 </script>
 
 

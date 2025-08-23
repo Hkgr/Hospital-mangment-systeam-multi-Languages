@@ -35,6 +35,8 @@ Route::group(
     //################################ end dashboard doctor #####################################
 
     Route::middleware(['auth:ray_employee'])->group(function () {
+        Route::view('ray_employee/profile', 'Dashboard.profile')->name('profile.ray_employee');
+        Route::view('ray_employee/profile/edit', 'Dashboard.editprofile')->name('profile.edit.ray_employee');
 
     //############################# invoices route ##########################################
      Route::resource('invoices_ray_employee', InvoiceController::class);

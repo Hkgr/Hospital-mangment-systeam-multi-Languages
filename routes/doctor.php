@@ -42,6 +42,8 @@ Route::group(
 
 
     Route::middleware(['auth:doctor'])->group(function () {
+        Route::view('doctor/profile', 'Dashboard.profile')->name('profile.doctor');
+        Route::view('doctor/profile/edit', 'Dashboard.editprofile')->name('profile.edit.doctor');
 
         Route::prefix('doctor')->group(function () {
 

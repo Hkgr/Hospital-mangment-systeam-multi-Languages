@@ -10,6 +10,13 @@ use Illuminate\Notifications\Notifiable;
 class Admin extends Authenticatable
 {
     use HasFactory, Notifiable;
+    /**
+     * Get the admin's profile image.
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +27,15 @@ class Admin extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'facebook_url',
+        'twitter_url',
+        'linkedin_url',
+        'social_score',
+        'mental_health_score',
+        'psychological_health_score',
+        'physical_health_score',
+        'description',
     ];
 
     /**

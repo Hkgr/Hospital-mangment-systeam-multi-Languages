@@ -31,6 +31,8 @@ Route::group(
     //################################ end dashboard doctor #####################################
 
     Route::middleware(['auth:laboratorie_employee'])->group(function () {
+        Route::view('laboratorie_employee/profile', 'Dashboard.profile')->name('profile.laboratorie_employee');
+        Route::view('laboratorie_employee/profile/edit', 'Dashboard.editprofile')->name('profile.edit.laboratorie_employee');
 
     //############################# invoices route ##########################################
      Route::resource('invoices_laboratorie_employee', InvoiceController::class);
