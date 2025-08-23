@@ -64,8 +64,8 @@
                     "{{ route('Diagnostics.store') }}";
             });
         }
-        form.addEventListener('submit', function() {
-            dateField.disabled = false;
+        form.addEventListener('submit', function () {
+            dateField.disabled = !toggle.checked;
             needsField.disabled = !toggle.checked;
         });
     });
