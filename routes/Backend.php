@@ -13,6 +13,7 @@ use App\Http\Controllers\Dashboard\RayEmployeeController;
 use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -51,7 +52,7 @@ Route::group(
             Route::view('user/profile', 'Dashboard.profile')->name('profile.user');
             Route::view('user/profile/edit', 'Dashboard.editprofile')->name('profile.edit.user');
         });
-
+        Route::middleware(['auth:web,admin,doctor,patient,laboratorie_employee,ray_employee'])->put('profile', [ProfileController::class, 'update'])->name('profile.update');
         //################################ end dashboard user #####################################
 
 

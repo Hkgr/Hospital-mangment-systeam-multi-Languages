@@ -272,244 +272,181 @@
 		</div>
 	</div>
 
-	<!-- Col -->
-	<div class="col-lg-8">
-		<div class="card">
-			<div class="card-body">
-				<div class="mb-4 main-content-label">تعديل المعلومات</div>
-				<form class="form-horizontal">
-					<div class="form-group ">
-						<!-- <div class="row">
-							<div class="col-md-3">
-								<label class="form-label">Language</label>
-							</div>
-							<div class="col-md-9">
-								<select class="form-control select2">
-									<option>Us English</option>
-									<option>Arabic</option>
-									<option>Korean</option>
-								</select>
-							</div>
-						</div> -->
-					</div>
-					<div class="mb-4 main-content-label">التفاصيل الشخصية</div>
-					<div class="form-group ">
-					<div class="col-md-9">
-							<div class="custom-controls-stacked">
-								<label class="ckbox mg-b-10"><input checked="" type="checkbox"><span>إبقاء المعلومات دون تغيير</span></label>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">الاسم</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="User Name" value="Petey Cruiser">
-							</div>
-						</div>
-					</div>
-					<div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">الوصف</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="First Name" value="Petey">
-							</div>
-						</div>
-					</div>
-					<!-- <div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">last Name</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="Last Name" value="Pechon">
-							</div>
-						</div>
-					</div>
-					<div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">Nick Name</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="Nick Name" value="Petey">
-							</div>
-						</div>
-					</div>
-					<div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">Designation</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="Designation" value="Web Designer">
-							</div>
-						</div>
-					</div> -->
-					<div class="mb-4 main-content-label">وسائل التواصل الاجتماعي</div>
-					
-					<div class="form-group ">
-					<div class="col-md-9">
-							<div class="custom-controls-stacked">
-								<label class="ckbox mg-b-10"><input checked="" type="checkbox"><span>إبقاء المعلومات دون تغيير</span></label>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">فيسبوك<i>(مطلوب)</i></label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="Email" value="info@Valex.in">
-							</div>
-						</div>
-					</div>
-					<div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">تويتر</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="Website" value="@spruko.w">
-							</div>
-						</div>
-					</div>
-					<div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">ليتكد إن</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="phone number" value="+245 354 654">
-							</div>
-						</div>
-					</div>
-					<div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">الرقم</label>
-							</div>
-							<div class="col-md-9">
-								<textarea class="form-control" name="example-textarea-input" rows="2" placeholder="Address">San Francisco, CA</textarea>
-							</div>
-						</div>
-					</div>
-					<div class="mb-4 main-content-label">معلومات الامان</div>
-					<div class="form-group ">
-						<div class="col-md-9">
-							<div class="custom-controls-stacked">
-								<label class="ckbox mg-b-10"><input checked="" type="checkbox"><span>إبقاء المعلومات دون تغيير</span></label>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">البريد الإلكتروني</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="twitter" value="twitter.com/spruko.me">
-							</div>
-						</div>
-					</div>
-					<div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">كلمة المرور</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="facebook" value="https://www.facebook.com/Redash">
-							</div>
-						</div>
-					</div>
-					<div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">تأكيد كلمة المرور</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="google" value="spruko.com">
-							</div>
-						</div>
-					</div>
-					<div class="form-group ">
-						<div class="row">
-							<div class="col-md-1">
-								<label for="exampleInputEmail1">الصورة</label>
-							</div>
-							<div class="col-md-11 mg-t-5 mg-md-t-0">
-								<input type="file" accept="image/*" name="photo" onchange="loadFile(event)">
-								<img style="border-radius:50%" width="150px" height="150px" id="output" />
-							</div>
-						</div>
-					</div>
-					<!-- <div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">Linked in</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="linkedin" value="linkedin.com/in/spruko">
-							</div>
-						</div>
-					</div>
-					<div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">Github</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="github" value="github.com/sprukos">
-							</div>
-						</div>
-					</div>
-					<div class="mb-4 main-content-label">About Yourself</div>
-					<div class="form-group ">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">Biographical Info</label>
-							</div>
-							<div class="col-md-9">
-								<textarea class="form-control" name="example-textarea-input" rows="4" placeholder="">pleasure rationally encounter but because pursue consequences that are extremely painful.occur in which toil and pain can procure him some great pleasure..</textarea>
-							</div>
-						</div>
-					</div>
-					<div class="mb-4 main-content-label">Email Preferences</div>
-					<div class="form-group mb-0">
-						<div class="row">
-							<div class="col-md-3">
-								<label class="form-label">Verified User</label>
-							</div>
-							<div class="col-md-9">
-								<div class="custom-controls-stacked">
-									<label class="ckbox mg-b-10"><input checked="" type="checkbox"><span> Accept to receive post or page notification emails</span></label>
-									<label class="ckbox"><input checked="" type="checkbox"><span> Accept to receive email sent to multiple recipients</span></label>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div> -->
-					<div class="card-footer text-left">
-						<button type="submit" class="btn btn-primary waves-effect waves-light">تحديث</button>
-					</div>
-			</div>
-		</div>
-		<!-- /Col -->
-	</div>
-	<!-- row closed -->
+        <!-- Col -->
+        <div class="col-lg-8">
+    <div class="card">
+        <div class="card-body">
+            <div class="mb-4 main-content-label">تعديل المعلومات</div>
+            <form class="form-horizontal" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <div class="mb-4 main-content-label">التفاصيل الشخصية</div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">الاسم</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ckbox"><input type="checkbox" name="keep_name" class="keep-toggle" data-target="name" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">الوصف</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="description" value="{{ old('description', $user->description) }}" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ckbox"><input type="checkbox" name="keep_description" class="keep-toggle" data-target="description" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4 main-content-label">وسائل التواصل الاجتماعي</div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">فيسبوك</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="facebook_url" value="{{ old('facebook_url', $user->facebook_url) }}" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ckbox"><input type="checkbox" name="keep_facebook_url" class="keep-toggle" data-target="facebook_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">تويتر</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="twitter_url" value="{{ old('twitter_url', $user->twitter_url) }}" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ckbox"><input type="checkbox" name="keep_twitter_url" class="keep-toggle" data-target="twitter_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">ليتكد إن</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="linkedin_url" value="{{ old('linkedin_url', $user->linkedin_url) }}" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ckbox"><input type="checkbox" name="keep_linkedin_url" class="keep-toggle" data-target="linkedin_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4 main-content-label">معلومات الامان</div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">البريد الإلكتروني</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ckbox"><input type="checkbox" name="keep_email" class="keep-toggle" data-target="email" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">كلمة المرور</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="password" class="form-control" name="password" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ckbox"><input type="checkbox" name="keep_password" class="keep-toggle" data-target="password" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">تأكيد كلمة المرور</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="password" class="form-control" name="password_confirmation" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ckbox"><input type="checkbox" name="keep_password_confirmation" class="keep-toggle" data-target="password_confirmation" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">الصورة</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="file" class="form-control" name="photo" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ckbox"><input type="checkbox" name="keep_photo" class="keep-toggle" data-target="photo" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer text-left">
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">تحديث</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /Col -->
+</div>
+<!-- row closed -->
 </div>
 <!-- Container closed -->
 </div>
 <!-- main-content closed -->
 <script>
-	document.addEventListener('DOMContentLoaded', function() {
-		document.querySelectorAll('.progress-bar[data-width]').forEach(function(el) {
-			var v = parseInt(el.getAttribute('data-width'), 10);
-			if (isNaN(v) || v < 0) v = 0;
-			if (v > 100) v = 100;
-			el.style.width = v + '%';
-		});
-	});
+   document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.progress-bar[data-width]').forEach(function(el) {
+            var v = parseInt(el.getAttribute('data-width'), 10);
+            if (isNaN(v) || v < 0) v = 0;
+            if (v > 100) v = 100;
+            el.style.width = v + '%';
+        });
+
+        document.querySelectorAll('.keep-toggle').forEach(function(cb) {
+            var target = document.querySelector('[name="' + cb.dataset.target + '"]');
+            if (cb.checked) target.setAttribute('disabled', true);
+            cb.addEventListener('change', function () {
+                if (this.checked) {
+                    target.setAttribute('disabled', true);
+                } else {
+                    target.removeAttribute('disabled');
+                }
+            });
+        });
+    });
 </script>
 
 @endsection
@@ -520,4 +457,5 @@
 <!-- Internal Select2.min js -->
 <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 <script src="{{URL::asset('assets/js/select2.js')}}"></script>
+
 @endsection
