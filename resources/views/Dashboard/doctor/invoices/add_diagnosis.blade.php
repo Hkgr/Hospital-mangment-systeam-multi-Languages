@@ -26,6 +26,16 @@
                     <textarea class="form-control" name="medicine" rows="6"></textarea>
                 </div>
 
+                <div class="form-group form-check">
+                    <input type="checkbox" id="need_review_{{ $invoice->id }}" name="need_review" class="form-check-input">
+                    <label class="form-check-label" for="need_review_{{ $invoice->id }}">   ""::  هل بحاجة إلى مراجعة؟        </label>
+                </div>
+                <div class="form-group">
+                    <label>تاريخ المراجعة</label>
+                    <input type="text" id="review_date_{{ $invoice->id }}" name="review_date" class="form-control fc-datepicker" disabled>
+                </div>
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
@@ -35,3 +45,10 @@
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        $('#need_review_{{ $invoice->id }}').on('change', function () {
+            $('#review_date_{{ $invoice->id }}').prop('disabled', !this.checked);
+        });
+    });
+</script>
