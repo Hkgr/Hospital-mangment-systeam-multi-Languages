@@ -50,7 +50,7 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
             $diagnosis = new Diagnostic();
             $diagnosis->date = date('Y-m-d');
             $diagnosis->review_date = Carbon::parse($request->review_date);
-                        $diagnosis->diagnosis = $request->diagnosis;
+            $diagnosis->diagnosis = $request->diagnosis;
             $diagnosis->medicine = $request->medicine;
             $diagnosis->invoice_id = $request->invoice_id;
             $diagnosis->patient_id = $request->patient_id;
