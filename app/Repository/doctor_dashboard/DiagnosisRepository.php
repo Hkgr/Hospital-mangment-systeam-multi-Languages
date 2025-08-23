@@ -24,6 +24,7 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
             $diagnosis->invoice_id = $request->invoice_id;
             $diagnosis->patient_id = $request->patient_id;
             $diagnosis->doctor_id = $request->doctor_id;
+            $diagnosis->date = now();
             $diagnosis->save();
 
             DB::commit();
@@ -48,8 +49,8 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
 
             $this->invoice_status($request->invoice_id, 2);
             $diagnosis = new Diagnostic();
-            $diagnosis->date = date('Y-m-d');
-            $diagnosis->review_date = Carbon::parse($request->review_date);
+            $diagnosis->date = now();
+                        $diagnosis->review_date = Carbon::parse($request->review_date);
             $diagnosis->diagnosis = $request->diagnosis;
             $diagnosis->medicine = $request->medicine;
             $diagnosis->invoice_id = $request->invoice_id;
