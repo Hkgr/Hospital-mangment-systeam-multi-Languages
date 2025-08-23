@@ -14,8 +14,7 @@
 
                     <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
                     <input type="hidden" name="patient_id" value="{{$invoice->patient_id}}">
-                    <input type="hidden" name="doctor_id" value="{{$invoice->doctor_id}}">
-
+                    <input type="hidden" name="needs_review" id="needs_review{{$invoice->id}}" value="1" disabled>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">التشخيص</label>
                         <textarea class="form-control" name="diagnosis" rows="6" required></textarea>
@@ -52,18 +51,21 @@
         var form = document.getElementById('diagnosis_form{{$invoice->id}}');
         var toggle = document.getElementById('review_toggle{{$invoice->id}}');
         var dateField = document.getElementById('review_date{{$invoice->id}}');
-        if (toggle && dateField) {
+        var needsField = document.getElementById('needs_review{{$invoice->id}}');
+        if (toggle && dateField && needsField) {
             toggle.addEventListener('change', function() {
-                dateField.disabled = !this.checked;
-                dateField.required = this.checked;
-                form.action = this.checked ?
+                var checked = this.checked;
+                dateField.disabled = !checked;
+                dateField.required = checked;
+                needsField.disabled = !checked;
+                form.action = checked ?
                     "{{ route('add_review') }}" :
                     "{{ route('Diagnostics.store') }}";
-                dateField.disabled = !this.checked;
             });
         }
         form.addEventListener('submit', function() {
             dateField.disabled = false;
+            needsField.disabled = !toggle.checked;
         });
     });
 </script>
