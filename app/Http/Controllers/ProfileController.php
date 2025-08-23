@@ -54,6 +54,9 @@ class ProfileController extends Controller
         if ($request->filled('linkedin_url')) {
             $user->linkedin_url = $request->input('linkedin_url');
         }
+        if ($request->filled('phone')) {
+            $user->phone = $request->input('phone');
+        }
         if ($request->filled('email')) {
             $user->email = $request->input('email');
         }

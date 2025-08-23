@@ -384,8 +384,23 @@ $folder = 'users';
 						</div>
 					</div>
 
-					<div class="mb-4 main-content-label">معلومات الامان</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3"><label class="form-label">واتساب</label></div>
+							<div class="col-md-7">
+								<input type="text" class="form-control" name="phone"
+									value="{{ old('phone', $user->phone) }}" disabled>
+							</div>
+							<div class="col-md-2">
+								<label class="ckbox">
+									<input type="checkbox" name="keep_phone" class="keep-toggle" data-target="phone" checked>
+									<span>إبقاء المعلومات دون تغيير</span>
+								</label>
+							</div>
+						</div>
+					</div>
 
+					<div class="mb-4 main-content-label">معلومات الامان</div>
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-3">

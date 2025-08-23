@@ -1,3 +1,7 @@
+@php
+    $user = auth('patient')->user();
+    $folder = 'patients';
+@endphp
 <!-- main-sidebar -->
 		<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 		<aside class="app-sidebar sidebar-scroll">
@@ -10,9 +14,16 @@
 			<div class="main-sidemenu">
 				<div class="app-sidebar__user clearfix">
 					<div class="dropdown user-pro-body">
-						<div class="">
-							<img alt="user-img" class="avatar avatar-xl brround" src="{{URL::asset('Dashboard/img/faces/6.jpg')}}"><span class="avatar-status profile-status bg-green"></span>
-						</div>
+					<div class="">
+                                                        @if($user?->image)
+                                                            <img alt="user-img" class="avatar avatar-xl brround"
+                                                                 src="{{ URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) }}">
+                                                        @else
+                                                            <img alt="user-img" class="avatar avatar-xl brround"
+                                                                 src="{{ URL::asset('Dashboard/img/faces/6.jpg') }}">
+                                                        @endif
+                                                        <span class="avatar-status profile-status bg-green"></span>
+                                                </div>
                         <div class="user-info">
                             <h4 class="font-weight-semibold mt-3 mb-0">{{ auth()->user()->name }}</h4>
                             <span class="mb-0 text-muted">{{ auth()->user()->email }}</span>
