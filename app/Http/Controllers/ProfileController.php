@@ -72,8 +72,11 @@ class ProfileController extends Controller
             }
 
             $file->move($path, $filename);
-            $user->image = $filename;
-        }
+            if ($user->image) {
+                $user->image->update(['filename' => $filename]);
+            } else {
+                $user->image()->create(['filename' => $filename]);
+            }        }
 
         $user->save();
 
