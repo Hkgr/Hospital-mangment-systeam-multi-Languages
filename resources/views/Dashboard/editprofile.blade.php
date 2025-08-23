@@ -1,26 +1,26 @@
 @extends('Dashboard.layouts.master')
 @php
-    $user = null;
-    $folder = '';
-    if(auth('admin')->check()){
-        $user = auth('admin')->user();
-        $folder = 'admins';
-    }elseif(auth('doctor')->check()){
-        $user = auth('doctor')->user();
-        $folder = 'doctors';
-    }elseif(auth('patient')->check()){
-        $user = auth('patient')->user();
-        $folder = 'patients';
-    }elseif(auth('laboratorie_employee')->check()){
-        $user = auth('laboratorie_employee')->user();
-        $folder = 'laboratorie_employees';
-    }elseif(auth('ray_employee')->check()){
-        $user = auth('ray_employee')->user();
-        $folder = 'ray_employees';
-    }elseif(auth()->check()){
-        $user = auth()->user();
-        $folder = 'users';
-    }
+$user = null;
+$folder = '';
+if(auth('admin')->check()){
+$user = auth('admin')->user();
+$folder = 'admins';
+}elseif(auth('doctor')->check()){
+$user = auth('doctor')->user();
+$folder = 'doctors';
+}elseif(auth('patient')->check()){
+$user = auth('patient')->user();
+$folder = 'patients';
+}elseif(auth('laboratorie_employee')->check()){
+$user = auth('laboratorie_employee')->user();
+$folder = 'laboratorie_employees';
+}elseif(auth('ray_employee')->check()){
+$user = auth('ray_employee')->user();
+$folder = 'ray_employees';
+}elseif(auth()->check()){
+$user = auth()->user();
+$folder = 'users';
+}
 @endphp
 @section('css')
 <!-- Internal Select2 css -->
@@ -191,6 +191,12 @@
 						</div>
 						<hr class="mg-y-30">
 						<h6>الخصائص</h6>
+						@php
+						$socialScore = min(100, max(0, $user->social_score ?? 0));
+						$physicalScore = min(100, max(0, $user->physical_health_score ?? 0));
+						$psychologicalScore = min(100, max(0, $user->psychological_health_score ?? 0));
+						$mentalScore = min(100, max(0, $user->mental_health_score ?? 0));
+						@endphp
 						<!-- skill bar -->
 						<div class="skill-bar mb-4 clearfix mt-3">
 							<span>التواصل الاجتماعي</span>
@@ -295,181 +301,181 @@
 		</div>
 	</div>
 
-        <!-- Col -->
-        <div class="col-lg-8">
-    <div class="card">
-        <div class="card-body">
-            <div class="mb-4 main-content-label">تعديل المعلومات</div>
-            <form class="form-horizontal" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
+	<!-- Col -->
+	<div class="col-lg-8">
+		<div class="card">
+			<div class="card-body">
+				<div class="mb-4 main-content-label">تعديل المعلومات</div>
+				<form class="form-horizontal" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+					@csrf
+					@method('PUT')
 
-                <div class="mb-4 main-content-label">التفاصيل الشخصية</div>
+					<div class="mb-4 main-content-label">التفاصيل الشخصية</div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="form-label">الاسم</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" disabled>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="ckbox"><input type="checkbox" name="keep_name" class="keep-toggle" data-target="name" checked> <span>إبقاء المعلومات دون تغيير</span></label>
-                        </div>
-                    </div>
-                </div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label class="form-label">الاسم</label>
+							</div>
+							<div class="col-md-7">
+								<input type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" disabled>
+							</div>
+							<div class="col-md-2">
+								<label class="ckbox"><input type="checkbox" name="keep_name" class="keep-toggle" data-target="name" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
+					</div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="form-label">الوصف</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" class="form-control" name="description" value="{{ old('description', $user->description) }}" disabled>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="ckbox"><input type="checkbox" name="keep_description" class="keep-toggle" data-target="description" checked> <span>إبقاء المعلومات دون تغيير</span></label>
-                        </div>
-                    </div>
-                </div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label class="form-label">الوصف</label>
+							</div>
+							<div class="col-md-7">
+								<input type="text" class="form-control" name="description" value="{{ old('description', $user->description) }}" disabled>
+							</div>
+							<div class="col-md-2">
+								<label class="ckbox"><input type="checkbox" name="keep_description" class="keep-toggle" data-target="description" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
+					</div>
 
-                <div class="mb-4 main-content-label">وسائل التواصل الاجتماعي</div>
+					<div class="mb-4 main-content-label">وسائل التواصل الاجتماعي</div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="form-label">فيسبوك</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" class="form-control" name="facebook_url" value="{{ old('facebook_url', $user->facebook_url) }}" disabled>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="ckbox"><input type="checkbox" name="keep_facebook_url" class="keep-toggle" data-target="facebook_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
-                        </div>
-                    </div>
-                </div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label class="form-label">فيسبوك</label>
+							</div>
+							<div class="col-md-7">
+								<input type="text" class="form-control" name="facebook_url" value="{{ old('facebook_url', $user->facebook_url) }}" disabled>
+							</div>
+							<div class="col-md-2">
+								<label class="ckbox"><input type="checkbox" name="keep_facebook_url" class="keep-toggle" data-target="facebook_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
+					</div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="form-label">تويتر</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" class="form-control" name="twitter_url" value="{{ old('twitter_url', $user->twitter_url) }}" disabled>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="ckbox"><input type="checkbox" name="keep_twitter_url" class="keep-toggle" data-target="twitter_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
-                        </div>
-                    </div>
-                </div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label class="form-label">تويتر</label>
+							</div>
+							<div class="col-md-7">
+								<input type="text" class="form-control" name="twitter_url" value="{{ old('twitter_url', $user->twitter_url) }}" disabled>
+							</div>
+							<div class="col-md-2">
+								<label class="ckbox"><input type="checkbox" name="keep_twitter_url" class="keep-toggle" data-target="twitter_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
+					</div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="form-label">ليتكد إن</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" class="form-control" name="linkedin_url" value="{{ old('linkedin_url', $user->linkedin_url) }}" disabled>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="ckbox"><input type="checkbox" name="keep_linkedin_url" class="keep-toggle" data-target="linkedin_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
-                        </div>
-                    </div>
-                </div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label class="form-label">ليتكد إن</label>
+							</div>
+							<div class="col-md-7">
+								<input type="text" class="form-control" name="linkedin_url" value="{{ old('linkedin_url', $user->linkedin_url) }}" disabled>
+							</div>
+							<div class="col-md-2">
+								<label class="ckbox"><input type="checkbox" name="keep_linkedin_url" class="keep-toggle" data-target="linkedin_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
+					</div>
 
-                <div class="mb-4 main-content-label">معلومات الامان</div>
+					<div class="mb-4 main-content-label">معلومات الامان</div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="form-label">البريد الإلكتروني</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}" disabled>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="ckbox"><input type="checkbox" name="keep_email" class="keep-toggle" data-target="email" checked> <span>إبقاء المعلومات دون تغيير</span></label>
-                        </div>
-                    </div>
-                </div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label class="form-label">البريد الإلكتروني</label>
+							</div>
+							<div class="col-md-7">
+								<input type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}" disabled>
+							</div>
+							<div class="col-md-2">
+								<label class="ckbox"><input type="checkbox" name="keep_email" class="keep-toggle" data-target="email" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
+					</div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="form-label">كلمة المرور</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="password" class="form-control" name="password" disabled>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="ckbox"><input type="checkbox" name="keep_password" class="keep-toggle" data-target="password" checked> <span>إبقاء المعلومات دون تغيير</span></label>
-                        </div>
-                    </div>
-                </div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label class="form-label">كلمة المرور</label>
+							</div>
+							<div class="col-md-7">
+								<input type="password" class="form-control" name="password" disabled>
+							</div>
+							<div class="col-md-2">
+								<label class="ckbox"><input type="checkbox" name="keep_password" class="keep-toggle" data-target="password" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
+					</div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="form-label">تأكيد كلمة المرور</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="password" class="form-control" name="password_confirmation" disabled>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="ckbox"><input type="checkbox" name="keep_password_confirmation" class="keep-toggle" data-target="password_confirmation" checked> <span>إبقاء المعلومات دون تغيير</span></label>
-                        </div>
-                    </div>
-                </div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label class="form-label">تأكيد كلمة المرور</label>
+							</div>
+							<div class="col-md-7">
+								<input type="password" class="form-control" name="password_confirmation" disabled>
+							</div>
+							<div class="col-md-2">
+								<label class="ckbox"><input type="checkbox" name="keep_password_confirmation" class="keep-toggle" data-target="password_confirmation" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
+					</div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="form-label">الصورة</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="file" class="form-control" name="photo" disabled>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="ckbox"><input type="checkbox" name="keep_photo" class="keep-toggle" data-target="photo" checked> <span>إبقاء المعلومات دون تغيير</span></label>
-                        </div>
-                    </div>
-                </div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label class="form-label">الصورة</label>
+							</div>
+							<div class="col-md-7">
+								<input type="file" class="form-control" name="photo" disabled>
+							</div>
+							<div class="col-md-2">
+								<label class="ckbox"><input type="checkbox" name="keep_photo" class="keep-toggle" data-target="photo" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
+					</div>
 
-                <div class="card-footer text-left">
-                    <button type="submit" class="btn btn-primary waves-effect waves-light">تحديث</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!-- /Col -->
-</div>
-<!-- row closed -->
+					<div class="card-footer text-left">
+						<button type="submit" class="btn btn-primary waves-effect waves-light">تحديث</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- /Col -->
+	</div>
+	<!-- row closed -->
 </div>
 <!-- Container closed -->
 </div>
 <!-- main-content closed -->
 <script>
-   document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.progress-bar[data-width]').forEach(function(el) {
-            var v = parseInt(el.getAttribute('data-width'), 10);
-            if (isNaN(v) || v < 0) v = 0;
-            if (v > 100) v = 100;
-            el.style.width = v + '%';
-        });
+	document.addEventListener('DOMContentLoaded', function() {
+		document.querySelectorAll('.progress-bar[data-width]').forEach(function(el) {
+			var v = parseInt(el.getAttribute('data-width'), 10);
+			if (isNaN(v) || v < 0) v = 0;
+			if (v > 100) v = 100;
+			el.style.width = v + '%';
+		});
 
-        document.querySelectorAll('.keep-toggle').forEach(function(cb) {
-            var target = document.querySelector('[name="' + cb.dataset.target + '"]');
-            if (cb.checked) target.setAttribute('disabled', true);
-            cb.addEventListener('change', function () {
-                if (this.checked) {
-                    target.setAttribute('disabled', true);
-                } else {
-                    target.removeAttribute('disabled');
-                }
-            });
-        });
-    });
+		document.querySelectorAll('.keep-toggle').forEach(function(cb) {
+			var target = document.querySelector('[name="' + cb.dataset.target + '"]');
+			if (cb.checked) target.setAttribute('disabled', true);
+			cb.addEventListener('change', function() {
+				if (this.checked) {
+					target.setAttribute('disabled', true);
+				} else {
+					target.removeAttribute('disabled');
+				}
+			});
+		});
+	});
 </script>
 
 @endsection
