@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="diagnosis_form{{$invoice->id}}" action="{{route('Diagnostics.store')}}" method="POST">
+            <form  id="diagnosis_form{{$invoice->id}}"  action="{{route('Diagnostics.store')}}" method="POST">
                 @csrf
                 <div class="modal-body">
 
@@ -35,7 +35,7 @@
 
                     <div class="form-group" style="position:relative;">
                         <label>تاريخ المراجعة</label>
-                        <input class="form-control" id="review_date{{$invoice->id}}" name="review_date" type="text" disabled>
+                        <input class="form-control fc-datepicker" id="review_date{{$invoice->id}}" name="review_date" type="text" disabled>
                     </div>
 
                 </div>
@@ -51,18 +51,9 @@
     document.addEventListener('DOMContentLoaded', function() {
         var toggle = document.getElementById('review_toggle{{$invoice->id}}');
         var dateField = document.getElementById('review_date{{$invoice->id}}');
-        var form = document.getElementById('diagnosis_form{{$invoice->id}}');
-        if (toggle && dateField && form) {
+        if (toggle && dateField) {
             toggle.addEventListener('change', function() {
-                if (this.checked) {
-                    dateField.disabled = false;
-                    dateField.required = true;
-                    form.action = "{{ route('add_review') }}";
-                } else {
-                    dateField.disabled = true;
-                    dateField.required = false;
-                    form.action = "{{ route('Diagnostics.store') }}";
-                }
+                dateField.disabled = !this.checked;
             });
         }
     });
