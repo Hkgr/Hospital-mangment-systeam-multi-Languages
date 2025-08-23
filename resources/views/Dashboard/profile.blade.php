@@ -134,7 +134,7 @@
 									<i class="icon ion-logo-facebook"></i>
 								</div>
 								<div class="media-body">
-									<span>Facebook</span> <a href="">github.com/spruko</a>
+									<span>Facebook</span> <a href="{{ $user->facebook_url }}">{{ $user->facebook_url }}</a>
 								</div>
 							</div>
 							<div class="media">
@@ -142,7 +142,7 @@
 									<i class="icon ion-logo-twitter"></i>
 								</div>
 								<div class="media-body">
-									<span>Twitter</span> <a href="">twitter.com/spruko.me</a>
+									<span>Twitter</span> <a href="{{ $user->twitter_url }}">{{ $user->twitter_url }}</a>
 								</div>
 							</div>
 							<div class="media">
@@ -150,7 +150,7 @@
 									<i class="icon ion-logo-linkedin"></i>
 								</div>
 								<div class="media-body">
-									<span>Linkedin</span> <a href="">linkedin.com/in/spruko</a>
+									<span>Linkedin</span> <a href="{{ $user->linkedin_url }}">{{ $user->linkedin_url }}</a>
 								</div>
 							</div>
 							<div class="media">
@@ -158,40 +158,74 @@
 									<i class="icon ion-md-call"></i>
 								</div>
 								<div class="media-body">
-									<span>Whats App</span> <a href="">spruko.com/</a>
+									<span>Whats App</span> <a href="tel:{{ $user->phone }}">{{ $user->phone }}</a>
 								</div>
 							</div>
 						</div>
 						<hr class="mg-y-30">
 						<h6>الخصائص</h6>
+						@php
+						$socialScore = min(100, max(0, $user->social_score ?? 0));
+						$physicalScore = min(100, max(0, $user->physical_health_score ?? 0));
+						$psychologicalScore = min(100, max(0, $user->psychological_health_score ?? 0));
+						$mentalScore = min(100, max(0, $user->mental_health_score ?? 0));
+						@endphp
+						<!-- skill bar -->
 						<div class="skill-bar mb-4 clearfix mt-3">
 							<span>التواصل الاجتماعي</span>
 							<div class="progress mt-2">
-								<div class="progress-bar bg-primary-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"></div>
+								<div class="progress-bar bg-primary-gradient"
+									role="progressbar"
+									aria-valuenow="{{ (int)($socialScore ?? 0) }}"
+									aria-valuemin="0"
+									aria-valuemax="100"
+									data-width="{{ (int)($socialScore ?? 0) }}">
+								</div>
 							</div>
 						</div>
-						<!--skill bar-->
+
+						<!-- skill bar -->
 						<div class="skill-bar mb-4 clearfix">
 							<span>الصحة الجسدية</span>
 							<div class="progress mt-2">
-								<div class="progress-bar bg-danger-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 89%"></div>
+								<div class="progress-bar bg-danger-gradient"
+									role="progressbar"
+									aria-valuenow="{{ (int)($physicalScore ?? 0) }}"
+									aria-valuemin="0"
+									aria-valuemax="100"
+									data-width="{{ (int)($physicalScore ?? 0) }}">
+								</div>
 							</div>
 						</div>
-						<!--skill bar-->
+
+						<!-- skill bar -->
 						<div class="skill-bar mb-4 clearfix">
 							<span>الصحة النفسية</span>
 							<div class="progress mt-2">
-								<div class="progress-bar bg-success-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
+								<div class="progress-bar bg-success-gradient"
+									role="progressbar"
+									aria-valuenow="{{ (int)($psychologicalScore ?? 0) }}"
+									aria-valuemin="0"
+									aria-valuemax="100"
+									data-width="{{ (int)($psychologicalScore ?? 0) }}">
+								</div>
 							</div>
 						</div>
-						<!--skill bar-->
+
+						<!-- skill bar -->
 						<div class="skill-bar clearfix">
 							<span>الصحة العقلية</span>
 							<div class="progress mt-2">
-								<div class="progress-bar bg-info-gradient" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%"></div>
+								<div class="progress-bar bg-info-gradient"
+									role="progressbar"
+									aria-valuenow="{{ (int)($mentalScore ?? 0) }}"
+									aria-valuemin="0"
+									aria-valuemax="100"
+									data-width="{{ (int)($mentalScore ?? 0) }}">
+								</div>
 							</div>
 						</div>
-						<!--skill bar-->
+
 					</div><!-- main-profile-overview -->
 				</div>
 			</div>
@@ -208,7 +242,7 @@
 							</div>
 							<div class="mr-auto">
 								<h5 class="tx-13">عدد الاطباء</h5>
-								<h2 class="mb-0 tx-22 mb-1 mt-1">1,587</h2>
+								<h2 class="mb-0 tx-22 mb-1 mt-1">{{\App\Models\Doctor::count()}}</h2>
 								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>    زيادة     </p>
 							</div>
 						</div>
@@ -224,7 +258,7 @@
 							</div>
 							<div class="mr-auto">
 								<h5 class="tx-13">عدد المرضى</h5>
-								<h2 class="mb-0 tx-22 mb-1 mt-1">46,782</h2>
+								<h2 class="mb-0 tx-22 mb-1 mt-1">{{\App\Models\Patient::count()}}</h2>
 								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>    زيادة     </p>
 							</div>
 						</div>
@@ -240,7 +274,7 @@
 							</div>
 							<div class="mr-auto">
 								<h5 class="tx-13">عدد الاقسام</h5>
-								<h2 class="mb-0 tx-22 mb-1 mt-1">1,890</h2>
+								<h2 class="mb-0 tx-22 mb-1 mt-1">{{\App\Models\Section::count()}}</h2>
 								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>    زيادة     </p>
 							</div>
 						</div>
@@ -376,6 +410,18 @@
 <!-- Container closed -->
 </div>
 <!-- main-content closed -->
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		document.querySelectorAll('.progress-bar[data-width]').forEach(function(el) {
+			var v = parseInt(el.getAttribute('data-width'), 10);
+			if (isNaN(v) || v < 0) v = 0;
+			if (v > 100) v = 100;
+			el.style.width = v + '%';
+		});
+	});
+</script>
+
 @endsection
 @section('js')
 @endsection
