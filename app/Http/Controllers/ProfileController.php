@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
     public function update(Request $request)
     {
-        $user = null;
+        $user   = null;
         $folder = '';
 
         if (auth('admin')->check()) {
@@ -37,6 +36,9 @@ class ProfileController extends Controller
             abort(403);
         }
 
+        // اجعل المحلل (Intelephense) يفهم أن $user نموذج Eloquent
+        /** @var \App\Models\Admin|\App\Models\Doctor|\App\Models\Patient|\App\Models\LaboratorieEmployee|\App\Models\RayEmployee|\App\Models\User $user */
+
         if ($request->filled('name')) {
             $user->name = $request->input('name');
         }
@@ -56,12 +58,20 @@ class ProfileController extends Controller
             $user->email = $request->input('email');
         }
         if ($request->filled('password')) {
-            $user->password = bcrypt($request->input('password'));
+            $user->password = Hash::make($request->input('password'));
         }
+
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('Dashboard/img/' . $folder), $filename);
+
+            // تأكد أن المجلد موجود
+            $path = public_path('Dashboard/img/' . $folder);
+            if (! is_dir($path)) {
+                @mkdir($path, 0755, true);
+            }
+
+            $file->move($path, $filename);
             $user->image = $filename;
         }
 
