@@ -35,8 +35,8 @@
 
                     <div class="form-group" style="position:relative;">
                         <label>تاريخ المراجعة</label>
-                        <input class="form-control fc-datepicker" id="review_date{{$invoice->id}}" name="review_date" type="text" disabled>
-                    </div>
+                        <input class="form-control" id="review_date{{$invoice->id}}" name="review_date" type="text" disabled>
+                                        </div>
 
                 </div>
                 <div class="modal-footer">
