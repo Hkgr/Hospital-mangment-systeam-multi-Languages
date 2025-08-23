@@ -294,6 +294,11 @@
 					</div>
 					<div class="mb-4 main-content-label">التفاصيل الشخصية</div>
 					<div class="form-group ">
+					<div class="col-md-9">
+							<div class="custom-controls-stacked">
+								<label class="ckbox mg-b-10"><input checked="" type="checkbox"><span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-md-3">
 								<label class="form-label">الاسم</label>
@@ -344,7 +349,13 @@
 						</div>
 					</div> -->
 					<div class="mb-4 main-content-label">وسائل التواصل الاجتماعي</div>
+					
 					<div class="form-group ">
+					<div class="col-md-9">
+							<div class="custom-controls-stacked">
+								<label class="ckbox mg-b-10"><input checked="" type="checkbox"><span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-md-3">
 								<label class="form-label">فيسبوك<i>(مطلوب)</i></label>
@@ -367,7 +378,7 @@
 					<div class="form-group ">
 						<div class="row">
 							<div class="col-md-3">
-								<label class="form-label">ليكد إن</label>
+								<label class="form-label">ليتكد إن</label>
 							</div>
 							<div class="col-md-9">
 								<input type="text" class="form-control" placeholder="phone number" value="+245 354 654">
@@ -386,6 +397,11 @@
 					</div>
 					<div class="mb-4 main-content-label">معلومات الامان</div>
 					<div class="form-group ">
+						<div class="col-md-9">
+							<div class="custom-controls-stacked">
+								<label class="ckbox mg-b-10"><input checked="" type="checkbox"><span>إبقاء المعلومات دون تغيير</span></label>
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-md-3">
 								<label class="form-label">البريد الإلكتروني</label>
