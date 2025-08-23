@@ -14,6 +14,7 @@
 
                     <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
                     <input type="hidden" name="patient_id" value="{{$invoice->patient_id}}">
+                    <input type="hidden" name="doctor_id" value="{{$invoice->doctor_id}}">
                     <input type="hidden" name="needs_review" id="needs_review{{$invoice->id}}" value="1" disabled>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">التشخيص</label>
