@@ -1,4 +1,27 @@
 @extends('Dashboard.layouts.master')
+@php
+    $user = null;
+    $folder = '';
+    if(auth('admin')->check()){
+        $user = auth('admin')->user();
+        $folder = 'admins';
+    }elseif(auth('doctor')->check()){
+        $user = auth('doctor')->user();
+        $folder = 'doctors';
+    }elseif(auth('patient')->check()){
+        $user = auth('patient')->user();
+        $folder = 'patients';
+    }elseif(auth('laboratorie_employee')->check()){
+        $user = auth('laboratorie_employee')->user();
+        $folder = 'laboratorie_employees';
+    }elseif(auth('ray_employee')->check()){
+        $user = auth('ray_employee')->user();
+        $folder = 'ray_employees';
+    }elseif(auth()->check()){
+        $user = auth()->user();
+        $folder = 'users';
+    }
+@endphp
 @section('css')
 @endsection
 @section('page-header')

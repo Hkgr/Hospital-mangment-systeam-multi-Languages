@@ -10,7 +10,7 @@ class Image extends Model
     use HasFactory;
 
    //Get the parent imageable model (user or post).
-
+   protected $fillable = ['filename'];
     public function imageable()
     {
         return $this->morphTo();
