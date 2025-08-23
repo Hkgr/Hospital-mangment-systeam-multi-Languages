@@ -138,9 +138,10 @@
 
 
     <script>
-        $('#review_date').datetimepicker({
+        $(function () {
+            $('[id^=review_date]').datetimepicker({});
+        });
 
-        })
     </script>
 
 @endsection

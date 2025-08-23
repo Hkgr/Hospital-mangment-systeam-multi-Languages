@@ -9,46 +9,52 @@
                 </button>
             </div>
             <form action="{{route('Diagnostics.store')}}" method="POST">
-            @csrf
-            <div class="modal-body">
+                @csrf
+                <div class="modal-body">
 
-                <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
-                <input type="hidden" name="patient_id" value="{{$invoice->patient_id}}">
-                <input type="hidden" name="doctor_id" value="{{$invoice->doctor_id}}">
+                    <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
+                    <input type="hidden" name="patient_id" value="{{$invoice->patient_id}}">
+                    <input type="hidden" name="doctor_id" value="{{$invoice->doctor_id}}">
 
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">التشخيص</label>
-                    <textarea class="form-control" name="diagnosis" rows="6"></textarea>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">التشخيص</label>
+                        <textarea class="form-control" name="diagnosis" rows="6"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">الادوية</label>
+                        <textarea class="form-control" name="medicine" rows="6"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="review_toggle{{$invoice->id}}">
+                            <label class="custom-control-label" for="review_toggle{{$invoice->id}}">تحديد مراجعة للمريض؟</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="position:relative;">
+                        <label>تاريخ المراجعة</label>
+                        <input class="form-control fc-datepicker" id="review_date{{$invoice->id}}" name="review_date" type="text" disabled>
+                    </div>
+
                 </div>
-
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">الادوية</label>
-                    <textarea class="form-control" name="medicine" rows="6"></textarea>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                    <button type="submit" class="btn btn-primary">حفظ البيانات</button>
                 </div>
-
-                <div class="form-group form-check">
-                    <input type="checkbox" id="need_review_{{ $invoice->id }}" name="need_review" class="form-check-input">
-                    <label class="form-check-label" for="need_review_{{ $invoice->id }}">   ""::  هل بحاجة إلى مراجعة؟        </label>
-                </div>
-                <div class="form-group">
-                    <label>تاريخ المراجعة</label>
-                    <input type="text" id="review_date_{{ $invoice->id }}" name="review_date" class="form-control fc-datepicker" disabled>
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
-                <button type="submit" class="btn btn-primary">حفظ البيانات</button>
-            </div>
             </form>
         </div>
     </div>
 </div>
 <script>
-    $(function () {
-        $('#need_review_{{ $invoice->id }}').on('change', function () {
-            $('#review_date_{{ $invoice->id }}').prop('disabled', !this.checked);
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+        var toggle = document.getElementById('review_toggle{{$invoice->id}}');
+        var dateField = document.getElementById('review_date{{$invoice->id}}');
+        if (toggle && dateField) {
+            toggle.addEventListener('change', function() {
+                dateField.disabled = !this.checked;
+            });
+        }
     });
 </script>
