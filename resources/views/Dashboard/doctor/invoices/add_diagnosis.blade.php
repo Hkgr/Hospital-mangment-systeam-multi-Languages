@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form  id="diagnosis_form{{$invoice->id}}"  action="{{route('Diagnostics.store')}}" method="POST">
+            <form id="diagnosis_form{{$invoice->id}}" action="{{route('Diagnostics.store')}}" method="POST">
                 @csrf
                 <div class="modal-body">
 
@@ -18,12 +18,12 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">التشخيص</label>
-                        <textarea class="form-control" name="diagnosis" rows="6"></textarea>
+                        <textarea class="form-control" name="diagnosis" rows="6" required></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">الادوية</label>
-                        <textarea class="form-control" name="medicine" rows="6"></textarea>
+                        <textarea class="form-control" name="medicine" rows="6" required></textarea>
                     </div>
 
                     <div class="form-group">
@@ -49,12 +49,21 @@
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('diagnosis_form{{$invoice->id}}');
         var toggle = document.getElementById('review_toggle{{$invoice->id}}');
         var dateField = document.getElementById('review_date{{$invoice->id}}');
         if (toggle && dateField) {
             toggle.addEventListener('change', function() {
                 dateField.disabled = !this.checked;
+                dateField.required = this.checked;
+                form.action = this.checked ?
+                    "{{ route('add_review') }}" :
+                    "{{ route('Diagnostics.store') }}";
+                dateField.disabled = !this.checked;
             });
         }
+        form.addEventListener('submit', function() {
+            dateField.disabled = false;
+        });
     });
 </script>
