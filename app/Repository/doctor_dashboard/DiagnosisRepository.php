@@ -15,9 +15,9 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
 
         try {
 
-            $this->invoice_status($request->invoice_id,3);
+            $this->invoice_status($request->invoice_id, 3);
             $diagnosis = new Diagnostic();
-            $diagnosis->date = date('Y-m-d');
+            $diagnosis->review_date = $request->review_date;
             $diagnosis->diagnosis = $request->diagnosis;
             $diagnosis->medicine = $request->medicine;
             $diagnosis->invoice_id = $request->invoice_id;
@@ -28,9 +28,7 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
             DB::commit();
             session()->flash('add');
             return redirect()->back();
-        }
-
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -38,8 +36,8 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
 
     public function show($id)
     {
-        $patient_records = Diagnostic::where('patient_id',$id)->get();
-        return view('Dashboard.Doctor.invoices.patient_record',compact('patient_records'));
+        $patient_records = Diagnostic::where('patient_id', $id)->get();
+        return view('Dashboard.Doctor.invoices.patient_record', compact('patient_records'));
     }
 
     public function addReview($request)
@@ -47,7 +45,7 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
         DB::beginTransaction();
         try {
 
-            $this->invoice_status($request->invoice_id,2);
+            $this->invoice_status($request->invoice_id, 2);
             $diagnosis = new Diagnostic();
             $diagnosis->date = date('Y-m-d');
             $diagnosis->review_date = date('Y-m-d H:i:s');
@@ -61,21 +59,18 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
             DB::commit();
             session()->flash('add');
             return redirect()->back();
-        }
-
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
 
-    public function invoice_status($invoice_id,$id_status){
+    public function invoice_status($invoice_id, $id_status)
+    {
         $invoice_status = Invoice::findorFail($invoice_id);
         $invoice_status->update([
-            'invoice_status'=>$id_status
+            'invoice_status' => $id_status
         ]);
     }
-
-
 }

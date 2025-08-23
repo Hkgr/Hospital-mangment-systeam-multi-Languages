@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('Diagnostics.store')}}" method="POST">
+            <form id="diagnosis_form{{$invoice->id}}" action="{{route('Diagnostics.store')}}" method="POST">
                 @csrf
                 <div class="modal-body">
 
@@ -51,9 +51,18 @@
     document.addEventListener('DOMContentLoaded', function() {
         var toggle = document.getElementById('review_toggle{{$invoice->id}}');
         var dateField = document.getElementById('review_date{{$invoice->id}}');
-        if (toggle && dateField) {
+        var form = document.getElementById('diagnosis_form{{$invoice->id}}');
+        if (toggle && dateField && form) {
             toggle.addEventListener('change', function() {
-                dateField.disabled = !this.checked;
+                if (this.checked) {
+                    dateField.disabled = false;
+                    dateField.required = true;
+                    form.action = "{{ route('add_review') }}";
+                } else {
+                    dateField.disabled = true;
+                    dateField.required = false;
+                    form.action = "{{ route('Diagnostics.store') }}";
+                }
             });
         }
     });
