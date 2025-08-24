@@ -74,7 +74,7 @@ Route::group(
 
 
             //############################# rays route ##########################################
-
+            Route::post('rays/review', [RayController::class, 'review'])->name('rays.review');
             Route::resource('rays', RayController::class);
 
             //############################# end rays route ######################################
