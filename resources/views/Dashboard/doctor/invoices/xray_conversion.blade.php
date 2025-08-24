@@ -8,36 +8,36 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="ray_form{{$invoice->id}}" action="{{route('rays.store')}}" method="POST">            @csrf
-            <div class="modal-body">
+            <form id="ray_form{{$invoice->id}}" action="{{route('rays.store')}}" method="POST">
+                @csrf
+                <div class="modal-body">
 
-                <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
-                <input type="hidden" name="patient_id" value="{{$invoice->patient_id}}">
-                <input type="hidden" name="doctor_id" value="{{$invoice->doctor_id}}">
-                <form id="ray_form{{$invoice->id}}" action="{{route('rays.store')}}" method="POST">
+                    <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
+                    <input type="hidden" name="patient_id" value="{{$invoice->patient_id}}">
+                    <input type="hidden" name="doctor_id" value="{{$invoice->doctor_id}}">
+                    <input type="hidden" name="needs_review" id="needs_review{{$invoice->id}}" value="1" disabled>
 
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">المطلوب</label>
-                    <textarea class="form-control" name="description" rows="6"></textarea>
-                </div>
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="review_toggle{{$invoice->id}}">
-                        <label class="custom-control-label" for="review_toggle{{$invoice->id}}">تحديد مراجعة للمريض؟</label>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">المطلوب</label>
+                        <textarea class="form-control" name="description" rows="6"></textarea>
                     </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="review_toggle{{$invoice->id}}">
+                            <label class="custom-control-label" for="review_toggle{{$invoice->id}}">تحديد مراجعة للمريض؟</label>
+                        </div>
+                    </div>
+                    <div class="form-group" style="position:relative;">
+                        <label>تاريخ المراجعة</label>
+                        <input class="form-control fc-datepicker" id="review_date{{$invoice->id}}" name="review_date" type="text" disabled>
+                    </div>
+
+
                 </div>
-
-                <div class="form-group" style="position:relative;">
-                    <label>تاريخ المراجعة</label>
-                    <input class="form-control fc-datepicker" id="review_date{{$invoice->id}}" name="review_date" type="text" disabled>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                    <button type="submit" class="btn btn-primary">حفظ البيانات</button>
                 </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
-                <button type="submit" class="btn btn-primary">حفظ البيانات</button>
-            </div>
             </form>
         </div>
     </div>
@@ -60,7 +60,7 @@
                     "{{ route('rays.store') }}";
             });
         }
-        form.addEventListener('submit', function () {
+        form.addEventListener('submit', function() {
             dateField.disabled = !toggle.checked;
             needsField.disabled = !toggle.checked;
         });
