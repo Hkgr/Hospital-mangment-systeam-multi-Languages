@@ -20,6 +20,10 @@ class LaboratorieController extends Controller
         return $this->laboratorie->store($request);
     }
 
+    public function review(Request $request)
+    {
+        return $this->laboratorie->review($request);
+    }
 
     public function update(Request $request, $id)
     {
