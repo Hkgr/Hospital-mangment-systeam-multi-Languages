@@ -1,35 +1,35 @@
 <!-- Modal -->
-<div class="modal fade" id="laboratorie_conversion{{$invoice->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="laboratorie_conversion{{$invoice->id}}" tabindex="-1" role="dialog" aria-labelledby="lab_exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">تحويل الي قسم المختبر</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="lab_exampleModalLabel">تحويل الي قسم المختبر</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="laboratorie_form{{$invoice->id}}" action="{{route('Laboratories.store')}}" method="POST">
-                @csrf
+            <form id="lab_form{{$invoice->id}}" action="{{route('Laboratories.store')}}" method="POST">
+                                @csrf
                 <div class="modal-body">
 
                 <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
                     <input type="hidden" name="patient_id" value="{{$invoice->patient_id}}">
                     <input type="hidden" name="doctor_id" value="{{$invoice->doctor_id}}">
-                    <input type="hidden" name="needs_review" id="needs_review{{$invoice->id}}" value="1" disabled>
-                    <div class="form-group">
+                    <input type="hidden" name="needs_review" id="lab_needs_review{{$invoice->id}}" value="1" disabled>
+                                        <div class="form-group">
                         <label for="exampleFormControlTextarea1">المطلوب</label>
                         <textarea class="form-control" name="description" rows="6"></textarea>
                     </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="review_toggle{{$invoice->id}}">
-                            <label class="custom-control-label" for="review_toggle{{$invoice->id}}">تحديد مراجعة للمريض؟</label>
+                        <input type="checkbox" class="custom-control-input" id="lab_review_toggle{{$invoice->id}}">
+                        <label class="custom-control-label" for="lab_review_toggle{{$invoice->id}}">تحديد مراجعة للمريض؟</label>
                         </div>
                     </div>
                     <div class="form-group" style="position:relative;">
                         <label>تاريخ المراجعة</label>
-                        <input class="form-control fc-datepicker" id="review_date{{$invoice->id}}" name="review_date" type="text" disabled>
-                    </div>
+                        <input class="form-control fc-datepicker" id="lab_review_date{{$invoice->id}}" name="review_date" type="text" disabled>
+                                        </div>
 
                 </div>
                 <div class="modal-footer">
@@ -39,10 +39,10 @@
             </form>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    var form = document.getElementById('laboratorie_form{{$invoice->id}}');
-                    var toggle = document.getElementById('review_toggle{{$invoice->id}}');
-                    var dateField = document.getElementById('review_date{{$invoice->id}}');
-                    var needsField = document.getElementById('needs_review{{$invoice->id}}');
+                    var form = document.getElementById('lab_form{{$invoice->id}}');
+                    var toggle = document.getElementById('lab_review_toggle{{$invoice->id}}');
+                    var dateField = document.getElementById('lab_review_date{{$invoice->id}}');
+                    var needsField = document.getElementById('lab_needs_review{{$invoice->id}}');
                     if (toggle && dateField && needsField) {
                         toggle.addEventListener('change', function() {
                             var checked = this.checked;

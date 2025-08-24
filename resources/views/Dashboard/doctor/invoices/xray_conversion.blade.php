@@ -1,21 +1,21 @@
 <!-- Modal -->
-<div class="modal fade" id="xray_conversion{{$invoice->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="xray_conversion{{$invoice->id}}" tabindex="-1" role="dialog" aria-labelledby="xray_exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">تحويل الي قسم الاشعة</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="xray_exampleModalLabel">تحويل الي قسم الاشعة</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="ray_form{{$invoice->id}}" action="{{route('rays.store')}}" method="POST">
-                @csrf
+            <form id="xray_form{{$invoice->id}}" action="{{route('rays.store')}}" method="POST">
+                                @csrf
                 <div class="modal-body">
 
                     <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
                     <input type="hidden" name="patient_id" value="{{$invoice->patient_id}}">
                     <input type="hidden" name="doctor_id" value="{{$invoice->doctor_id}}">
-                    <input type="hidden" name="needs_review" id="needs_review{{$invoice->id}}" value="1" disabled>
+                    <input type="hidden" name="needs_review" id="xray_needs_review{{$invoice->id}}" value="1" disabled>
 
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">المطلوب</label>
@@ -23,14 +23,14 @@
                     </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="review_toggle{{$invoice->id}}">
-                            <label class="custom-control-label" for="review_toggle{{$invoice->id}}">تحديد مراجعة للمريض؟</label>
+                            <input type="checkbox" class="custom-control-input" id="xray_review_toggle{{$invoice->id}}">
+                            <label class="custom-control-label" for="xray_review_toggle{{$invoice->id}}">تحديد مراجعة للمريض؟</label>
                         </div>
                     </div>
                     <div class="form-group" style="position:relative;">
                         <label>تاريخ المراجعة</label>
-                        <input class="form-control fc-datepicker" id="review_date{{$invoice->id}}" name="review_date" type="text" disabled>
-                    </div>
+                        <input class="form-control fc-datepicker" id="xray_review_date{{$invoice->id}}" name="review_date" type="text" disabled>
+                                        </div>
 
 
                 </div>
@@ -45,10 +45,10 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var form = document.getElementById('ray_form{{$invoice->id}}');
-        var toggle = document.getElementById('review_toggle{{$invoice->id}}');
-        var dateField = document.getElementById('review_date{{$invoice->id}}');
-        var needsField = document.getElementById('needs_review{{$invoice->id}}');
+        var form = document.getElementById('xray_form{{$invoice->id}}');
+        var toggle = document.getElementById('xray_review_toggle{{$invoice->id}}');
+        var dateField = document.getElementById('xray_review_date{{$invoice->id}}');
+        var needsField = document.getElementById('xray_needs_review{{$invoice->id}}');
         if (toggle && dateField && needsField) {
             toggle.addEventListener('change', function() {
                 var checked = this.checked;
