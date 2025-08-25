@@ -138,12 +138,13 @@
 
 
 <script>
-    $(function() {
-        $('[id^=review_date]').datetimepicker({
-            format: 'yyyy-mm-dd hh:ii:ss',
-            autoclose: true
-        });
+$(function() {
+    $('[id^=review_date], [id^=xray_review_date], [id^=lab_review_date]').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii:ss',
+        autoclose: true
     });
+});
+
 </script>
 
 @endsection
