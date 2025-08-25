@@ -1,15 +1,22 @@
+@push('styles')
+<style>
+    #ui-datepicker-div {
+        z-index: 100010 !important;
+    }
+</style>
+@endpush
 <!-- Modal -->
 <div class="modal fade" id="xray_conversion{{$invoice->id}}" tabindex="-1" role="dialog" aria-labelledby="xray_exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="xray_exampleModalLabel">تحويل الي قسم الاشعة</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="xray_exampleModalLabel">تحويل الي قسم الاشعة</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form id="xray_form{{$invoice->id}}" action="{{route('rays.store')}}" method="POST">
-                                @csrf
+                @csrf
                 <div class="modal-body">
 
                     <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
@@ -30,7 +37,8 @@
                     <div class="form-group" style="position:relative;">
                         <label>تاريخ المراجعة</label>
                         <input class="form-control fc-datepicker" id="xray_review_date{{$invoice->id}}" name="review_date" type="text" disabled>
-                                        </div>
+                        
+                    </div>
 
 
                 </div>
