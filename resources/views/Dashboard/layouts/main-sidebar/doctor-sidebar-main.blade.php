@@ -61,6 +61,7 @@ $folder = 'doctors';
 					</svg><span class="side-menu__label">المواعيد</span><i class="angle fe fe-chevron-down"></i></a>
 				<ul class="slide-menu">
 					<li><a class="slide-item" href="{{ route('doctor.appointments') }}">قائمة المواعيد</a></li>
+					<li><a class="slide-item" href="{{ route('doctor.appointments.expired') }}">المواعيد المنتهية</a></li>
 				</ul>
 			</li>
 

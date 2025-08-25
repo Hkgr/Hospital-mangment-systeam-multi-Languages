@@ -96,6 +96,14 @@ class AppointmentController extends Controller
         return view('Dashboard.appointments.doctor-index', compact('appointments'));
     }
 
+    public function doctorExpiredAppointments()
+    {
+        $appointments = Appointment::where('doctor_id', Auth::guard('doctor')->id())
+            ->where('type', 'منتهي')
+            ->get();
+        return view('Dashboard.appointments.doctor-expired', compact('appointments'));
+    }
+
     public function ExpiredDates()
     {
 
