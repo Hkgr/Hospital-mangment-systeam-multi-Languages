@@ -1,10 +1,4 @@
-@push('styles')
-<style>
-    #ui-datepicker-div {
-        z-index: 100005 !important;
-    }
-</style>
-@endpush
+
 
 <!-- Modal -->
 <div class="modal fade" id="laboratorie_conversion{{$invoice->id}}" tabindex="-1" role="dialog" aria-labelledby="lab_exampleModalLabel" aria-hidden="true">
@@ -36,7 +30,8 @@
                     </div>
                     <div class="form-group" style="position:relative;">
                         <label>تاريخ المراجعة</label>
-                        <input class="form-control fc-datepicker" id="review_date{{$invoice->id}}" name="review_date" type="text" disabled>
+                        <input class="form-control fc-datepicker" id="lab_review_date{{$invoice->id}}" name="review_date" type="text" disabled>
+                        
                     </div>
 
                 </div>
@@ -49,7 +44,7 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     var form = document.getElementById('lab_form{{$invoice->id}}');
                     var toggle = document.getElementById('lab_review_toggle{{$invoice->id}}');
-                    var dateField = document.getElementById('review_date{{$invoice->id}}');
+                    var dateField = document.getElementById('lab_review_date{{$invoice->id}}');
                     var needsField = document.getElementById('lab_needs_review{{$invoice->id}}');
                     if (toggle && dateField && needsField) {
                         toggle.addEventListener('change', function() {
@@ -62,10 +57,10 @@
                                 "{{ route('Laboratories.store') }}";
                         });
                     }
-                    form.addEventListener('submit', function () {
-            dateField.disabled = !toggle.checked;
-            needsField.disabled = !toggle.checked;
-        });
+                    form.addEventListener('submit', function() {
+                        dateField.disabled = !toggle.checked;
+                        needsField.disabled = !toggle.checked;
+                    });
                 });
             </script>
         </div>

@@ -1,10 +1,4 @@
-@push('styles')
-<style>
-    #ui-datepicker-div {
-        z-index: 100010 !important;
-    }
-</style>
-@endpush
+
 <!-- Modal -->
 <div class="modal fade" id="xray_conversion{{$invoice->id}}" tabindex="-1" role="dialog" aria-labelledby="xray_exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
