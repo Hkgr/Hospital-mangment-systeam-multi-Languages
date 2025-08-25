@@ -64,6 +64,7 @@ Route::group(
             //############################# appointments route ##########################################
             Route::get('appointments', [AppointmentController::class,'doctorAppointments'])->name('doctor.appointments');
             Route::get('appointments/expired', [AppointmentController::class,'doctorExpiredAppointments'])->name('doctor.appointments.expired');
+            Route::post('appointments/{appointment}/finish', [AppointmentController::class, 'markAsFinished'])->name('doctor.appointments.finish');
             //############################# end appointments route ######################################
 
             //############################# review_invoices route ##########################################

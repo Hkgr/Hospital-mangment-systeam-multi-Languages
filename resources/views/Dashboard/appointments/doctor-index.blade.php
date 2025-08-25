@@ -40,6 +40,7 @@
                                 <th>حالة الموعد</th>
                                 <th>تاريخ الموعد</th>
                                 <th>ملاحظات</th>
+                                <th>إنهاء الموعد</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,6 +62,12 @@
                                 </td>
                                 <td>{{$appointment->appointment}}</td>
                                 <td>{{$appointment->notes}}</td>
+                                <td>
+                                    <form action="{{ route('doctor.appointments.finish', $appointment->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-primary">تحويل</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

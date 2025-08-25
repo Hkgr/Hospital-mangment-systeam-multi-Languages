@@ -103,6 +103,16 @@ class AppointmentController extends Controller
             ->get();
         return view('Dashboard.appointments.doctor-expired', compact('appointments'));
     }
+    public function markAsFinished(Appointment $appointment)
+    {
+        if ($appointment->doctor_id !== Auth::guard('doctor')->id()) {
+            abort(403);
+        }
+
+        $appointment->update(['type' => 'منتهي']);
+
+        return redirect()->back()->with('add', 'تم تحويل الموعد إلى منتهي بنجاح');
+    }
 
     public function ExpiredDates()
     {
