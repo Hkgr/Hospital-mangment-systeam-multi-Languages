@@ -90,7 +90,9 @@ class AppointmentController extends Controller
     }
     public function doctorAppointments()
     {
-        $appointments = Appointment::where('doctor_id', Auth::guard('doctor')->id())->get();
+        $appointments = Appointment::where('doctor_id', Auth::guard('doctor')->id())
+            ->where('type', '!=', 'منتهي')
+            ->get();
         return view('Dashboard.appointments.doctor-index', compact('appointments'));
     }
 
