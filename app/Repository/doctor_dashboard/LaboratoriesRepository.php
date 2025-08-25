@@ -20,6 +20,9 @@ class LaboratoriesRepository implements LaboratoriesRepositoryInterface
                 'patient_id'=>$request->patient_id,
                 'doctor_id'=>$request->doctor_id,
             ]);
+            Invoice::findOrFail($request->invoice_id)->update([
+                'invoice_status' => 3,
+            ]);
             session()->flash('add');
             return redirect()->back();
         }
@@ -56,7 +59,7 @@ class LaboratoriesRepository implements LaboratoriesRepositoryInterface
 
 
             Invoice::findOrFail($request->invoice_id)->update([
-                'invoice_status' => 3,
+                'invoice_status' => 2 ,
             ]);
 
             session()->flash('add');

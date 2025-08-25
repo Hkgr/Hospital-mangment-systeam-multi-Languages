@@ -18,6 +18,9 @@ class RaysRepository implements RaysRepositoryInterface
                 'patient_id'=>$request->patient_id,
                 'doctor_id'=>$request->doctor_id,
             ]);
+            Invoice::findOrFail($request->invoice_id)->update([
+                'invoice_status' => 3,
+            ]);
             session()->flash('add');
             return redirect()->back();
         }
@@ -65,7 +68,7 @@ class RaysRepository implements RaysRepositoryInterface
             ]);
 
             Invoice::findOrFail($request->invoice_id)->update([
-                'invoice_status' => 3,
+                'invoice_status' => 2,
             ]);
 
             session()->flash('add');
