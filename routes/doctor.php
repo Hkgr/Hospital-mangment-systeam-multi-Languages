@@ -7,10 +7,11 @@ use App\Http\Controllers\Dashboard_Doctor\RayController;
 use App\Http\Controllers\Dashboard_Doctor\PatientDetailsController;
 
 use App\Http\Controllers\doctor\InvoiceController;
+use App\Http\Controllers\Dashboard\appointments\AppointmentController;
 use App\Http\Livewire\Chat\Createchat;
 use App\Http\Livewire\Chat\Main;
 use Illuminate\Support\Facades\Route;
-
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
 |--------------------------------------------------------------------------
 | doctor Routes
@@ -59,7 +60,10 @@ Route::group(
             //############################# invoices route ##########################################
             Route::resource('invoices', InvoiceController::class);
             //############################# end invoices route ######################################
-
+            
+            //############################# appointments route ##########################################
+            Route::get('appointments', [AppointmentController::class,'doctorAppointments'])->name('doctor.appointments');
+            //############################# end appointments route ######################################
 
             //############################# review_invoices route ##########################################
             Route::post('add_review', [DiagnosticController::class,'addReview'])->name('add_review');
