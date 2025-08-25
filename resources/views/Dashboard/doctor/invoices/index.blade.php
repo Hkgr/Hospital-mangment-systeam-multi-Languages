@@ -83,7 +83,7 @@
                                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#add_review{{$invoice->id}}"><i class="text-warning far fa-file-alt"></i>&nbsp;&nbsp;اضافة مراجعة </a>
                                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#xray_conversion{{$invoice->id}}"><i class="text-primary fas fa-x-ray"></i>&nbsp;&nbsp;تحويل الي الاشعة </a>
                                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#laboratorie_conversion{{$invoice->id}}"><i class="text-warning fas fa-syringe"></i>&nbsp;&nbsp;تحويل الي المختبر </a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete"><i class="text-danger  ti-trash"></i>&nbsp;&nbsp;حذف البيانات</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete{{$invoice->id}}"><i class="text-danger  ti-trash"></i>&nbsp;&nbsp;حذف البيانات</a>
                                         </div>
                                     </div>
                                 </td>
@@ -92,6 +92,7 @@
                             @include('Dashboard.Doctor.invoices.add_review')
                             @include('Dashboard.Doctor.invoices.xray_conversion')
                             @include('Dashboard.Doctor.invoices.Laboratorie_conversion')
+                            @include('Dashboard.doctor.invoices.delete_invoice')
                             @endforeach
                         </tbody>
                     </table>
@@ -138,13 +139,12 @@
 
 
 <script>
-$(function() {
-    $('[id^=review_date], [id^=xray_review_date], [id^=lab_review_date]').datetimepicker({
-        format: 'yyyy-mm-dd hh:ii:ss',
-        autoclose: true
+    $(function() {
+        $('[id^=review_date], [id^=xray_review_date], [id^=lab_review_date]').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:ss',
+            autoclose: true
+        });
     });
-});
-
 </script>
 
 @endsection

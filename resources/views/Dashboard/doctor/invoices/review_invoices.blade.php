@@ -80,11 +80,11 @@
                                     <div class="dropdown">
                                         <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-outline-primary btn-sm" data-toggle="dropdown" type="button">{{trans('doctors.Processes')}}<i class="fas fa-caret-down mr-1"></i></button>
                                         <div class="dropdown-menu tx-13">
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#add_diagnosis{{$invoice->id}}"><i class="text-primary fa fa-stethoscope"></i>&nbsp;&nbsp;اضافة تشخيص </a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#add_diagnosis{{$invoice->id}}"><i class="text-primary fa fa-stethoscope"></i>&nbsp;&nbsp;اضافة تشخيص </a>
                                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#add_review{{$invoice->id}}"><i class="text-warning far fa-file-alt"></i>&nbsp;&nbsp;اضافة مراجعة </a>
                                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#xray_conversion{{$invoice->id}}"><i class="text-primary fas fa-x-ray"></i>&nbsp;&nbsp;تحويل الي الاشعة </a>
                                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#laboratorie_conversion{{$invoice->id}}"><i class="text-warning fas fa-syringe"></i>&nbsp;&nbsp;تحويل الي المختبر </a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete"><i class="text-danger  ti-trash"></i>&nbsp;&nbsp;حذف البيانات</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete{{$invoice->id}}"><i class="text-danger  ti-trash"></i>&nbsp;&nbsp;حذف البيانات</a>
                                         </div>
                                     </div>
                                 </td>
@@ -92,7 +92,8 @@
                             @include('Dashboard.Doctor.invoices.add_diagnosis')
                             @include('Dashboard.Doctor.invoices.add_review')
                             @include('Dashboard.Doctor.invoices.xray_conversion')
-                            @include('Dashboard.Doctor.invoices.Laboratorie_conversion')                            
+                            @include('Dashboard.Doctor.invoices.Laboratorie_conversion')
+                            @include('Dashboard.doctor.invoices.delete_invoice')
                             @endforeach
                         </tbody>
                     </table>

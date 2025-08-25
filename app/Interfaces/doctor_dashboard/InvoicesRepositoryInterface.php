@@ -18,4 +18,6 @@ interface InvoicesRepositoryInterface
 
     // View Laboratories
     public function showLaboratorie($id);
+
+    public function destroy($id);
 }

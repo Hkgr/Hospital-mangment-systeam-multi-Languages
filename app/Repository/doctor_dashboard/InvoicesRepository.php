@@ -53,4 +53,19 @@ class InvoicesRepository implements InvoicesRepositoryInterface
         }
         return view('Dashboard.Doctor.invoices.view_laboratories', compact('laboratories'));
     }
+    public function destroy($id)
+    {
+        try {
+            $invoice = Invoice::findOrFail($id);
+            if ($invoice->doctor_id != auth()->user()->id) {
+                return redirect()->route('404');
+            }
+            $invoice->delete();
+            session()->flash('delete');
+            return redirect()->route('invoices.index');
+        }
+        catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
 }

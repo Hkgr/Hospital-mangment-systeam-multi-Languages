@@ -67,6 +67,6 @@ class InvoiceController extends Controller
 
     public function destroy($id)
     {
-        //
+        return $this->invoices->destroy($id);
     }
 }
