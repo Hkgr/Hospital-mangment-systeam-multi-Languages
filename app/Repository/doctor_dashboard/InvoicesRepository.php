@@ -19,7 +19,10 @@ class InvoicesRepository implements InvoicesRepositoryInterface
     // قائمة المراجعات
     public function reviewInvoices()
     {
-        $invoices = Invoice::where('doctor_id', Auth::user()->id)->where('invoice_status', 2)->get();
+        $invoices = Invoice::with('diagnostic')
+            ->where('doctor_id', Auth::user()->id)
+            ->where('invoice_status', 2)
+            ->get();
         return view('Dashboard.Doctor.invoices.review_invoices', compact('invoices'));
     }
 

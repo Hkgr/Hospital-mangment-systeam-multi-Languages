@@ -65,7 +65,7 @@ class RaysRepository implements RaysRepositoryInterface
             ]);
 
             Invoice::findOrFail($request->invoice_id)->update([
-                'invoice_status' => 2,
+                'invoice_status' => 3,
             ]);
 
             session()->flash('add');

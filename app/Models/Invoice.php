@@ -35,4 +35,8 @@ class Invoice extends Model
     {
         return $this->belongsTo(Section::class,'section_id');
     }
+    public function diagnostic()
+    {
+        return $this->hasOne(Diagnostic::class, 'invoice_id');
+    }
 }
