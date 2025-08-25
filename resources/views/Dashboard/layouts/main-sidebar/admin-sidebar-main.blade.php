@@ -75,13 +75,13 @@
             <ul class="slide-menu">
                 <li><a class="slide-item" href="{{route('Patients.create')}}">اضافة مريض</a></li>
                 <li><a class="slide-item" href="{{ route('Patients.index') }}">قائمة المرضي</a></li>
-                <li><a class="slide-item" href="{{ url('/' . $page='breadcrumbs') }}">Breadcrumbs</a></li>
+                <!-- <li><a class="slide-item" href="{{ url('/' . $page='breadcrumbs') }}">Breadcrumbs</a></li>
                 <li><a class="slide-item" href="{{ url('/' . $page='buttons') }}">Buttons</a></li>
                 <li><a class="slide-item" href="{{ url('/' . $page='badge') }}">Badge</a></li>
                 <li><a class="slide-item" href="{{ url('/' . $page='dropdown') }}">Dropdown</a></li>
                 <li><a class="slide-item" href="{{ url('/' . $page='thumbnails') }}">Thumbnails</a></li>
                 <li><a class="slide-item" href="{{ url('/' . $page='list-group') }}">List Group</a></li>
-                <li><a class="slide-item" href="{{ url('/' . $page='navigation') }}">Navigation</a></li>
+                <li><a class="slide-item" href="{{ url('/' . $page='navigation') }}">Navigation</a></li> -->
             </ul>
         </li>
         <li class="slide">
@@ -146,8 +146,9 @@
                 <li><a class="slide-item" href="{{ route('appointments.ExpiredDates') }}">قائمة المواعيد المنتهية</a></li>
             </ul>
         </li>
-        <li class="side-item side-item-category">Pages</li>
-        <li class="slide">
+
+        <!-- <li class="side-item side-item-category">Pages</li>
+          <li class="slide">
             <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" class="side-menu__icon" viewBox="0 0 24 24">
                     <g>
                         <rect fill="none" />
@@ -227,6 +228,6 @@
                     </ul>
                 </li>
             </ul>
-        </li>
+        </li> -->
     </ul>
 </div>
