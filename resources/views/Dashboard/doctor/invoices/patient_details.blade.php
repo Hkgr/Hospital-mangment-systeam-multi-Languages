@@ -158,8 +158,8 @@
                                                         @if($patient_Laboratorie->doctor_id == auth()->user()->id)
                                                         @if($patient_Laboratorie->case == 0)
                                                         <td>
-                                                            <a class="modal-effect btn btn-sm btn-primary" data-effect="effect-scale" data-toggle="modal" href="#edit_xray_conversion{{$patient_Laboratorie->id}}"><i class="fas fa-edit"></i></a>
-                                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{$patient_Laboratorie->id}}"><i class="las la-trash"></i></a>
+                                                            <a class="modal-effect btn btn-sm btn-primary" data-effect="effect-scale" data-toggle="modal" href="#edit_laboratorie_conversion{{$patient_Laboratorie->id}}"><i class="fas fa-edit"></i></a>
+                                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#deleted_laboratorie{{$patient_Laboratorie->id}}"><i class="las la-trash"></i></a>
                                                         </td>
                                                         @else
                                                         <td>
