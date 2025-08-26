@@ -1,6 +1,6 @@
 @php
 $user = auth('ray_employee')->user();
-$folder = 'Rays';
+$folder = 'ray_employees';
 @endphp
 <!-- main-sidebar -->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
@@ -25,8 +25,8 @@ $folder = 'Rays';
 					<span class="avatar-status profile-status bg-green"></span>
 				</div>
 				<div class="user-info">
-					<h4 class="font-weight-semibold mt-3 mb-0">{{ auth()->user()->name }}</h4>
-					<span class="mb-0 text-muted">{{ auth()->user()->email }}</span>
+					<h4 class="font-weight-semibold mt-3 mb-0">{{ $user?->name }}</h4>
+					<span class="mb-0 text-muted">{{ $user?->email }}</span>
 				</div>
 			</div>
 		</div>
