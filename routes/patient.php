@@ -47,8 +47,10 @@ Route::group(
         Route::get('view_laboratories/{id}', [PatientController::class,'viewLaboratories'])->name('laboratories.view');
         Route::get('rays', [PatientController::class,'rays'])->name('rays.patient');
         Route::get('view_rays/{id}', [PatientController::class,'viewRays'])->name('rays.view');
+        Route::get('records', [PatientController::class,'records'])->name('records.patient');
         Route::get('payments', [PatientController::class,'payments'])->name('payments.patient');
         Route::get('appointments', [PatientController::class,'appointments'])->name('appointments.patient');
+        Route::get('appointments/expired', [PatientController::class, 'appointmentsExpired'])->name('appointments.expired.patient');
         //############################# end patients route ######################################
 
         //############################# Chat route ##########################################
