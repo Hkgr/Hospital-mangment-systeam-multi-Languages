@@ -8,8 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Ray extends Model
 {
     use HasFactory;
-    protected $guarded=[];
-
+    protected $fillable = [
+        'description',
+        'invoice_id',
+        'patient_id',
+        'doctor_id',
+        'employee_id',
+        'description_employee',
+        'case',
+        'review_date',
+        'needs_review',
+    ];
     public function doctor()
     {
         return $this->belongsTo(Doctor::class,'doctor_id');

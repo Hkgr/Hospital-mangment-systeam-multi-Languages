@@ -14,7 +14,7 @@
     <div class="my-auto">
         <div class="d-flex">
             <h4 class="content-title mb-0 my-auto">المواعيد</h4><span
-                class="text-muted mt-1 tx-13 mr-2 mb-0">/ المواعيد المنتهية</span>
+                class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة المواعيد الخاصة بي</span>
         </div>
     </div>
 </div>
@@ -36,24 +36,39 @@
                                 <th>اسم المريض</th>
                                 <th>البريد الالكتروني</th>
                                 <th>القسم</th>
-                                <th>الدكتور</th>
-                                <th>تاريخ الموعد</th>
                                 <th>الهاتف</th>
+                                <th>حالة الموعد</th>
+                                <th>تاريخ الموعد</th>
+                                <th>ملاحظات</th>
+                                <th>إنهاء الموعد</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($appointments as $appointment)
                             <tr>
-                                <td>{{$appointment->patient->name}}</a></td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$appointment->patient->name}}</td>
                                 <td>{{$appointment->patient->email}}</td>
-                                <td>{{$appointment->email}}</td>
                                 <td>{{$appointment->section->name}}</td>
-                                <td>{{$appointment->doctor->name}}</td>
-                                <td>{{$appointment->appointment}}</td>
                                 <td>{{$appointment->patient->Phone}}</td>
+                                <td>
+                                @if($appointment->type == "غير مؤكد")
+                                <span class="badge badge-danger">غير مؤكد</span>
+                                @elseif($appointment->type == "منتهي")
+                                <span class="badge badge-warning">منتهي</span>
+                                @else
+                                <span class="badge badge-success">مؤكد</span>
+                                @endif
+                                </td>
+                                <td>{{$appointment->appointment}}</td>
+                                <td>{{$appointment->notes}}</td>
+                                <td>
+                                    <form action="{{ route('doctor.appointments.finish', $appointment->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-primary">تحويل</button>
+                                    </form>
+                                </td>
                             </tr>
-
-
                             @endforeach
                         </tbody>
                     </table>
@@ -64,10 +79,6 @@
     <!--/div-->
 </div>
 <!-- /row -->
-</div>
-<!-- Container closed -->
-</div>
-<!-- main-content closed -->
 @endsection
 @section('js')
 <!--Internal  Form-elements js-->
@@ -79,7 +90,6 @@
 <!--Internal  Notify js -->
 <script src="{{URL::asset('dashboard/plugins/notify/js/notifIt.js')}}"></script>
 <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
-
 
 <!--Internal  Datepicker js -->
 <script src="{{URL::asset('dashboard/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>

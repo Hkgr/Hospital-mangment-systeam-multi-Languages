@@ -4,6 +4,8 @@ namespace App\Repository\doctor_dashboard;
 
 use App\Interfaces\doctor_dashboard\LaboratoriesRepositoryInterface;
 use App\Models\Laboratorie;
+use App\Models\Invoice;
+use Carbon\Carbon;
 
 class LaboratoriesRepository implements LaboratoriesRepositoryInterface
 {
@@ -17,6 +19,9 @@ class LaboratoriesRepository implements LaboratoriesRepositoryInterface
                 'invoice_id'=>$request->invoice_id,
                 'patient_id'=>$request->patient_id,
                 'doctor_id'=>$request->doctor_id,
+            ]);
+            Invoice::findOrFail($request->invoice_id)->update([
+                'invoice_status' => 3,
             ]);
             session()->flash('add');
             return redirect()->back();
@@ -34,6 +39,30 @@ class LaboratoriesRepository implements LaboratoriesRepositoryInterface
                 'description' => $request->description,
             ]);
             session()->flash('edit');
+            return redirect()->back();
+        }
+        catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+    public function review($request)
+    {
+        try {
+            Laboratorie::create([
+                'description'   => $request->description,
+                'invoice_id'    => $request->invoice_id,
+                'patient_id'    => $request->patient_id,
+                'doctor_id'     => $request->doctor_id,
+                'review_date'   => Carbon::parse($request->review_date),
+                'needs_review'  => true,
+            ]);
+
+
+            Invoice::findOrFail($request->invoice_id)->update([
+                'invoice_status' => 2 ,
+            ]);
+
+            session()->flash('add');
             return redirect()->back();
         }
         catch (\Exception $e) {

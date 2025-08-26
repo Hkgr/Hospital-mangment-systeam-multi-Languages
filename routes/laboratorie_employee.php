@@ -3,6 +3,8 @@
 
 use App\Http\Controllers\Dashboard_Laboratorie_Employee\InvoiceController;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 /*
 |--------------------------------------------------------------------------

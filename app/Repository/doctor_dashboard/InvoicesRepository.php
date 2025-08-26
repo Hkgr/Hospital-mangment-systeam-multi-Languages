@@ -19,7 +19,10 @@ class InvoicesRepository implements InvoicesRepositoryInterface
     // قائمة المراجعات
     public function reviewInvoices()
     {
-        $invoices = Invoice::where('doctor_id', Auth::user()->id)->where('invoice_status', 2)->get();
+        $invoices = Invoice::with('diagnostic')
+            ->where('doctor_id', Auth::user()->id)
+            ->where('invoice_status', 2)
+            ->get();
         return view('Dashboard.Doctor.invoices.review_invoices', compact('invoices'));
     }
 
@@ -49,5 +52,20 @@ class InvoicesRepository implements InvoicesRepositoryInterface
             return redirect()->route('404');
         }
         return view('Dashboard.Doctor.invoices.view_laboratories', compact('laboratories'));
+    }
+    public function destroy($id)
+    {
+        try {
+            $invoice = Invoice::findOrFail($id);
+            if ($invoice->doctor_id != auth()->user()->id) {
+                return redirect()->route('404');
+            }
+            $invoice->delete();
+            session()->flash('delete');
+            return redirect()->route('invoices.index');
+        }
+        catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 }

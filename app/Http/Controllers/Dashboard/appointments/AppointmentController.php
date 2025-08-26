@@ -9,6 +9,7 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use Twilio\Rest\Client;
 
 class AppointmentController extends Controller
@@ -87,6 +88,32 @@ class AppointmentController extends Controller
         $appointments = Appointment::where('type', 'مؤكد')->get();
         return view('Dashboard.appointments.index2', compact('appointments'));
     }
+    public function doctorAppointments()
+    {
+        $appointments = Appointment::where('doctor_id', Auth::guard('doctor')->id())
+            ->where('type', '!=', 'منتهي')
+            ->get();
+        return view('Dashboard.appointments.doctor-index', compact('appointments'));
+    }
+
+    public function doctorExpiredAppointments()
+    {
+        $appointments = Appointment::where('doctor_id', Auth::guard('doctor')->id())
+            ->where('type', 'منتهي')
+            ->get();
+        return view('Dashboard.appointments.doctor-expired', compact('appointments'));
+    }
+    public function markAsFinished(Appointment $appointment)
+    {
+        if ($appointment->doctor_id !== Auth::guard('doctor')->id()) {
+            abort(403);
+        }
+
+        $appointment->update(['type' => 'منتهي']);
+
+        return redirect()->back()->with('add', 'تم تحويل الموعد إلى منتهي بنجاح');
+    }
+
     public function ExpiredDates()
     {
 

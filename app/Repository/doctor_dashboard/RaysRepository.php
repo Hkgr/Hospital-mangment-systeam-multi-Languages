@@ -2,7 +2,9 @@
 
 namespace App\Repository\doctor_dashboard;
 use App\Interfaces\doctor_dashboard\RaysRepositoryInterface;
+use App\Models\Invoice;
 use App\Models\Ray;
+use Carbon\Carbon;
 
 class RaysRepository implements RaysRepositoryInterface
 {
@@ -15,6 +17,9 @@ class RaysRepository implements RaysRepositoryInterface
                 'invoice_id'=>$request->invoice_id,
                 'patient_id'=>$request->patient_id,
                 'doctor_id'=>$request->doctor_id,
+            ]);
+            Invoice::findOrFail($request->invoice_id)->update([
+                'invoice_status' => 3,
             ]);
             session()->flash('add');
             return redirect()->back();
@@ -44,6 +49,29 @@ class RaysRepository implements RaysRepositoryInterface
         try {
             Ray ::destroy($id);
             session()->flash('delete');
+            return redirect()->back();
+        }
+        catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+    public function review($request)
+    {
+        try {
+            Ray::create([
+                'description'   => $request->description,
+                'invoice_id'    => $request->invoice_id,
+                'patient_id'    => $request->patient_id,
+                'doctor_id'     => $request->doctor_id,
+                'review_date'   => Carbon::parse($request->review_date),
+                'needs_review'  => true,
+            ]);
+
+            Invoice::findOrFail($request->invoice_id)->update([
+                'invoice_status' => 2,
+            ]);
+
+            session()->flash('add');
             return redirect()->back();
         }
         catch (\Exception $e) {

@@ -21,6 +21,11 @@ class RayController extends Controller
     {
         return $this->ray->store($request);
     }
+    
+    public function review(Request $request)
+    {
+        return $this->ray->review($request);
+    }
 
 
     public function update(Request $request, $id)

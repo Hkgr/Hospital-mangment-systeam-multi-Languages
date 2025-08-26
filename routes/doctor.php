@@ -7,10 +7,11 @@ use App\Http\Controllers\Dashboard_Doctor\RayController;
 use App\Http\Controllers\Dashboard_Doctor\PatientDetailsController;
 
 use App\Http\Controllers\doctor\InvoiceController;
+use App\Http\Controllers\Dashboard\appointments\AppointmentController;
 use App\Http\Livewire\Chat\Createchat;
 use App\Http\Livewire\Chat\Main;
 use Illuminate\Support\Facades\Route;
-
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
 |--------------------------------------------------------------------------
 | doctor Routes
@@ -59,7 +60,12 @@ Route::group(
             //############################# invoices route ##########################################
             Route::resource('invoices', InvoiceController::class);
             //############################# end invoices route ######################################
-
+            
+            //############################# appointments route ##########################################
+            Route::get('appointments', [AppointmentController::class,'doctorAppointments'])->name('doctor.appointments');
+            Route::get('appointments/expired', [AppointmentController::class,'doctorExpiredAppointments'])->name('doctor.appointments.expired');
+            Route::post('appointments/{appointment}/finish', [AppointmentController::class, 'markAsFinished'])->name('doctor.appointments.finish');
+            //############################# end appointments route ######################################
 
             //############################# review_invoices route ##########################################
             Route::post('add_review', [DiagnosticController::class,'addReview'])->name('add_review');
@@ -74,14 +80,14 @@ Route::group(
 
 
             //############################# rays route ##########################################
-
+            Route::post('rays/review', [RayController::class, 'review'])->name('rays.review');
             Route::resource('rays', RayController::class);
 
             //############################# end rays route ######################################
 
 
             //############################# Laboratories route ##########################################
-
+            Route::post('Laboratories/review', [LaboratorieController::class, 'review'])->name('Laboratories.review');
             Route::resource('Laboratories', LaboratorieController::class);
             Route::get('show_laboratorie/{id}', [InvoiceController::class,'showLaboratorie'])->name('show.laboratorie');
 
