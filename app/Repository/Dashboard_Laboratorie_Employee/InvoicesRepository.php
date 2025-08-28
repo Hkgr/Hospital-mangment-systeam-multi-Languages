@@ -85,4 +85,18 @@ class InvoicesRepository implements InvoicesRepositoryInterface
             compact('patient','patient_Laboratories')
         );
     }
+
+    public function doctor_images($doctorId)
+    {
+        $laboratories = Laboratorie::where('doctor_id', $doctorId)
+            ->where('employee_id', auth()->id())
+            ->with(['Patient','images'])
+            ->get();
+
+        if ($laboratories->isEmpty()) {
+            return redirect()->route('404');
+        }
+
+        return view('Dashboard.dashboard_LaboratorieEmployee.invoices.doctor_images', compact('laboratories'));
+    }
 }

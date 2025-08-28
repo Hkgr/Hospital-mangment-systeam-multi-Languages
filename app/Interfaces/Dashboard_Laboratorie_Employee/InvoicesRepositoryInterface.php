@@ -10,4 +10,5 @@ interface InvoicesRepositoryInterface
     public function update($request,$id);
     public function view_laboratories($id);
     public function patient_details($patientId);
+    public function doctor_images($doctorId);
 }

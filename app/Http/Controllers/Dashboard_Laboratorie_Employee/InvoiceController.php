@@ -42,6 +42,11 @@ class InvoiceController extends Controller
         return $this->Laboratorie_Employee->patient_details($patientId);
     }
 
+    public function doctorImages($doctorId)
+    {
+        return $this->Laboratorie_Employee->doctor_images($doctorId);
+    }
+
 
     public function update(Request $request, $id)
     {
