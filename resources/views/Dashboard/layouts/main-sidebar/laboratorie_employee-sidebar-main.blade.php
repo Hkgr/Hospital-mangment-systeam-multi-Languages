@@ -1,6 +1,6 @@
 @php
 $user = auth('laboratorie_employee')->user();
-$folder = 'laboratories';
+$folder = 'laboratorie_employees';
 @endphp
 <!-- main-sidebar -->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
@@ -24,10 +24,11 @@ $folder = 'laboratories';
 					@endif
 					<span class="avatar-status profile-status bg-green"></span>
 				</div>
+				<div class="user-info">
 				<h4 class="font-weight-semibold mt-3 mb-0">{{ $user?->name }}</h4>
 				<span class="mb-0 text-muted">{{ $user?->email }}</span>
 			</div>
-		</div>	
+		</div>
 	</div>
 	<ul class="side-menu">
 		<li class="side-item side-item-category">{{trans('main-sidebar_trans.Main')}}</li>
