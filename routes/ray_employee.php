@@ -43,7 +43,7 @@ Route::group(
      Route::resource('invoices_ray_employee', InvoiceController::class);
      Route::get('ray/completed_invoices', [InvoiceController::class,'completed_invoices'])->name('ray_completed_invoices');
      Route::get('ray/view_rays/{id}', [InvoiceController::class,'viewRays'])->name('ray_view_rays');
-
+     Route::get('ray/patient_details/{patient}', [InvoiceController::class,'patientDetails'])->name('ray_patient_details');
         //############################# end invoices route ######################################
 
     });

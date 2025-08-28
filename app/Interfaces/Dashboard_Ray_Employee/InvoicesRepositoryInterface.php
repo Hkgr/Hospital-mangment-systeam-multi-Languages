@@ -9,4 +9,5 @@ interface InvoicesRepositoryInterface
     public function edit($id);
     public function update($request,$id);
     public function view_rays($id);
+    public function patient_details($patientId);
 }
