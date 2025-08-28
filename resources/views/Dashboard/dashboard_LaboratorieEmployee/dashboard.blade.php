@@ -98,7 +98,14 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td class="tx-right tx-medium tx-inverse">{{$invoice->created_at}}</td>
-                                            <td class="tx-right tx-medium tx-danger">{{$invoice->patient->name}}</td>
+                                            <td class="tx-right tx-medium tx-danger">
+                                                @php($labEmployeeId = auth('laboratorie_employee')->id())
+                                                @if($invoice->employee_id && $labEmployeeId && (int)$invoice->employee_id === (int)$labEmployeeId)
+                                                    <a href="{{ route('laboratorie.patient_details', $invoice->patient_id) }}">{{$invoice->patient->name}}</a>
+                                                @else
+                                                    {{$invoice->patient->name}}
+                                                @endif
+                                            </td>
                                             <td class="tx-right tx-medium tx-inverse">{{$invoice->doctor->name}}</td>
                                             <td class="tx-right tx-medium tx-danger">{{$invoice->description}}</td>
                                             <td class="tx-right tx-medium tx-inverse">
