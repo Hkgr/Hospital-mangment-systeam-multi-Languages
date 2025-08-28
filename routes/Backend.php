@@ -149,15 +149,15 @@ Route::group(
 
             //############################# RayEmployee route ##########################################
 
-            Route::resource('ray_employee', RayEmployeeController::class);
-
+            Route::resource('ray_employee', RayEmployeeController::class)
+            ->whereNumber('ray_employee');
             //############################# end RayEmployee route ######################################
 
 
             //############################# laboratorie_employee route ##########################################
 
-            Route::resource('laboratorie_employee', LaboratorieEmployeeController::class);
-
+            Route::resource('laboratorie_employee', LaboratorieEmployeeController::class)
+                ->whereNumber('laboratorie_employee');
             //############################# end laboratorie_employee route ######################################
 
             //############################# single_invoices route ##########################################

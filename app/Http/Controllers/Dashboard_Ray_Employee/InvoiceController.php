@@ -37,6 +37,14 @@ class InvoiceController extends Controller
         return $this->Ray_Employee->view_rays($id);
     }
 
+    public function patientDetails($patientId)
+    {
+        return $this->Ray_Employee->patient_details($patientId);
+    }
+    public function doctorDetails($doctorId)
+    {
+        return $this->Ray_Employee->doctor_details($doctorId);
+    }
 
     public function update(Request $request, $id)
     {

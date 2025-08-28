@@ -33,9 +33,9 @@
                             <h1 class="invoice-title">فاتوره مجموعة خدمات</h1>
                             <div class="billed-from">
                                 <h6>فاتورة مجموعة خدمات</h6>
-                                <p>201 المهندسين<br>
-                                    Tel No: 0111111111<br>
-                                    Email: Admin@gmail.com</p>
+                                <p>جامعة حلب الحرة<br>
+                                    Tel No: 00905528779087<br>
+                                    Email: info@moh.gov.sy</p>
                             </div><!-- billed-from -->
                         </div><!-- invoice-header -->
                         <div class="row mg-t-20">

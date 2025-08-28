@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard_Doctor\RayController;
 use App\Http\Controllers\Dashboard_Doctor\PatientDetailsController;
 use App\Http\Controllers\Dashboard_Ray_Employee\InvoiceController;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,9 +41,10 @@ Route::group(
 
     //############################# invoices route ##########################################
      Route::resource('invoices_ray_employee', InvoiceController::class);
-     Route::get('completed_invoices', [InvoiceController::class,'completed_invoices'])->name('completed_invoices');
-     Route::get('view_rays/{id}', [InvoiceController::class,'viewRays'])->name('view_rays');
-
+     Route::get('ray/completed_invoices', [InvoiceController::class,'completed_invoices'])->name('ray_completed_invoices');
+     Route::get('ray/view_rays/{id}', [InvoiceController::class,'viewRays'])->name('ray_view_rays');
+     Route::get('ray/patient_details/{patient}', [InvoiceController::class,'patientDetails'])->name('ray_patient_details');
+     Route::get('ray/doctor_details/{doctor}', [InvoiceController::class,'doctorDetails'])->name('ray_doctor_details');
         //############################# end invoices route ######################################
 
     });

@@ -62,5 +62,31 @@ class InvoicesRepository implements InvoicesRepositoryInterface
        }
        return view('Dashboard.dashboard_RayEmployee.invoices.patient_details', compact('rays'));
    }
+   public function patient_details($patientId)
+   {
+       $rays = Ray::where('patient_id',$patientId)
+                   ->where('employee_id',auth()->user()->id)
+                   ->with('Patient')
+                   ->get();
+
+       if($rays->isEmpty()){
+           return redirect()->route('404');
+       }
+
+       return view('Dashboard.dashboard_RayEmployee.invoices.patient_details_list',compact('rays'));
+   }
+   public function doctor_details($doctorId)
+   {
+       $rays = Ray::where('doctor_id',$doctorId)
+                   ->where('employee_id',auth()->id())
+                   ->with('Patient')
+                   ->get();
+
+       if($rays->isEmpty()){
+           return redirect()->route('404');
+       }
+
+       return view('Dashboard.dashboard_RayEmployee.invoices.doctor_details_list',compact('rays'));
+   }
 
 }
