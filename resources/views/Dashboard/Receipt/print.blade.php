@@ -33,9 +33,9 @@
                             <h1 class="invoice-title">سند قبض</h1>
                             <div class="billed-from">
                                 <h6>برنامج ادراه المستشفي </h6>
-                                <p>201 المهندسين<br>
-                                    Tel No: 011111111<br>
-                                    Email: Hospital@gmail.com</p>
+                                <p>جامعة حلب الحرة<br>
+                                    Tel No: 00905528779087<br>
+                                    Email: info@moh.gov.sy</p>
                             </div><!-- billed-from -->
                         </div><!-- invoice-header -->
                         <div class="row mg-t-20">
