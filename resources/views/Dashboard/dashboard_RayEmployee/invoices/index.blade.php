@@ -49,7 +49,11 @@
                                         {{ $invoice->Patient->name }}
                                     </a>
                                 </td>
-                                <td>{{ $invoice->doctor->name }}</td>
+                                <td>
+                                    <a href="{{ route('ray_doctor_details', $invoice->doctor_id) }}">
+                                        {{ $invoice->doctor->name }}
+                                    </a>
+                                </td>
                                 <td>{{ $invoice->description }}</td>
                                 <td>
                                     @if($invoice->case == 0)

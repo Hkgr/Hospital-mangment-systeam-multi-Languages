@@ -103,7 +103,11 @@
 									{{$invoice->patient->name}}
 								</a>
 							</td>
-							<td class="tx-right tx-medium tx-inverse">{{$invoice->doctor->name}}</td>
+							<td class="tx-right tx-medium tx-inverse">
+								<a href="{{ route('ray_doctor_details', $invoice->doctor_id) }}">
+									{{$invoice->doctor->name}}
+								</a>
+							</td>
 							<td class="tx-right tx-medium tx-danger">{{$invoice->description}}</td>
 							<td class="tx-right tx-medium tx-inverse">
 								@if($invoice->case == 0)
