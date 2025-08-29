@@ -776,11 +776,11 @@
                                     <li>{{ trans('HomePage/HomePage.NewsDate1') }}</li>
                                     <li>{{ trans('HomePage/HomePage.NewsPostedBy1') }}</li>
                                 </ul>
-                                <h3><a href="blog-detail.html">{{ trans('HomePage/HomePage.NewsTitle1') }}</a></h3>
+                                <h3><a href="">{{ trans('HomePage/HomePage.NewsTitle1') }}</a></h3>
                                 <div class="text">
                                     {{ trans('HomePage/HomePage.NewsText1') }}
                                 </div>
-                                <a href="blog-detail.html" class="theme-btn btn-style-five">
+                                <a href="http://127.0.0.1:8000/Articles/1" class="theme-btn btn-style-five">
                                     <span class="txt">{{ trans('HomePage/HomePage.ReadMore') }}</span>
                                 </a>
                             </div>
@@ -809,11 +809,11 @@
                                     <li>{{ trans('HomePage/HomePage.NewsDate2') }}</li>
                                     <li>{{ trans('HomePage/HomePage.NewsPostedBy2') }}</li>
                                 </ul>
-                                <h3><a href="blog-detail.html">{{ trans('HomePage/HomePage.NewsTitle2') }}</a></h3>
+                                <h3><a href="">{{ trans('HomePage/HomePage.NewsTitle2') }}</a></h3>
                                 <div class="text">
                                     {{ trans('HomePage/HomePage.NewsText2') }}
                                 </div>
-                                <a href="blog-detail.html" class="theme-btn btn-style-five">
+                                <a href="http://127.0.0.1:8000/Articles/2" class="theme-btn btn-style-five">
                                     <span class="txt">{{ trans('HomePage/HomePage.ReadMore') }}</span>
                                 </a>
                             </div>

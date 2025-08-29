@@ -15,6 +15,7 @@ use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Dashboard\Admin\AdminRayInvoiceController;
 use App\Http\Controllers\Dashboard\Admin\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -159,6 +160,8 @@ Route::group(
 
             Route::resource('ray_employee', RayEmployeeController::class)
             ->whereNumber('ray_employee');
+            Route::get('rays/invoices', [AdminRayInvoiceController::class, 'index'])
+            ->name('admin.ray_invoices.index');
             //############################# end RayEmployee route ######################################
 
 

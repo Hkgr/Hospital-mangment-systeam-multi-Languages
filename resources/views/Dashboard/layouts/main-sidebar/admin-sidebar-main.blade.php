@@ -120,8 +120,8 @@ $folder = 'admins';
                 </svg><span class="side-menu__label">الاشعة</span><i class="angle fe fe-chevron-down"></i></a>
             <ul class="slide-menu">
                 <li><a class="slide-item" href="{{ route('ray_employee.index') }}">قائمة الموظفين</a></li>
-                <li><a class="slide-item" href="{{ url('/' . $page='form-advanced') }}">قائمة الكشوفات</a></li>
-            </ul>
+                <li><a class="slide-item" href="{{ route('admin.ray_invoices.index') }}">قائمة الكشوفات</a></li>
+                        </ul>
         </li>
         <li class="slide">
             <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
