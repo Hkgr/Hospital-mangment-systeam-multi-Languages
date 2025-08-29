@@ -93,9 +93,9 @@ return [
 'Counter4' => 'جراحات ناجحة',
 
 'DoctorTimesTitle'    => 'ساعات العمل',
-'DoctorTimesMonFri'   => 'من الإثنين إلى الجمعة<span>8:00am–7:00pm</span>',
-'DoctorTimesSat'      => 'السبت <span>9:00am–5:00pm</span>',
-'DoctorTimesSun'      => 'الأحد<span>9:00am–3:00pm</span>',
+'DoctorTimesMonFri'   => 'من الإثنين إلى الجمعةam–7:00pm',
+'DoctorTimesSat'      => 'السبت 9:00am–5:00pm',
+'DoctorTimesSun'      => 'الأحد9:00 am–3:00pm',
 'EmergencyTitle'      => 'حالات الطوارئ',
 'EmergencyCall'       => 'اتصل بنا !',
 'DoctorScheduleTitle' => 'جدول الأطباء',

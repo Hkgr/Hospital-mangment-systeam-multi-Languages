@@ -19,7 +19,7 @@
                                         {{trans('HomePage/HomePage.SubHead1')}}
                                     </div>
                                     <div class="btn-box">
-                                        <a href="contact.html" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}</span></a>
+                                        <a href="#Appointment" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}</span></a>
                                         <a href="services.html" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
                                     </div>
                                 </div>
@@ -489,7 +489,7 @@
 
 
     <!-- Appointment Section Two -->
-    <section class="appointment-section-two">
+    <section id="Appointment" class="appointment-section-two">
         <div class="auto-container">
             <div class="inner-container">
                 <div class="row clearfix">
@@ -714,7 +714,7 @@
                                 <li>{{ trans('HomePage/HomePage.DoctorTimesSun') }}</li>
                             </ul>
                             <h4>{{ trans('HomePage/HomePage.EmergencyTitle') }}</h4>
-                            <div class="phone">{{ trans('HomePage/HomePage.EmergencyCall') }} <strong>+898 68679 575 09</strong></div>
+                            <div class="phone">{{ trans('HomePage/HomePage.EmergencyCall') }} <strong>+905528779087</strong></div>
                         </div>
                     </div>
 

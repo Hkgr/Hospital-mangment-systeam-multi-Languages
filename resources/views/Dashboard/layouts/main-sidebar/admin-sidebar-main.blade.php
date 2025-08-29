@@ -1,19 +1,20 @@
 @php
-    $user = auth('admin')->user();
-    $folder = 'admins';
+$user = auth('admin')->user();
+$folder = 'admins';
 @endphp
 <div class="main-sidemenu">
     <div class="app-sidebar__user clearfix">
         <div class="dropdown user-pro-body">
             <div class="">
-            @if($user?->image)
-                    <img alt="user-img" class="avatar avatar-xl brround"
-                         src="{{ URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) }}">
+                @if($user?->image)
+                <img alt="user-img" class="avatar avatar-xl brround"
+                    src="{{ URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) }}">
                 @else
-                    <img alt="user-img" class="avatar avatar-xl brround"
-                         src="{{ URL::asset('Dashboard/img/faces/6.jpg') }}">
+                <img alt="user-img" class="avatar avatar-xl brround"
+                    src="{{ URL::asset('Dashboard/img/faces/6.jpg') }}">
                 @endif
-                <span class="avatar-status profile-status bg-green"></span>            </div>
+                <span class="avatar-status profile-status bg-green"></span>
+            </div>
             <div class="user-info">
                 <h4 class="font-weight-semibold mt-3 mb-0">{{ Auth::user()->name }}</h4>
                 <span class="mb-0 text-muted">{{ Auth::user()->email }}</span>
@@ -64,7 +65,7 @@
                 <li><a class="slide-item" href="{{ route('Add_GroupServices') }}">{{trans('main-sidebar_trans.group_services')}}</a></li>
                 <li><a class="slide-item" href="{{ route('insurance.index') }}">{{trans('main-sidebar_trans.Insurance')}}</a></li>
                 <li><a class="slide-item" href="{{route('Ambulance.index')}}">{{trans('main-sidebar_trans.ambulance')}}</a></li>
-                <li><a class="slide-item" href="{{ url('/' . $page='calendar') }}">{{trans('main-sidebar_trans.Ambulance_calls')}}</a></li>
+                <li><a class="slide-item" href="{{ route('AmbulanceCalls.index') }}">{{trans('main-sidebar_trans.Ambulance_calls')}}</a></li>
             </ul>
         </li>
         <li class="slide">

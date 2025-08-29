@@ -3,6 +3,7 @@
 use App\Events\MyEvent;
 use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\appointments\AppointmentController;
+use App\Http\Controllers\Dashboard\AmbulanceCallController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
@@ -116,6 +117,13 @@ Route::group(
             //############################# end Ambulance route ######################################
 
 
+            //############################# Ambulance Calls route ##########################################
+
+            Route::resource('AmbulanceCalls', AmbulanceCallController::class)->only(['index','destroy']);
+            Route::put('AmbulanceCalls/{id}/status/{status}', [AmbulanceCallController::class, 'updateStatus'])->name('AmbulanceCalls.updateStatus');
+
+            //############################# end Ambulance Calls route ######################################
+            
             //############################# Patients route ##########################################
 
             Route::resource('Patients', PatientController::class);
