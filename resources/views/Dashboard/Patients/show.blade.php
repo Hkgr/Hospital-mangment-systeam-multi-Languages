@@ -30,21 +30,21 @@
                                 <div class="tabs-menu1">
                                     <!-- Tabs -->
                                     <ul class="nav panel-tabs main-nav-line">
-                                            <li class="nav-item"><a href="#tab1" class="nav-link active"
-                                                                    data-toggle="tab">معلومات المريض</a></li>
-                                            <li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">الفواتير</a>
-                                            </li>
-                                            <li class="nav-item"><a href="#tab3" class="nav-link" data-toggle="tab">المدفوعات</a>
-                                            </li>
-                                            <li class="nav-item"><a href="#tab4" class="nav-link" data-toggle="tab">كشف
-                                                    حساب</a></li>
-                                            <li class="nav-item"><a href="#tab5" class="nav-link" data-toggle="tab">الاشعه</a>
-                                            </li>
-                                            <li class="nav-item"><a href="#tab6" class="nav-link" data-toggle="tab">المختبر</a>
-                                            </li>
-                                            <li class="nav-item"><a href="#tab7" class="nav-link" data-toggle="tab">المواعيد</a>
-                                            </li>
-                                        </ul>
+                                        <li class="nav-item"><a href="#tab1" class="nav-link active"
+                                                data-toggle="tab">معلومات المريض</a></li>
+                                        <li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">الفواتير</a>
+                                        </li>
+                                        <li class="nav-item"><a href="#tab3" class="nav-link" data-toggle="tab">المدفوعات</a>
+                                        </li>
+                                        <li class="nav-item"><a href="#tab4" class="nav-link" data-toggle="tab">كشف
+                                                حساب</a></li>
+                                        <li class="nav-item"><a href="#tab5" class="nav-link" data-toggle="tab">الاشعه</a>
+                                        </li>
+                                        <li class="nav-item"><a href="#tab6" class="nav-link" data-toggle="tab">المختبر</a>
+                                        </li>
+                                        <li class="nav-item"><a href="#tab7" class="nav-link" data-toggle="tab">المواعيد</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="panel-body tabs-menu-body main-content-body-right border-top-0 border">
@@ -224,49 +224,49 @@
                                     {{-- End payment accounts Patient --}}
 
                                     {{-- Start Appointments Patient --}}
-                                        <div class="tab-pane" id="tab7">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover text-md-nowrap text-center">
-                                                    <thead>
+                                    <div class="tab-pane" id="tab7">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover text-md-nowrap text-center">
+                                                <thead>
                                                     <tr>
                                                         <th>#</th>
                                                         <th>الطبيب</th>
                                                         <th>تاريخ الموعد</th>
                                                         <th>الحالة</th>
                                                     </tr>
-                                                    </thead>
-                                                    <tbody>
+                                                </thead>
+                                                <tbody>
                                                     @foreach($appointments as $appointment)
-                                                        <tr>
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $appointment->doctor->name ?? '' }}</td>
-                                                            <td>{{ $appointment->appointment }}</td>
-                                                            <td>{{ $appointment->type }}</td>
-                                                        </tr>
-                                                        <br>
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $appointment->doctor->name ?? '' }}</td>
+                                                        <td>{{ $appointment->appointment }}</td>
+                                                        <td>{{ $appointment->type }}</td>
+                                                    </tr>
+                                                    <br>
                                                     @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        {{-- End Appointments Patient --}}
+                                    </div>
+                                    {{-- End Appointments Patient --}}
 
 
                                     <div class="tab-pane" id="tab5">
-                                    <div class="table-responsive">
+                                        <div class="table-responsive">
                                             <table class="table table-hover text-md-nowrap text-center">
                                                 <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>المطلوب</th>
-                                                    <th>اسم الدكتور</th>
-                                                    <th>اسم دكتور الأشعة</th>
-                                                    <th>ملاحظة دكتور الأشعة</th>
-                                                    <th>العمليات</th>
-                                                </tr>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>المطلوب</th>
+                                                        <th>اسم الدكتور</th>
+                                                        <th>اسم دكتور الأشعة</th>
+                                                        <th>ملاحظة دكتور الأشعة</th>
+                                                        <th>العمليات</th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($rays as $ray)
+                                                    @foreach($rays as $ray)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $ray->description }}</td>
@@ -275,26 +275,52 @@
                                                         <td>{{ $ray->description_employee }}</td>
                                                         <td>
                                                             @if($ray->employee_id !== null)
-                                                                <a class="btn btn-primary btn-sm"
-                                                                   href="{{ route('rays.view', $ray->id) }}">
-                                                                    عرض الأشعة
-                                                                </a>
+                                                            <a class="btn btn-primary btn-sm"
+                                                                href="{{ route('rays.view', $ray->id) }}">
+                                                                عرض الأشعة
+                                                            </a>
                                                             @endif
                                                         </td>
                                                     </tr>
-                                                @endforeach
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab6">
-                                        <p>praesentium et quas molestias excepturi sint occaecati cupiditate non
-                                            provident,</p>
-                                        <p class="mb-0">similique sunt in culpa qui officia deserunt mollitia animi,
-                                            id est laborum et dolorum fuga. Et harum quidem rerum facilis est et
-                                            expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi
-                                            optio cumque nihil impedit quo minus id quod maxime placeat facere
-                                            possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover text-md-nowrap text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>المطلوب</th>
+                                                        <th>اسم الدكتور</th>
+                                                        <th>اسم دكتور المختبر</th>
+                                                        <th>ملاحظة المختبر</th>
+                                                        <th>العمليات</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($laboratories as $lab)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $lab->description }}</td>
+                                                        <td>{{ $lab->doctor->name }}</td>
+                                                        <td>{{ $lab->employee->name }}</td>
+                                                        <td>{{ $lab->description_employee }}</td>
+                                                        <td>
+                                                            @if($lab->employee_id !== null)
+                                                            <a class="btn btn-primary btn-sm"
+                                                                href="{{ route('laboratories.view', $lab->id) }}">
+                                                                عرض التحليل
+                                                            </a>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -314,5 +340,5 @@
 <!-- Container closed -->
 </div>
 @endsection
-@section('js')  
-@endsection 
+@section('js')
+@endsection
