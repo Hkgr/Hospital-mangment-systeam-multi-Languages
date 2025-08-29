@@ -71,10 +71,10 @@
     @yield('content')
 
     @include('WebSite.layouts.footer')
-    @include('WebSite.layouts.ambulance-modal')
 
 </div>
 <!--End pagewrapper-->
+@include('WebSite.layouts.ambulance-modal')
 
 <!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
