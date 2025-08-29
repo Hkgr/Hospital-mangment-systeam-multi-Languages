@@ -44,6 +44,9 @@
                                         </li>
                                         <li class="nav-item"><a href="#tab7" class="nav-link" data-toggle="tab">المواعيد</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a href="#tab8" class="nav-link" data-toggle="tab">التشخيص</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -320,6 +323,31 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab8">
+                                        <br>
+                                        <div class="vtimeline">
+                                            @foreach($patient_records as $patient_record)
+                                            <div class="timeline-wrapper {{ $loop->iteration % 2 == 0 ? 'timeline-inverted' : '' }} timeline-wrapper-primary">
+                                                <div class="timeline-badge"><i class="las la-check-circle"></i></div>
+                                                <div class="timeline-panel">
+                                                    <div class="timeline-heading">
+                                                        <h6 class="timeline-title">{{$patient_record->diagnosis}}</h6>
+                                                    </div>
+                                                    <div class="timeline-body">
+                                                        <p>{{$patient_record->medicine}}</p>
+                                                    </div>
+                                                    <div class="timeline-footer d-flex align-items-center flex-wrap">
+                                                        <i class="fas fa-user-md"></i>&nbsp;
+                                                        <span>{{$patient_record->Doctor->name}}</span>
+                                                        <span class="mr-auto">
+                                                            <i class="fe fe-calendar text-muted mr-1"></i>{{$patient_record->date}}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>

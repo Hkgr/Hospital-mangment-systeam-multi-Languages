@@ -12,6 +12,7 @@ use App\Models\Ray;
 use App\Models\Laboratorie;
 use App\Models\single_invoice;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Diagnostic;
 use Illuminate\Support\Facades\Hash;
 
 class PatientRepository implements PatientRepositoryInterface
@@ -31,11 +32,13 @@ class PatientRepository implements PatientRepositoryInterface
         $appointments = Appointment::where('patient_id', $id)->get();
         $rays = Ray::where('patient_id', $id)->get();
         $laboratories = Laboratorie::where('patient_id', $id)->get();
+        $patient_records = Diagnostic::where('patient_id', $id)->get();
 
         return view('Dashboard.Patients.show', compact(
             'Patient', 'invoices', 'receipt_accounts',
-            'Patient_accounts', 'appointments', 'rays', 'laboratories'
-        ));
+            'Patient_accounts', 'appointments', 'rays',
+            'laboratories', 'patient_records'
+                ));
     }
     public function create()
    {

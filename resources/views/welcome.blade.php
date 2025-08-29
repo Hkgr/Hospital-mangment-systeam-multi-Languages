@@ -766,10 +766,10 @@
                                 <ul class="post-info">
                                     <li>
                                         <span class="icon flaticon-chat-comment-oval-speech-bubble-with-text-lines"></span>
-                                        {{ trans('HomePage/HomePage.NewsComments1') }}
+                                        07
                                     </li>
                                     <li>
-                                        <span class="icon flaticon-heart"></span> {{ trans('HomePage/HomePage.NewsLikes1') }}
+                                        <span class="icon flaticon-heart"></span> 215
                                     </li>
                                 </ul>
                                 <ul class="post-meta">
