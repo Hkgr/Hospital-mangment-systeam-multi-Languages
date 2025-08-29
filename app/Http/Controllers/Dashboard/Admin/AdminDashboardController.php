@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Events\MyEvent;
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use App\Models\Invoice;
 use App\Models\Patient;
+use App\Models\Section;
 use App\Models\Service;
 use Illuminate\Support\Facades\DB;
 
@@ -19,10 +21,19 @@ class AdminDashboardController extends Controller
         $invoicePending = Invoice::where('invoice_status', 1)->count();
         $invoiceReview = Invoice::where('invoice_status', 2)->count();
         $invoiceCompleted = Invoice::where('invoice_status', 3)->count();
+        // Delivered (paid) and cancelled orders in the last 6 months
+        $ordersDelivered = Invoice::where('invoice_status', 3)
+            ->where('invoice_date', '>=', now()->subMonths(6))
+            ->count();
+        $ordersCancelled = Invoice::whereIn('invoice_status', [4, 5])
+            ->where('invoice_date', '>=', now()->subMonths(6))
+            ->count();
         $recentPatients = Patient::with('image')
             ->latest()
             ->take(6)
             ->get();
+
+        // Revenue and patient statistics grouped by section
         $sectionStats = Invoice::select(
             'section_id',
             DB::raw('SUM(total_with_tax) as total_revenue'),
@@ -30,19 +41,41 @@ class AdminDashboardController extends Controller
         )
             ->groupBy('section_id')
             ->with('Section')
+            ->orderByDesc(DB::raw('SUM(total_with_tax)'))
             ->get();
-            $totalServices = Service::count();
-            $paidInvoices = $invoiceCompleted;
-            $totalProfit = Invoice::where('invoice_status', 3)->sum('total_with_tax');
+
+        // Top sections by revenue for dedicated table
+        $topSections = $sectionStats->take(5);
+
+        // Top doctors by generated revenue
+        $topDoctors = Invoice::select(
+            'doctor_id',
+            DB::raw('SUM(total_with_tax) as total_revenue'),
+            DB::raw('COUNT(id) as invoice_count')
+        )
+            ->groupBy('doctor_id')
+            ->with('Doctor')
+            ->orderByDesc('total_revenue')
+            ->take(5)
+            ->get();
+
+        $totalServices = Service::count();
+        $paidInvoices = $invoiceCompleted;
+        $totalProfit = Invoice::where('invoice_status', 3)->sum('total_with_tax');
+        
         return view('Dashboard.Admin.dashboard', compact(
             'invoicePending',
             'invoiceReview',
             'invoiceCompleted',
             'sectionStats',
             'recentPatients',
+            'topDoctors',
+            'topSections',
             'totalServices',
             'paidInvoices',
-            'totalProfit'
-                ));
+            'totalProfit',
+            'ordersDelivered',
+            'ordersCancelled'
+        ));
     }
 }
