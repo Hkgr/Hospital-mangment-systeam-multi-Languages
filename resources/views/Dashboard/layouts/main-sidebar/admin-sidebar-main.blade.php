@@ -120,7 +120,7 @@ $folder = 'admins';
                 </svg><span class="side-menu__label">الاشعة</span><i class="angle fe fe-chevron-down"></i></a>
             <ul class="slide-menu">
                 <li><a class="slide-item" href="{{ route('ray_employee.index') }}">قائمة الموظفين</a></li>
-                <li><a class="slide-item" href="{{ route('admin.ray_invoices.index') }}">قائمة الكشوفات</a></li>
+                <li><a class="slide-item" href="{{ route('admin.ray_invoices.index') }}">كشوفات الأشعة</a></li>
                         </ul>
         </li>
         <li class="slide">
@@ -131,6 +131,8 @@ $folder = 'admins';
                 </svg><span class="side-menu__label">المختبر</span><i class="angle fe fe-chevron-down"></i></a>
             <ul class="slide-menu">
                 <li><a class="slide-item" href="{{ route('laboratorie_employee.index') }}">قائمة الموظفين</a></li>
+                <li><a class="slide-item" href="{{ route('admin.laboratorie.index') }}">كشوفات التحاليل</a></li>
+
             </ul>
         </li>
 
