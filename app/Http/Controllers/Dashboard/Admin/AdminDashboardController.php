@@ -6,6 +6,7 @@ use App\Events\MyEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\Patient;
+use App\Models\Service;
 use Illuminate\Support\Facades\DB;
 
 class AdminDashboardController extends Controller
@@ -30,13 +31,18 @@ class AdminDashboardController extends Controller
             ->groupBy('section_id')
             ->with('Section')
             ->get();
-
+            $totalServices = Service::count();
+            $paidInvoices = $invoiceCompleted;
+            $totalProfit = Invoice::where('invoice_status', 3)->sum('total_with_tax');
         return view('Dashboard.Admin.dashboard', compact(
             'invoicePending',
             'invoiceReview',
             'invoiceCompleted',
             'sectionStats',
-            'recentPatients'
-        ));
+            'recentPatients',
+            'totalServices',
+            'paidInvoices',
+            'totalProfit'
+                ));
     }
 }

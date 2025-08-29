@@ -189,17 +189,14 @@
 		</div>
 		<div class="product-timeline card-body pt-2 mt-1">
 			<ul class="timeline-1 mb-0">
-				<li class="mt-0"> <i class="ti-pie-chart bg-primary-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Total Products</span> <a href="#" class="float-left tx-11 text-muted">3 days ago</a>
-					<p class="mb-0 text-muted tx-12">1.3k New Products</p>
+				<li class="mt-0"> <i class="ti-pie-chart bg-primary-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Total Services</span> <a href="#" class="float-left tx-11 text-muted">3 days ago</a>
+					<p class="mb-0 text-muted tx-12">{{ $totalServices }} Services</p>
 				</li>
-				<li class="mt-0"> <i class="mdi mdi-cart-outline bg-danger-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Total Sales</span> <a href="#" class="float-left tx-11 text-muted">35 mins ago</a>
-					<p class="mb-0 text-muted tx-12">1k New Sales</p>
+				<li class="mt-0"> <i class="mdi mdi-cart-outline bg-danger-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Paid Invoices</span> <a href="#" class="float-left tx-11 text-muted">35 mins ago</a>
+					<p class="mb-0 text-muted tx-12">{{ $paidInvoices }} Paid</p>
 				</li>
-				<li class="mt-0"> <i class="ti-bar-chart-alt bg-success-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Toatal Revenue</span> <a href="#" class="float-left tx-11 text-muted">50 mins ago</a>
-					<p class="mb-0 text-muted tx-12">23.5K New Revenue</p>
-				</li>
-				<li class="mt-0"> <i class="ti-wallet bg-warning-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Toatal Profit</span> <a href="#" class="float-left tx-11 text-muted">1 hour ago</a>
-					<p class="mb-0 text-muted tx-12">3k New profit</p>
+				<li class="mt-0"> <i class="ti-bar-chart-alt bg-success-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Total Profit</span> <a href="#" class="float-left tx-11 text-muted">50 mins ago</a>
+					<p class="mb-0 text-muted tx-12">{{ number_format($totalProfit,2) }} Profit</p>
 				</li>
 				<li class="mt-0"> <i class="si si-eye bg-purple-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Customer Visits</span> <a href="#" class="float-left tx-11 text-muted">1 day ago</a>
 					<p class="mb-0 text-muted tx-12">15% increased</p>
