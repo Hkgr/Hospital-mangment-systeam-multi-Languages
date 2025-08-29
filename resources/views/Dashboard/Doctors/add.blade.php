@@ -101,7 +101,7 @@
 
                             </div>
 
-                            <div class="row row-xs align-items-center mg-b-20">
+                            <!-- <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-1">
                                     <label for="exampleInputEmail1">
                                         {{trans('doctors.appointments')}}</label>
@@ -117,7 +117,7 @@
 
                                 </div>
 
-                            </div>
+                            </div> -->
 
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-1">
