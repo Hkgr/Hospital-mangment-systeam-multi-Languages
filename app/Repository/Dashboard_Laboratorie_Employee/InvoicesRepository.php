@@ -3,7 +3,10 @@
 namespace App\Repository\Dashboard_Laboratorie_Employee;
 
 use App\Interfaces\Dashboard_Laboratorie_Employee\InvoicesRepositoryInterface;
+use App\Models\Diagnostic;
 use App\Models\Laboratorie;
+use App\Models\Patient;
+use App\Models\Ray;
 use App\Traits\UploadTrait;
 
 class InvoicesRepository implements InvoicesRepositoryInterface
@@ -59,5 +62,41 @@ class InvoicesRepository implements InvoicesRepositoryInterface
             return redirect()->route('404');
         }
         return view('Dashboard.dashboard_LaboratorieEmployee.invoices.patient_details', compact('laboratorie'));
+    }
+
+    public function patient_details($patientId)
+    {
+        $hasAssignment = Laboratorie::where('patient_id', $patientId)
+            ->where('employee_id', auth()->id())
+            ->exists();
+
+        if (!$hasAssignment) {
+            return redirect()->route('404');
+        }
+
+        $patient = Patient::findOrFail($patientId);
+        // فقط التحاليل الخاصة بالمريض الحالي والموظف الحالي
+        $patient_Laboratories = Laboratorie::where('patient_id', $patientId)
+            ->where('employee_id', auth()->id())
+            ->get();
+
+        return view(
+            'Dashboard.dashboard_LaboratorieEmployee.invoices.patient_details',
+            compact('patient','patient_Laboratories')
+        );
+    }
+
+    public function doctor_images($doctorId)
+    {
+        $laboratories = Laboratorie::where('doctor_id', $doctorId)
+            ->where('employee_id', auth()->id())
+            ->with(['Patient','images'])
+            ->get();
+
+        if ($laboratories->isEmpty()) {
+            return redirect()->route('404');
+        }
+
+        return view('Dashboard.dashboard_LaboratorieEmployee.invoices.doctor_images', compact('laboratories'));
     }
 }

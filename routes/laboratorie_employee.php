@@ -2,6 +2,8 @@
 
 
 use App\Http\Controllers\Dashboard_Laboratorie_Employee\InvoiceController;
+use App\Http\Controllers\Dashboard_Laboratorie_Employee\InvoiceController as LaboratorieInvoiceController;
+use App\Http\Controllers\Dashboard_Doctor\PatientDetailsController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -39,7 +41,9 @@ Route::group(
     //############################# invoices route ##########################################
      Route::resource('invoices_laboratorie_employee', InvoiceController::class);
      Route::get('completed_invoices', [InvoiceController::class,'completed_invoices'])->name('laboratorie_completed_invoices');
-     Route::get('view_laboratories/{id}', [InvoiceController::class,'view_laboratories'])->name('view_laboratories');
+     Route::get('laboratorie/view_laboratories/{id}', [InvoiceController::class,'view_laboratories'])->name('view_laboratories');
+     Route::get('laboratorie/patient/{id}', [InvoiceController::class,'patientDetails'])->name('laboratorie.patient_details');
+     Route::get('doctor/{doctor}/images', [LaboratorieInvoiceController::class, 'doctorImages'])->name('laboratorie.doctor_images');
     //############################# end invoices route ######################################
 
     });
