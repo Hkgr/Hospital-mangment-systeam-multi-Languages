@@ -759,7 +759,7 @@
                 <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
-                            <a href="blog-detail.html"><img src="{{ URL::asset('WebSite/images/resource/news-4.jpg') }}" alt="" /></a>
+                            <a href="blog-detail.html"><img src="{{ URL::asset('WebSite/images/resource/art1.png') }}" alt="" /></a>
                         </div>
                         <div class="lower-content">
                             <div class="content">
@@ -792,7 +792,7 @@
                 <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
-                            <a href="blog-detail.html"><img src="{{ URL::asset('WebSite/images/resource/news-5.jpg') }}" alt="" /></a>
+                            <a href="blog-detail.html"><img src="{{ URL::asset('WebSite/images/resource/art2.png') }}" alt="" /></a>
                         </div>
                         <div class="lower-content">
                             <div class="content">

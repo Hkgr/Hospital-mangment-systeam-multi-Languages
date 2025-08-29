@@ -36,7 +36,7 @@
                                 <th>اسم الدكتور</th>
                                 <th>المطلوب</th>
                                 <th>حالة الفاتورة</th>
-                                <th>العمليات</th>
+                                <th>عرض الصور</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,12 +64,7 @@
                                 </td>
 
                                 <td>
-                                    <div class="dropdown">
-                                        <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-outline-primary btn-sm" data-toggle="dropdown" type="button">{{trans('doctors.Processes')}}<i class="fas fa-caret-down mr-1"></i></button>
-                                        <div class="dropdown-menu tx-13">
-                                            <a class="dropdown-item" href="{{route('invoices_ray_employee.edit',$invoice->id)}}"><i class="text-primary fa fa-stethoscope"></i>&nbsp;&nbsp;اضافة تشخيص </a>
-                                        </div>
-                                    </div>
+                                <a href="{{ route('admin.rays.view', $invoice->id) }}" class="btn btn-sm btn-primary">عرض الصور</a>
                                 </td>
                             </tr>
                             @endforeach
