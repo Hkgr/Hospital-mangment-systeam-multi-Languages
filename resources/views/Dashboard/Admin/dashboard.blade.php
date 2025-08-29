@@ -85,66 +85,8 @@
 
 <!-- row opened -->
 <div class="row row-sm">
-	<div class="col-md-12 col-lg-12 col-xl-7">
-		<div class="card">
-			<div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
-				<div class="d-flex justify-content-between">
-					<h4 class="card-title mb-0">Order status</h4>
-					<i class="mdi mdi-dots-horizontal text-gray"></i>
-				</div>
-				<p class="tx-12 text-muted mb-0">Order Status and Tracking. Track your order from ship date to arrival. To begin, enter your order number.</p>
-			</div>
-			<div class="card-body">
-				<div class="total-revenue">
-					<div>
-						<h4>{{ $invoiceCompleted }}</h4>
-						<label><span class="bg-primary"></span>success</label>
-					</div>
-					<div>
-						<h4>{{ $invoicePending }}</h4>
-						<label><span class="bg-danger"></span>Pending</label>
-					</div>
-					<div>
-						<h4>{{ $invoiceReview }}</h4>
-						<label><span class="bg-warning"></span>Failed</label>
-					</div>
-				</div>
-				<div id="bar" class="sales-bar mt-4" data-series='@json([$invoiceCompleted, $invoicePending, $invoiceReview])'></div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="col-lg-12 col-xl-5">
-		<div class="card card-dashboard-one">
-			<label class="main-content-label">Revenue &amp; Patients by Section</label>
-			<div class="table-responsive">
-				<table class="table table-striped mb-0">
-					<thead>
-						<tr>
-							<th>Section</th>
-							<th>Total Revenue</th>
-							<th>Patients</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($sectionStats as $stat)
-						<tr>
-							<td>{{ $stat->Section->name }}</td>
-							<td>{{ number_format($stat->total_revenue, 2) }}</td>
-							<td>{{ $stat->patient_count }}</td>
-						</tr>
-						@endforeach
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- row closed -->
 
-<!-- row opened -->
-<div class="row row-sm">
-	<div class="col-xl-4 col-md-12 col-lg-12">
+	<div class="col-md-12 col-lg-4 col-xl-4">
 		<div class="card">
 			<div class="card-header pb-1">
 				<h3 class="card-title mb-2">Recent Customers</h3>
@@ -181,103 +123,7 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="col-xl-4 col-md-12 col-lg-6">
-	<div class="card">
-		<div class="card-header pb-1">
-			<h3 class="card-title mb-2">Sales Activity</h3>
-			<p class="tx-12 mb-0 text-muted">Sales activities are the tactics that salespeople use to achieve their goals and objective</p>
-		</div>
-		<div class="product-timeline card-body pt-2 mt-1">
-			<ul class="timeline-1 mb-0">
-				<li class="mt-0"> <i class="ti-pie-chart bg-primary-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Total Services</span> <a href="#" class="float-left tx-11 text-muted">3 days ago</a>
-					<p class="mb-0 text-muted tx-12">{{ $totalServices }} Services</p>
-				</li>
-				<li class="mt-0"> <i class="mdi mdi-cart-outline bg-danger-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Paid Invoices</span> <a href="#" class="float-left tx-11 text-muted">35 mins ago</a>
-					<p class="mb-0 text-muted tx-12">{{ $paidInvoices }} Paid</p>
-				</li>
-				<li class="mt-0"> <i class="ti-bar-chart-alt bg-success-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Total Profit</span> <a href="#" class="float-left tx-11 text-muted">50 mins ago</a>
-					<p class="mb-0 text-muted tx-12">{{ number_format($totalProfit,2) }} Profit</p>
-				</li>
-				<li class="mt-0"> <i class="si si-eye bg-purple-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Customer Visits</span> <a href="#" class="float-left tx-11 text-muted">1 day ago</a>
-					<p class="mb-0 text-muted tx-12">15% increased</p>
-				</li>
-				<li class="mt-0 mb-0"> <i class="icon-note icons bg-primary-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Customer Reviews</span> <a href="#" class="float-left tx-11 text-muted">1 day ago</a>
-					<p class="mb-0 text-muted tx-12">1.5k reviews</p>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
-<div class="col-xl-4 col-md-12 col-lg-6">
-	<div class="card">
-		<div class="card-header pb-0">
-			<h3 class="card-title mb-2">Recent Orders</h3>
-			<p class="tx-12 mb-0 text-muted">An order is an investor's instructions to a broker or brokerage firm to purchase or sell</p>
-		</div>
-		<div class="card-body sales-info ot-0 pt-0 pb-0">
-			<div id="chart" class="ht-150" data-orders='@json([$ordersDelivered, $ordersCancelled])'></div>
-			<div class="row sales-infomation pb-0 mb-0 mx-auto wd-100p">
-				<div class="col-md-6 col">
-					<p class="mb-0 d-flex"><span class="legend bg-primary brround"></span>Delivered</p>
-					<h3 class="mb-1">{{ $ordersDelivered }}</h3>
-					<div class="d-flex">
-						<p class="text-muted ">Last 6 months</p>
-					</div>
-				</div>
-				<div class="col-md-6 col">
-					<p class="mb-0 d-flex"><span class="legend bg-info brround"></span>Cancelled</p>
-					<h3 class="mb-1">{{ $ordersCancelled }}</h3>
-					<div class="d-flex">
-						<p class="text-muted">Last 6 months</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="card ">
-		<div class="card-body">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="d-flex align-items-center pb-2">
-						<p class="mb-0">Total Sales</p>
-					</div>
-					<h4 class="font-weight-bold mb-2">$7,590</h4>
-					<div class="progress progress-style progress-sm">
-						<div class="progress-bar bg-primary-gradient wd-80p" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78"></div>
-					</div>
-				</div>
-				<div class="col-md-6 mt-4 mt-md-0">
-					<div class="d-flex align-items-center pb-2">
-						<p class="mb-0">Active Users</p>
-					</div>
-					<h4 class="font-weight-bold mb-2">$5,460</h4>
-					<div class="progress progress-style progress-sm">
-						<div class="progress-bar bg-danger-gradient wd-75" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
-<!-- row close -->
 
-<!-- row opened -->
-<div class="row row-sm row-deck">
-	<div class="col-md-12 col-lg-4 col-xl-4">
-		<div class="card card-dashboard-eight pb-2">
-			<h6 class="card-title">Top Doctors by Revenue</h6><span class="d-block mg-b-10 text-muted tx-12">Most profitable doctors based on issued invoices</span>
-			<div class="list-group">
-				@foreach($topDoctors as $doctor)
-				<div class="list-group-item @if($loop->first) border-top-0 @endif">
-					<p class="mb-0">{{ $doctor->Doctor->name ?? __('Unknown') }}</p>
-					<span>{{ number_format($doctor->total_revenue,2) }}</span>
-				</div>
-				@endforeach
-			</div>
-		</div>
-	</div>
 	<div class="col-md-12 col-lg-8 col-xl-8">
 		<div class="card card-table-two">
 			<div class="d-flex justify-content-between">
@@ -308,7 +154,146 @@
 		</div>
 	</div>
 </div>
+<!-- row closed -->
+
+<!-- row opened -->
+<!-- <div class="row row-sm">
+
+	
+</div> -->
+<!-- <div class="col-xl-4 col-md-12 col-lg-6">
+	<div class="card">
+		<div class="card-header pb-1">
+			<h3 class="card-title mb-2">Sales Activity</h3>
+			<p class="tx-12 mb-0 text-muted">Sales activities are the tactics that salespeople use to achieve their goals and objective</p>
+		</div>
+		<div class="product-timeline card-body pt-2 mt-1">
+			<ul class="timeline-1 mb-0">
+				<li class="mt-0"> <i class="ti-pie-chart bg-primary-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Total Services</span> <a href="#" class="float-left tx-11 text-muted">3 days ago</a>
+					<p class="mb-0 text-muted tx-12">{{ $totalServices }} Services</p>
+				</li>
+				<li class="mt-0"> <i class="mdi mdi-cart-outline bg-danger-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Paid Invoices</span> <a href="#" class="float-left tx-11 text-muted">35 mins ago</a>
+					<p class="mb-0 text-muted tx-12">{{ $paidInvoices }} Paid</p>
+				</li>
+				<li class="mt-0"> <i class="ti-bar-chart-alt bg-success-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Total Profit</span> <a href="#" class="float-left tx-11 text-muted">50 mins ago</a>
+					<p class="mb-0 text-muted tx-12">{{ number_format($totalProfit,2) }} Profit</p>
+				</li>
+				<li class="mt-0"> <i class="si si-eye bg-purple-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Customer Visits</span> <a href="#" class="float-left tx-11 text-muted">1 day ago</a>
+					<p class="mb-0 text-muted tx-12">15% increased</p>
+				</li>
+				<li class="mt-0 mb-0"> <i class="icon-note icons bg-primary-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Customer Reviews</span> <a href="#" class="float-left tx-11 text-muted">1 day ago</a>
+					<p class="mb-0 text-muted tx-12">1.5k reviews</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div> -->
+<!-- row opened -->
+<div class="row row-sm row-deck">
+	<div class="col-md-12 col-lg-4 col-xl-4">
+		<div class="card card-dashboard-eight pb-2">
+			<h6 class="card-title">Top Doctors by Revenue</h6><span class="d-block mg-b-10 text-muted tx-12">Most profitable doctors based on issued invoices</span>
+			<div class="list-group">
+				@foreach($topDoctors as $doctor)
+				<div class="list-group-item @if($loop->first) border-top-0 @endif">
+					<p class="mb-0">{{ $doctor->Doctor->name ?? __('Unknown') }}</p>
+					<span>{{ number_format($doctor->total_revenue,2) }}</span>
+				</div>
+				@endforeach
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-12 col-lg-8 col-xl-8">
+	<div class="card ">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="d-flex align-items-center pb-2">
+							<p class="mb-0">Total Sales</p>
+						</div>
+						<h4 class="font-weight-bold mb-2">$7,590</h4>
+						<div class="progress progress-style progress-sm">
+							<div class="progress-bar bg-primary-gradient wd-80p" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78"></div>
+						</div>
+					</div>
+					<div class="col-md-6 mt-4 mt-md-0">
+						<div class="d-flex align-items-center pb-2">
+							<p class="mb-0">Active Users</p>
+						</div>
+						<h4 class="font-weight-bold mb-2">$5,460</h4>
+						<div class="progress progress-style progress-sm">
+							<div class="progress-bar bg-danger-gradient wd-75" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- /row -->
+<!-- 
+<div class="row row-sm">
+
+	<div class="col-xl-4 col-md-12 col-lg-6">
+		<div class="card">
+			<div class="card-header pb-0">
+				<h3 class="card-title mb-2">Recent Orders</h3>
+				<p class="tx-12 mb-0 text-muted">An order is an investor's instructions to a broker or brokerage firm to purchase or sell</p>
+			</div>
+			<div class="card-body sales-info ot-0 pt-0 pb-0">
+				<div id="chart" class="ht-150" data-orders='@json([$ordersDelivered, $ordersCancelled])'></div>
+				<div class="row sales-infomation pb-0 mb-0 mx-auto wd-100p">
+					<div class="col-md-6 col">
+						<p class="mb-0 d-flex"><span class="legend bg-primary brround"></span>Delivered</p>
+						<h3 class="mb-1">{{ $ordersDelivered }}</h3>
+						<div class="d-flex">
+							<p class="text-muted ">Last 6 months</p>
+						</div>
+					</div>
+					<div class="col-md-6 col">
+						<p class="mb-0 d-flex"><span class="legend bg-info brround"></span>Cancelled</p>
+						<h3 class="mb-1">{{ $ordersCancelled }}</h3>
+						<div class="d-flex">
+							<p class="text-muted">Last 6 months</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-4 col-md-12 col-lg-6">
+
+		<div class="card ">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="d-flex align-items-center pb-2">
+							<p class="mb-0">Total Sales</p>
+						</div>
+						<h4 class="font-weight-bold mb-2">$7,590</h4>
+						<div class="progress progress-style progress-sm">
+							<div class="progress-bar bg-primary-gradient wd-80p" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78"></div>
+						</div>
+					</div>
+					<div class="col-md-6 mt-4 mt-md-0">
+						<div class="d-flex align-items-center pb-2">
+							<p class="mb-0">Active Users</p>
+						</div>
+						<h4 class="font-weight-bold mb-2">$5,460</h4>
+						<div class="progress progress-style progress-sm">
+							<div class="progress-bar bg-danger-gradient wd-75" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div> -->
+<!-- row close -->
+
+
 </div>
 </div>
 <!-- Container closed -->
