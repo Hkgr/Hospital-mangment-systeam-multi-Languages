@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\Web\AmbulanceCallController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,54 +22,48 @@ Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
-    ], function () {
+    ],
+    function () {
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
+        Route::get('/', function () {
+            return view('welcome');
+        });
 
-    Route::get('/Services', function () {
-        return view('Services');
-    });
+        Route::get('/Services', function () {
+            return view('Services');
+        });
 
-    Route::get('/deps/Neurology', function () {
-        return view('Neurology');
-    });
+        Route::get('/deps/Neurology', function () {
+            return view('Neurology');
+        });
 
-    Route::get('/deps/Urology', function () {
-        return view('Urology');
-    });
+        Route::get('/deps/Urology', function () {
+            return view('Urology');
+        });
 
-    Route::get('/deps/Gastroenterology', function () {
-        return view('Gastroenterology');
-    });
-
-
-    Route::get('/deps/Cardiology', function () {
-        return view('Cardiology');
-    });
-
-    Route::get('/deps/eye', function () {
-        return view('eye');
-    });
-    
-    
-    Route::get('/Articles/1', function () {
-        return view('art1');
-    });
-
-    Route::get('/Articles/2', function () {
-        return view('art2');
-    });
-    
+        Route::get('/deps/Gastroenterology', function () {
+            return view('Gastroenterology');
+        });
 
 
-});
+        Route::get('/deps/Cardiology', function () {
+            return view('Cardiology');
+        });
+
+        Route::get('/deps/eye', function () {
+            return view('eye');
+        });
 
 
+        Route::get('/Articles/1', function () {
+            return view('art1');
+        });
 
+        Route::get('/Articles/2', function () {
+            return view('art2');
+        });
 
-
-
-
-
+        Route::post('/ambulance-call', [AmbulanceCallController::class, 'store'])
+            ->name('ambulance.call.store');
+    }
+);

@@ -14,6 +14,7 @@ class AmbulanceCall extends Model
         'call_time',
         'ambulance_id',
         'address',
+        'details',
         'status',
     ];
 

@@ -123,8 +123,11 @@
                         @endforeach
                     </ul>
                 </li>
-                <li><a href="contact.html">اطلب اسعاف الطوارئ!</a></li>
-
+                <li class="ml-auto">
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#ambulanceRequestModal">
+                        اطلب اسعاف الطوارئ!
+                    </button>
+                </li>
             </ul>
         </div>
 
@@ -153,4 +156,5 @@
         <div class="search-box-btn"><span class="icon flaticon-search"></span></div>
 
     </div>
+    @include('WebSite.layouts.ambulance-modal')
 </div>
