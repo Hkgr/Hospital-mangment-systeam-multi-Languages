@@ -109,16 +109,32 @@
 						<label><span class="bg-warning"></span>Failed</label>
 					</div>
 				</div>
-				<div id="bar" class="sales-bar mt-4"></div>
+				<div id="bar" class="sales-bar mt-4" data-series='@json([$invoiceCompleted, $invoicePending, $invoiceReview])'></div>
 			</div>
 		</div>
 	</div>
 	<div class="col-lg-12 col-xl-5">
-		<div class="card card-dashboard-map-one">
-			<label class="main-content-label">Sales Revenue by Customers in USA</label>
-			<span class="d-block mg-b-20 text-muted tx-12">Sales Performance of all states in the United States</span>
-			<div class="">
-				<div class="vmap-wrapper ht-180" id="vmap2"></div>
+		<div class="card card-dashboard-one">
+			<label class="main-content-label">Revenue &amp; Patients by Section</label>
+			<div class="table-responsive">
+				<table class="table table-striped mb-0">
+					<thead>
+						<tr>
+							<th>Section</th>
+							<th>Total Revenue</th>
+							<th>Patients</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($sectionStats as $stat)
+						<tr>
+							<td>{{ $stat->Section->name }}</td>
+							<td>{{ number_format($stat->total_revenue, 2) }}</td>
+							<td>{{ $stat->patient_count }}</td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -415,10 +431,11 @@
 <script src="{{URL::asset('Dashboard/js/modal-popup.js')}}"></script>
 <!--Internal  index js -->
 <script src="{{URL::asset('Dashboard/js/index.js')}}"></script>
-<script src="{{URL::asset('Dashboard/js/jquery.vmap.sampledata.js')}}"></script>
+<!-- <script src="{{URL::asset('Dashboard/js/jquery.vmap.sampledata.js')}}"></script> -->
 <script>
 	// Render invoice status chart with dynamic data
 	document.getElementById('bar').innerHTML = '';
+	const seriesData = JSON.parse(document.getElementById('bar').dataset.series || '[]');
 	var optionsBar = {
 		chart: {
 			height: 249,
@@ -430,19 +447,7 @@
 		colors: ["#036fe7", '#f93a5a', '#f7a556'],
 		series: [{
 			name: 'Invoices',
-			data: [{
-				{
-					$invoiceCompleted
-				}
-			}, {
-				{
-					$invoicePending
-				}
-			}, {
-				{
-					$invoiceReview
-				}
-			}],
+			data: seriesData,
 		}],
 		xaxis: {
 			categories: ['success', 'Pending', 'Failed'],

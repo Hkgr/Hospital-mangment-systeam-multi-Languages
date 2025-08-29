@@ -15,8 +15,8 @@ class SectionRepository implements SectionRepositoryInterface
     }
     public function create()
     {
-      //  return view('Dashboard.Sections.index2');
-    }
+        return view('Dashboard.Sections.index2');
+        }
 
     public function store($request)
     {
