@@ -253,13 +253,39 @@
 
 
                                     <div class="tab-pane" id="tab5">
-                                        <p>praesentium voluptatum deleniti atque corrquas molestias excepturi sint
-                                            occaecati cupiditate non provident,</p>
-                                        <p class="mb-0">similique sunt in culpa qui officia deserunt mollitia animi,
-                                            id est laborum et dolorum fuga. Et harum quidem rerum facilis est et
-                                            expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi
-                                            optio cumque nihil impedit quo minus id quod maxime placeat facere
-                                            possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+                                    <div class="table-responsive">
+                                            <table class="table table-hover text-md-nowrap text-center">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>المطلوب</th>
+                                                    <th>اسم الدكتور</th>
+                                                    <th>اسم دكتور الأشعة</th>
+                                                    <th>ملاحظة دكتور الأشعة</th>
+                                                    <th>العمليات</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($rays as $ray)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $ray->description }}</td>
+                                                        <td>{{ $ray->doctor->name }}</td>
+                                                        <td>{{ $ray->employee->name }}</td>
+                                                        <td>{{ $ray->description_employee }}</td>
+                                                        <td>
+                                                            @if($ray->employee_id !== null)
+                                                                <a class="btn btn-primary btn-sm"
+                                                                   href="{{ route('rays.view', $ray->id) }}">
+                                                                    عرض الأشعة
+                                                                </a>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                     <div class="tab-pane" id="tab6">
                                         <p>praesentium et quas molestias excepturi sint occaecati cupiditate non
