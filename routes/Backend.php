@@ -127,7 +127,8 @@ Route::group(
             //############################# Patients route ##########################################
 
             Route::resource('Patients', PatientController::class);
-
+            Route::get('admin/view_rays/{id}', [PatientController::class,'viewRays'])->name('admin.rays.view');
+            Route::get('admin/view_laboratories/{id}', [PatientController::class,'viewLaboratories'])->name('admin.laboratories.view');
 
             //############################# end Patients route ######################################
 

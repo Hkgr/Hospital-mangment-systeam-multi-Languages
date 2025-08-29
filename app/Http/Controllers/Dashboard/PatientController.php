@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientRequest;
 use App\Interfaces\Patients\PatientRepositoryInterface;
+use App\Models\Ray;
+use App\Models\Laboratorie;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -56,5 +58,14 @@ class PatientController extends Controller
     public function destroy(Request $request)
     {
        return $this->Patient->destroy($request);
+    }
+    public function viewRays($id) {
+        $rays = Ray::findOrFail($id);
+        return view('Dashboard.dashboard_RayEmployee.invoices.patient_details', compact('rays'));
+    }
+
+    public function viewLaboratories($id) {
+        $laboratorie = Laboratorie::findOrFail($id);
+        return view('Dashboard.dashboard_LaboratorieEmployee.invoices.patient_details', compact('laboratorie'));
     }
 }

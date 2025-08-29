@@ -276,7 +276,7 @@
                                                         <td>
                                                             @if($ray->employee_id !== null)
                                                             <a class="btn btn-primary btn-sm"
-                                                                href="{{ route('rays.view', $ray->id) }}">
+                                                                href="{{ route('admin.rays.view', $ray->id) }}">
                                                                 عرض الأشعة
                                                             </a>
                                                             @endif
@@ -311,7 +311,7 @@
                                                         <td>
                                                             @if($lab->employee_id !== null)
                                                             <a class="btn btn-primary btn-sm"
-                                                                href="{{ route('laboratories.view', $lab->id) }}">
+                                                                href="{{ route('admin.laboratories.view', $lab->id) }}">
                                                                 عرض التحليل
                                                             </a>
                                                             @endif
