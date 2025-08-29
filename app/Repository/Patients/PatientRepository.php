@@ -8,6 +8,8 @@ use App\Models\Patient;
 use App\Models\PatientAccount;
 use App\Models\Appointment;
 use App\Models\ReceiptAccount;
+use App\Models\Ray;
+use App\Models\Laboratorie;
 use App\Models\single_invoice;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
@@ -27,9 +29,14 @@ class PatientRepository implements PatientRepositoryInterface
         $receipt_accounts = ReceiptAccount::where('patient_id', $id)->get();
         $Patient_accounts = PatientAccount::where('patient_id', $id)->get();
         $appointments = Appointment::where('patient_id', $id)->get();
+        $rays = Ray::where('patient_id', $id)->get();
+        $laboratories = Laboratorie::where('patient_id', $id)->get();
 
-        return view('Dashboard.Patients.show', compact('Patient', 'invoices', 'receipt_accounts', 'Patient_accounts', 'appointments'));    }
-
+        return view('Dashboard.Patients.show', compact(
+            'Patient', 'invoices', 'receipt_accounts',
+            'Patient_accounts', 'appointments', 'rays', 'laboratories'
+        ));
+    }
     public function create()
    {
        return view('Dashboard.Patients.create');
