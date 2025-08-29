@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\Dashboard\LaboratorieEmployeeController;
+use App\Http\Controllers\Dashboard\LaboratorieController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\PaymentAccountController;
 use App\Http\Controllers\Dashboard\RayEmployeeController;
@@ -171,6 +172,11 @@ Route::group(
                 ->whereNumber('laboratorie_employee');
             //############################# end laboratorie_employee route ######################################
 
+            //############################# laboratories route ##########################################
+            Route::get('laboratories', [LaboratorieController::class, 'index'])->name('admin.laboratorie.index');
+            Route::get('laboratories/{laboratorie}', [LaboratorieController::class, 'show'])->name('admin.laboratorie.show');
+            //############################# end laboratories route ######################################
+            
             //############################# single_invoices route ##########################################
 
             Route::view('group_invoices', 'livewire.Group_invoices.index')->name('group_invoices');
