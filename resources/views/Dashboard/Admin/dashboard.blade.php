@@ -113,6 +113,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="col-lg-12 col-xl-5">
 		<div class="card card-dashboard-one">
 			<label class="main-content-label">Revenue &amp; Patients by Section</label>

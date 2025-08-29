@@ -20,7 +20,7 @@
                                     </div>
                                     <div class="btn-box">
                                         <a href="#Appointment" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}</span></a>
-                                        <a href="services.html" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
+                                        <a href="http://127.0.0.1:8000/Services" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
                                     </div>
                                 </div>
                             </div>

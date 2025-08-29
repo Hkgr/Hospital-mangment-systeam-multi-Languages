@@ -71,6 +71,7 @@
     @yield('content')
 
     @include('WebSite.layouts.footer')
+    @include('WebSite.layouts.ambulance-modal')
 
 </div>
 <!--End pagewrapper-->

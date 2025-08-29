@@ -156,5 +156,4 @@
         <div class="search-box-btn"><span class="icon flaticon-search"></span></div>
 
     </div>
-    @include('WebSite.layouts.ambulance-modal')
 </div>
