@@ -26,13 +26,13 @@ $folder = 'users';
     <div class="container-fluid">
         <div class="main-header-left ">
             <div class="responsive-logo">
-                <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/logo.png')}}"
+                <a href="{{ url('/') }}"><img src="{{URL::asset('Dashboard/img/brand/logo.png')}}"
                         class="logo-1" alt="logo"></a>
-                <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/logo-white.png')}}"
+                <a href="{{ url('/') }}"><img src="{{URL::asset('Dashboard/img/brand/logo-white.png')}}"
                         class="dark-logo-1" alt="logo"></a>
-                <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}"
+                <a href="{{ url('/') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}"
                         class="logo-2" alt="logo"></a>
-                <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}"
+                <a href="{{ url('/') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}"
                         class="dark-logo-2" alt="logo"></a>
             </div>
             <div class="app-sidebar__toggle" data-toggle="sidebar">

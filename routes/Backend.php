@@ -14,6 +14,7 @@ use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Dashboard\Admin\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -58,10 +59,8 @@ Route::group(
 
 
         //################################ dashboard admin ########################################
-        Route::get('/dashboard/admin', function () {
-            event(new MyEvent('hello'));
-            return view('Dashboard.Admin.dashboard');
-        })->middleware(['auth:admin'])->name('dashboard.admin');
+        Route::get('/dashboard/admin', [AdminDashboardController::class, 'index'])
+            ->middleware(['auth:admin'])->name('dashboard.admin');
 
         //################################ end dashboard admin #####################################
 
