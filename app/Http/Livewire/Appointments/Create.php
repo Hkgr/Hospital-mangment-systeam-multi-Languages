@@ -50,10 +50,15 @@ class Create extends Component
 
     public function updatedSection($section_id)
     {
+        $this->loadDoctors($section_id);
+    }
+
+    public function loadDoctors($section_id)
+    {
         // When section changes, reset selected doctor and load doctors of that section
         $this->doctor = null;
         if ($section_id) {
-            $this->doctors = Doctor::where('section_id', $section_id)->get();
+            $this->doctors = Doctor::where('section_id', (int) $section_id)->get();
         } else {
             $this->doctors = collect();
         }

@@ -67,8 +67,9 @@ Route::group(
         Route::post('/ambulance-call', [AmbulanceCallController::class, 'store'])
             ->name('ambulance.call.store');
 
-            
+
         Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllRead'])
-        ->name('notifications.markAllRead');
+            ->middleware('auth:admin,doctor,patient,laboratorie_employee,ray_employee')
+            ->name('notifications.markAllRead');
     }
 );

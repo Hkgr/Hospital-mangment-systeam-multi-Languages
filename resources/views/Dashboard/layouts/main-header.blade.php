@@ -215,7 +215,7 @@ $folder = 'users';
                                     <button type="submit" class="badge badge-pill badge-warning float-left border-0">Mark All Read</button>
                                 </form>
                             </div>
-                            <p data-count="{{App\Models\Notification::countNotification(auth()->user()->id)->count()}}" class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">{{App\Models\Notification::countnotification(auth()->user()->id)->count()}}</p>
+                            <p data-count="{{App\Models\Notification::countNotification($user->id)->count()}}" class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">{{App\Models\Notification::countnotification($user->id)->count()}}</p>
                         </div>
                         <div class="main-notification-list Notification-scroll">
 
@@ -234,8 +234,7 @@ $folder = 'users';
                                 </a>
                             </div>
 
-                            @foreach(App\Models\Notification::where('user_id',auth()->user()->id)->where('reader_status',0)->get() as $notification )
-                            <a class="d-flex p-3 border-bottom" href="#">
+                            @foreach(App\Models\Notification::where('user_id',$user->id)->where('reader_status',0)->get() as $notification ) <a class="d-flex p-3 border-bottom" href="#">
                                 <div class="notifyimg bg-pink">
                                     <i class="la la-file-alt text-white"></i>
                                 </div>
