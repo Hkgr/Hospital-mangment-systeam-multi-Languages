@@ -38,17 +38,16 @@ class Chatlist extends Component
 
     public function chatUserSelected(Conversation $conversation, $receiver_id)
     {
-
         $this->selected_conversation = $conversation;
-        $this->receviverUser = Doctor::find($receiver_id);
         if (Auth::guard('patient')->check()) {
+            $this->receviverUser = Doctor::find($receiver_id);
             $this->emitTo('chat.chatbox', 'load_conversationDoctor', $this->selected_conversation, $this->receviverUser);
             $this->emitTo('chat.send-message', 'updateMessage', $this->selected_conversation, $this->receviverUser);
         } else {
+            $this->receviverUser = Patient::find($receiver_id);
             $this->emitTo('chat.chatbox', 'load_conversationPatient', $this->selected_conversation, $this->receviverUser);
             $this->emitTo('chat.send-message', 'updateMessage2', $this->selected_conversation, $this->receviverUser);
         }
-
     }
 
 

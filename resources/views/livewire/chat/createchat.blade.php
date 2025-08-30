@@ -1,3 +1,5 @@
+@extends('Dashboard.layouts.master')
+@section('content')
 <div wire:ignore>
     <div class="row row-sm">
         <div class="col-xl-12">
@@ -38,4 +40,7 @@
 
 
 
+
+
+@endsection
 
