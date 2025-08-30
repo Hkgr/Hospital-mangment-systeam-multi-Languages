@@ -19,6 +19,7 @@ class Create extends Component
     public $email;
     public $phone;
     public $notes;
+    public $section_id;
     // public $patients;
     // public $patient_id;
     public $gender;
@@ -48,10 +49,14 @@ class Create extends Component
         return view('livewire.appointments.create');
     }
 
-    public function updatedSection($section_id)
+    public function loadDoctors($section_id)
     {
-
+        $this->section_id = $section_id;
         $this->doctors = Doctor::where('section_id', $section_id)->get();
+    }
+        public function updatedSection($section_id)
+    {
+        $this->loadDoctors($section_id);
     }
 
     public function store()

@@ -1,7 +1,7 @@
-﻿<div>
+<div>
     @if($message === true)
     <script>
-        alert('تم ارسال تفاصيل الحجز الي المستشفيي')
+              alert('تم ارسال تفاصيل الحجز الي المستشفيي')
         location.reload()
     </script>
     @endif
@@ -49,10 +49,10 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                 <label for="doctorSelect">الدكتور</label>
-                <select name="doctor" wire:model="doctor" class="form-select" id="doctorSelect" wire:key="doctor-select-{{ $section_id ?? 'none' }}">
-                    <option value="">-- اختار طبيب --</option>
+                <select name="doctor" wire:model="doctor" class="form-select" id="doctorSelect" wire:key="doctor-select">
+                    <option value="">-- اختار طبيب  --</option>
                     @foreach($doctors as $doctor)
-                    <option wire:key="doc-{{$doctor->id}}-{{$section_id}}" value="{{$doctor->id}}">{{$doctor->name}}</option>
+                    <option value="{{$doctor->id}}">{{$doctor->name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -60,10 +60,8 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                 <label for="sectionSelect">القسم</label>
-                <select class="form-select" name="section"
-                    wire:model="section_id"
-                    wire:change="loadDoctors($event.target.value)">
-                    <option value="">-- اختار القسم --</option>
+                <select class="form-select" name="section" wire:model="section_id" wire:change="loadDoctors($event.target.value)" id="sectionSelect" wire:key="section-select">
+                    <option value="">-- اختار القسم  --</option>
                     @foreach($sections as $section)
                     <option value="{{$section->id}}">{{$section->name}}</option>
                     @endforeach

@@ -514,7 +514,7 @@
 
                             <!-- Appointment Form -->
                             <div class="appointment-form">
-                                <livewire:appointments.create />
+                                <livewire:appointments.create :key="'appointments-create'" />
                             </div>
 
                         </div>
