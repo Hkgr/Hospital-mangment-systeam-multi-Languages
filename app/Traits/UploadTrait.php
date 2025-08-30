@@ -38,8 +38,8 @@ trait UploadTrait{
             $Image->imageable_type = $imageable_type;
             $Image->save();
 
-            return 'default.png';
-        }
+            return 'Dashboard/img/default.png';
+                }
     }
 
 
