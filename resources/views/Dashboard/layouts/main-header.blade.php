@@ -352,7 +352,7 @@ $folder = 'users';
     new_message.hide();
 
 
-    var userId = @json(auth('doctor')->id());
+    var userId = JSON.parse(String.raw`@json(auth('doctor')->id())`);
     Echo.private(`create-invoice.${userId}`)
         .listen('.create-invoice', (data) => {
         const text = $('<div>').text(data.message + data.patient).html();
