@@ -45,4 +45,9 @@ class MessageSent implements ShouldBroadcast
     {
         return new PrivateChannel('chat.'.$this->receiver->id);
     }
+
+    public function broadcastWhen()
+    {
+        return \App\Support\Net::online();
+    }
 }

@@ -56,3 +56,49 @@
 
 
 @livewireScripts
+
+<script>
+// Global online/offline handling: disable realtime when offline
+(function(){
+  function setOfflineUI(isOffline){
+    document.documentElement.classList.toggle('offline', isOffline);
+    // Disable UI elements marked as online-only
+    document.querySelectorAll('[data-online-only]').forEach(function(el){
+      if(isOffline){ el.setAttribute('disabled','disabled'); }
+      else { el.removeAttribute('disabled'); }
+    });
+    // Header indicator update
+    var ind = document.getElementById('online-indicator');
+    if(ind){
+      var dot = ind.querySelector('.status-dot');
+      var text = document.getElementById('online-indicator-text');
+      if(dot){ dot.style.background = isOffline ? '#dc3545' : '#28a745'; }
+      if(text){ text.textContent = isOffline ? 'غير متصل' : 'متصل'; }
+      ind.title = isOffline ? 'غير متصل' : 'متصل';
+    }
+  }
+
+  function disconnectRealtime(){
+    try{
+      if(window.Echo && window.Echo.connector){
+        if(window.Echo.connector.pusher && typeof window.Echo.connector.pusher.disconnect==='function'){
+          window.Echo.connector.pusher.disconnect();
+        } else if(typeof window.Echo.disconnect==='function'){
+          window.Echo.disconnect();
+        }
+      }
+    }catch(e){}
+  }
+
+  function onNetChange(){
+    var offline=!navigator.onLine;
+    setOfflineUI(offline);
+    if(offline){ disconnectRealtime(); }
+    else { window.dispatchEvent(new Event('app:online')); }
+  }
+
+  window.addEventListener('online', onNetChange);
+  window.addEventListener('offline', onNetChange);
+  document.addEventListener('DOMContentLoaded', onNetChange);
+})();
+</script>

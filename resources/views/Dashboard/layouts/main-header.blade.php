@@ -46,6 +46,10 @@ $folder = 'users';
         </div>
         <div class="main-header-right">
             <ul class="nav">
+                <li class="nav-item d-flex align-items-center mr-3" id="online-indicator" title="حالة الاتصال">
+                    <span class="status-dot" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#28a745"></span>
+                    <span class="ml-2 small" id="online-indicator-text">  متصل   </span>
+                </li>
                 <li class="">
                     <div class="dropdown  nav-itemd-none d-md-flex">
                         <a href="#" class="d-flex  nav-item nav-link pl-0 country-flag1" data-toggle="dropdown"
@@ -357,22 +361,38 @@ $channel = auth('doctor')->check()
     var new_message = notificationsWrapper.find('.new_message');
     new_message.hide();
 
-    Echo.private(`{{ $channel }}`)
-        .listen('.create-invoice', (data) => {
-            const text = $('<div>').text(data.message + data.patient).html();
-            const time = $('<div>').text(data.created_at).html();
+    function handleCreateInvoiceEvent(data) {
+        const text = $('<div>').text(data.message + data.patient).html();
+        const time = $('<div>').text(data.created_at).html();
 
-            const newNotificationHtml = `
-                <h4 class="notification-label mb-1">${text}</h4>
-                <div class="notification-subtext">${time}</div>`;
+        const newNotificationHtml = `
+                <h4 class=\"notification-label mb-1\">${text}</h4>
+                <div class=\"notification-subtext\">${time}</div>`;
 
-            new_message.show();
-            notifications.html(newNotificationHtml);
-            notificationsCount += 1;
-            notificationsCountElem.attr('data-count', notificationsCount);
-            notificationsWrapper.find('.notif-count').text(notificationsCount);
-            notificationsWrapper.show();
-        });
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    }
+
+    function subscribeNotifications() {
+        if (!navigator.onLine || typeof Echo === 'undefined') return;
+        try {
+            Echo.private(`{{ $channel }}`)
+                .listen('.create-invoice', handleCreateInvoiceEvent);
+        } catch (e) { /* noop */ }
+    }
+
+    // Initial subscribe only when online
+    if (navigator.onLine) subscribeNotifications();
+    // Resubscribe when app announces online state
+    window.addEventListener('app:online', subscribeNotifications);
+    // Leave channel when going offline
+    window.addEventListener('offline', function(){
+        try { if (typeof Echo !== 'undefined') Echo.leave(`{{ $channel }}`); } catch(e){}
+    });
 </script>
 
 

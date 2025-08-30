@@ -61,9 +61,11 @@ class SendMessage extends Component
         $this->selected_conversation->last_time_message = $this->createdMessage->created_at;
         $this->selected_conversation->save();
         $this->reset('body');
+        // Livewire v2: emit to target components
         $this->emitTo('chat.chatbox', 'pushMessage', $this->createdMessage->id);
         $this->emitTo('chat.chatlist', 'refresh');
-        $this->emitSelf('dispatchSentMessage');
+        // Broadcast directly
+        $this->dispatchSentMessage();
     }
     public function dispatchSentMessage()
     {

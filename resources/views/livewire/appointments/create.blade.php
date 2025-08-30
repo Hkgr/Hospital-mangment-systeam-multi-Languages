@@ -1,4 +1,4 @@
-﻿<div>
+<div>
     @if($message === true)
     <script>
         alert('تم ارسال تفاصيل الحجز الي المستشفيي')
@@ -47,7 +47,14 @@
             </div>
 
 
-
+            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                <label for="exampleFormControlSelect1">الدكتور</label>
+                <select name="doctor" wire:model="doctor" class="form-select" id="exampleFormControlSelect1">
+                    @foreach($doctors as $doctor)
+                    <option value="{{$doctor->id}}">{{$doctor->name}}</option>
+                    @endforeach
+                </select>
+            </div>
 
 
             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
@@ -57,19 +64,9 @@
                     @foreach($sections as $section)
                     <option value="{{$section->id}}">{{$section->name}}</option>
                     @endforeach
+
                 </select>
             </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                <label for="exampleFormControlSelect1">الدكتور</label>
-                <select name="doctor" wire:model="doctor" class="form-select" id="exampleFormControlSelect1">
-                    <option value="">-- اختر الطبيب --</option>
-                    @foreach($doctors as $doctor)
-                    <option value="{{$doctor->id}}">{{$doctor->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-
             <div class="col-lg-12 col-md-6 col-sm-12 form-group">
                 <input type="date" name="date_birth" wire:model="date_birth" placeholder="تاريخ الميلاد">
             </div>

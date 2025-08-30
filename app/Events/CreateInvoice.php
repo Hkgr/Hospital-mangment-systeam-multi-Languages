@@ -51,4 +51,9 @@ class CreateInvoice implements ShouldBroadcast
     {
         return 'create-invoice';
     }
+
+    public function broadcastWhen()
+    {
+        return \App\Support\Net::online();
+    }
 }

@@ -39,7 +39,8 @@ class Createchat extends Component
                     'body' => 'السلام عليكم',
                 ]);
                 DB::commit();
-                $this->emitSelf('render');
+                // Livewire v2: trigger re-render via $refresh
+                $this->emitSelf('$refresh');
             } catch (\Exception $e) {
                 DB::rollBack();
             }

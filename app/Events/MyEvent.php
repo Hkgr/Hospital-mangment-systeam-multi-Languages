@@ -29,4 +29,9 @@ class MyEvent implements ShouldBroadcast
     {
         return ['my-channel'];
     }
+
+    public function broadcastWhen()
+    {
+        return \App\Support\Net::online();
+    }
 }

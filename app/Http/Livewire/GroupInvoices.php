@@ -211,6 +211,24 @@ class GroupInvoices extends Component
                     $this->show_table =true;
                     $this->rest();
                 }
+                $invoiceType = $this->type == 1 ? 'نقدية' : 'آجل';
+                $message = 'تم إنشاء فاتورة جماعية ' . $invoiceType;
+                foreach ([$this->doctor_id, auth()->user()->id, $this->patient_id] as $userId) {
+                    $notification = new Notification();
+                    $notification->user_id = $userId;
+                    $notification->message = $message;
+                    $notification->save();
+                }
+
+                $data=[
+                    'patient' => $this->patient_id,
+                    'patient_id' => $this->patient_id,
+                    'invoice_id'=>$group_invoices->id,
+                    'doctor_id'=>$this->doctor_id,
+                    'invoice_type' => 'فاتورة جماعية ' . $invoiceType,
+                ];
+
+                event(new CreateInvoice($data));
 
             }
 
