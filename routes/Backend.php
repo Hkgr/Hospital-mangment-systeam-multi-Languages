@@ -172,9 +172,9 @@ Route::group(
                 ->whereNumber('laboratorie_employee');
             //############################# end laboratorie_employee route ######################################
 
-            //############################# laboratories route ##########################################
-            Route::get('laboratories', [LaboratorieController::class, 'index'])->name('admin.laboratorie.index');
-            Route::get('laboratories/{laboratorie}', [LaboratorieController::class, 'show'])->name('admin.laboratorie.show');
+            //############################# laboratories route (admin scoped) ############################
+            Route::get('admin/laboratories', [LaboratorieController::class, 'index'])->name('admin.laboratorie.index');
+            Route::get('admin/laboratories/{laboratorie}', [LaboratorieController::class, 'show'])->name('admin.laboratorie.show');
             //############################# end laboratories route ######################################
             
             //############################# single_invoices route ##########################################

@@ -132,7 +132,6 @@ $folder = 'admins';
             <ul class="slide-menu">
                 <li><a class="slide-item" href="{{ route('laboratorie_employee.index') }}">قائمة الموظفين</a></li>
                 <li><a class="slide-item" href="{{ route('admin.laboratorie.index') }}">كشوفات التحاليل</a></li>
-
             </ul>
         </li>
 

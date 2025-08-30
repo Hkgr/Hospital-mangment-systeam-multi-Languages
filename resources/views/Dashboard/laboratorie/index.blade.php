@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($labs as $lab)
+                            @foreach($laboratories as $lab)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$lab->description}}</td>
