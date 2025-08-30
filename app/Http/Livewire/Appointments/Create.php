@@ -14,7 +14,7 @@ class Create extends Component
     public $doctors;
     public $sections;
     public $doctor;
-    public $section_id;
+    public $section;
     public $name;
     public $email;
     public $phone;
@@ -48,28 +48,11 @@ class Create extends Component
         return view('livewire.appointments.create');
     }
 
-    public function updatedSectionId($section_id)
-        {
-        $this->loadDoctors($section_id);
-    }
-
-    public function loadDoctors($section_id)
+    public function updatedSection($section_id)
     {
-        // When section changes, reset selected doctor and load doctors of that section
-        $this->doctor = null;
-        if ($section_id) {
-            $this->doctors = Doctor::where('section_id', (int) $section_id)->get()->values();
-        } else {
-            $this->doctors = collect();
-        }
-    }
 
-    // public function updated($name, $value)
-    // {
-    //     if ($name === 'section_id') {
-    //         $this->loadDoctors((int) $value);
-    //     }
-    // }
+        $this->doctors = Doctor::where('section_id', $section_id)->get();
+    }
 
     public function store()
     {
@@ -102,7 +85,7 @@ class Create extends Component
 
         $appointments = new Appointment();
         $appointments->doctor_id = $this->doctor;
-        $appointments->section_id = $this->section_id;
+        $appointments->section_id = $this->section;
         $appointments->patient_id = $patient->id;
         $appointments->notes = $this->notes;
         $appointments->save();
