@@ -54,13 +54,24 @@ class Create extends Component
         $this->section_id = $section_id;
         $this->doctors = Doctor::where('section_id', $section_id)->get();
     }
-        public function updatedSection($section_id)
+    public function updatedSection($section_id)
     {
         $this->loadDoctors($section_id);
     }
 
     public function store()
     {
+        $this->validate([
+            'section_id' => 'required|exists:sections,id',
+            'doctor'     => 'required|exists:doctors,id',
+            'name'       => 'required|string|max:255',
+            'email'      => 'required|email',
+            'phone'      => 'required',
+            'gender'     => 'required',
+            'blood_group' => 'required',
+            'address'    => 'required',
+            'date_birth' => 'required|date',
+        ]);
         // if ($this->patient_id && $this->patient_id !== 'new') {
         //     $patient = Patient::findOrFail($this->patient_id);
         // } else {
@@ -90,7 +101,7 @@ class Create extends Component
 
         $appointments = new Appointment();
         $appointments->doctor_id = $this->doctor;
-        $appointments->section_id = $this->section;
+        $appointments->section_id = $this->section_id;
         $appointments->patient_id = $patient->id;
         $appointments->notes = $this->notes;
         $appointments->save();
