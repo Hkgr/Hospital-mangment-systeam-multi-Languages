@@ -23,17 +23,15 @@ class Createchat extends Component
     public function createConversation($receiver_email)
     {
 
-        $chek_Conversation = Conversation::chekConversation($this->auth_email, $receiver_email)->get();
-        if ($chek_Conversation->isEmpty()) {
+        $existingConversation = Conversation::chekConversation($this->auth_email, $receiver_email)->first();
+        if (!$existingConversation) {
             DB::beginTransaction();
             try {
-                // $createConversation
                 $createConversation = Conversation::create([
                     'sender_email' => $this->auth_email,
                     'receiver_email' => $receiver_email,
                     'last_time_message' => null,
                 ]);
-                // create message
                 Message::create([
                     'conversation_id' => $createConversation->id,
                     'sender_email' => $this->auth_email,
@@ -47,9 +45,10 @@ class Createchat extends Component
             }
         } else {
 
-            dd('Conversation yes');
+            // Conversation exists – redirect user back to the chat screen
+            session()->flash('message', 'المحادثة مفتوحة مسبقًا');
+            return redirect()->route(Auth::guard('patient')->check() ? 'chat.doctors' : 'chat.patients');
         }
-
     }
 
     public function render()
