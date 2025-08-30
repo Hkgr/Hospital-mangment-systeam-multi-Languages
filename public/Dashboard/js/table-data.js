@@ -44,7 +44,7 @@ $(function (e) {
 		],
 		responsive: true,
 		language: {
-			searchPlaceholder: 'Search...',
+			searchPlaceholder: '...ابحث',
 			sSearch: '',
 			lengthMenu: '_MENU_ ',
 		}
