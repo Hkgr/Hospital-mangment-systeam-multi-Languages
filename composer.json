@@ -14,7 +14,7 @@
         "joedixon/laravel-translation": "^1.1",
         "laravel/framework": "^10.0",
         "laravel/tinker": "^2.8",
-        "livewire/livewire": "*",
+        "livewire/livewire": "^3.6",
         "mcamara/laravel-localization": "^2.0",
         "opis/closure": "^4.0",
         "pusher/pusher-php-server": "^7.2",
