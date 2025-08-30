@@ -15,13 +15,12 @@ $folder = 'doctors';
 		<div class="app-sidebar__user clearfix">
 			<div class="dropdown user-pro-body">
 				<div class="">
-					@if($user?->image)
-					<img alt="user-img" class="avatar avatar-xl brround"
-						src="{{ URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) }}">
-					@else
-					<img alt="user-img" class="avatar avatar-xl brround"
-						src="{{ URL::asset('Dashboard/img/faces/6.jpg') }}">
-					@endif
+					@php
+					$path = $user?->image && $user->image->filename !== 'default.png'
+					? 'Dashboard/img/'.$folder.'/'.$user->image->filename
+					: 'Dashboard/img/default.png';
+					@endphp
+					<img alt="user-img" class="avatar avatar-xl brround" src="{{ URL::asset($path) }}">
 					<span class="avatar-status profile-status bg-green"></span>
 				</div>
 				<div class="user-info">

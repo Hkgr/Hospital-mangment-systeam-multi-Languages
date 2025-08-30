@@ -1,26 +1,26 @@
 @extends('Dashboard.layouts.master')
 @php
-    $user = null;
-    $folder = '';
-    if(auth('admin')->check()){
-        $user = auth('admin')->user();
-        $folder = 'admins';
-    }elseif(auth('doctor')->check()){
-        $user = auth('doctor')->user();
-        $folder = 'doctors';
-    }elseif(auth('patient')->check()){
-        $user = auth('patient')->user();
-        $folder = 'patients';
-    }elseif(auth('laboratorie_employee')->check()){
-        $user = auth('laboratorie_employee')->user();
-        $folder = 'laboratorie_employees';
-    }elseif(auth('ray_employee')->check()){
-        $user = auth('ray_employee')->user();
-        $folder = 'ray_employees';
-    }elseif(auth()->check()){
-        $user = auth()->user();
-        $folder = 'users';
-    }
+$user = null;
+$folder = '';
+if(auth('admin')->check()){
+$user = auth('admin')->user();
+$folder = 'admins';
+}elseif(auth('doctor')->check()){
+$user = auth('doctor')->user();
+$folder = 'doctors';
+}elseif(auth('patient')->check()){
+$user = auth('patient')->user();
+$folder = 'patients';
+}elseif(auth('laboratorie_employee')->check()){
+$user = auth('laboratorie_employee')->user();
+$folder = 'laboratorie_employees';
+}elseif(auth('ray_employee')->check()){
+$user = auth('ray_employee')->user();
+$folder = 'ray_employees';
+}elseif(auth()->check()){
+$user = auth()->user();
+$folder = 'users';
+}
 @endphp
 @section('css')
 @endsection
@@ -104,11 +104,12 @@
 						}
 						@endphp
 						<div class="main-img-user profile-user">
-							@if($user && $user->image)
-							<img alt="" src="{{URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename)}}">
-							@else
-							<img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}">
-							@endif
+							@php
+							$path = $user && $user->image && $user->image->filename !== 'default.png'
+							? 'Dashboard/img/'.$folder.'/'.$user->image->filename
+							: 'Dashboard/img/default.png';
+							@endphp
+							<img alt="" src="{{ URL::asset($path) }}">
 							<a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
 						</div>
 						<div class="d-flex justify-content-between mg-b-20">
@@ -266,7 +267,7 @@
 							<div class="mr-auto">
 								<h5 class="tx-13">عدد الاطباء</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">{{\App\Models\Doctor::count()}}</h2>
-								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>    زيادة     </p>
+								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i> زيادة </p>
 							</div>
 						</div>
 					</div>
@@ -282,7 +283,7 @@
 							<div class="mr-auto">
 								<h5 class="tx-13">عدد المرضى</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">{{\App\Models\Patient::count()}}</h2>
-								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>    زيادة     </p>
+								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i> زيادة </p>
 							</div>
 						</div>
 					</div>
@@ -298,7 +299,7 @@
 							<div class="mr-auto">
 								<h5 class="tx-13">عدد الاقسام</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">{{\App\Models\Section::count()}}</h2>
-								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i>    زيادة     </p>
+								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i> زيادة </p>
 							</div>
 						</div>
 					</div>

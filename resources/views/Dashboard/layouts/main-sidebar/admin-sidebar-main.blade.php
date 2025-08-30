@@ -6,13 +6,12 @@ $folder = 'admins';
     <div class="app-sidebar__user clearfix">
         <div class="dropdown user-pro-body">
             <div class="">
-                @if($user?->image)
-                <img alt="user-img" class="avatar avatar-xl brround"
-                    src="{{ URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) }}">
-                @else
-                <img alt="user-img" class="avatar avatar-xl brround"
-                    src="{{ URL::asset('Dashboard/img/faces/6.jpg') }}">
-                @endif
+                @php
+                $path = $user?->image && $user->image->filename !== 'default.png'
+                ? 'Dashboard/img/'.$folder.'/'.$user->image->filename
+                : 'Dashboard/img/default.png';
+                @endphp
+                <img alt="user-img" class="avatar avatar-xl brround" src="{{ URL::asset($path) }}">
                 <span class="avatar-status profile-status bg-green"></span>
             </div>
             <div class="user-info">
@@ -121,7 +120,7 @@ $folder = 'admins';
             <ul class="slide-menu">
                 <li><a class="slide-item" href="{{ route('ray_employee.index') }}">قائمة الموظفين</a></li>
                 <li><a class="slide-item" href="{{ route('admin.ray_invoices.index') }}">كشوفات الأشعة</a></li>
-                        </ul>
+            </ul>
         </li>
         <li class="slide">
             <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">

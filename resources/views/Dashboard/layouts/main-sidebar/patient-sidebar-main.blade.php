@@ -15,13 +15,12 @@ $folder = 'patients';
         <div class="app-sidebar__user clearfix">
             <div class="dropdown user-pro-body">
                 <div class="">
-                    @if($user?->image)
-                    <img alt="user-img" class="avatar avatar-xl brround"
-                        src="{{ URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) }}">
-                    @else
-                    <img alt="user-img" class="avatar avatar-xl brround"
-                        src="{{ URL::asset('Dashboard/img/faces/6.jpg') }}">
-                    @endif
+                    @php
+                    $path = $user?->image && $user->image->filename !== 'default.png'
+                    ? 'Dashboard/img/'.$folder.'/'.$user->image->filename
+                    : 'Dashboard/img/default.png';
+                    @endphp
+                    <img alt="user-img" class="avatar avatar-xl brround" src="{{ URL::asset($path) }}">
                     <span class="avatar-status profile-status bg-green"></span>
                 </div>
                 <div class="user-info">
@@ -62,8 +61,8 @@ $folder = 'patients';
                         <path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z" />
                     </svg><span class="side-menu__label">المواعيد</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('appointments.patient') }}">قائمة المواعيد</a></li>
-                <li><a class="slide-item" href="{{ route('appointments.expired.patient') }}">المواعيد المنتهية</a></li>
+                    <li><a class="slide-item" href="{{ route('appointments.patient') }}">قائمة المواعيد</a></li>
+                    <li><a class="slide-item" href="{{ route('appointments.expired.patient') }}">المواعيد المنتهية</a></li>
                 </ul>
             </li>
 

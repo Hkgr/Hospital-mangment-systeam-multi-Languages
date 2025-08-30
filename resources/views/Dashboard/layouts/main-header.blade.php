@@ -48,7 +48,7 @@ $folder = 'users';
             <ul class="nav">
                 <li class="nav-item d-flex align-items-center mr-3" id="online-indicator" title="حالة الاتصال">
                     <span class="status-dot" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#28a745"></span>
-                    <span class="ml-2 small" id="online-indicator-text">  متصل   </span>
+                    <span class="ml-2 small" id="online-indicator-text"> متصل </span>
                 </li>
                 <li class="">
                     <div class="dropdown  nav-itemd-none d-md-flex">
@@ -269,13 +269,23 @@ $folder = 'users';
                 </div>
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
                     <a class="profile-user d-flex" href="">
-                        <img alt="" src="{{ $user?->image ? URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) : URL::asset('Dashboard/img/faces/6.jpg') }}">
+                        @php
+                        $path = $user?->image && $user->image->filename !== 'default.png'
+                        ? 'Dashboard/img/'.$folder.'/'.$user->image->filename
+                        : 'Dashboard/img/default.png';
+                        @endphp
+                        <img alt="" src="{{ URL::asset($path) }}">
                     </a>
                     <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
                                 <div class="main-img-user">
-                                    <img alt="" src="{{ $user?->image ? URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) : URL::asset('Dashboard/img/faces/6.jpg') }}" class="">
+                                    @php
+                                    $path = $user?->image && $user->image->filename !== 'default.png'
+                                    ? 'Dashboard/img/'.$folder.'/'.$user->image->filename
+                                    : 'Dashboard/img/default.png';
+                                    @endphp
+                                    <img alt="" src="{{ URL::asset($path) }}" class="">
                                 </div>
                                 <div class="mr-3 my-auto">
                                     <h6>{{ $user?->name }}</h6><span>{{ $user?->email }}</span>
@@ -382,7 +392,8 @@ $channel = auth('doctor')->check()
         try {
             Echo.private(`{{ $channel }}`)
                 .listen('.create-invoice', handleCreateInvoiceEvent);
-        } catch (e) { /* noop */ }
+        } catch (e) {
+            /* noop */ }
     }
 
     // Initial subscribe only when online
@@ -390,8 +401,10 @@ $channel = auth('doctor')->check()
     // Resubscribe when app announces online state
     window.addEventListener('app:online', subscribeNotifications);
     // Leave channel when going offline
-    window.addEventListener('offline', function(){
-        try { if (typeof Echo !== 'undefined') Echo.leave(`{{ $channel }}`); } catch(e){}
+    window.addEventListener('offline', function() {
+        try {
+            if (typeof Echo !== 'undefined') Echo.leave(`{{ $channel }}`);
+        } catch (e) {}
     });
 </script>
 
