@@ -57,6 +57,7 @@ class Chatbox extends Component
     {
         $broadcastMessage = Message::find($event['message']);
         $broadcastMessage->read = 1;
+        $broadcastMessage->save();
         $this->pushMessage($broadcastMessage->id);
     }
 

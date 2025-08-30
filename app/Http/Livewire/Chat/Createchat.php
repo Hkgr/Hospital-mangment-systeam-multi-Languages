@@ -58,7 +58,9 @@ class Createchat extends Component
         } else {
             $this->users = Patient::all();
         }
-        // Return the view directly; Blade handles layout via @extends in the view file
-        return view('livewire.chat.createchat');
+        // Use Livewire's layout chaining to render within the dashboard layout
+        return view('livewire.chat.createchat')
+            ->extends('Dashboard.layouts.master')
+            ->section('content');
     }
 }
