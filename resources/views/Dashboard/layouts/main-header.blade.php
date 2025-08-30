@@ -352,8 +352,9 @@ $folder = 'users';
     new_message.hide();
 
 
-    `Echo.private('create-invoice.{{ auth('doctor')->id() }}')`
-    .listen('.create-invoice', (data) => {
+    var userId = @json(auth('doctor')->id());
+    Echo.private(`create-invoice.${userId}`)
+        .listen('.create-invoice', (data) => {
         const text = $('<div>').text(data.message + data.patient).html();
         const time = $('<div>').text(data.created_at).html();
 

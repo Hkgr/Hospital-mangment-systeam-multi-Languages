@@ -89,8 +89,8 @@
 	<div class="col-md-12 col-lg-4 col-xl-4">
 		<div class="card">
 			<div class="card-header pb-1">
-				<h3 class="card-title mb-2">Recent Customers</h3>
-				<p class="tx-12 mb-0 text-muted">A customer is an individual or business that purchases the goods service has evolved to include real-time</p>
+				<h3 class="card-title mb-2">أخر المرضى المسجلين</h3>
+				<p class="tx-12 mb-0 text-muted">المرضى المسجلين من قسم الاستقبال</p>
 			</div>
 			<div class="card-body p-0 customers mt-1">
 				<div class="list-group list-lg-group list-group-flush">
@@ -127,17 +127,17 @@
 	<div class="col-md-12 col-lg-8 col-xl-8">
 		<div class="card card-table-two">
 			<div class="d-flex justify-content-between">
-				<h4 class="card-title mb-1">Top Sections by Revenue</h4>
+				<h4 class="card-title mb-1">أعلى الأقسام دخلاً</h4>
 				<i class="mdi mdi-dots-horizontal text-gray"></i>
 			</div>
-			<span class="tx-12 tx-muted mb-3 ">Sections generating the highest income.</span>
+			<span class="tx-12 tx-muted mb-3 ">يحسب الدخل من مجموع الفواتير الداخلة للنظام لكل قسم.</span>
 			<div class="table-responsive country-table">
 				<table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
 					<thead>
 						<tr>
-							<th class="wd-lg-40p">Section</th>
-							<th class="wd-lg-30p tx-right">Revenue</th>
-							<th class="wd-lg-30p tx-right">Patients</th>
+							<th class="wd-lg-40p">القسم</th>
+							<th class="wd-lg-30p tx-right">الدخل</th>
+							<th class="wd-lg-30p tx-right">عدد الأطباء</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -192,7 +192,7 @@
 <div class="row row-sm row-deck">
 	<div class="col-md-12 col-lg-4 col-xl-4">
 		<div class="card card-dashboard-eight pb-2">
-			<h6 class="card-title">Top Doctors by Revenue</h6><span class="d-block mg-b-10 text-muted tx-12">Most profitable doctors based on issued invoices</span>
+			<h6 class="card-title">أعلى الأطباء دخلاً</h6><span class="d-block mg-b-10 text-muted tx-12">يحسل دخل الطبيب من مجموع الفواتير الداخلة من المرضى المسجلين.</span>
 			<div class="list-group">
 				@foreach($topDoctors as $doctor)
 				<div class="list-group-item @if($loop->first) border-top-0 @endif">
@@ -205,23 +205,23 @@
 	</div>
 
 	<div class="col-md-12 col-lg-8 col-xl-8">
-	<div class="card ">
+		<div class="card ">
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="d-flex align-items-center pb-2">
-							<p class="mb-0">Total Sales</p>
+							<p class="mb-0">مجموع صافي الربح</p>
 						</div>
-						<h4 class="font-weight-bold mb-2">$7,590</h4>
+						<h4 class="font-weight-bold mb-2">{{ number_format($totalRevenue, 2) }}</h4>
 						<div class="progress progress-style progress-sm">
 							<div class="progress-bar bg-primary-gradient wd-80p" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78"></div>
 						</div>
 					</div>
 					<div class="col-md-6 mt-4 mt-md-0">
 						<div class="d-flex align-items-center pb-2">
-							<p class="mb-0">Active Users</p>
+							<p class="mb-0">مجموع المستخدمين</p>
 						</div>
-						<h4 class="font-weight-bold mb-2">$5,460</h4>
+						<h4 class="font-weight-bold mb-2">{{ $totalUsers }}</h4>
 						<div class="progress progress-style progress-sm">
 							<div class="progress-bar bg-danger-gradient wd-75" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
 						</div>

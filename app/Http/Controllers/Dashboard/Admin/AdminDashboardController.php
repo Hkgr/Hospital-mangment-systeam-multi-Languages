@@ -9,6 +9,9 @@ use App\Models\Invoice;
 use App\Models\Patient;
 use App\Models\Section;
 use App\Models\Service;
+use App\Models\Admin;
+use App\Models\RayEmployee;
+use App\Models\LaboratorieEmployee;
 use Illuminate\Support\Facades\DB;
 
 class AdminDashboardController extends Controller
@@ -61,8 +64,16 @@ class AdminDashboardController extends Controller
 
         $totalServices = Service::count();
         $paidInvoices = $invoiceCompleted;
-        $totalProfit = Invoice::where('invoice_status', 3)->sum('total_with_tax');
-        
+        $totalRevenue = Invoice::where('invoice_status', 3)->sum('total_with_tax');
+        $totalProfit = $totalRevenue;
+
+        $doctorCount = Doctor::count();
+        $patientCount = Patient::count();
+        $adminCount = Admin::count();
+        $rayCount = RayEmployee::count();
+        $labCount = LaboratorieEmployee::count();
+        $totalUsers = $doctorCount + $patientCount + $adminCount + $rayCount + $labCount;
+
         return view('Dashboard.Admin.dashboard', compact(
             'invoicePending',
             'invoiceReview',
@@ -75,7 +86,9 @@ class AdminDashboardController extends Controller
             'paidInvoices',
             'totalProfit',
             'ordersDelivered',
-            'ordersCancelled'
+            'ordersCancelled',
+            'totalRevenue',
+            'totalUsers'
         ));
     }
 }
