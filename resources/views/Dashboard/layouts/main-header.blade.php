@@ -120,8 +120,7 @@ $folder = 'users';
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">Messages</h6>
-                                <span
-                                    class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All Read</span>
+                                <span class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All Read</span>
                             </div>
                             <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">You have 4 unread
                                 messages</p>
@@ -211,8 +210,10 @@ $folder = 'users';
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">الاشعارات</h6>
-                                <span
-                                    class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All Read</span>
+                                <form action="{{ route('notifications.markAllRead') }}" method="POST" class="mr-auto my-auto">
+                                    @csrf
+                                    <button type="submit" class="badge badge-pill badge-warning float-left border-0">Mark All Read</button>
+                                </form>
                             </div>
                             <p data-count="{{App\Models\Notification::countNotification(auth()->user()->id)->count()}}" class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">{{App\Models\Notification::countnotification(auth()->user()->id)->count()}}</p>
                         </div>

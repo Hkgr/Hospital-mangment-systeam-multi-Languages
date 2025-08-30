@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Web\AmbulanceCallController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,5 +66,9 @@ Route::group(
 
         Route::post('/ambulance-call', [AmbulanceCallController::class, 'store'])
             ->name('ambulance.call.store');
+
+            
+        Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllRead'])
+        ->name('notifications.markAllRead');
     }
 );
