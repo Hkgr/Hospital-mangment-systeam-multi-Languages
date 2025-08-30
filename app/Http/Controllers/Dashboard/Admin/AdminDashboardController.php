@@ -33,7 +33,7 @@ class AdminDashboardController extends Controller
             ->count();
         $recentPatients = Patient::with('image')
             ->latest()
-            ->take(6)
+            ->take(4)
             ->get();
 
         // Revenue and patient statistics grouped by section
@@ -59,7 +59,7 @@ class AdminDashboardController extends Controller
             ->groupBy('doctor_id')
             ->with('Doctor')
             ->orderByDesc('total_revenue')
-            ->take(5)
+            ->take(3)
             ->get();
 
         $totalServices = Service::count();

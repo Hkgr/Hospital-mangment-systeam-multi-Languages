@@ -56,6 +56,7 @@ class PatientRepository implements PatientRepositoryInterface
            $Patients->Gender = $request->Gender;
            $Patients->Blood_Group = $request->Blood_Group;
            $Patients->save();
+           $Patients->image()->create(['filename' => 'default.png']);
            //insert trans
            $Patients->name = $request->name;
            $Patients->Address = $request->Address;
