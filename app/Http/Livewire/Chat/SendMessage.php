@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Chat;
 
-use App\Events\MassageSent;
-use App\Events\MassageSent2;
+use App\Events\MessageSent;
+use App\Events\MessageSent2;
 use App\Models\Conversation;
 use App\Models\Doctor;
 use App\Models\Message;
@@ -63,12 +63,12 @@ class SendMessage extends Component
         $this->reset('body');
         $this->emitTo('chat.chatbox', 'pushMessage', $this->createdMessage->id);
         $this->emitTo('chat.chatlist', 'refresh');
-        $this->emitSelf('dispatchSentMassage');
+        $this->emitSelf('dispatchSentMessage');
     }
-    public function dispatchSentMassage()
+    public function dispatchSentMessage()
     {
         if (Auth::guard('patient')->check()) {
-            broadcast(new MassageSent(
+            broadcast(new MessageSent(
                 $this->sender,
                 $this->createdMessage,
                 $this->selected_conversation,
@@ -76,7 +76,7 @@ class SendMessage extends Component
             ));
         }
         else{
-            broadcast(new MassageSent2(
+            broadcast(new MessageSent2(
                 $this->sender,
                 $this->createdMessage,
                 $this->selected_conversation,
