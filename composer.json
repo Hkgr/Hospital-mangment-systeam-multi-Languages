@@ -14,11 +14,11 @@
         "joedixon/laravel-translation": "^1.1",
         "laravel/framework": "^10.0",
         "laravel/tinker": "^2.8",
-        "livewire/livewire": "^3.0",
+        "livewire/livewire": "*",
         "mcamara/laravel-localization": "^2.0",
+        "opis/closure": "^4.0",
         "pusher/pusher-php-server": "^7.2",
-        "twilio/sdk": "^6.44",
-        "opis/closure": "^4.0"
+        "twilio/sdk": "^6.44"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
