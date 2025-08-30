@@ -10,8 +10,18 @@ class NotificationController extends Controller
 {
     public function markAllRead(): RedirectResponse
     {
-        Notification::where('user_id', Auth::id())
-            ->update(['reader_status' => true]);
+        $userId = auth('admin')->id()
+            ?? auth('doctor')->id()
+            ?? auth('patient')->id()
+            ?? auth('laboratorie_employee')->id()
+            ?? auth('ray_employee')->id()
+            ?? auth()->id();
+
+        if (! $userId) {
+            return redirect()->back();
+        }
+
+        Notification::where('user_id', $userId)->update(['reader_status' => true]);
 
         return redirect()->back();
     }
