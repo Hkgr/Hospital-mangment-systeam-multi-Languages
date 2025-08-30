@@ -341,8 +341,14 @@ $folder = 'users';
 
 <script src="{{asset('js/app.js')}}"></script>
 
+
+@php
+$channel = auth('doctor')->check()
+? 'create-invoice.' . auth('doctor')->id()
+: 'create-invoice.admin';
+@endphp
+
 <script>
-    //$user = auth('doctor')->user() ?? auth('admin')->user());
     var notificationsWrapper = $('.dropdown-notifications');
     var notificationsCountElem = notificationsWrapper.find('p[data-count]');
     var notificationsCount = parseInt(notificationsCountElem.data('count')) || 0;
@@ -351,24 +357,22 @@ $folder = 'users';
     var new_message = notificationsWrapper.find('.new_message');
     new_message.hide();
 
-
-    var userId = JSON.parse(String.raw`@json(auth('doctor')->id())`);
-    Echo.private(`create-invoice.${userId}`)
+    Echo.private(`{{ $channel }}`)
         .listen('.create-invoice', (data) => {
-        const text = $('<div>').text(data.message + data.patient).html();
-        const time = $('<div>').text(data.created_at).html();
+            const text = $('<div>').text(data.message + data.patient).html();
+            const time = $('<div>').text(data.created_at).html();
 
-        const newNotificationHtml = `
+            const newNotificationHtml = `
                 <h4 class="notification-label mb-1">${text}</h4>
                 <div class="notification-subtext">${time}</div>`;
 
-        new_message.show();
-        notifications.html(newNotificationHtml);
-        notificationsCount += 1;
-        notificationsCountElem.attr('data-count', notificationsCount);
-        notificationsWrapper.find('.notif-count').text(notificationsCount);
-        notificationsWrapper.show();
-    });
+            new_message.show();
+            notifications.html(newNotificationHtml);
+            notificationsCount += 1;
+            notificationsCountElem.attr('data-count', notificationsCount);
+            notificationsWrapper.find('.notif-count').text(notificationsCount);
+            notificationsWrapper.show();
+        });
 </script>
 
 
