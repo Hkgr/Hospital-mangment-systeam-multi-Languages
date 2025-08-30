@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\User;
 
 class RegistrationTest extends TestCase
 {
@@ -28,5 +29,13 @@ class RegistrationTest extends TestCase
 
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
+        
+        $user = User::where('email', 'test@example.com')->first();
+        $this->assertNotNull($user->image);
+        $this->assertDatabaseHas('images', [
+            'imageable_id' => $user->id,
+            'imageable_type' => User::class,
+            'filename' => 'default.png',
+        ]);
     }
 }

@@ -44,6 +44,8 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]));
 
+        $user->image()->create(['filename' => 'default.png']);
+        
         event(new Registered($user));
 
         return redirect(RouteServiceProvider::HOME);
