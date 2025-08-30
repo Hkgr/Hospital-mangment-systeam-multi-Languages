@@ -48,8 +48,8 @@ class Create extends Component
         return view('livewire.appointments.create');
     }
 
-    public function updatedSection($section_id)
-    {
+    public function updatedSectionId($section_id)
+        {
         $this->loadDoctors($section_id);
     }
 
@@ -64,12 +64,12 @@ class Create extends Component
         }
     }
 
-    public function updated($name, $value)
-    {
-        if ($name === 'section_id') {
-            $this->loadDoctors((int) $value);
-        }
-    }
+    // public function updated($name, $value)
+    // {
+    //     if ($name === 'section_id') {
+    //         $this->loadDoctors((int) $value);
+    //     }
+    // }
 
     public function store()
     {
