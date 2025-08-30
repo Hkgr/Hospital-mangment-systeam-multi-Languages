@@ -23,8 +23,8 @@ class Createchat extends Component
     public function createConversation($receiver_email)
     {
 
-        $existingConversation = Conversation::chekConversation($this->auth_email, $receiver_email)->first();
-        if (!$existingConversation) {
+        $existingConversation = Conversation::checkConversation($this->auth_email, $receiver_email)->first();
+                if (!$existingConversation) {
             DB::beginTransaction();
             try {
                 $createConversation = Conversation::create([

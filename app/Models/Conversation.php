@@ -8,16 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Conversation extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    protected $guarded = [];
 
-    public function scopechekConversation($query,$auth_email,$receiver_email){
-        return $query->where('sender_email',$auth_email)
-            ->where('receiver_email',$receiver_email)->orwhere('receiver_email',$auth_email)->
-            where('sender_email',$receiver_email);
+    public function scopeCheckConversation($query, $auth_email, $receiver_email)
+    {
+        return $query->where(function ($q) use ($auth_email, $receiver_email) {
+            $q->where('sender_email', $auth_email)
+                ->where('receiver_email', $receiver_email);
+        })->orWhere(function ($q) use ($auth_email, $receiver_email) {
+            $q->where('sender_email', $receiver_email)
+                ->where('receiver_email', $auth_email);
+        });
     }
 
-     public function messages(){
-
+    public function messages()
+    {
         return $this->hasMany(Message::class);
-     }
+    }
 }
