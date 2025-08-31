@@ -12,6 +12,7 @@ use App\Models\PatientAccount;
 use App\Models\Service;
 use App\Models\single_invoice;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Insurance;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
@@ -24,6 +25,14 @@ class SingleInvoices extends Component
     public $tax_rate = 17;
     public $updateMode = false;
     public $price,$discount_value = 0 ,$patient_id,$doctor_id,$section_id,$type,$Service_id,$single_invoice_id,$catchError;
+    public $insurance_id,$insurance_discount = 0,$company_rate = 0,$insurance_amount = 0,$patient_amount = 0;
+
+    protected $rules = [
+        'tax_rate' => 'nullable|numeric|min:0|max:100',
+        'insurance_discount' => 'nullable|numeric|min:0|max:100',
+        'company_rate' => 'nullable|numeric|min:0|max:100',
+    ];
+
 
 
     public function mount(){
@@ -35,14 +44,46 @@ class SingleInvoices extends Component
 
     public function render()
     {
+        [$subtotal,$tax_value,$total_with_tax,$insurance_amount,$patient_amount] = $this->calculateTotals();
+        $this->insurance_amount = $insurance_amount;
+        $this->patient_amount = $patient_amount;
         return view('livewire.single_invoices.single-invoices', [
             'single_invoices'=>Invoice::where('invoice_type',1)->get(),
             'Patients'=> Patient::all(),
             'Doctors'=> Doctor::all(),
             'Services'=> Service::all(),
-            'subtotal' => $Total_after_discount = ((is_numeric($this->price) ? $this->price : 0)) - ((is_numeric($this->discount_value) ? $this->discount_value : 0)),
-            'tax_value'=> $Total_after_discount * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100)
+            'Insurances'=> Insurance::all(),
+            'subtotal' => $subtotal,
+            'tax_value'=> $tax_value,
+            'total'=>$total_with_tax,
         ]);
+    }
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
+    public function updatedInsuranceId($value)
+    {
+        if($value){
+            $insurance = Insurance::find($value);
+            $this->insurance_discount = $insurance->discount_percentage;
+            $this->company_rate = $insurance->Company_rate;
+        } else {
+            $this->insurance_discount = 0;
+            $this->company_rate = 0;
+        }
+    }
+
+    private function calculateTotals()
+    {
+        $subtotal = ((is_numeric($this->price) ? $this->price : 0)) - ((is_numeric($this->discount_value) ? $this->discount_value : 0));
+        $subtotal -= $subtotal * ((is_numeric($this->insurance_discount) ? $this->insurance_discount : 0) / 100);
+        $tax_value = $subtotal * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+        $total = $subtotal + $tax_value;
+        $insurance_amount = $total * ((is_numeric($this->company_rate) ? $this->company_rate : 0) / 100);
+        $patient_amount = $total - $insurance_amount;
+        return [$subtotal,$tax_value,$total,$insurance_amount,$patient_amount];
     }
 
     public function show_form_add(){
@@ -92,6 +133,11 @@ class SingleInvoices extends Component
         $this->price = $single_invoice->price;
         $this->discount_value = $single_invoice->discount_value;
         $this->type = $single_invoice->type;
+        $this->insurance_id = $single_invoice->insurance_id;
+        $this->insurance_discount = $single_invoice->insurance_discount;
+        $this->company_rate = $single_invoice->company_rate;
+        $this->insurance_amount = $single_invoice->insurance_amount;
+        $this->patient_amount = $single_invoice->patient_amount;
 
 
     }
@@ -99,7 +145,7 @@ class SingleInvoices extends Component
 
 
     public function store(){
-
+        $this->validate();
         // في حالة كانت الفاتورة نقدي
         if($this->type == 1){
 
@@ -117,20 +163,24 @@ class SingleInvoices extends Component
                     $single_invoices->section_id = DB::table('section_translations')->where('name', $this->section_id)->first()->section_id;
                     $single_invoices->Service_id = $this->Service_id;
                     $single_invoices->price = $this->price;
+                    [$subtotal,$tax_value,$total,$insurance_amount,$patient_amount] = $this->calculateTotals();
                     $single_invoices->discount_value = $this->discount_value;
                     $single_invoices->tax_rate = $this->tax_rate;
-                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
-                    $single_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
-                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
-                    $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
+                    $single_invoices->insurance_id = $this->insurance_id;
+                    $single_invoices->insurance_discount = $this->insurance_discount;
+                    $single_invoices->company_rate = $this->company_rate;
+                    $single_invoices->tax_value = $tax_value;
+                    $single_invoices->total_with_tax = $total;
+                    $single_invoices->insurance_amount = $insurance_amount;
+                    $single_invoices->patient_amount = $patient_amount;
                     $single_invoices->type = $this->type;
                     $single_invoices->save();
 
                     $fund_accounts = FundAccount::where('invoice_id',$this->single_invoice_id)->first();
                     $fund_accounts->date = date('Y-m-d');
                     $fund_accounts->invoice_id = $single_invoices->id;
-                    $fund_accounts->Debit = $single_invoices->total_with_tax;
-                    $fund_accounts->credit = 0.00;
+                    $fund_accounts->Debit = $single_invoices->patient_amount;
+                                        $fund_accounts->credit = 0.00;
                     $fund_accounts->save();
                     $this->InvoiceUpdated =true;
                     $this->show_table =true;
@@ -149,12 +199,16 @@ class SingleInvoices extends Component
                     $single_invoices->section_id = DB::table('section_translations')->where('name', $this->section_id)->first()->section_id;
                     $single_invoices->Service_id = $this->Service_id;
                     $single_invoices->price = $this->price;
+                    [$subtotal,$tax_value,$total,$insurance_amount,$patient_amount] = $this->calculateTotals();
                     $single_invoices->discount_value = $this->discount_value;
                     $single_invoices->tax_rate = $this->tax_rate;
-                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
-                    $single_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
-                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
-                    $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
+                    $single_invoices->insurance_id = $this->insurance_id;
+                    $single_invoices->insurance_discount = $this->insurance_discount;
+                    $single_invoices->company_rate = $this->company_rate;
+                    $single_invoices->tax_value = $tax_value;
+                    $single_invoices->total_with_tax = $total;
+                    $single_invoices->insurance_amount = $insurance_amount;
+                    $single_invoices->patient_amount = $patient_amount;
                     $single_invoices->type = $this->type;
                     $single_invoices->invoice_status = 1;
                     $single_invoices->save();
@@ -162,8 +216,8 @@ class SingleInvoices extends Component
                     $fund_accounts = new FundAccount();
                     $fund_accounts->date = date('Y-m-d');
                     $fund_accounts->invoice_id = $single_invoices->id;
-                    $fund_accounts->Debit = $single_invoices->total_with_tax;
-                    $fund_accounts->credit = 0.00;
+                    $fund_accounts->Debit = $single_invoices->patient_amount;
+                                        $fund_accounts->credit = 0.00;
                     $fund_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
@@ -214,12 +268,16 @@ class SingleInvoices extends Component
                     $single_invoices->section_id = DB::table('section_translations')->where('name', $this->section_id)->first()->section_id;
                     $single_invoices->Service_id = $this->Service_id;
                     $single_invoices->price = $this->price;
+                    [$subtotal,$tax_value,$total,$insurance_amount,$patient_amount] = $this->calculateTotals();
                     $single_invoices->discount_value = $this->discount_value;
                     $single_invoices->tax_rate = $this->tax_rate;
-                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
-                    $single_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
-                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
-                    $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
+                    $single_invoices->insurance_id = $this->insurance_id;
+                    $single_invoices->insurance_discount = $this->insurance_discount;
+                    $single_invoices->company_rate = $this->company_rate;
+                    $single_invoices->tax_value = $tax_value;
+                    $single_invoices->total_with_tax = $total;
+                    $single_invoices->insurance_amount = $insurance_amount;
+                    $single_invoices->patient_amount = $patient_amount;
                     $single_invoices->type = $this->type;
                     $single_invoices->save();
 
@@ -228,8 +286,8 @@ class SingleInvoices extends Component
                     $patient_accounts->date = date('Y-m-d');
                     $patient_accounts->invoice_id = $single_invoices->id;
                     $patient_accounts->patient_id = $single_invoices->patient_id;
-                    $patient_accounts->Debit = $single_invoices->total_with_tax;
-                    $patient_accounts->credit = 0.00;
+                    $patient_accounts->Debit = $single_invoices->patient_amount;
+                                        $patient_accounts->credit = 0.00;
                     $patient_accounts->save();
                     $this->InvoiceUpdated =true;
                     $this->show_table =true;
@@ -247,12 +305,16 @@ class SingleInvoices extends Component
                     $single_invoices->section_id = DB::table('section_translations')->where('name', $this->section_id)->first()->section_id;
                     $single_invoices->Service_id = $this->Service_id;
                     $single_invoices->price = $this->price;
+                    [$subtotal,$tax_value,$total,$insurance_amount,$patient_amount] = $this->calculateTotals();
                     $single_invoices->discount_value = $this->discount_value;
                     $single_invoices->tax_rate = $this->tax_rate;
-                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
-                    $single_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
-                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
-                    $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
+                    $single_invoices->insurance_id = $this->insurance_id;
+                    $single_invoices->insurance_discount = $this->insurance_discount;
+                    $single_invoices->company_rate = $this->company_rate;
+                    $single_invoices->tax_value = $tax_value;
+                    $single_invoices->total_with_tax = $total;
+                    $single_invoices->insurance_amount = $insurance_amount;
+                    $single_invoices->patient_amount = $patient_amount;
                     $single_invoices->type = $this->type;
                     $single_invoices->invoice_status = 1;
                     $single_invoices->save();
@@ -261,8 +323,8 @@ class SingleInvoices extends Component
                     $patient_accounts->date = date('Y-m-d');
                     $patient_accounts->invoice_id = $single_invoices->id;
                     $patient_accounts->patient_id = $single_invoices->patient_id;
-                    $patient_accounts->Debit = $single_invoices->total_with_tax;
-                    $patient_accounts->credit = 0.00;
+                    $patient_accounts->Debit = $single_invoices->patient_amount;
+                                        $patient_accounts->credit = 0.00;
                     $patient_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
