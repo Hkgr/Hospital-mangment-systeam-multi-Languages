@@ -68,10 +68,10 @@
                                                     </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
 
                                                 </form>
-                                                <div class="main-signin-footer mt-5">
+                                                <!-- <div class="main-signin-footer mt-5">
                                                     <p><a href="">{{trans('Dashboard/login_trans.forgot_password')}}</a></p>
                                                     <p> {{trans('Dashboard/login_trans.have_account')}}<a href="{{ url('/' . $page='signup') }}"> {{trans('Dashboard/login_trans.create_account')}}</a></p>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             {{--form admin--}}
@@ -87,10 +87,10 @@
                                                     </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
 
                                                 </form>
-                                                <div class="main-signin-footer mt-5">
+                                                <!-- <div class="main-signin-footer mt-5">
                                                     <p><a href="">{{trans('Dashboard/login_trans.forgot_password')}}</a></p>
                                                     <p> {{trans('Dashboard/login_trans.have_account')}}<a href="{{ url('/' . $page='signup') }}"> {{trans('Dashboard/login_trans.create_account')}}</a></p>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             {{--form Doctor--}}
@@ -106,10 +106,10 @@
                                                     </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
 
                                                 </form>
-                                                <div class="main-signin-footer mt-5">
+                                                <!-- <div class="main-signin-footer mt-5">
                                                     <p><a href="">{{trans('Dashboard/login_trans.forgot_password')}}</a></p>
                                                     <p> {{trans('Dashboard/login_trans.have_account')}}<a href="{{ url('/' . $page='signup') }}"> {{trans('Dashboard/login_trans.create_account')}}</a></p>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             {{--form RayEmployee--}}
@@ -125,10 +125,10 @@
                                                     </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
 
                                                 </form>
-                                                <div class="main-signin-footer mt-5">
+                                                <!-- <div class="main-signin-footer mt-5">
                                                     <p><a href="">{{trans('Dashboard/login_trans.forgot_password')}}</a></p>
                                                     <p> {{trans('Dashboard/login_trans.have_account')}}<a href="{{ url('/' . $page='signup') }}"> {{trans('Dashboard/login_trans.create_account')}}</a></p>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             {{--form laboratorie_employee--}}
@@ -144,10 +144,10 @@
                                                     </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
 
                                                 </form>
-                                                <div class="main-signin-footer mt-5">
+                                                <!-- <div class="main-signin-footer mt-5">
                                                     <p><a href="">{{trans('Dashboard/login_trans.forgot_password')}}</a></p>
                                                     <p> {{trans('Dashboard/login_trans.have_account')}}<a href="{{ url('/' . $page='signup') }}"> {{trans('Dashboard/login_trans.create_account')}}</a></p>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Events\CreateInvoice;
 use App\Models\Doctor;
+use App\Models\Admin;
 use App\Models\FundAccount;
 use App\Models\Invoice;
 use App\Models\Notification;
@@ -19,13 +20,13 @@ use Livewire\Component;
 
 class SingleInvoices extends Component
 {
-    public $InvoiceSaved,$InvoiceUpdated;
+    public $InvoiceSaved, $InvoiceUpdated;
     public $show_table = true;
     public $username;
     public $tax_rate = 17;
     public $updateMode = false;
-    public $price,$discount_value = 0 ,$patient_id,$doctor_id,$section_id,$type,$Service_id,$single_invoice_id,$catchError;
-    public $insurance_id,$insurance_discount = 0,$company_rate = 0,$insurance_amount = 0,$patient_amount = 0;
+    public $price, $discount_value = 0, $patient_id, $doctor_id, $section_id, $type, $Service_id, $single_invoice_id, $catchError;
+    public $insurance_id, $insurance_discount = 0, $company_rate = 0, $insurance_amount = 0, $patient_amount = 0;
 
     protected $rules = [
         'tax_rate' => 'nullable|numeric|min:0|max:100',
@@ -35,27 +36,28 @@ class SingleInvoices extends Component
 
 
 
-    public function mount(){
+    public function mount()
+    {
 
         $this->username = auth()->user()->name;
-     }
+    }
 
 
 
     public function render()
     {
-        [$subtotal,$tax_value,$total_with_tax,$insurance_amount,$patient_amount] = $this->calculateTotals();
+        [$subtotal, $tax_value, $total_with_tax, $insurance_amount, $patient_amount] = $this->calculateTotals();
         $this->insurance_amount = $insurance_amount;
         $this->patient_amount = $patient_amount;
         return view('livewire.single_invoices.single-invoices', [
-            'single_invoices'=>Invoice::where('invoice_type',1)->get(),
-            'Patients'=> Patient::all(),
-            'Doctors'=> Doctor::all(),
-            'Services'=> Service::all(),
-            'Insurances'=> Insurance::all(),
+            'single_invoices' => Invoice::where('invoice_type', 1)->get(),
+            'Patients' => Patient::all(),
+            'Doctors' => Doctor::all(),
+            'Services' => Service::all(),
+            'Insurances' => Insurance::all(),
             'subtotal' => $subtotal,
-            'tax_value'=> $tax_value,
-            'total'=>$total_with_tax,
+            'tax_value' => $tax_value,
+            'total' => $total_with_tax,
         ]);
     }
     public function updated($propertyName)
@@ -65,7 +67,7 @@ class SingleInvoices extends Component
 
     public function updatedInsuranceId($value)
     {
-        if($value){
+        if ($value) {
             $insurance = Insurance::find($value);
             $this->insurance_discount = $insurance->discount_percentage;
             $this->company_rate = $insurance->Company_rate;
@@ -83,17 +85,18 @@ class SingleInvoices extends Component
         $total = $subtotal + $tax_value;
         $insurance_amount = $total * ((is_numeric($this->company_rate) ? $this->company_rate : 0) / 100);
         $patient_amount = $total - $insurance_amount;
-        return [$subtotal,$tax_value,$total,$insurance_amount,$patient_amount];
+        return [$subtotal, $tax_value, $total, $insurance_amount, $patient_amount];
     }
 
-    public function show_form_add(){
+    public function show_form_add()
+    {
         $this->show_table = false;
     }
 
     public function print($id)
     {
         $single_invoice = Invoice::findorfail($id);
-        return Redirect::route('Print_single_invoices',[
+        return Redirect::route('Print_single_invoices', [
             'invoice_date' => $single_invoice->invoice_date,
             'doctor_id' => $single_invoice->Doctor->name,
             'section_id' => $single_invoice->Section->name,
@@ -109,14 +112,12 @@ class SingleInvoices extends Component
             'insurance_amount' => $single_invoice->insurance_amount,
             'patient_amount' => $single_invoice->patient_amount,
         ]);
-
     }
 
     public function get_section()
     {
         $doctor_id = Doctor::with('section')->where('id', $this->doctor_id)->first();
         $this->section_id = $doctor_id->section->name;
-
     }
 
     public function get_price()
@@ -125,7 +126,8 @@ class SingleInvoices extends Component
     }
 
 
-    public function edit($id){
+    public function edit($id)
+    {
 
         $this->show_table = false;
         $this->updateMode = true;
@@ -143,22 +145,21 @@ class SingleInvoices extends Component
         $this->company_rate = $single_invoice->company_rate;
         $this->insurance_amount = $single_invoice->insurance_amount;
         $this->patient_amount = $single_invoice->patient_amount;
-
-
     }
 
 
 
-    public function store(){
+    public function store()
+    {
         $this->validate();
         // في حالة كانت الفاتورة نقدي
-        if($this->type == 1){
+        if ($this->type == 1) {
 
             DB::beginTransaction();
             try {
 
                 // في حالة التعديل
-                if($this->updateMode){
+                if ($this->updateMode) {
 
                     $single_invoices = Invoice::findorfail($this->single_invoice_id);
                     $single_invoices->invoice_type = 1;
@@ -168,7 +169,7 @@ class SingleInvoices extends Component
                     $single_invoices->section_id = DB::table('section_translations')->where('name', $this->section_id)->first()->section_id;
                     $single_invoices->Service_id = $this->Service_id;
                     $single_invoices->price = $this->price;
-                    [$subtotal,$tax_value,$total,$insurance_amount,$patient_amount] = $this->calculateTotals();
+                    [$subtotal, $tax_value, $total, $insurance_amount, $patient_amount] = $this->calculateTotals();
                     $single_invoices->discount_value = $this->discount_value;
                     $single_invoices->tax_rate = $this->tax_rate;
                     $single_invoices->insurance_id = $this->insurance_id;
@@ -181,20 +182,18 @@ class SingleInvoices extends Component
                     $single_invoices->type = $this->type;
                     $single_invoices->save();
 
-                    $fund_accounts = FundAccount::where('invoice_id',$this->single_invoice_id)->first();
+                    $fund_accounts = FundAccount::where('invoice_id', $this->single_invoice_id)->first();
                     $fund_accounts->date = date('Y-m-d');
                     $fund_accounts->invoice_id = $single_invoices->id;
                     $fund_accounts->Debit = $single_invoices->patient_amount;
-                                        $fund_accounts->credit = 0.00;
+                    $fund_accounts->credit = 0.00;
                     $fund_accounts->save();
-                    $this->InvoiceUpdated =true;
-                    $this->show_table =true;
-
-
+                    $this->InvoiceUpdated = true;
+                    $this->show_table = true;
                 }
 
                 // في حالة الاضافة
-                else{
+                else {
 
                     $single_invoices = new Invoice();
                     $single_invoices->invoice_type = 1;
@@ -204,7 +203,7 @@ class SingleInvoices extends Component
                     $single_invoices->section_id = DB::table('section_translations')->where('name', $this->section_id)->first()->section_id;
                     $single_invoices->Service_id = $this->Service_id;
                     $single_invoices->price = $this->price;
-                    [$subtotal,$tax_value,$total,$insurance_amount,$patient_amount] = $this->calculateTotals();
+                    [$subtotal, $tax_value, $total, $insurance_amount, $patient_amount] = $this->calculateTotals();
                     $single_invoices->discount_value = $this->discount_value;
                     $single_invoices->tax_rate = $this->tax_rate;
                     $single_invoices->insurance_id = $this->insurance_id;
@@ -222,48 +221,59 @@ class SingleInvoices extends Component
                     $fund_accounts->date = date('Y-m-d');
                     $fund_accounts->invoice_id = $single_invoices->id;
                     $fund_accounts->Debit = $single_invoices->patient_amount;
-                                        $fund_accounts->credit = 0.00;
+                    $fund_accounts->credit = 0.00;
                     $fund_accounts->save();
-                    $this->InvoiceSaved =true;
-                    $this->show_table =true;
+                    $this->InvoiceSaved = true;
+                    $this->show_table = true;
 
-                    $notifications = new Notification();
-                    $notifications->user_id = $this->doctor_id;
                     $patient = Patient::find($this->patient_id);
-                    $notifications->message = "كشف جديد : ".$patient->name;
-                    $notifications->save();
+                    $invoiceTypeText = $this->type == 1 ? 'نقدية' : 'آجلة';
+                    $message = "تم إصدار فاتورة {$invoiceTypeText} للمريض: {$patient->name}";
 
+                    Notification::create([
+                        'user_id' => $this->doctor_id,
+                        'message' => $message,
+                    ]);
 
-                    $data=[
-                        'patient'=>$this->patient_id,
-                        'invoice_id'=>$single_invoices->id,
-                        'doctor_id'=>$this->doctor_id,
+                    Notification::create([
+                        'user_id' => $this->patient_id,
+                        'message' => $message,
+                    ]);
+
+                    foreach (Admin::all() as $admin) {
+                        Notification::create([
+                            'user_id' => $admin->id,
+                            'message' => $message,
+                        ]);
+                    }
+
+                    $data = [
+                        'patient' => $this->patient_id,
+                        'invoice_id' => $single_invoices->id,
+                        'doctor_id' => $this->doctor_id,
+                        'invoice_type' => $invoiceTypeText,
                     ];
-
                     event(new CreateInvoice($data));
-
+                    DB::commit();
                 }
-                DB::commit();
-            }
 
-            catch (\Exception $e) {
+            } catch (\Exception $e) {
                 DB::rollback();
                 $this->catchError = $e->getMessage();
             }
-
         }
 
 
         //------------------------------------------------------------------------
 
         // في حالة كانت الفاتورة اجل
-        else{
+        else {
 
             DB::beginTransaction();
             try {
 
                 // في حالة التعديل
-                if($this->updateMode){
+                if ($this->updateMode) {
 
                     $single_invoices = Invoice::findorfail($this->single_invoice_id);
                     $single_invoices->invoice_type = 1;
@@ -273,7 +283,7 @@ class SingleInvoices extends Component
                     $single_invoices->section_id = DB::table('section_translations')->where('name', $this->section_id)->first()->section_id;
                     $single_invoices->Service_id = $this->Service_id;
                     $single_invoices->price = $this->price;
-                    [$subtotal,$tax_value,$total,$insurance_amount,$patient_amount] = $this->calculateTotals();
+                    [$subtotal, $tax_value, $total, $insurance_amount, $patient_amount] = $this->calculateTotals();
                     $single_invoices->discount_value = $this->discount_value;
                     $single_invoices->tax_rate = $this->tax_rate;
                     $single_invoices->insurance_id = $this->insurance_id;
@@ -287,20 +297,19 @@ class SingleInvoices extends Component
                     $single_invoices->save();
 
 
-                    $patient_accounts = PatientAccount::where('invoice_id',$this->single_invoice_id)->first();
+                    $patient_accounts = PatientAccount::where('invoice_id', $this->single_invoice_id)->first();
                     $patient_accounts->date = date('Y-m-d');
                     $patient_accounts->invoice_id = $single_invoices->id;
                     $patient_accounts->patient_id = $single_invoices->patient_id;
                     $patient_accounts->Debit = $single_invoices->patient_amount;
-                                        $patient_accounts->credit = 0.00;
+                    $patient_accounts->credit = 0.00;
                     $patient_accounts->save();
-                    $this->InvoiceUpdated =true;
-                    $this->show_table =true;
-
+                    $this->InvoiceUpdated = true;
+                    $this->show_table = true;
                 }
 
                 // في حالة الاضافة
-                else{
+                else {
 
                     $single_invoices = new Invoice();
                     $single_invoices->invoice_type = 1;
@@ -310,7 +319,7 @@ class SingleInvoices extends Component
                     $single_invoices->section_id = DB::table('section_translations')->where('name', $this->section_id)->first()->section_id;
                     $single_invoices->Service_id = $this->Service_id;
                     $single_invoices->price = $this->price;
-                    [$subtotal,$tax_value,$total,$insurance_amount,$patient_amount] = $this->calculateTotals();
+                    [$subtotal, $tax_value, $total, $insurance_amount, $patient_amount] = $this->calculateTotals();
                     $single_invoices->discount_value = $this->discount_value;
                     $single_invoices->tax_rate = $this->tax_rate;
                     $single_invoices->insurance_id = $this->insurance_id;
@@ -329,37 +338,60 @@ class SingleInvoices extends Component
                     $patient_accounts->invoice_id = $single_invoices->id;
                     $patient_accounts->patient_id = $single_invoices->patient_id;
                     $patient_accounts->Debit = $single_invoices->patient_amount;
-                                        $patient_accounts->credit = 0.00;
+                    $patient_accounts->credit = 0.00;
                     $patient_accounts->save();
-                    $this->InvoiceSaved =true;
-                    $this->show_table =true;
+                    $this->InvoiceSaved = true;
+                    $this->show_table = true;
+                }
+                $patient = Patient::find($this->patient_id);
+                $invoiceTypeText = $this->type == 1 ? 'نقدية' : 'آجلة';
+                $message = "تم إصدار فاتورة {$invoiceTypeText} للمريض: {$patient->name}";
+
+                Notification::create([
+                    'user_id' => $this->doctor_id,
+                    'message' => $message,
+                ]);
+
+                Notification::create([
+                    'user_id' => $this->patient_id,
+                    'message' => $message,
+                ]);
+
+                foreach(Admin::all() as $admin){
+                    Notification::create([
+                        'user_id' => $admin->id,
+                        'message' => $message,
+                    ]);
                 }
 
-                DB::commit();
-            }
+                $data=[
+                    'patient'=>$this->patient_id,
+                    'invoice_id'=>$single_invoices->id,
+                    'doctor_id'=>$this->doctor_id,
+                    'invoice_type'=>$invoiceTypeText,
+                ];
 
-            catch (\Exception $e) {
+                event(new CreateInvoice($data));
+
+                DB::commit();
+            } catch (\Exception $e) {
                 DB::rollback();
                 return redirect()->back()->withErrors(['error' => $e->getMessage()]);
             }
-
-
         }
+    }
+    
 
+
+    public function delete($id)
+    {
+
+        $this->single_invoice_id = $id;
     }
 
-
-    public function delete($id){
-
-     $this->single_invoice_id = $id;
-
-    }
-
-    public function destroy(){
+    public function destroy()
+    {
         Invoice::destroy($this->single_invoice_id);
         return redirect()->to('/single_invoices');
     }
-
-
-
 }
