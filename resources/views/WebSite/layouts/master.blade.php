@@ -74,6 +74,7 @@
 
 </div>
 <!--End pagewrapper-->
+@include('WebSite.layouts.ambulance-modal')
 
 <!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
@@ -87,21 +88,21 @@
             <form method="post" action="index.html">
                 <div class="form-group">
                     <fieldset>
-                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here"
+                        <input type="search" class="form-control" name="search-input" value="" placeholder="أبدأ البحث ..."
                                required>
-                        <input type="submit" value="Search Now!" class="theme-btn">
+                        <input type="submit" value="!ابحث" class="theme-btn">
                     </fieldset>
                 </div>
             </form>
 
             <br>
-            <h3>Recent Search Keywords</h3>
+            <h3>أخر كلمات البحث</h3>
             <ul class="recent-searches">
-                <li><a href="#">Business</a></li>
-                <li><a href="#">Web Development</a></li>
-                <li><a href="#">SEO</a></li>
-                <li><a href="#">Logistics</a></li>
-                <li><a href="#">Freedom</a></li>
+                <li><a href="#">الصحة</a></li>
+                <li><a href="#">عمليات القلب</a></li>
+                <li><a href="#">طوارئ</a></li>
+                <li><a href="#">التدريب الطبي</a></li>
+                <li><a href="#">قسم الأوعية الدموية</a></li>
             </ul>
 
         </div>
@@ -128,20 +129,19 @@
                             <a href="index.html"><img src="images/logo-3.png" alt=""/></a>
                         </div>
                         <div class="content-box">
-                            <h2>About Us</h2>
+                            <h2>تعرف علينا</h2>
                             <p class="text">Core values are the fundamental beliefs of a person or organization. The
                                 core values are the guiding prin ples that dictate behavior and action suas labore
                                 saperet has there any quote for write lorem percit latineu.</p>
-                            <a href="#" class="theme-btn btn-style-two"><span class="txt">Consultation</span></a>
+                            <a href="#Appointment" class="theme-btn btn-style-two"><span class="txt">احجز موعد</span></a>
                         </div>
                         <div class="contact-info">
-                            <h2>Contact Info</h2>
+                            <h2>معلومات التواصل</h2>
                             <ul class="list-style-two">
-                                <li><span class="icon flaticon-map"></span>Chicago 12, Melborne City, USA</li>
-                                <li><span class="icon flaticon-telephone"></span>(111) 111-111-1111</li>
-                                <li><span class="icon flaticon-message-1"></span>meditech@gmail.com</li>
-                                <li><span class="icon flaticon-timetable"></span>Week Days: 09.00 to 18.00 Sunday:
-                                    Closed
+                                <li><span class="icon flaticon-map"></span>حلب, اعزاز</li>
+                                <li><span class="icon flaticon-telephone"></span>00905528779087</li>
+                                <li><span class="icon flaticon-message-1"></span>info@moh.gov.sy</li>
+                                <li><span class="icon flaticon-timetable"></span>ايام العمل: من السبت إلى الخميس 8:30 صباحًا - 6:00 مساءً
                                 </li>
                             </ul>
                         </div>

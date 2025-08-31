@@ -39,24 +39,25 @@ class Chatbox extends Component
     {
         if (Auth::guard('patient')->check()) {
             $auth_id = Auth::guard('patient')->user()->id;
-            $this->event_name = "MassageSent2";
+            $this->event_name = "MessageSent2";
             $this->chat_page = "chat2";
 
         } else {
             $auth_id = Auth::guard('doctor')->user()->id;
-            $this->event_name = "MassageSent";
+            $this->event_name = "MessageSent";
             $this->chat_page = "chat";
         }
 
         return [
-            "echo-private:$this->chat_page.{$auth_id},$this->event_name" => 'broadcastMassage', 'load_conversationPatient', 'load_conversationDoctor', 'pushMessage'
+            "echo-private:$this->chat_page.{$auth_id},$this->event_name" => 'broadcastMessage', 'load_conversationPatient', 'load_conversationDoctor', 'pushMessage'
         ];
     }
 
-    public function broadcastMassage($event)
+    public function broadcastMessage($event)
     {
         $broadcastMessage = Message::find($event['message']);
         $broadcastMessage->read = 1;
+        $broadcastMessage->save();
         $this->pushMessage($broadcastMessage->id);
     }
 

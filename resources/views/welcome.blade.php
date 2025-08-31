@@ -19,8 +19,8 @@
                                         {{trans('HomePage/HomePage.SubHead1')}}
                                     </div>
                                     <div class="btn-box">
-                                        <a href="contact.html" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}</span></a>
-                                        <a href="services.html" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
+                                        <a href="#Appointment" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}</span></a>
+                                        <a href="http://127.0.0.1:8000/Services" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -489,7 +489,7 @@
 
 
     <!-- Appointment Section Two -->
-    <section class="appointment-section-two">
+    <section id="Appointment" class="appointment-section-two">
         <div class="auto-container">
             <div class="inner-container">
                 <div class="row clearfix">
@@ -514,7 +514,7 @@
 
                             <!-- Appointment Form -->
                             <div class="appointment-form">
-                                <livewire:appointments.create />
+                                <livewire:appointments.create :key="'appointments-create'" />
                             </div>
 
                         </div>
@@ -714,7 +714,7 @@
                                 <li>{{ trans('HomePage/HomePage.DoctorTimesSun') }}</li>
                             </ul>
                             <h4>{{ trans('HomePage/HomePage.EmergencyTitle') }}</h4>
-                            <div class="phone">{{ trans('HomePage/HomePage.EmergencyCall') }} <strong>+898 68679 575 09</strong></div>
+                            <div class="phone">{{ trans('HomePage/HomePage.EmergencyCall') }} <strong>+905528779087</strong></div>
                         </div>
                     </div>
 
@@ -759,28 +759,28 @@
                 <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
-                            <a href="blog-detail.html"><img src="{{ URL::asset('WebSite/images/resource/news-4.jpg') }}" alt="" /></a>
+                            <a href="blog-detail.html"><img src="{{ URL::asset('WebSite/images/resource/art1.png') }}" alt="" /></a>
                         </div>
                         <div class="lower-content">
                             <div class="content">
                                 <ul class="post-info">
                                     <li>
                                         <span class="icon flaticon-chat-comment-oval-speech-bubble-with-text-lines"></span>
-                                        {{ trans('HomePage/HomePage.NewsComments1') }}
+                                        07
                                     </li>
                                     <li>
-                                        <span class="icon flaticon-heart"></span> {{ trans('HomePage/HomePage.NewsLikes1') }}
+                                        <span class="icon flaticon-heart"></span> 215
                                     </li>
                                 </ul>
                                 <ul class="post-meta">
                                     <li>{{ trans('HomePage/HomePage.NewsDate1') }}</li>
                                     <li>{{ trans('HomePage/HomePage.NewsPostedBy1') }}</li>
                                 </ul>
-                                <h3><a href="blog-detail.html">{{ trans('HomePage/HomePage.NewsTitle1') }}</a></h3>
+                                <h3><a href="">{{ trans('HomePage/HomePage.NewsTitle1') }}</a></h3>
                                 <div class="text">
                                     {{ trans('HomePage/HomePage.NewsText1') }}
                                 </div>
-                                <a href="blog-detail.html" class="theme-btn btn-style-five">
+                                <a href="http://127.0.0.1:8000/Articles/1" class="theme-btn btn-style-five">
                                     <span class="txt">{{ trans('HomePage/HomePage.ReadMore') }}</span>
                                 </a>
                             </div>
@@ -792,7 +792,7 @@
                 <div class="news-block-two col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
-                            <a href="blog-detail.html"><img src="{{ URL::asset('WebSite/images/resource/news-5.jpg') }}" alt="" /></a>
+                            <a href="blog-detail.html"><img src="{{ URL::asset('WebSite/images/resource/art2.png') }}" alt="" /></a>
                         </div>
                         <div class="lower-content">
                             <div class="content">
@@ -809,11 +809,11 @@
                                     <li>{{ trans('HomePage/HomePage.NewsDate2') }}</li>
                                     <li>{{ trans('HomePage/HomePage.NewsPostedBy2') }}</li>
                                 </ul>
-                                <h3><a href="blog-detail.html">{{ trans('HomePage/HomePage.NewsTitle2') }}</a></h3>
+                                <h3><a href="">{{ trans('HomePage/HomePage.NewsTitle2') }}</a></h3>
                                 <div class="text">
                                     {{ trans('HomePage/HomePage.NewsText2') }}
                                 </div>
-                                <a href="blog-detail.html" class="theme-btn btn-style-five">
+                                <a href="http://127.0.0.1:8000/Articles/2" class="theme-btn btn-style-five">
                                     <span class="txt">{{ trans('HomePage/HomePage.ReadMore') }}</span>
                                 </a>
                             </div>

@@ -9,6 +9,16 @@ class Notification extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'message',
+        'reader_status',
+    ];
+
+    protected $casts = [
+        'reader_status' => 'boolean',
+    ];
+
 
     public function scopeCountNotification($query,$user_id)
     {

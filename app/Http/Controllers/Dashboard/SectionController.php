@@ -27,7 +27,11 @@ class SectionController extends Controller
        return $this->Sections->show($id);
     }
 
-
+    public function create()
+    {
+        return $this->Sections->create();
+    }
+    
     public function store(Request $request)
     {
         return $this->Sections->store($request);

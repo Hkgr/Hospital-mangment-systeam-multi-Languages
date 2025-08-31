@@ -1,22 +1,22 @@
 @php
-    $user = auth('admin')->user();
-    $folder = 'admins';
+$user = auth('admin')->user();
+$folder = 'admins';
 @endphp
 <div class="main-sidemenu">
     <div class="app-sidebar__user clearfix">
         <div class="dropdown user-pro-body">
             <div class="">
-            @if($user?->image)
-                    <img alt="user-img" class="avatar avatar-xl brround"
-                         src="{{ URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) }}">
-                @else
-                    <img alt="user-img" class="avatar avatar-xl brround"
-                         src="{{ URL::asset('Dashboard/img/faces/6.jpg') }}">
-                @endif
-                <span class="avatar-status profile-status bg-green"></span>            </div>
+                @php
+                $path = $user?->image && $user->image->filename !== 'default.png'
+                ? 'Dashboard/img/'.$folder.'/'.$user->image->filename
+                : 'Dashboard/img/default.png';
+                @endphp
+                <img alt="user-img" class="avatar avatar-xl brround" src="{{ URL::asset($path) }}">
+                <span class="avatar-status profile-status bg-green"></span>
+            </div>
             <div class="user-info">
-                <h4 class="font-weight-semibold mt-3 mb-0">{{ Auth::user()->name }}</h4>
-                <span class="mb-0 text-muted">{{ Auth::user()->email }}</span>
+                <h4 class="font-weight-semibold mt-3 mb-0">{{ $user?->name ?? '' }}</h4>
+                <span class="mb-0 text-muted">{{ $user?->email ?? '' }}</span>
             </div>
         </div>
     </div>
@@ -49,6 +49,7 @@
                     <path d="M22 9h-4.79l-4.38-6.56c-.19-.28-.51-.42-.83-.42s-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1zM12 4.8L14.8 9H9.2L12 4.8zM18.5 19l-12.99.01L3.31 11H20.7l-2.2 8zM12 13c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
                 </svg><span class="side-menu__label">{{trans('main-sidebar_trans.doctors')}}</span><i class="angle fe fe-chevron-down"></i></a>
             <ul class="slide-menu">
+                <li><a class="slide-item" href="{{route('Doctors.create')}}">إضافة طبيب</a></li>
                 <li><a class="slide-item" href="{{ route('Doctors.index') }}">{{trans('main-sidebar_trans.view_all')}}</a></li>
             </ul>
         </li>
@@ -63,7 +64,7 @@
                 <li><a class="slide-item" href="{{ route('Add_GroupServices') }}">{{trans('main-sidebar_trans.group_services')}}</a></li>
                 <li><a class="slide-item" href="{{ route('insurance.index') }}">{{trans('main-sidebar_trans.Insurance')}}</a></li>
                 <li><a class="slide-item" href="{{route('Ambulance.index')}}">{{trans('main-sidebar_trans.ambulance')}}</a></li>
-                <li><a class="slide-item" href="{{ url('/' . $page='calendar') }}">{{trans('main-sidebar_trans.Ambulance_calls')}}</a></li>
+                <li><a class="slide-item" href="{{ route('AmbulanceCalls.index') }}">{{trans('main-sidebar_trans.Ambulance_calls')}}</a></li>
             </ul>
         </li>
         <li class="slide">
@@ -118,7 +119,7 @@
                 </svg><span class="side-menu__label">الاشعة</span><i class="angle fe fe-chevron-down"></i></a>
             <ul class="slide-menu">
                 <li><a class="slide-item" href="{{ route('ray_employee.index') }}">قائمة الموظفين</a></li>
-                <li><a class="slide-item" href="{{ url('/' . $page='form-advanced') }}">قائمة الكشوفات</a></li>
+                <li><a class="slide-item" href="{{ route('admin.ray_invoices.index') }}">كشوفات الأشعة</a></li>
             </ul>
         </li>
         <li class="slide">
@@ -129,6 +130,7 @@
                 </svg><span class="side-menu__label">المختبر</span><i class="angle fe fe-chevron-down"></i></a>
             <ul class="slide-menu">
                 <li><a class="slide-item" href="{{ route('laboratorie_employee.index') }}">قائمة الموظفين</a></li>
+                <li><a class="slide-item" href="{{ route('admin.laboratorie.index') }}">كشوفات التحاليل</a></li>
             </ul>
         </li>
 

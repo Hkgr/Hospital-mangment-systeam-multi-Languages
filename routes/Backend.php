@@ -3,17 +3,22 @@
 use App\Events\MyEvent;
 use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\appointments\AppointmentController;
+use App\Http\Controllers\Dashboard\AmbulanceCallController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\Dashboard\LaboratorieEmployeeController;
+use App\Http\Controllers\Dashboard\LaboratorieController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\PaymentAccountController;
 use App\Http\Controllers\Dashboard\RayEmployeeController;
+use App\Http\Controllers\Dashboard\SearchController;
 use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Dashboard\Admin\AdminRayInvoiceController;
+use App\Http\Controllers\Dashboard\Admin\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -42,6 +47,8 @@ Route::group(
     function () {
 
 
+        Route::get('/search', [SearchController::class, 'index'])->name('search');
+        
         //################################ dashboard user ##########################################
         Route::get('/dashboard/user', function () {
 
@@ -58,10 +65,8 @@ Route::group(
 
 
         //################################ dashboard admin ########################################
-        Route::get('/dashboard/admin', function () {
-            event(new MyEvent('hello'));
-            return view('Dashboard.Admin.dashboard');
-        })->middleware(['auth:admin'])->name('dashboard.admin');
+        Route::get('/dashboard/admin', [AdminDashboardController::class, 'index'])
+            ->middleware(['auth:admin'])->name('dashboard.admin');
 
         //################################ end dashboard admin #####################################
 
@@ -117,10 +122,18 @@ Route::group(
             //############################# end Ambulance route ######################################
 
 
+            //############################# Ambulance Calls route ##########################################
+
+            Route::resource('AmbulanceCalls', AmbulanceCallController::class)->only(['index','destroy']);
+            Route::put('AmbulanceCalls/{id}/status/{status}', [AmbulanceCallController::class, 'updateStatus'])->name('AmbulanceCalls.updateStatus');
+
+            //############################# end Ambulance Calls route ######################################
+            
             //############################# Patients route ##########################################
 
             Route::resource('Patients', PatientController::class);
-
+            Route::get('admin/view_rays/{id}', [PatientController::class,'viewRays'])->name('admin.rays.view');
+            Route::get('admin/view_laboratories/{id}', [PatientController::class,'viewLaboratories'])->name('admin.laboratories.view');
 
             //############################# end Patients route ######################################
 
@@ -151,6 +164,8 @@ Route::group(
 
             Route::resource('ray_employee', RayEmployeeController::class)
             ->whereNumber('ray_employee');
+            Route::get('rays/invoices', [AdminRayInvoiceController::class, 'index'])
+            ->name('admin.ray_invoices.index');
             //############################# end RayEmployee route ######################################
 
 
@@ -160,6 +175,11 @@ Route::group(
                 ->whereNumber('laboratorie_employee');
             //############################# end laboratorie_employee route ######################################
 
+            //############################# laboratories route (admin scoped) ############################
+            Route::get('admin/laboratories', [LaboratorieController::class, 'index'])->name('admin.laboratorie.index');
+            Route::get('admin/laboratories/{laboratorie}', [LaboratorieController::class, 'show'])->name('admin.laboratorie.show');
+            //############################# end laboratories route ######################################
+            
             //############################# single_invoices route ##########################################
 
             Route::view('group_invoices', 'livewire.Group_invoices.index')->name('group_invoices');

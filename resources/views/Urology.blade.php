@@ -4,9 +4,10 @@
 <section class="hero-banner text-center text-white d-flex align-items-center"
     dir="rtl"
     style="min-height:280px;
-                background:
-                  linear-gradient(rgba(0, 76, 218, 1), rgba(0, 76, 218, 0.8)),
-                  url('{{ asset('WebSite/images/deps/Urology/main.png') }}') center/cover no-repeat;">
+           background-image: linear-gradient(rgba(0, 76, 218, 1), rgba(0, 76, 218, 0.8)), url("{{ asset('WebSite/images/deps/Urology/main.png') }}");
+           background-position: center;
+           background-size: cover;
+           background-repeat: no-repeat;">
     <div class="container">
         <h1 class="display-6 fw-bold mb-50">قسم المسالك البولية</h1>
     </div>

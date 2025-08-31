@@ -23,17 +23,15 @@ class Createchat extends Component
     public function createConversation($receiver_email)
     {
 
-        $chek_Conversation = Conversation::chekConversation($this->auth_email, $receiver_email)->get();
-        if ($chek_Conversation->isEmpty()) {
+        $existingConversation = Conversation::checkConversation($this->auth_email, $receiver_email)->first();
+                if (!$existingConversation) {
             DB::beginTransaction();
             try {
-                // $createConversation
                 $createConversation = Conversation::create([
                     'sender_email' => $this->auth_email,
                     'receiver_email' => $receiver_email,
                     'last_time_message' => null,
                 ]);
-                // create message
                 Message::create([
                     'conversation_id' => $createConversation->id,
                     'sender_email' => $this->auth_email,
@@ -41,15 +39,17 @@ class Createchat extends Component
                     'body' => 'السلام عليكم',
                 ]);
                 DB::commit();
-                $this->emitSelf('render');
+                // Livewire v2: trigger re-render via $refresh
+                $this->emitSelf('$refresh');
             } catch (\Exception $e) {
                 DB::rollBack();
             }
         } else {
 
-            dd('Conversation yes');
+            // Conversation exists – redirect user back to the chat screen
+            session()->flash('message', 'المحادثة مفتوحة مسبقًا');
+            return redirect()->route(Auth::guard('patient')->check() ? 'chat.doctors' : 'chat.patients');
         }
-
     }
 
     public function render()
@@ -59,6 +59,9 @@ class Createchat extends Component
         } else {
             $this->users = Patient::all();
         }
-        return view('livewire.chat.createchat')->extends('Dashboard.layouts.master');
+        // Use Livewire's layout chaining to render within the dashboard layout
+        return view('livewire.chat.createchat')
+            ->extends('Dashboard.layouts.master')
+            ->section('content');
     }
 }

@@ -5,6 +5,9 @@ namespace App\Repository\Services;
 
 
 use App\Models\Service;
+use App\Models\Admin;
+use App\Models\Notification;
+use App\Events\SingleServiceCreated;
 
 class SingleServiceRepository implements \App\Interfaces\Services\SingleServiceRepositoryInterface
 {
@@ -23,6 +26,14 @@ class SingleServiceRepository implements \App\Interfaces\Services\SingleServiceR
             $SingleService->description = $request->description;
             $SingleService->status = 1;
             $SingleService->save();
+
+            foreach (Admin::all() as $admin) {
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'message' => 'خدمة مفردة جديدة: ' . $request->name,
+                ]);
+            }
+            event(new SingleServiceCreated($request->name));
 
             // store trans
             $SingleService->name = $request->name;

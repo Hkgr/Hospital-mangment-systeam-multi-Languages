@@ -14,28 +14,29 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MassageSent implements ShouldBroadcast
+class MessageSent2 implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $sender;
-    public $massage;
+    public $message;
     public $receiver;
     public $conversation;
 
-    public function __construct(Patient $sender, Message $massage, Conversation $conversation, Doctor $receiver)
+
+
+    public function __construct(Doctor $sender, Message $message, Conversation $conversation, Patient $receiver)
     {
         $this->sender = $sender;
-        $this->massage = $massage;
+        $this->message = $message;
         $this->conversation = $conversation;
         $this->receiver = $receiver;
     }
-
     public function broadcastWith()
     {
         return [
             'sender_email' => $this->sender->email,
-            'message' => $this->massage->id,
+            'message' => $this->message->id,
             'conversation_id' => $this->conversation->id,
             'receivere_email' => $this->receiver->email,
         ];
@@ -43,6 +44,11 @@ class MassageSent implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new PrivateChannel('chat.'.$this->receiver->id);
+        return new PrivateChannel('chat2.'.$this->receiver->id);
+    }
+
+    public function broadcastWhen()
+    {
+        return \App\Support\Net::online();
     }
 }

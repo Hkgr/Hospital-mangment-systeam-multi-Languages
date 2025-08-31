@@ -4,7 +4,9 @@
 namespace App\Repository\Ambulances;
 use App\Interfaces\Ambulances\AmbulanceRepositoryInterface;
 use App\Models\Ambulance;
-
+use App\Models\Admin;
+use App\Models\Notification;
+use App\Events\AmbulanceCreated;
 
 class AmbulanceRepository implements AmbulanceRepositoryInterface
 {
@@ -32,6 +34,14 @@ class AmbulanceRepository implements AmbulanceRepositoryInterface
        $ambulances->is_available = 1;
        $ambulances->car_type = $request->car_type;
        $ambulances->save();
+
+       foreach (Admin::all() as $admin) {
+        Notification::create([
+            'user_id' => $admin->id,
+            'message' => 'سيارة إسعاف جديدة: ' . $request->car_number,
+        ]);
+    }
+    event(new AmbulanceCreated($request->car_number));
 
        //insert trans
        $ambulances->driver_name = $request->driver_name;

@@ -9,7 +9,14 @@ class Invoice extends Model
 {
     use HasFactory;
    // protected $guarded=[];
-    protected $fillable =['invoice_status'];
+   protected $fillable = [
+    'invoice_status',
+    'insurance_id',
+    'insurance_discount',
+    'company_rate',
+    'insurance_amount',
+    'patient_amount',
+];
 
     public function Group()
     {
@@ -38,5 +45,9 @@ class Invoice extends Model
     public function diagnostic()
     {
         return $this->hasOne(Diagnostic::class, 'invoice_id');
+    }
+    public function insurance()
+    {
+        return $this->belongsTo(Insurance::class);
     }
 }

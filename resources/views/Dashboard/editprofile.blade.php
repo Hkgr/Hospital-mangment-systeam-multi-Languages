@@ -108,11 +108,12 @@ $folder = 'users';
 						}
 						@endphp
 						<div class="main-img-user profile-user">
-							@if($user && $user->image)
-							<img alt="" src="{{URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename)}}">
-							@else
-							<img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}">
-							@endif
+							@php
+							$path = $user && $user->image && $user->image->filename !== 'default.png'
+							? 'Dashboard/img/'.$folder.'/'.$user->image->filename
+							: 'Dashboard/img/default.png';
+							@endphp
+							<img alt="" src="{{ URL::asset($path) }}">
 							<a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
 						</div>
 						<div class="d-flex justify-content-between mg-b-20">

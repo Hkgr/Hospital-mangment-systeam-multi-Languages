@@ -8,9 +8,15 @@ use App\Models\Patient;
 use App\Models\PatientAccount;
 use App\Models\Appointment;
 use App\Models\ReceiptAccount;
+use App\Models\Ray;
+use App\Models\Laboratorie;
 use App\Models\single_invoice;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Diagnostic;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Admin;
+use App\Models\Notification;
+use App\Events\PatientCreated;
 
 class PatientRepository implements PatientRepositoryInterface
 {
@@ -27,9 +33,16 @@ class PatientRepository implements PatientRepositoryInterface
         $receipt_accounts = ReceiptAccount::where('patient_id', $id)->get();
         $Patient_accounts = PatientAccount::where('patient_id', $id)->get();
         $appointments = Appointment::where('patient_id', $id)->get();
+        $rays = Ray::where('patient_id', $id)->get();
+        $laboratories = Laboratorie::where('patient_id', $id)->get();
+        $patient_records = Diagnostic::where('patient_id', $id)->get();
 
-        return view('Dashboard.Patients.show', compact('Patient', 'invoices', 'receipt_accounts', 'Patient_accounts', 'appointments'));    }
-
+        return view('Dashboard.Patients.show', compact(
+            'Patient', 'invoices', 'receipt_accounts',
+            'Patient_accounts', 'appointments', 'rays',
+            'laboratories', 'patient_records'
+                ));
+    }
     public function create()
    {
        return view('Dashboard.Patients.create');
@@ -46,10 +59,21 @@ class PatientRepository implements PatientRepositoryInterface
            $Patients->Gender = $request->Gender;
            $Patients->Blood_Group = $request->Blood_Group;
            $Patients->save();
+           $Patients->image()->create(['filename' => 'default.png']);
            //insert trans
            $Patients->name = $request->name;
            $Patients->Address = $request->Address;
            $Patients->save();
+
+           // notify all admins + broadcast event
+           foreach (Admin::all() as $admin) {
+               Notification::create([
+                   'user_id' => $admin->id,
+                   'message' => 'مريض جديد: ' . $request->name,
+               ]);
+           }
+           event(new PatientCreated($request->name));
+
            session()->flash('add');
            return redirect()->back();
        }

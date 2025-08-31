@@ -26,13 +26,13 @@ $folder = 'users';
     <div class="container-fluid">
         <div class="main-header-left ">
             <div class="responsive-logo">
-                <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/logo.png')}}"
+                <a href="{{ url('/') }}"><img src="{{URL::asset('Dashboard/img/brand/logo.png')}}"
                         class="logo-1" alt="logo"></a>
-                <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/logo-white.png')}}"
+                <a href="{{ url('/') }}"><img src="{{URL::asset('Dashboard/img/brand/logo-white.png')}}"
                         class="dark-logo-1" alt="logo"></a>
-                <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}"
+                <a href="{{ url('/') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}"
                         class="logo-2" alt="logo"></a>
-                <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}"
+                <a href="{{ url('/') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}"
                         class="dark-logo-2" alt="logo"></a>
             </div>
             <div class="app-sidebar__toggle" data-toggle="sidebar">
@@ -40,12 +40,18 @@ $folder = 'users';
                 <a class="close-toggle" href="#"><i class="header-icons fe fe-x"></i></a>
             </div>
             <div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
-                <input class="form-control" placeholder="Search for anything..." type="search">
-                <button class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
+                <form method="GET" action="{{ route('search') }}">
+                    <input class="form-control" name="q" placeholder="ابحث عن اي شيء..." type="search">
+                    <button class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
+                </form>
             </div>
         </div>
         <div class="main-header-right">
             <ul class="nav">
+                <li class="nav-item d-flex align-items-center mr-3" id="online-indicator" title="حالة الاتصال">
+                    <span class="status-dot" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#28a745"></span>
+                    <span class="ml-2 small" id="online-indicator-text"> متصل </span>
+                </li>
                 <li class="">
                     <div class="dropdown  nav-itemd-none d-md-flex">
                         <a href="#" class="d-flex  nav-item nav-link pl-0 country-flag1" data-toggle="dropdown"
@@ -82,9 +88,9 @@ $folder = 'users';
             </ul>
             <div class="nav nav-item  navbar-nav-right ml-auto">
                 <div class="nav-link" id="bs-example-navbar-collapse-1">
-                    <form class="navbar-form" role="search">
+                    <form class="navbar-form" role="search" method="GET" action="{{ route('search') }}">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" name="q" placeholder="Search">
                             <span class="input-group-btn">
                                 <button type="reset" class="btn btn-default">
                                     <i class="fas fa-times"></i>
@@ -120,8 +126,7 @@ $folder = 'users';
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">Messages</h6>
-                                <span
-                                    class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All Read</span>
+                                <span class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All Read</span>
                             </div>
                             <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">You have 4 unread
                                 messages</p>
@@ -198,23 +203,31 @@ $folder = 'users';
                         </div>
                     </div>
                 </div>
-                <div class="dropdown nav-item main-header-notification">
-                    <a class="new nav-link" href="#">
+                <div class="dropdown nav-item main-header-notification" style="position: relative;">
+                    <a class="new nav-link" href="#" style="position: relative; display: inline-block;">
                         <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-bell">
                             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                         </svg>
+                        @php
+                        $__notifCount = \App\Models\Notification::countNotification($user->id)->count();
+                        @endphp
+                        <span id="notif-badge" class="badge badge-danger" style="position:absolute; top:-6px; right:-6px; font-size:10px; line-height:1; padding:4px 5px; display: none;">
+                            {{ $__notifCount > 99 ? '99+' : $__notifCount }}
+                        </span>
                         <span class=" pulse"></span></a>
                     <div class="dropdown-menu dropdown-notifications">
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">الاشعارات</h6>
-                                <span
-                                    class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All Read</span>
+                                <form action="{{ route('notifications.markAllRead') }}" method="POST" class="mr-auto my-auto">
+                                    @csrf
+                                    <button type="submit" class="badge badge-pill badge-warning float-left border-0">Mark All Read</button>
+                                </form>
                             </div>
-                            <p data-count="{{App\Models\Notification::countNotification(auth()->user()->id)->count()}}" class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">{{App\Models\Notification::countnotification(auth()->user()->id)->count()}}</p>
+                            <p data-count="{{App\Models\Notification::countNotification($user->id)->count()}}" class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">{{App\Models\Notification::countnotification($user->id)->count()}}</p>
                         </div>
                         <div class="main-notification-list Notification-scroll">
 
@@ -233,8 +246,7 @@ $folder = 'users';
                                 </a>
                             </div>
 
-                            @foreach(App\Models\Notification::where('user_id',auth()->user()->id)->where('reader_status',0)->get() as $notification )
-                            <a class="d-flex p-3 border-bottom" href="#">
+                            @foreach(App\Models\Notification::where('user_id',$user->id)->where('reader_status',0)->get() as $notification ) <a class="d-flex p-3 border-bottom" href="#">
                                 <div class="notifyimg bg-pink">
                                     <i class="la la-file-alt text-white"></i>
                                 </div>
@@ -265,13 +277,23 @@ $folder = 'users';
                 </div>
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
                     <a class="profile-user d-flex" href="">
-                        <img alt="" src="{{ $user?->image ? URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) : URL::asset('Dashboard/img/faces/6.jpg') }}">
+                        @php
+                        $path = $user?->image && $user->image->filename !== 'default.png'
+                        ? 'Dashboard/img/'.$folder.'/'.$user->image->filename
+                        : 'Dashboard/img/default.png';
+                        @endphp
+                        <img alt="" src="{{ URL::asset($path) }}">
                     </a>
                     <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
                                 <div class="main-img-user">
-                                    <img alt="" src="{{ $user?->image ? URL::asset('Dashboard/img/'.$folder.'/'.$user->image->filename) : URL::asset('Dashboard/img/faces/6.jpg') }}" class="">
+                                    @php
+                                    $path = $user?->image && $user->image->filename !== 'default.png'
+                                    ? 'Dashboard/img/'.$folder.'/'.$user->image->filename
+                                    : 'Dashboard/img/default.png';
+                                    @endphp
+                                    <img alt="" src="{{ URL::asset($path) }}" class="">
                                 </div>
                                 <div class="mr-3 my-auto">
                                     <h6>{{ $user?->name }}</h6><span>{{ $user?->email }}</span>
@@ -341,20 +363,72 @@ $folder = 'users';
 
 <script src="{{asset('js/app.js')}}"></script>
 
+
+@php
+$channel = auth('doctor')->check()
+? 'create-invoice.' . auth('doctor')->id()
+: 'create-invoice.admin';
+@endphp
+
 <script>
-    //$user = auth('doctor')->user() ?? auth('admin')->user());
     var notificationsWrapper = $('.dropdown-notifications');
     var notificationsCountElem = notificationsWrapper.find('p[data-count]');
     var notificationsCount = parseInt(notificationsCountElem.data('count')) || 0;
+    var notifBadge = $('#notif-badge');
+
+    function updateNotifBadge() {
+        var c = notificationsCount || 0;
+        if (!notifBadge.length) {
+            return;
+        }
+        notifBadge.text(c > 99 ? '99+' : c);
+        if (c > 0) {
+            notifBadge.show();
+        } else {
+            notifBadge.hide();
+        }
+    }
+    updateNotifBadge();
 
     var notifications = notificationsWrapper.find('h4.notification-label');
     var new_message = notificationsWrapper.find('.new_message');
     new_message.hide();
 
-
-    `Echo.private('create-invoice.{{ auth('doctor')->id() }}')`
-    .listen('.create-invoice', (data) => {
+    function handleCreateInvoiceEvent(data) {
         const text = $('<div>').text(data.message + data.patient).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class=\"notification-label mb-1\">${text}</h4>
+                <div class=\"notification-subtext\">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
+        notificationsWrapper.show();
+    }
+
+    function handleAmbulanceCallCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class=\"notification-label mb-1\">${text}</h4>
+                <div class=\"notification-subtext\">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    }
+
+    function handleDoctorCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
         const time = $('<div>').text(data.created_at).html();
 
         const newNotificationHtml = `
@@ -367,9 +441,162 @@ $folder = 'users';
         notificationsCountElem.attr('data-count', notificationsCount);
         notificationsWrapper.find('.notif-count').text(notificationsCount);
         notificationsWrapper.show();
+    }
+
+    function handleSectionCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class=\"notification-label mb-1\">${text}</h4>
+                <div class=\"notification-subtext\">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
+        notificationsWrapper.show();
+
+    }
+
+    function handleInsuranceCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class=\"notification-label mb-1\">${text}</h4>
+                <div class=\"notification-subtext\">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    }
+
+    function handleAmbulanceCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class=\"notification-label mb-1\">${text}</h4>
+                <div class=\"notification-subtext\">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    }
+
+    function handleSingleServiceCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    }
+
+    function handleGroupServiceCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    }
+
+    function handlePatientCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
+        notificationsWrapper.show();
+    }
+
+    // Subscribe to notifications channel
+
+    function subscribeNotifications() {
+        if (!navigator.onLine || typeof Echo === 'undefined') return;
+        try {
+            Echo.private(`{{ $channel }}`)
+                .listen('.create-invoice', handleCreateInvoiceEvent);
+            Echo.private('create-section.admin')
+                .listen('.section-created', handleSectionCreatedEvent);
+            Echo.private('create-doctor.admin')
+                .listen('.doctor-created', handleDoctorCreatedEvent);
+            Echo.private('create-ambulance-call.admin')
+                .listen('.ambulance-call-created', handleAmbulanceCallCreatedEvent);
+            Echo.private('create-insurance.admin')
+                .listen('.insurance-created', handleInsuranceCreatedEvent);
+            Echo.private('create-ambulance.admin')
+                .listen('.ambulance-created', handleAmbulanceCreatedEvent);
+            Echo.private('create-single-service.admin')
+                .listen('.single-service-created', handleSingleServiceCreatedEvent);
+            Echo.private('create-group-service.admin')
+                .listen('.group-service-created', handleGroupServiceCreatedEvent);
+            Echo.private('create-patient.admin')
+                .listen('.patient-created', handlePatientCreatedEvent);
+        } catch (e) {
+            /* noop */
+        }
+    }
+
+    // Initial subscribe only when online
+    if (navigator.onLine) subscribeNotifications();
+    // Resubscribe when app announces online state
+    window.addEventListener('app:online', subscribeNotifications);
+    // Leave channel when going offline
+    window.addEventListener('offline', function() {
+        try {
+            if (typeof Echo !== 'undefined') {
+                Echo.leave(`{{ $channel }}`);
+                Echo.leave('create-section.admin');
+                Echo.leave('create-doctor.admin');
+                Echo.leave('create-ambulance-call.admin');
+                Echo.leave('create-insurance.admin');
+                Echo.leave('create-ambulance.admin');
+                Echo.leave('create-single-service.admin');
+                Echo.leave('create-group-service.admin');
+                Echo.leave('create-patient.admin');
+            }
+        } catch (e) {}
     });
 </script>
 
 
 
 <!-- /main-header -->
+
+
+
+
+

@@ -1,5 +1,5 @@
 
-    @extends('Dashboard.layouts.master')
+    
     @section('css')
     @endsection
     @section('page-header')
@@ -11,7 +11,7 @@
         </div>
         <!-- breadcrumb -->
     @endsection
-    @section('content')
+    
         <!-- row -->
         <div class="row row-sm main-content-app mb-4">
             <div class="col-xl-4 col-lg-5">
@@ -37,7 +37,7 @@
 <!-- Container closed -->
 </div>
 <!-- main-content closed -->
-@endsection
+
 @section('js')
     <!--Internal  lightslider js -->
     <script src="{{URL::asset('Dashboard/plugins/lightslider/js/lightslider.min.js')}}"></script>

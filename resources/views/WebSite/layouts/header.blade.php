@@ -123,6 +123,11 @@
                         @endforeach
                     </ul>
                 </li>
+                <li class="ml-auto">
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#ambulanceRequestModal">
+                        اطلب اسعاف الطوارئ!
+                    </button>
+                </li>
             </ul>
         </div>
 

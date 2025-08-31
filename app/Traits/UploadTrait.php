@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 trait UploadTrait{
 
@@ -12,14 +13,14 @@ trait UploadTrait{
 
         if( $request->hasFile( $inputname ) ) {
 
-            // Check img
+            // Validate uploaded image file
             if (!$request->file($inputname)->isValid()) {
-                flash('Invalid Image!')->error()->important();
+                session()->flash('error', __('Invalid Image!'));
                 return redirect()->back()->withInput();
             }
 
             $photo = $request->file($inputname);
-            $name = \Str::slug($request->input('name'));
+            $name = Str::slug($request->input('name'));
             $filename = $name. '.' . $photo->getClientOriginalExtension();
 
             // insert Image
@@ -29,10 +30,16 @@ trait UploadTrait{
             $Image->imageable_type = $imageable_type;
             $Image->save();
             return $request->file($inputname)->storeAs($foldername, $filename, $disk);
-        }
+        } else {
+            // Store default image reference when no file is uploaded
+            $Image = new Image();
+            $Image->filename = 'default.png';
+            $Image->imageable_id = $imageable_id;
+            $Image->imageable_type = $imageable_type;
+            $Image->save();
 
-        return null;
-
+            return 'Dashboard/img/default.png';
+                }
     }
 
 
@@ -52,7 +59,7 @@ trait UploadTrait{
     public function Delete_attachment($disk,$path,$id){
 
         Storage::disk($disk)->delete($path);
-        image::where('imageable_id',$id)->delete();
+        Image::where('imageable_id', $id)->delete();
 
     }
 
