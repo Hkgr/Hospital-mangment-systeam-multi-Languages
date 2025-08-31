@@ -92,12 +92,8 @@
 
                                 <ul class="contact-list">
                                     <li><span class="icon flaticon-placeholder"></span>جامعة حلب في المناطق المحررة<br> سوريا - حلب - اعزاز</li>
-
-                                    </li>
-                                    <li><span class="icon flaticon-call"></span>من الإثنين إلى الجمعة: من الساعة 8:30 صباحًا حتى الساعة 18:00 مساءً<br> <a
-                                            href="tel:+905528779087">+90 552 877 90 87   </a></li>
-                                    <li><span class="icon flaticon-message"></span>هل لديك سؤال ؟ <a
-                                            href="mailto:info@moh.gov.sy">info@moh.gov.sy</a></li>
+                                    <li><span class="icon flaticon-call"></span>من الإثنين إلى الجمعة: من الساعة 8:30 صباحًا حتى الساعة 18:00 مساءً<br> <a href="tel:+905528779087">+90 552 877 90 87   </a></li>
+                                    <li><span class="icon flaticon-message"></span>هل لديك سؤال ؟ <a href="mailto:info@moh.gov.sy">info@moh.gov.sy</a></li>
                                 </ul>
 
                             </div>
@@ -113,7 +109,7 @@
     <!-- Footer Bottom -->
     <div class="footer-bottom">
         <div class="auto-container">
-            <div class="copyright">Helth Care &copy; All Rights Reserved By Free Aleepo University with love <i  class="flaticon-heart heart-icon"></i>
+            <div class="copyright">Helth Care &copy; All Rights Reserved By Free Aleepo University with love <i class="flaticon-heart heart-icon"></i>
             </div>
         </div>
     </div>
