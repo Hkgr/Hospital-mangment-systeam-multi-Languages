@@ -26,6 +26,10 @@ class AmbulanceCallController extends Controller
 
         $ambulance = Ambulance::available()->first();
 
+        if (!$ambulance) {
+            return back()->with('error', 'عذراً، لا توجد سيارات إسعاف متاحة حالياً');
+        }
+
         $callData = [
             'phone' => $data['phone'],
             'details' => $data['details'],
@@ -33,11 +37,9 @@ class AmbulanceCallController extends Controller
             'call_time' => now(),
         ];
 
-        if ($ambulance) {
-            $callData['ambulance_id'] = $ambulance->id;
-            $ambulance->is_available = 0;
-            $ambulance->save();
-        }
+        $callData['ambulance_id'] = $ambulance->id;
+        $ambulance->is_available = 0;
+        $ambulance->save();
 
         AmbulanceCall::create($callData);
         foreach (Admin::all() as $admin) {
