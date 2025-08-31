@@ -7,6 +7,9 @@ use App\Models\Doctor;
 use App\Models\Image;
 use App\Models\Section;
 use App\Traits\UploadTrait;
+use App\Models\Admin;
+use App\Models\Notification;
+use App\Events\DoctorCreated;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -54,6 +57,15 @@ class DoctorRepository implements DoctorRepositoryInterface
             //Upload img
             $this->verifyAndStoreImage($request,'photo','doctors','upload_image',$doctors->id,'App\Models\Doctor');
 
+            
+            foreach (Admin::all() as $admin) {
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'message' => 'طبيب جديد: ' . $request->name,
+                ]);
+            }
+            event(new DoctorCreated($request->name));
+            
             DB::commit();
             session()->flash('add');
             return redirect()->route('Doctors.create');

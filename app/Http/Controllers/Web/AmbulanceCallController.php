@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Events\AmbulanceCallCreated;
+use App\Models\Admin;
 use App\Models\Ambulance;
 use App\Models\AmbulanceCall;
+use App\Models\Notification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -37,7 +40,16 @@ class AmbulanceCallController extends Controller
         }
 
         AmbulanceCall::create($callData);
+        foreach (Admin::all() as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'مكالمة إسعاف جديدة: ' . $callData['details'],
+            ]);
+        }
+        event(new AmbulanceCallCreated($callData));
 
         return back()->with('success', __('تم إرسال طلب الإسعاف بنجاح'));
+
+        
     }
 }

@@ -203,14 +203,20 @@ $folder = 'users';
                         </div>
                     </div>
                 </div>
-                <div class="dropdown nav-item main-header-notification">
-                    <a class="new nav-link" href="#">
+                <div class="dropdown nav-item main-header-notification" style="position: relative;">
+                    <a class="new nav-link" href="#" style="position: relative; display: inline-block;">
                         <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-bell">
                             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                         </svg>
+                        @php
+                            $__notifCount = \App\Models\Notification::countNotification($user->id)->count();
+                        @endphp
+                        <span id="notif-badge" class="badge badge-danger" style="position:absolute; top:-6px; right:-6px; font-size:10px; line-height:1; padding:4px 5px; display: none;">
+                            {{ $__notifCount > 99 ? '99+' : $__notifCount }}
+                        </span>
                         <span class=" pulse"></span></a>
                     <div class="dropdown-menu dropdown-notifications">
                         <div class="menu-header-content bg-primary text-right">
@@ -368,6 +374,14 @@ $channel = auth('doctor')->check()
     var notificationsWrapper = $('.dropdown-notifications');
     var notificationsCountElem = notificationsWrapper.find('p[data-count]');
     var notificationsCount = parseInt(notificationsCountElem.data('count')) || 0;
+    var notifBadge = $('#notif-badge');
+    function updateNotifBadge(){
+        var c = notificationsCount || 0;
+        if(!notifBadge.length){ return; }
+        notifBadge.text(c > 99 ? '99+' : c);
+        if(c > 0){ notifBadge.show(); } else { notifBadge.hide(); }
+    }
+    updateNotifBadge();
 
     var notifications = notificationsWrapper.find('h4.notification-label');
     var new_message = notificationsWrapper.find('.new_message');
@@ -386,10 +400,11 @@ $channel = auth('doctor')->check()
         notificationsCount += 1;
         notificationsCountElem.attr('data-count', notificationsCount);
         notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
         notificationsWrapper.show();
     }
 
-    function handleSectionCreatedEvent(data) {
+    function handleAmbulanceCallCreatedEvent(data) {
         const text = $('<div>').text(data.message).html();
         const time = $('<div>').text(data.created_at).html();
 
@@ -403,6 +418,37 @@ $channel = auth('doctor')->check()
         notificationsCountElem.attr('data-count', notificationsCount);
         notificationsWrapper.find('.notif-count').text(notificationsCount);
         notificationsWrapper.show();
+    } 
+    function handleDoctorCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    }
+    function handleSectionCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class=\"notification-label mb-1\">${text}</h4>
+                <div class=\"notification-subtext\">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
+        notificationsWrapper.show();
     }
     // Subscribe to notifications channel
 
@@ -413,6 +459,11 @@ $channel = auth('doctor')->check()
                 .listen('.create-invoice', handleCreateInvoiceEvent);
             Echo.private('create-section.admin')
                 .listen('.section-created', handleSectionCreatedEvent);
+                Echo.private('create-doctor.admin')
+                .listen('.doctor-created', handleDoctorCreatedEvent);
+                Echo.private('create-ambulance-call.admin')
+                .listen('.ambulance-call-created', handleAmbulanceCallCreatedEvent);
+                
         } catch (e) {
             /* noop */
         }
@@ -428,6 +479,8 @@ $channel = auth('doctor')->check()
             if (typeof Echo !== 'undefined') {
                 Echo.leave(`{{ $channel }}`);
                 Echo.leave('create-section.admin');
+                Echo.leave('create-doctor.admin');
+                Echo.leave('create-ambulance-call.admin');
             }
         } catch (e) {}
     });

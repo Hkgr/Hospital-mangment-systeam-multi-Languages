@@ -13,6 +13,8 @@ Broadcast::channel('create-invoice.admin', fn ($user) => auth('admin')->check(),
 
 
 Broadcast::channel('create-section.admin', fn ($user) => auth('admin')->check(), ['guards' => ['admin']]);
+Broadcast::channel('create-ambulance-call.admin', fn ($user) => auth('admin')->check(), ['guards' => ['admin']]);
+Broadcast::channel('create-doctor.admin', fn ($user) => auth('admin')->check(), ['guards' => ['admin']]);
 
 Broadcast::channel('create-invoice.{doctor_id}', function ($user, $doctor_id) {
     return $user->id == $doctor_id;
