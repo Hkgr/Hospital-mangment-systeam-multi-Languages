@@ -14,6 +14,9 @@ use App\Models\single_invoice;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Diagnostic;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Admin;
+use App\Models\Notification;
+use App\Events\PatientCreated;
 
 class PatientRepository implements PatientRepositoryInterface
 {
@@ -61,6 +64,16 @@ class PatientRepository implements PatientRepositoryInterface
            $Patients->name = $request->name;
            $Patients->Address = $request->Address;
            $Patients->save();
+
+           // notify all admins + broadcast event
+           foreach (Admin::all() as $admin) {
+               Notification::create([
+                   'user_id' => $admin->id,
+                   'message' => 'مريض جديد: ' . $request->name,
+               ]);
+           }
+           event(new PatientCreated($request->name));
+
            session()->flash('add');
            return redirect()->back();
        }
