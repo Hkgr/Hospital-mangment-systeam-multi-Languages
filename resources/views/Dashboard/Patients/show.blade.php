@@ -102,6 +102,9 @@
                                                         <th>اسم الخدمه</th>
                                                         <th>تاريخ الفاتوره</th>
                                                         <th>الاجمالي مع الضريبه</th>
+                                                        <th>شركة التأمين</th>
+                                                        <th>حصة المريض</th>
+                                                        <th>حصة التأمين</th>
                                                         <th>نوع الفاتوره</th>
                                                     </tr>
                                                 </thead>
@@ -111,16 +114,21 @@
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$invoice->Service->name ?? $invoice->Group->name}}</td>
                                                         <td>{{$invoice->invoice_date}}</td>
-                                                        <td>{{$invoice->total_with_tax}}</td>
+                                                        <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
+                                                        <td>{{ optional($invoice->insurance)->name }}</td>
+                                                        <td>{{ number_format($invoice->patient_amount, 2) }}</td>
+                                                        <td>{{ $invoice->insurance_id ? number_format($invoice->insurance_amount, 2) : '--' }}</td>
                                                         <td>{{$invoice->type == 1 ? 'نقدي' : 'اجل'}}</td>
                                                     </tr>
                                                     <br>
                                                     @endforeach
                                                     <tr>
-                                                        <th colspan="4" scope="row" class="alert alert-success">
+                                                        <th colspan="5" scope="row" class="alert alert-success">
                                                             الاجمالي
                                                         </th>
-                                                        <td class="alert alert-primary">{{ number_format( $invoices->sum('total_with_tax') , 2)}}</td>
+                                                        <td class="alert alert-primary">{{ number_format($invoices->sum('patient_amount'), 2) }}</td>
+                                                        <td class="alert alert-primary">{{ number_format($invoices->sum('insurance_amount'), 2) }}</td>
+                                                        <td></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
