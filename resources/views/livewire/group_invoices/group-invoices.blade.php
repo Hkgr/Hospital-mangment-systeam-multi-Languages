@@ -115,12 +115,12 @@
         <div class="row mt-2">
             <div class="col">
                 <label>حصة التأمين</label>
-                <input type="text" class="form-control" readonly value="{{$insurance_amount}}">
-            </div>
+                <input wire:model="insurance_amount" type="text" class="form-control" readonly>
+                        </div>
             <div class="col">
                 <label>حصة المريض</label>
-                <input type="text" class="form-control" readonly value="{{$patient_amount}}">
-            </div>
+                <input wire:model="patient_amount" type="text" class="form-control" readonly>
+                        </div>
         </div>
 
         <input class="btn btn-outline-success mt-3" type="submit" value="تاكيد البيانات">
