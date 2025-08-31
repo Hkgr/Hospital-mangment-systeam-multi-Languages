@@ -212,7 +212,7 @@ $folder = 'users';
                             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                         </svg>
                         @php
-                            $__notifCount = \App\Models\Notification::countNotification($user->id)->count();
+                        $__notifCount = \App\Models\Notification::countNotification($user->id)->count();
                         @endphp
                         <span id="notif-badge" class="badge badge-danger" style="position:absolute; top:-6px; right:-6px; font-size:10px; line-height:1; padding:4px 5px; display: none;">
                             {{ $__notifCount > 99 ? '99+' : $__notifCount }}
@@ -375,11 +375,18 @@ $channel = auth('doctor')->check()
     var notificationsCountElem = notificationsWrapper.find('p[data-count]');
     var notificationsCount = parseInt(notificationsCountElem.data('count')) || 0;
     var notifBadge = $('#notif-badge');
-    function updateNotifBadge(){
+
+    function updateNotifBadge() {
         var c = notificationsCount || 0;
-        if(!notifBadge.length){ return; }
+        if (!notifBadge.length) {
+            return;
+        }
         notifBadge.text(c > 99 ? '99+' : c);
-        if(c > 0){ notifBadge.show(); } else { notifBadge.hide(); }
+        if (c > 0) {
+            notifBadge.show();
+        } else {
+            notifBadge.hide();
+        }
     }
     updateNotifBadge();
 
@@ -418,7 +425,8 @@ $channel = auth('doctor')->check()
         notificationsCountElem.attr('data-count', notificationsCount);
         notificationsWrapper.find('.notif-count').text(notificationsCount);
         notificationsWrapper.show();
-    } 
+    }
+
     function handleDoctorCreatedEvent(data) {
         const text = $('<div>').text(data.message).html();
         const time = $('<div>').text(data.created_at).html();
@@ -434,6 +442,7 @@ $channel = auth('doctor')->check()
         notificationsWrapper.find('.notif-count').text(notificationsCount);
         notificationsWrapper.show();
     }
+
     function handleSectionCreatedEvent(data) {
         const text = $('<div>').text(data.message).html();
         const time = $('<div>').text(data.created_at).html();
@@ -449,6 +458,71 @@ $channel = auth('doctor')->check()
         notificationsWrapper.find('.notif-count').text(notificationsCount);
         updateNotifBadge();
         notificationsWrapper.show();
+
+    }
+
+    function handleInsuranceCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class=\"notification-label mb-1\">${text}</h4>
+                <div class=\"notification-subtext\">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    }
+
+    function handleAmbulanceCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class=\"notification-label mb-1\">${text}</h4>
+                <div class=\"notification-subtext\">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    }
+
+    function handleSingleServiceCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    }
+
+    function handleGroupServiceCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class=\"notification-label mb-1\">${text}</h4>
+                <div class=\"notification-subtext\">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
     }
     // Subscribe to notifications channel
 
@@ -459,11 +533,19 @@ $channel = auth('doctor')->check()
                 .listen('.create-invoice', handleCreateInvoiceEvent);
             Echo.private('create-section.admin')
                 .listen('.section-created', handleSectionCreatedEvent);
-                Echo.private('create-doctor.admin')
+            Echo.private('create-doctor.admin')
                 .listen('.doctor-created', handleDoctorCreatedEvent);
-                Echo.private('create-ambulance-call.admin')
+            Echo.private('create-ambulance-call.admin')
                 .listen('.ambulance-call-created', handleAmbulanceCallCreatedEvent);
-                
+            Echo.private('create-insurance.admin')
+                .listen('.insurance-created', handleInsuranceCreatedEvent);
+            Echo.private('create-ambulance.admin')
+                .listen('.ambulance-created', handleAmbulanceCreatedEvent);
+            Echo.private('create-single-service.admin')
+                .listen('.single-service-created', handleSingleServiceCreatedEvent);
+            Echo.private('create-group-service.admin')
+                .listen('.group-service-created', handleGroupServiceCreatedEvent);
+
         } catch (e) {
             /* noop */
         }
@@ -481,6 +563,10 @@ $channel = auth('doctor')->check()
                 Echo.leave('create-section.admin');
                 Echo.leave('create-doctor.admin');
                 Echo.leave('create-ambulance-call.admin');
+                Echo.leave('create-insurance.admin');
+                Echo.leave('create-ambulance.admin');
+                Echo.leave('create-single-service.admin');
+                Echo.leave('create-group-service.admin');
             }
         } catch (e) {}
     });

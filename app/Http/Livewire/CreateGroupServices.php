@@ -7,6 +7,9 @@ use App\Models\Service;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use App\Models\Admin;
+use App\Models\Notification;
+use App\Events\GroupServiceCreated;
 
 class CreateGroupServices extends Component
 {
@@ -82,7 +85,12 @@ class CreateGroupServices extends Component
     public function saveService($index)
     {
         $this->resetErrorBag();
-        $product = $this->allServices->find($this->GroupsItems[$index]['service_id']);
+        $serviceId = (int) ($this->GroupsItems[$index]['service_id'] ?? 0);
+        $product = \App\Models\Service::find($serviceId);
+        if (!$product) {
+            $this->addError('GroupsItems.' . $index, __('Invalid service selection.'));
+            return;
+        }
         $this->GroupsItems[$index]['service_name'] = $product->name;
         $this->GroupsItems[$index]['service_price'] = $product->price;
         $this->GroupsItems[$index]['is_saved'] = true;
@@ -168,6 +176,15 @@ class CreateGroupServices extends Component
                 $Groups->service_group()->attach($GroupsItem['service_id'],['quantity' => $GroupsItem['quantity']]);
             }
 
+            foreach (Admin::all() as $admin) {
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'message' => 'مجموعة خدمات جديدة: ' . $this->name_group,
+                ]);
+            }
+            event(new GroupServiceCreated($this->name_group));
+
+            
             $this->reset('GroupsItems', 'name_group', 'notes');
             $this->discount_value = 0;
             $this->ServiceSaved = true;

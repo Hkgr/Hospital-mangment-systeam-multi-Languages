@@ -5,6 +5,9 @@ namespace App\Repository\insurances;
 use App\Interfaces\insurances\insuranceRepositoryInterface;
 use App\Models\Insurance;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Admin;
+use App\Models\Notification;
+use App\Events\InsuranceCreated;
 
 class insuranceRepository implements insuranceRepositoryInterface
 {
@@ -34,6 +37,15 @@ class insuranceRepository implements insuranceRepositoryInterface
             $insurances->name = $request->name;
             $insurances->notes = $request->notes;
             $insurances->save();
+            
+            foreach (Admin::all() as $admin) {
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'message' => 'شركة تأمين جديدة: ' . $request->name,
+                ]);
+            }
+
+            event(new InsuranceCreated($request->name));
             session()->flash('add');
             return redirect()->route('insurance.create');
         }
