@@ -11,6 +11,9 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 
 Broadcast::channel('create-invoice.admin', fn ($user) => auth('admin')->check(), ['guards' => ['admin']]);
 
+
+Broadcast::channel('create-section.admin', fn ($user) => auth('admin')->check(), ['guards' => ['admin']]);
+
 Broadcast::channel('create-invoice.{doctor_id}', function ($user, $doctor_id) {
     return $user->id == $doctor_id;
 },

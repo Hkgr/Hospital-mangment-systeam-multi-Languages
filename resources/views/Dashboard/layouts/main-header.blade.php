@@ -389,11 +389,30 @@ $channel = auth('doctor')->check()
         notificationsWrapper.show();
     }
 
+    function handleSectionCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class=\"notification-label mb-1\">${text}</h4>
+                <div class=\"notification-subtext\">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    }
+    // Subscribe to notifications channel
+
     function subscribeNotifications() {
         if (!navigator.onLine || typeof Echo === 'undefined') return;
         try {
             Echo.private(`{{ $channel }}`)
                 .listen('.create-invoice', handleCreateInvoiceEvent);
+            Echo.private('create-section.admin')
+                .listen('.section-created', handleSectionCreatedEvent);
         } catch (e) {
             /* noop */
         }
@@ -406,7 +425,10 @@ $channel = auth('doctor')->check()
     // Leave channel when going offline
     window.addEventListener('offline', function() {
         try {
-            if (typeof Echo !== 'undefined') Echo.leave(`{{ $channel }}`);
+            if (typeof Echo !== 'undefined') {
+                Echo.leave(`{{ $channel }}`);
+                Echo.leave('create-section.admin');
+            }
         } catch (e) {}
     });
 </script>

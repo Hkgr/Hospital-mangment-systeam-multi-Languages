@@ -1,8 +1,11 @@
 <?php
 namespace App\Repository\Sections;
 
+use App\Events\SectionCreated;
 use App\Interfaces\Sections\SectionRepositoryInterface;
+use App\Models\Admin;
 use App\Models\Doctor;
+use App\Models\Notification;
 use App\Models\Section;
 
 class SectionRepository implements SectionRepositoryInterface
@@ -25,6 +28,14 @@ class SectionRepository implements SectionRepositoryInterface
             'description' => $request->input('description'),
         ]);
 
+        
+        foreach (Admin::all() as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'قسم جديد: '.$request->input('name'),
+            ]);
+        }
+        event(new SectionCreated($request->input('name')));
         session()->flash('add');
         return redirect()->route('Sections.index');
     }
