@@ -90,6 +90,28 @@
 
                                     </td>
                                 </tr>
+                                @if(Request::get('insurance_name'))
+                                    <tr>
+                                        <td class="tx-right">{{ trans('invoices.Insurance_Company') }}</td>
+                                        <td class="tx-right" colspan="2">{{ Request::get('insurance_name') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tx-right">{{ trans('invoices.Insurance_Share') }}</td>
+                                        <td class="tx-right" colspan="2">{{ number_format(Request::get('insurance_amount'), 2) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tx-right">{{ trans('invoices.Patient_Share') }}</td>
+                                        <td class="tx-right" colspan="2">{{ number_format(Request::get('patient_amount'), 2) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tx-right">{{ trans('invoices.Insurance_Discount') }}</td>
+                                        <td class="tx-right" colspan="2">% {{ Request::get('insurance_discount') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tx-right">{{ trans('invoices.Company_Rate') }}</td>
+                                        <td class="tx-right" colspan="2">% {{ Request::get('company_rate') }}</td>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
                         </div>

@@ -103,6 +103,11 @@ class SingleInvoices extends Component
             'discount_value' => $single_invoice->discount_value,
             'tax_rate' => $single_invoice->tax_rate,
             'total_with_tax' => $single_invoice->total_with_tax,
+            'insurance_name' => optional($single_invoice->insurance)->name,
+            'insurance_discount' => $single_invoice->insurance_discount,
+            'company_rate' => $single_invoice->company_rate,
+            'insurance_amount' => $single_invoice->insurance_amount,
+            'patient_amount' => $single_invoice->patient_amount,
         ]);
 
     }
