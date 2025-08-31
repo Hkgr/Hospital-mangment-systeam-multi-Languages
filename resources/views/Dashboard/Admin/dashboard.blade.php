@@ -105,7 +105,11 @@
 							<div class="media-body">
 								<div class="d-flex align-items-center">
 									<div class="mt-0">
-										<h5 class="mb-1 tx-15">{{ $patient->name }}</h5>
+									<h5 class="mb-1 tx-15">
+										<a href="{{ route('Patients.show', $patient->id) }}" class="text-primary">
+											{{ $patient->name }}
+										</a>
+									</h5>
 										@php
 										$invoice = App\Models\Invoice::where('patient_id', $patient->id)->latest()->first();
 										$statusClasses = [1 => 'text-danger', 2 => 'text-warning', 3 => 'text-success'];

@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\LaboratorieController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\PaymentAccountController;
 use App\Http\Controllers\Dashboard\RayEmployeeController;
+use App\Http\Controllers\Dashboard\SearchController;
 use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
@@ -46,6 +47,8 @@ Route::group(
     function () {
 
 
+        Route::get('/search', [SearchController::class, 'index'])->name('search');
+        
         //################################ dashboard user ##########################################
         Route::get('/dashboard/user', function () {
 

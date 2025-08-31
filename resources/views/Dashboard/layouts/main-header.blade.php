@@ -40,8 +40,10 @@ $folder = 'users';
                 <a class="close-toggle" href="#"><i class="header-icons fe fe-x"></i></a>
             </div>
             <div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
-                <input class="form-control" placeholder="ابحث عن اي شيء..." type="search">
-                <button class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
+                <form method="GET" action="{{ route('search') }}">
+                    <input class="form-control" name="q" placeholder="ابحث عن اي شيء..." type="search">
+                    <button class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
+                </form>
             </div>
         </div>
         <div class="main-header-right">
@@ -86,9 +88,9 @@ $folder = 'users';
             </ul>
             <div class="nav nav-item  navbar-nav-right ml-auto">
                 <div class="nav-link" id="bs-example-navbar-collapse-1">
-                    <form class="navbar-form" role="search">
+                    <form class="navbar-form" role="search" method="GET" action="{{ route('search') }}">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" name="q" placeholder="Search">
                             <span class="input-group-btn">
                                 <button type="reset" class="btn btn-default">
                                     <i class="fas fa-times"></i>
@@ -393,7 +395,8 @@ $channel = auth('doctor')->check()
             Echo.private(`{{ $channel }}`)
                 .listen('.create-invoice', handleCreateInvoiceEvent);
         } catch (e) {
-            /* noop */ }
+            /* noop */
+        }
     }
 
     // Initial subscribe only when online
