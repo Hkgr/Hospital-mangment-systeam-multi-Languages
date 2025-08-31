@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\File;
 
 class Doctor extends Authenticatable
 {
@@ -47,6 +48,46 @@ class Doctor extends Authenticatable
     public function doctorappointments()
     {
         return $this->belongsToMany(Appointment::class,'appointment_doctor');
+    }
+
+
+    protected static function booted()
+    {
+        static::created(function (Doctor $doctor) {
+            // Attach default image record if none exists
+            if (!$doctor->image()->exists()) {
+                $doctor->image()->create([
+                    'filename' => 'default.png',
+                ]);
+            }
+
+            // Ensure a default.png exists under doctors folder for views expecting foldered path
+            try {
+                $defaultPath = public_path('Dashboard/img/default.png');
+                $targetDir = public_path('Dashboard/img/doctors');
+                $targetPath = $targetDir . DIRECTORY_SEPARATOR . 'default.png';
+                if (File::exists($defaultPath)) {
+                    if (!File::exists($targetDir)) {
+                        File::makeDirectory($targetDir, 0755, true);
+                    }
+                    if (!File::exists($targetPath)) {
+                        File::copy($defaultPath, $targetPath);
+                    }
+                }
+            } catch (\Throwable $e) {
+                // ignore filesystem errors
+            }
+        });
+    }
+
+    // Convenience accessor for avatar path in views
+    public function getAvatarPathAttribute(): string
+    {
+        $filename = $this->image->filename ?? null;
+        if ($filename && $filename !== 'default.png') {
+            return asset('Dashboard/img/doctors/' . $filename);
+        }
+        return asset('Dashboard/img/default.png');
     }
 
 
