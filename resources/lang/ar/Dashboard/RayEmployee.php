@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'DashboardTitle' => 'لوحة تحكم موظفي الاشعة',
+    'WelcomeBack' => 'مرحبا بعودتك مرة اخري',
+    'TotalInvoices' => 'اجمالي عدد الفواتير',
+    'PendingInvoices' => 'اجمالي عدد الفواتير تحت الاجراء',
+    'CompletedInvoices' => 'اجمالي عدد الفواتير المكتملة',
+    'LatestInvoices' => 'اخر 5 فواتير علي النظام',
+    'Reports' => 'الكشوفات',
+    'Invoices' => 'الفواتير',
+    'InvoiceDate' => 'تاريخ الفاتورة',
+    'PatientName' => 'اسم المريض',
+    'DoctorName' => 'اسم الدكتور',
+    'Description' => 'المطلوب',
+    'InvoiceStatus' => 'حالة الفاتورة',
+    'Operations' => 'العمليات',
+    'AddDiagnosis' => 'اضافة تشخيص',
+    'UnderProcessing' => 'تحت الاجراء',
+    'Completed' => 'مكتملة',
+    'NoData' => 'لاتوجد بيانات',
+    'Diagnosis' => 'التشخيص',
+    'Attachments' => 'المرفقات',
+    'Confirm' => 'تاكيد',
+    'DoctorDetails' => 'تفاصيل الدكتور',
+    'PatientDetails' => 'تفاصيل المريض',
+    'XRayImages' => 'صور الاشعة',
+    'ViewImages' => 'عرض الصور',
+    'RadiologistNotes' => 'ملاحظات دكتور الاشعة',
+];
+
