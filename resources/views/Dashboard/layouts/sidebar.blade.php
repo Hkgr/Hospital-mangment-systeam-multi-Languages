@@ -23,7 +23,7 @@ $notifications = $userId
 			<div class="tabs-menu ">
 				<!-- Tabs -->
 				<ul class="nav panel-tabs">
-					<li class=""><a href="#side1" class="active" data-toggle="tab"><i class="ion ion-md-chatboxes tx-18 ml-2"></i> الدردشة</a></li>
+					<!-- <li class=""><a href="#side1" class="active" data-toggle="tab"><i class="ion ion-md-chatboxes tx-18 ml-2"></i> الدردشة</a></li> -->
 					<li><a href="#side2" data-toggle="tab"><i class="ion ion-md-notifications tx-18  ml-2"></i> الإشعارات</a></li>
 					<!-- <li><a href="#side3" data-toggle="tab"><i class="ion ion-md-contacts tx-18 ml-2"></i> Friends</a></li> -->
 				</ul>
@@ -171,9 +171,7 @@ $notifications = $userId
 					<div class="list-group list-group-flush">
 						@forelse($notifications as $notification)
 						<div class="list-group-item d-flex align-items-center">
-							<div class="ml-3">
-								<span class="avatar avatar-lg brround cover-image" data-image-src="{{ URL::asset('Dashboard/img/faces/12.jpg') }}"><span class="avatar-status bg-success"></span></span>
-							</div>
+							<div class="ml-3"> </div>
 							<div>
 								<strong>{{ $notification->message }}</strong>
 								<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}</div>
