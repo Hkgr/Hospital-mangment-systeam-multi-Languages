@@ -7,19 +7,14 @@
                   linear-gradient(rgba(0, 76, 218, 1), rgba(0, 76, 218, 0.8)),
                   url('{{ asset('WebSite/images/articals/1/main.png') }}') center/cover no-repeat;">
     <div class="container">
-        <h1 class="display-6 fw-bold mb-50">الجلطات الدماغية</h1>
+        <h1 class="display-6 fw-bold mb-50">{{ trans('Articles/Article1.Title') }}</h1>
     </div>
 </section>
 
 <section>
-    <h2 class="text-center my-5"> الجلطات الدماغية: أنواع، الأعراض، الأسباب، طرق العلاج والوقاية </h2>
+    <h2 class="text-center my-5">{{ trans('Articles/Article1.Headline') }}</h2>
 
-    <h3 class="text-center mb-5">
-        الجلطة الدماغية (Stroke) حالة طبية طارئة تحدث عندما يتوقف تدفق الدم إلى الدماغ،
-        إما بسبب انسداد أحد الأوعية الدموية (جلطة إقفارية)،
-        أو بسبب انفجار وعاء دموي (جلطة نزفية).
-        كلما طال وقت انقطاع الدم، زاد الضرر في خلايا الدماغ.
-    </h3>
+    <h3 class="text-center mb-5">{{ trans('Articles/Article1.Intro') }}</h3>
 </section>
 
 <section class="py-5 bg-light" dir="rtl">
@@ -27,51 +22,45 @@
         <div class="row g-4 align-items-center">
             <!-- العمود الأول -->
             <div class="col-12 col-lg-6">
-                <h3 class="h3 mb-3 text-right">أنواع الجلطات الدماغية</h3>
+                <h3 class="h3 mb-3 text-right">{{ trans('Articles/Article1.TypesTitle') }}</h3>
 
                 <section dir="rtl" class="container py-3 text-end text-right">
                     <ol class="mb-0">
                         <li class="mb-3">
-                            <h3 class="fw-bold mb-2">
-                                1. الجلطة الدماغية الإقفارية <span dir="ltr" class="fst-italic">(Ischemic Stroke)</span>:
-                            </h3>
+                            <h3 class="fw-bold mb-2">{!! trans('Articles/Article1.Type1Title') !!}</h3>
                             <ul class="mb-0 ps-3">
                                 <li class="mb-1">
-                                    <h4 class="m-0 fw-normal">الأكثر شيوعاً، تمثل حوالي 85% من الحالات.</h4>
+                                    <h4 class="m-0 fw-normal">{{ trans('Articles/Article1.Type1Item1') }}</h4>
                                 </li>
                                 <li>
-                                    <h4 class="m-0 fw-normal">تحدث بسبب انسداد شريان دماغي بجلطة دموية أو تراكمات دهنية.</h4>
+                                    <h4 class="m-0 fw-normal">{{ trans('Articles/Article1.Type1Item2') }}</h4>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="mb-3">
-                            <h3 class="fw-bold mb-2">
-                              2.  الجلطة الدماغية النزفية <span dir="ltr" class="fst-italic">(Hemorrhagic Stroke)</span>:
-                            </h3>
+                            <h3 class="fw-bold mb-2">{!! trans('Articles/Article1.Type2Title') !!}</h3>
                             <ul class="mb-0 ps-3">
                                 <li class="mb-1">
-                                    <h4 class="m-0 fw-normal">تحدث عندما يتمزق أحد الأوعية الدموية داخل الدماغ.</h4>
+                                    <h4 class="m-0 fw-normal">{{ trans('Articles/Article1.Type2Item1') }}</h4>
                                 </li>
                                 <li>
-                                    <h4 class="m-0 fw-normal">غالباً بسبب ارتفاع ضغط الدم أو تمدد الأوعية الدموية.</h4>
+                                    <h4 class="m-0 fw-normal">{{ trans('Articles/Article1.Type2Item2') }}</h4>
                                 </li>
                             </ul>
                         </li>
 
                         <li>
-                            <h3 class="fw-bold mb-2">
-                              3.  النوبة الإقفارية العابرة <span dir="ltr" class="fst-italic">(TIA)</span>:
-                            </h3>
+                            <h3 class="fw-bold mb-2">{!! trans('Articles/Article1.Type3Title') !!}</h3>
                             <ul class="mb-0 ps-3">
                                 <li class="mb-1">
-                                    <h4 class="m-0 fw-normal">تُعرف أيضاً بـ"الجلطة الصغيرة".</h4>
+                                    <h4 class="m-0 fw-normal">{{ trans('Articles/Article1.Type3Item1') }}</h4>
                                 </li>
                                 <li class="mb-1">
-                                    <h4 class="m-0 fw-normal">أعراضها تشبه الجلطة الدماغية لكنها تختفي خلال دقائق أو ساعات.</h4>
+                                    <h4 class="m-0 fw-normal">{{ trans('Articles/Article1.Type3Item2') }}</h4>
                                 </li>
                                 <li>
-                                    <h4 class="m-0 fw-normal">إنذار قوي لاحتمال حدوث جلطة حقيقية لاحقاً.</h4>
+                                    <h4 class="m-0 fw-normal">{{ trans('Articles/Article1.Type3Item3') }}</h4>
                                 </li>
                             </ul>
                         </li>
@@ -85,7 +74,7 @@
 
             <!-- العمود الثاني -->
             <div class="col-12 col-lg-6">
-                <img src="{{  asset('WebSite/images/articals/1/pic3.png') }}" class="img-fluid rounded mb-10" alt="صورة توضيحية">
+                <img src="{{  asset('WebSite/images/articals/1/pic3.png') }}" class="img-fluid rounded mb-10" alt="{{ trans('Articles/Article1.ImageAlt') }}">
             </div>
         </div>
     </div>
@@ -97,44 +86,44 @@
         <div class="row g-4 align-items-center">
             <!-- العمود الأول -->
             <div class="col-12 col-lg-6">
-                <h2 class="h3 mb-3 text-right">الأسباب وعوامل الخطر</h2>
+                <h2 class="h3 mb-3 text-right">{{ trans('Articles/Article1.RiskTitle') }}</h2>
                 <h4 class="mb-4 text-right">
                     <ul class="list-unstyled ps-0 vstack gap-3" dir="rtl">
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>ارتفاع ضغط الدم</span>
+                            <span>{{ trans('Articles/Article1.RiskHighBP') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>مرض السكري</span>
+                            <span>{{ trans('Articles/Article1.RiskDiabetes') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>ارتفاع الكوليسترول</span>
+                            <span>{{ trans('Articles/Article1.RiskHighCholesterol') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>التدخين</span>
+                            <span>{{ trans('Articles/Article1.RiskSmoking') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>السمنة</span>
+                            <span>{{ trans('Articles/Article1.RiskObesity') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>قلة النشاط البدني</span>
+                            <span>{{ trans('Articles/Article1.RiskInactivity') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>أمراض القلب مثل الرجفان الأذيني</span>
+                            <span>{{ trans('Articles/Article1.RiskHeartDisease') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>تناول الكحول بإفراط</span>
+                            <span>{{ trans('Articles/Article1.RiskAlcohol') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>التاريخ العائلي للإصابة بالجلطة</span>
+                            <span>{{ trans('Articles/Article1.RiskFamily') }}</span>
                         </li>
                     </ul>
 
@@ -144,32 +133,32 @@
 
             <!-- العمود الثاني -->
             <div class="col-12 col-lg-6">
-                <img src="{{  asset('WebSite/images/articals/1/pic1.png') }}" class="img-fluid rounded mb-10" alt="صورة توضيحية">
+                <img src="{{  asset('WebSite/images/articals/1/pic1.png') }}" class="img-fluid rounded mb-10" alt="{{ trans('Articles/Article1.ImageAlt') }}">
             </div>
         </div>
     </div>
 </section>
 
 <section class="py-5 bg-light" dir="rtl">
-    <h2 class="text-center mb-4">طرق علاج الجلطة الدماغية</h2>
+    <h2 class="text-center mb-4">{{ trans('Articles/Article1.TreatmentTitle') }}</h2>
     <div class="container">
         <div class="row g-4 align-items-center">
             <!-- العمود الأول -->
             <div class="col-12 col-lg-6">
-                <h2 class="h3 mb-3 text-right">في الحالات الطارئة:</h2>
+                <h2 class="h3 mb-3 text-right">{{ trans('Articles/Article1.EmergencyTitle') }}</h2>
                 <h4 class="mb-4 text-right">
                     <ul class="list-unstyled vstack gap-3" dir="rtl">
                         <li class="d-flex align-items-start">
                             <i class="flaticon-tick-inside-circle fs-4 text-primary opacity-75 me-4 mt-1" aria-hidden="true"></i>
-                            <span>حقن مذيبات الجلطات خلال أول 3–4.5 ساعات (في حالة الجلطة الإقفارية).</span>
+                            <span>{{ trans('Articles/Article1.TreatmentEmergencyItem1') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-tick-inside-circle fs-4 text-primary opacity-75 me-4 mt-1" aria-hidden="true"></i>
-                            <span>القسطرة الدماغية لإزالة الجلطات.</span>
+                            <span>{{ trans('Articles/Article1.TreatmentEmergencyItem2') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-tick-inside-circle fs-4 text-primary opacity-75 me-4 mt-1" aria-hidden="true"></i>
-                            <span>الجراحة لوقف النزيف أو تخفيف الضغط داخل الجمجمة (في حالات النزيف).</span>
+                            <span>{{ trans('Articles/Article1.TreatmentEmergencyItem3') }}</span>
                         </li>
                     </ul>
 
@@ -179,20 +168,20 @@
 
             <!-- العمود الثاني -->
             <div class="col-12 col-lg-6">
-                <h2 class="h3 mb-3 text-right">في الحالات الطارئة:</h2>
+                <h2 class="h3 mb-3 text-right">{{ trans('Articles/Article1.EmergencyTitle') }}</h2>
                 <h4 class="mb-4 text-right">
                     <ul class="list-unstyled vstack gap-3" dir="rtl">
                         <li class="d-flex align-items-start">
                             <i class="flaticon-tick-inside-circle fs-4 text-primary opacity-75 me-4 mt-1" aria-hidden="true"></i>
-                            <span>العلاج الطبيعي والتأهيلي لاستعادة المهارات الحركية والنطق.</span>
+                            <span>{{ trans('Articles/Article1.RecoveryItem1') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-tick-inside-circle fs-4 text-primary opacity-75 me-4 mt-1" aria-hidden="true"></i>
-                            <span>الأدوية المميعة للدم.</span>
+                            <span>{{ trans('Articles/Article1.RecoveryItem2') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-tick-inside-circle fs-4 text-primary opacity-75 me-4 mt-1" aria-hidden="true"></i>
-                            <span>السيطرة على الأمراض المزمنة كارتفاع الضغط والسكري.</span>
+                            <span>{{ trans('Articles/Article1.RecoveryItem3') }}</span>
                         </li>
                     </ul>
 
@@ -208,36 +197,36 @@
         <div class="row g-4 align-items-center">
             <!-- العمود الأول -->
             <div class="col-12 col-lg-6">
-                <h2 class="h3 mb-3 text-right">طرق الوقاية من الجلطات الدماغية</h2>
+                <h2 class="h3 mb-3 text-right">{{ trans('Articles/Article1.PreventionTitle') }}</h2>
                 <h4 class="mb-4 text-right">
                     <ul class="list-unstyled ps-0 vstack gap-3" dir="rtl">
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>الحفاظ على ضغط دم طبيعي.</span>
+                            <span>{{ trans('Articles/Article1.PreventionItem1') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>ضبط مستوى السكر والكوليسترول.</span>
+                            <span>{{ trans('Articles/Article1.PreventionItem2') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>التوقف عن التدخين.</span>
+                            <span>{{ trans('Articles/Article1.PreventionItem3') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>ممارسة النشاط البدني بانتظام.</span>
+                            <span>{{ trans('Articles/Article1.PreventionItem4') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>تناول غذاء صحي غني بالخضار والفواكه.</span>
+                            <span>{{ trans('Articles/Article1.PreventionItem5') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>التحكم بالوزن.</span>
+                            <span>{{ trans('Articles/Article1.PreventionItem6') }}</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="flaticon-brain display-6 text-primary opacity-75 me-3 lh-1" aria-hidden="true"></i>
-                            <span>متابعة الطبيب بانتظام.</span>
+                            <span>{{ trans('Articles/Article1.PreventionItem7') }}</span>
                         </li>
                     </ul>
 
@@ -247,7 +236,7 @@
 
             <!-- العمود الثاني -->
             <div class="col-12 col-lg-6">
-                <img src="{{  asset('WebSite/images/articals/1/pic2.png') }}" class="img-fluid rounded mb-10" alt="صورة توضيحية">
+                <img src="{{  asset('WebSite/images/articals/1/pic2.png') }}" class="img-fluid rounded mb-10" alt="{{ trans('Articles/Article1.ImageAlt') }}">
             </div>
         </div>
     </div>
