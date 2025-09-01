@@ -28,7 +28,7 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
-                            {{trans('Services.add_Service')}}
+                            {{ trans('Dashboard/Services.add_Service') }}
                         </button>
                     </div>
                 </div>
@@ -38,12 +38,12 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th> {{trans('Services.name')}}</th>
-                                <th> {{trans('Services.price')}}</th>
-                                <th> {{trans('doctors.Status')}}</th>
-                                <th> {{trans('Services.description')}}</th>
-                                <th>{{trans('sections_trans.created_at')}}</th>
-                                <th>{{trans('sections_trans.Processes')}}</th>
+                                <th> {{ trans('Dashboard/Services.name') }}</th>
+                                <th> {{ trans('Dashboard/Services.price') }}</th>
+                                <th> {{ trans('Dashboard/Services.Status') }}</th>
+                                <th> {{ trans('Dashboard/Services.description') }}</th>
+                                <th>{{ trans('Dashboard/Services.created_at') }}</th>
+                                <th>{{ trans('Dashboard/Services.Operations') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -55,7 +55,7 @@
                                     <td>
                                         <div
                                             class="dot-label bg-{{$service->status == 1 ? 'success':'danger'}} ml-1"></div>
-                                        {{$service->status == 1 ? trans('doctors.Enabled'):trans('doctors.Not_enabled')}}
+                                        {{$service->status == 1 ? trans('Dashboard/Services.Enabled'):trans('Dashboard/Services.Not_enabled')}}
                                     </td>
                                     <td> {{ Str::limit($service->description, 50) }}</td>
                                     <td>{{ $service->created_at->diffForHumans() }}</td>

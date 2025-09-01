@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{trans('Services.edit_Service')}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{ trans('Dashboard/Services.edit_Service') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,23 +14,23 @@
                 {{ csrf_field() }}
                 @csrf
                 <div class="modal-body">
-                    <label for="name">{{trans('Services.name')}}</label>
+                    <label for="name">{{ trans('Dashboard/Services.name') }}</label>
                     <input type="text" name="name" id="name" value="{{$service->name}}" class="form-control"><br>
 
                     <input type="hidden" name="id" value="{{$service->id}}" class="form-control"><br>
 
-                    <label for="price">{{trans('Services.price')}}</label>
+                    <label for="price">{{ trans('Dashboard/Services.price') }}</label>
                     <input type="text" name="price" id="price" value="{{$service->price}}" class="form-control" inputmode="decimal" pattern="[0-9,\.]*" oninput="this.value=this.value.replace(/[^0-9.,]/g,'');"><br>
 
-                    <label for="description">{{trans('Services.description')}}</label>
+                    <label for="description">{{ trans('Dashboard/Services.description') }}</label>
                     <textarea class="form-control" name="description" id="description" rows="5">{{$service->description}}</textarea>
 
                     <div class="form-group">
-                        <label for="status">{{trans('doctors.Status')}}</label>
+                        <label for="status">{{ trans('Dashboard/Services.Status') }}</label>
                         <select class="form-control" id="status" name="status" required>
-                            <option value="{{$service->status}}" selected>{{$service->status == 1 ? trans('doctors.Enabled'):trans('doctors.Not_enabled')}}</option>
-                            <option value="1">{{trans('doctors.Enabled')}}</option>
-                            <option value="0">{{trans('doctors.Not_enabled')}}</option>
+                            <option value="{{$service->status}}" selected>{{$service->status == 1 ? trans('Dashboard/Services.Enabled'):trans('Dashboard/Services.Not_enabled')}}</option>
+                            <option value="1">{{ trans('Dashboard/Services.Enabled') }}</option>
+                            <option value="0">{{ trans('Dashboard/Services.Not_enabled') }}</option>
                         </select>
                     </div>
                 </div>
