@@ -575,6 +575,23 @@ $channel = auth('doctor')->check()
         notificationsWrapper.show();
     }
 
+    function handleAppointmentCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
+        notificationsWrapper.show();
+    }
+
     // Subscribe to notifications channel
 
     function subscribeNotifications() {
@@ -598,6 +615,8 @@ $channel = auth('doctor')->check()
                 .listen('.group-service-created', handleGroupServiceCreatedEvent);
             Echo.private('create-patient.admin')
                 .listen('.patient-created', handlePatientCreatedEvent);
+            Echo.private('create-appointment.admin')
+                .listen('.appointment-created', handleAppointmentCreatedEvent);
             @if(auth('admin')->check())
             Echo.private('create-receipt.admin')
                 .listen('.receipt-created', handleReceiptCreatedEvent);
@@ -634,6 +653,7 @@ $channel = auth('doctor')->check()
                 Echo.leave('create-single-service.admin');
                 Echo.leave('create-group-service.admin');
                 Echo.leave('create-patient.admin');
+                Echo.leave('create-appointment.admin');
                 @if(auth('admin')->check())
                 Echo.leave('create-receipt.admin');
                 Echo.leave('create-payment.admin');
