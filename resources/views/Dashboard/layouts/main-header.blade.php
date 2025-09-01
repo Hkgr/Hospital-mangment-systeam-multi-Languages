@@ -41,16 +41,16 @@ $folder = 'users';
             </div>
             <div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
                 <form method="GET" action="{{ route('search') }}">
-                    <input class="form-control" name="q" placeholder="ابحث عن اي شيء..." type="search">
+                    <input class="form-control" name="q" placeholder="{{ trans('Dashboard/Header.SearchPlaceholder') }}" type="search">
                     <button class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
                 </form>
             </div>
         </div>
         <div class="main-header-right">
             <ul class="nav">
-                <li class="nav-item d-flex align-items-center mr-3" id="online-indicator" title="حالة الاتصال">
+                <li class="nav-item d-flex align-items-center mr-3" id="online-indicator" title="{{ trans('Dashboard/Header.ConnectionStatus') }}">
                     <span class="status-dot" style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#28a745"></span>
-                    <span class="ml-2 small" id="online-indicator-text"> متصل </span>
+                    <span class="ml-2 small" id="online-indicator-text">{{ trans('Dashboard/Header.Online') }}</span>
                 </li>
                 <li class="">
                     <div class="dropdown  nav-itemd-none d-md-flex">
@@ -90,7 +90,7 @@ $folder = 'users';
                 <div class="nav-link" id="bs-example-navbar-collapse-1">
                     <form class="navbar-form" role="search" method="GET" action="{{ route('search') }}">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="q" placeholder="Search">
+                            <input type="text" class="form-control" name="q" placeholder="{{ trans('Dashboard/Header.SearchPlaceholder') }}">
                             <span class="input-group-btn">
                                 <button type="reset" class="btn btn-default">
                                     <i class="fas fa-times"></i>
@@ -125,11 +125,10 @@ $folder = 'users';
                     <div class="dropdown-menu">
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
-                                <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">Messages</h6>
-                                <span class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All Read</span>
+                                <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">{{ trans('Dashboard/Header.Messages') }}</h6>
+                                <span class="badge badge-pill badge-warning mr-auto my-auto float-left">{{ trans('Dashboard/Header.MarkAllRead') }}</span>
                             </div>
-                            <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">You have 4 unread
-                                messages</p>
+                            <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">{{ trans('Dashboard/Header.UnreadMessages') }}</p>
                         </div>
                         <div class="main-message-list chat-scroll">
                             <a href="#" class="p-3 d-flex border-bottom">
@@ -199,7 +198,7 @@ $folder = 'users';
                             </a>
                         </div>
                         <div class="text-center dropdown-footer">
-                            <a href="text-center">VIEW ALL</a>
+                            <a href="text-center">{{ trans('Dashboard/Header.ViewAll') }}</a>
                         </div>
                     </div>
                 </div>
@@ -221,10 +220,10 @@ $folder = 'users';
                     <div class="dropdown-menu dropdown-notifications">
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
-                                <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">الاشعارات</h6>
+                                <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">{{ trans('Dashboard/Header.Notifications') }}</h6>
                                 <form action="{{ route('notifications.markAllRead') }}" method="POST" class="mr-auto my-auto">
                                     @csrf
-                                    <button type="submit" class="badge badge-pill badge-warning float-left border-0">Mark All Read</button>
+                                      <button type="submit" class="badge badge-pill badge-warning float-left border-0">{{ trans('Dashboard/Header.MarkAllRead') }}</button>
                                 </form>
                             </div>
                             <p data-count="{{App\Models\Notification::countNotification($user->id)->count()}}" class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">{{App\Models\Notification::countnotification($user->id)->count()}}</p>
@@ -261,7 +260,7 @@ $folder = 'users';
                             @endforeach
                         </div>
                         <div class="dropdown-footer">
-                            <a href="">VIEW ALL</a>
+                              <a href="">{{ trans('Dashboard/Header.ViewAll') }}</a>
                         </div>
                     </div>
                 </div>
@@ -301,23 +300,23 @@ $folder = 'users';
                             </div>
                         </div>
                         @if(auth('web')->check())
-                        <a class="dropdown-item" href="{{ route('profile.user') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
-                        <a class="dropdown-item" href="{{ route('profile.edit.user') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                          <a class="dropdown-item" href="{{ route('profile.user') }}"><i class="bx bx-user-circle"></i>{{ trans('Dashboard/Header.Profile') }}</a>
+                          <a class="dropdown-item" href="{{ route('profile.edit.user') }}"><i class="bx bx-cog"></i>{{ trans('Dashboard/Header.EditProfile') }}</a>
                         @elseif(auth('admin')->check())
-                        <a class="dropdown-item" href="{{ route('profile.admin') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
-                        <a class="dropdown-item" href="{{ route('profile.edit.admin') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                          <a class="dropdown-item" href="{{ route('profile.admin') }}"><i class="bx bx-user-circle"></i>{{ trans('Dashboard/Header.Profile') }}</a>
+                          <a class="dropdown-item" href="{{ route('profile.edit.admin') }}"><i class="bx bx-cog"></i>{{ trans('Dashboard/Header.EditProfile') }}</a>
                         @elseif(auth('doctor')->check())
-                        <a class="dropdown-item" href="{{ route('profile.doctor') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
-                        <a class="dropdown-item" href="{{ route('profile.edit.doctor') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                          <a class="dropdown-item" href="{{ route('profile.doctor') }}"><i class="bx bx-user-circle"></i>{{ trans('Dashboard/Header.Profile') }}</a>
+                          <a class="dropdown-item" href="{{ route('profile.edit.doctor') }}"><i class="bx bx-cog"></i>{{ trans('Dashboard/Header.EditProfile') }}</a>
                         @elseif(auth('ray_employee')->check())
-                        <a class="dropdown-item" href="{{ route('profile.ray_employee') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
-                        <a class="dropdown-item" href="{{ route('profile.edit.ray_employee') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                          <a class="dropdown-item" href="{{ route('profile.ray_employee') }}"><i class="bx bx-user-circle"></i>{{ trans('Dashboard/Header.Profile') }}</a>
+                          <a class="dropdown-item" href="{{ route('profile.edit.ray_employee') }}"><i class="bx bx-cog"></i>{{ trans('Dashboard/Header.EditProfile') }}</a>
                         @elseif(auth('laboratorie_employee')->check())
-                        <a class="dropdown-item" href="{{ route('profile.laboratorie_employee') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
-                        <a class="dropdown-item" href="{{ route('profile.edit.laboratorie_employee') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                          <a class="dropdown-item" href="{{ route('profile.laboratorie_employee') }}"><i class="bx bx-user-circle"></i>{{ trans('Dashboard/Header.Profile') }}</a>
+                          <a class="dropdown-item" href="{{ route('profile.edit.laboratorie_employee') }}"><i class="bx bx-cog"></i>{{ trans('Dashboard/Header.EditProfile') }}</a>
                         @else
-                        <a class="dropdown-item" href="{{ route('profile.patient') }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
-                        <a class="dropdown-item" href="{{ route('profile.edit.patient') }}"><i class="bx bx-cog"></i>تعديل الملف الشخصي</a>
+                          <a class="dropdown-item" href="{{ route('profile.patient') }}"><i class="bx bx-user-circle"></i>{{ trans('Dashboard/Header.Profile') }}</a>
+                          <a class="dropdown-item" href="{{ route('profile.edit.patient') }}"><i class="bx bx-cog"></i>{{ trans('Dashboard/Header.EditProfile') }}</a>
                         @endif
                         @if(auth('web')->check())
                         <form method="POST" action="{{ route('logout.user') }}">
@@ -337,7 +336,7 @@ $folder = 'users';
                                                 @csrf
                                                 <a class="dropdown-item" href="#"
                                                     onclick="event.preventDefault();
-                                        this.closest('form').submit();"><i class="bx bx-log-out"></i>تسجيل الخروج</a>
+                                                  this.closest('form').submit();"><i class="bx bx-log-out"></i>{{ trans('Dashboard/Header.Logout') }}</a>
                                             </form>
 
                     </div>
@@ -542,6 +541,40 @@ $channel = auth('doctor')->check()
         notificationsWrapper.show();
     }
 
+    function handleReceiptCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
+        notificationsWrapper.show();
+    }
+
+    function handlePaymentCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
+        notificationsWrapper.show();
+    }
+
     // Subscribe to notifications channel
 
     function subscribeNotifications() {
@@ -565,6 +598,20 @@ $channel = auth('doctor')->check()
                 .listen('.group-service-created', handleGroupServiceCreatedEvent);
             Echo.private('create-patient.admin')
                 .listen('.patient-created', handlePatientCreatedEvent);
+            @if(auth('admin')->check())
+            Echo.private('create-receipt.admin')
+                .listen('.receipt-created', handleReceiptCreatedEvent);
+            Echo.private('create-payment.admin')
+                .listen('.payment-created', handlePaymentCreatedEvent);
+            @elseif(auth('doctor')->check())
+            Echo.private('create-receipt.doctor.{{ auth('doctor')->id() }}')
+                .listen('.receipt-created', handleReceiptCreatedEvent);
+            @elseif(auth('patient')->check())
+            Echo.private('create-receipt.patient.{{ auth('patient')->id() }}')
+                .listen('.receipt-created', handleReceiptCreatedEvent);
+            Echo.private('create-payment.patient.{{ auth('patient')->id() }}')
+                .listen('.payment-created', handlePaymentCreatedEvent);
+            @endif
         } catch (e) {
             /* noop */
         }
@@ -587,6 +634,15 @@ $channel = auth('doctor')->check()
                 Echo.leave('create-single-service.admin');
                 Echo.leave('create-group-service.admin');
                 Echo.leave('create-patient.admin');
+                @if(auth('admin')->check())
+                Echo.leave('create-receipt.admin');
+                Echo.leave('create-payment.admin');
+                @elseif(auth('doctor')->check())
+                Echo.leave('create-receipt.doctor.{{ auth('doctor')->id() }}');
+                @elseif(auth('patient')->check())
+                Echo.leave('create-receipt.patient.{{ auth('patient')->id() }}');
+                Echo.leave('create-payment.patient.{{ auth('patient')->id() }}');
+                @endif
             }
         } catch (e) {}
     });
