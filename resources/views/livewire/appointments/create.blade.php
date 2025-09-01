@@ -1,4 +1,9 @@
 <div>
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert" style="direction: rtl; text-align: right;">
+            {{ session('success') }}
+        </div>
+    @endif
     @if($message === true)
     <script>
               alert('تم ارسال تفاصيل الحجز الي المستشفيي')

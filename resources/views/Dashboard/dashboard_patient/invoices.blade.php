@@ -45,8 +45,8 @@
                                                <tr>
                                                    <td>{{$loop->iteration}}</td>
                                                    <td>{{$invoice->invoice_date}}</td>
-                                                   <td>{{$invoice->doctor->name}}</td>
-                                                   <td>{{$invoice->service->name}}</td>
+                                                   <td>{{ optional($invoice->doctor)->name ?? '-' }}</td>
+                                                   <td>{{ optional($invoice->Group)->name ?? optional($invoice->Service)->name ?? '-' }}</td>
                                                    <td>{{$invoice->total_with_tax}}</td>
                                                </tr>
 

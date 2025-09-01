@@ -217,15 +217,17 @@
                 // نسبة الشريط مقارنة بالدخل الكلي (فواتير نقدية + سندات قبض)
                 $__overallIncome = (float) (App\Models\Invoice::where('type', 1)->sum('patient_amount') + App\Models\ReceiptAccount::sum('amount'));
                 $__sectionsPercent = $__overallIncome > 0 ? max(min(round(($__sectionsRevenue / $__overallIncome) * 100), 100), 0) : 0;
+                $__maxBarWidth = 80;
+                $__sectionsBar = min($__sectionsPercent, $__maxBarWidth);
             @endphp
 				<div class="row">
 					<div class="col-md-6">
 						<div class="d-flex align-items-center pb-2">
 							<p class="mb-0">مجموع صافي الربح</p>
 						</div>
-                            <h4 class="font-weight-bold mb-2">{{ $__sectionsPercent }}%</h4>
+						<h4 class="font-weight-bold mb-2">{{ number_format($__sectionsRevenue, 2) }}</h4>
 						<div class="progress progress-style progress-sm">
-                        <div class="progress-bar bg-primary-gradient" style="width: {{ $__sectionsPercent }}%" role="progressbar" aria-valuenow="{{ $__sectionsPercent }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-primary-gradient" style="width: {{ $__sectionsBar }}%" role="progressbar" aria-valuenow="{{ $__sectionsBar }}" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
 					<div class="col-md-6 mt-4 mt-md-0">

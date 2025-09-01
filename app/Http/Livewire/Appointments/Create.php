@@ -105,6 +105,6 @@ class Create extends Component
         $appointments->patient_id = $patient->id;
         $appointments->notes = $this->notes;
         $appointments->save();
-        $this->message = true;
+        session()->flash('success', 'تم حجز الموعد بنجاح. سنقوم بالتواصل معك قريبًا.');
     }
 }
