@@ -6,6 +6,9 @@ use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Section;
+use App\Models\Admin;
+use App\Models\Notification;
+use App\Events\AppointmentCreated;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
@@ -105,6 +108,14 @@ class Create extends Component
         $appointments->patient_id = $patient->id;
         $appointments->notes = $this->notes;
         $appointments->save();
+        foreach (Admin::all() as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'موعد جديد للمريض: ' . $this->name,
+            ]);
+        }
+        event(new AppointmentCreated($this->name));
+        
         session()->flash('success', 'تم حجز الموعد بنجاح. سنقوم بالتواصل معك قريبًا.');
     }
 }

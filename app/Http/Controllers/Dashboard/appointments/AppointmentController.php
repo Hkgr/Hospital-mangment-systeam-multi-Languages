@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Mail\AppointmentConfirmation;
 use App\Models\Appointment;
 use App\Models\Patient;
+use App\Models\Admin;
+use App\Models\Notification;
+use App\Events\AppointmentCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -64,6 +67,15 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::create($appointmentData);
 
+        
+        foreach (Admin::all() as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'موعد جديد للمريض: ' . $data['name'],
+            ]);
+        }
+        event(new AppointmentCreated($data['name']));
+        
         return redirect()->route('appointments.index')
             ->with('add', 'تم إضافة الموعد بنجاح');
     }

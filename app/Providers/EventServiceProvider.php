@@ -8,6 +8,7 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Events\RayEmployeeCreated;
 use App\Events\LaboratorieEmployeeCreated;
+use App\Events\AppointmentCreated;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class EventServiceProvider extends ServiceProvider
         LaboratorieEmployeeCreated::class => [
         ],
         RayEmployeeCreated::class => [],
+        AppointmentCreated::class => [],
     ];
 
     /**
