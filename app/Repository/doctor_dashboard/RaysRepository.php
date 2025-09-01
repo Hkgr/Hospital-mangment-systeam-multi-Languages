@@ -4,6 +4,9 @@ namespace App\Repository\doctor_dashboard;
 use App\Interfaces\doctor_dashboard\RaysRepositoryInterface;
 use App\Models\Invoice;
 use App\Models\Ray;
+use App\Models\RayEmployee;
+use App\Models\Notification;
+use App\Events\RayCreated;
 use Carbon\Carbon;
 
 class RaysRepository implements RaysRepositoryInterface
@@ -21,6 +24,27 @@ class RaysRepository implements RaysRepositoryInterface
             Invoice::findOrFail($request->invoice_id)->update([
                 'invoice_status' => 3,
             ]);
+            $message = 'تم إضافة طلب أشعة للمريض رقم ' . $request->patient_id;
+
+            foreach (RayEmployee::all() as $employee) {
+                Notification::create([
+                    'user_id' => $employee->id,
+                    'message' => $message,
+                ]);
+            }
+
+            Notification::create([
+                'user_id' => $request->patient_id,
+                'message' => $message,
+            ]);
+
+            Notification::create([
+                'user_id' => $request->doctor_id,
+                'message' => $message,
+            ]);
+
+            event(new RayCreated($message, $request->patient_id, $request->doctor_id));
+
             session()->flash('add');
             return redirect()->back();
         }
@@ -70,6 +94,27 @@ class RaysRepository implements RaysRepositoryInterface
             Invoice::findOrFail($request->invoice_id)->update([
                 'invoice_status' => 2,
             ]);
+
+            $message = 'تم إضافة مراجعة أشعة للمريض رقم ' . $request->patient_id;
+
+            foreach (RayEmployee::all() as $employee) {
+                Notification::create([
+                    'user_id' => $employee->id,
+                    'message' => $message,
+                ]);
+            }
+
+            Notification::create([
+                'user_id' => $request->patient_id,
+                'message' => $message,
+            ]);
+
+            Notification::create([
+                'user_id' => $request->doctor_id,
+                'message' => $message,
+            ]);
+
+            event(new RayCreated($message, $request->patient_id, $request->doctor_id));
 
             session()->flash('add');
             return redirect()->back();

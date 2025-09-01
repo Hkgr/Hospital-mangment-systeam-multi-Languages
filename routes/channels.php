@@ -22,6 +22,8 @@ Broadcast::channel('create-group-service.admin', fn($user) => auth('admin')->che
 Broadcast::channel('create-patient.admin', fn($user) => auth('admin')->check(), ['guards' => ['admin']]);
 Broadcast::channel('create-payment.admin', fn($user) => auth('admin')->check(), ['guards' => ['admin']]);
 Broadcast::channel('create-appointment.admin', fn($user) => auth('admin')->check(), ['guards' => ['admin']]);
+Broadcast::channel('create-ray.ray_employee', fn($user) => auth('ray_employee')->check(), ['guards' => ['ray_employee']]);
+Broadcast::channel('create-laboratorie.laboratorie_employee', fn($user) => auth('laboratorie_employee')->check(), ['guards' => ['laboratorie_employee']]);
 Broadcast::channel(
     'create-invoice.{doctor_id}',
     function ($user, $doctor_id) {
@@ -81,6 +83,38 @@ Broadcast::channel(
 
 Broadcast::channel(
     'create-diagnosis.doctor.{doctor_id}',
+    function ($user, $doctor_id) {
+        return $user->id == $doctor_id;
+    },
+    ['guards' => ['web', 'admin', 'patient', 'doctor', 'ray_employee', 'laboratorie_employee', 'api']]
+);
+
+Broadcast::channel(
+    'create-ray.patient.{patient_id}',
+    function ($user, $patient_id) {
+        return $user->id == $patient_id;
+    },
+    ['guards' => ['web', 'admin', 'patient', 'doctor', 'ray_employee', 'laboratorie_employee', 'api']]
+);
+
+Broadcast::channel(
+    'create-ray.doctor.{doctor_id}',
+    function ($user, $doctor_id) {
+        return $user->id == $doctor_id;
+    },
+    ['guards' => ['web', 'admin', 'patient', 'doctor', 'ray_employee', 'laboratorie_employee', 'api']]
+);
+
+Broadcast::channel(
+    'create-laboratorie.patient.{patient_id}',
+    function ($user, $patient_id) {
+        return $user->id == $patient_id;
+    },
+    ['guards' => ['web', 'admin', 'patient', 'doctor', 'ray_employee', 'laboratorie_employee', 'api']]
+);
+
+Broadcast::channel(
+    'create-laboratorie.doctor.{doctor_id}',
     function ($user, $doctor_id) {
         return $user->id == $doctor_id;
     },

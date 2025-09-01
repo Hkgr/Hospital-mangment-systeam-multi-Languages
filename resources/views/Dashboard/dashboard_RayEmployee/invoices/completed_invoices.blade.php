@@ -31,11 +31,11 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>تاريخ الفاتورة</th>
-                                <th>اسم المريض</th>
-                                <th>اسم الدكتور</th>
-                                <th>المطلوب</th>
-                                <th>حالة الفاتورة</th>
+                                <th>{{ trans('Dashboard/RaysInvoices.InvoiceDate') }}</th>
+                                <th>{{ trans('Dashboard/RaysInvoices.PatientName') }}</th>
+                                <th>{{ trans('Dashboard/RaysInvoices.DoctorName') }}</th>
+                                <th>{{ trans('Dashboard/RaysInvoices.Description') }}</th>
+                                <th>{{ trans('Dashboard/RaysInvoices.InvoiceStatus') }}</th>
                             </tr>
                         </thead>
                         <tbody>
