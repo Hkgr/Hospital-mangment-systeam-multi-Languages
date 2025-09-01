@@ -25,10 +25,10 @@ class AdminTableSeeder extends Seeder
             'facebook_url' => 'https://facebook.com/admin',
             'twitter_url' => 'https://twitter.com/admin',
             'linkedin_url' => 'https://linkedin.com/in/admin',
-            'social_score' => 0,
-            'mental_health_score' => 0,
-            'psychological_health_score' => 0,
-            'physical_health_score' => 0,
+            'social_score' => 60,
+            'mental_health_score' => 70,
+            'psychological_health_score' => 90,
+            'physical_health_score' => 100,
             'description' => 'Default admin user',
         ]);
     }

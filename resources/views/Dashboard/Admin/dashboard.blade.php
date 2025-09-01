@@ -211,14 +211,21 @@
 	<div class="col-md-12 col-lg-8 col-xl-8">
 		<div class="card ">
 			<div class="card-body">
+            @php
+                // إجمالي دخل الأقسام = مجموع مبالغ المرضى بجميع الفواتير
+                $__sectionsRevenue = (float) App\Models\Invoice::sum('patient_amount');
+                // نسبة الشريط مقارنة بالدخل الكلي (فواتير نقدية + سندات قبض)
+                $__overallIncome = (float) (App\Models\Invoice::where('type', 1)->sum('patient_amount') + App\Models\ReceiptAccount::sum('amount'));
+                $__sectionsPercent = $__overallIncome > 0 ? max(min(round(($__sectionsRevenue / $__overallIncome) * 100), 100), 0) : 0;
+            @endphp
 				<div class="row">
 					<div class="col-md-6">
 						<div class="d-flex align-items-center pb-2">
 							<p class="mb-0">مجموع صافي الربح</p>
 						</div>
-						<h4 class="font-weight-bold mb-2">{{ number_format($totalRevenue, 2) }}</h4>
+						<h4 class="font-weight-bold mb-2">{{ number_format($__sectionsRevenue, 2) }}</h4>
 						<div class="progress progress-style progress-sm">
-							<div class="progress-bar bg-primary-gradient wd-80p" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78"></div>
+							<div class="progress-bar bg-primary-gradient wd-80p" role="progressbar" aria-valuenow="20" aria-valuemin="20" aria-valuemax="20"></div>
 						</div>
 					</div>
 					<div class="col-md-6 mt-4 mt-md-0">
@@ -227,9 +234,9 @@
 						</div>
 						<h4 class="font-weight-bold mb-2">{{ $totalUsers }}</h4>
 						<div class="progress progress-style progress-sm">
-							<div class="progress-bar bg-danger-gradient wd-75" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
+							<div class="progress-bar bg-danger-gradient wd-75" role="progressbar" aria-valuenow="20" aria-valuemin="40" aria-valuemax="20"></div>
 						</div>
-					</div>
+					</div>	
 				</div>
 			</div>
 		</div>
@@ -269,24 +276,35 @@
 	<div class="col-xl-4 col-md-12 col-lg-6">
 
 		<div class="card ">
+			@php
+				// صافي الربح المبسّط = فواتير نقدية + سندات قبض - سندات صرف
+				$__cashInvoices = (float) \App\Models\Invoice::where('type', 1)->sum('patient_amount');
+				$__receipts = (float) \App\Models\ReceiptAccount::sum('amount');
+				$__payments = (float) \App\Models\PaymentAccount::sum('amount');
+				$__income = $__cashInvoices + $__receipts; // إجمالي الدخل
+				$__netProfit = $__income - $__payments; // صافي الربح
+				$__grossFlow = max($__income + $__payments, 0.01);
+				$__incomePercent = max(min(round((max($__income, 0) / $__grossFlow) * 100), 100), 0);
+				$__expensePercent = max(min(round((($__payments) / $__grossFlow) * 100), 100), 0);
+			@endphp
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="d-flex align-items-center pb-2">
-							<p class="mb-0">Total Sales</p>
+						<p class="mb-0">إجمالي الدخل</p>
 						</div>
-						<h4 class="font-weight-bold mb-2">$7,590</h4>
+						<h4 class="font-weight-bold mb-2">{{ number_format($__income, 2) }}</h4>
 						<div class="progress progress-style progress-sm">
-							<div class="progress-bar bg-primary-gradient wd-80p" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78"></div>
+							<div class="progress-bar bg-primary-gradient" style="width: {{ $__incomePercent }}%" role="progressbar" aria-valuenow="{{ $__incomePercent }}" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
 					<div class="col-md-6 mt-4 mt-md-0">
 						<div class="d-flex align-items-center pb-2">
-							<p class="mb-0">Active Users</p>
+							<p class="mb-0">إجمالي المصروفات</p>
 						</div>
-						<h4 class="font-weight-bold mb-2">$5,460</h4>
+						<h4 class="font-weight-bold mb-2">{{ number_format($__payments, 2) }}</h4>
 						<div class="progress progress-style progress-sm">
-							<div class="progress-bar bg-danger-gradient wd-75" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
+							<div class="progress-bar bg-danger-gradient" style="width: {{ $__expensePercent }}%" role="progressbar" aria-valuenow="{{ $__expensePercent }}" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
 				</div>
