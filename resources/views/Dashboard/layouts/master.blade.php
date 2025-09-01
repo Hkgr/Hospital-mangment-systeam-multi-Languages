@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>برنامج ادارة المستشفيات</title>
+<title>{{ trans('Dashboard/Layouts.Title') }}</title>
 
 <head>
 	<meta charset="UTF-8">
@@ -15,7 +15,7 @@
 <body class="main-body app sidebar-mini">
 	<!-- Loader -->
 	<div id="global-loader">
-		<img src="{{URL::asset('Dashboard/img/loader.svg')}}" class="loader-img" alt="Loader">
+                <img src="{{URL::asset('Dashboard/img/loader.svg')}}" class="loader-img" alt="{{ trans('Dashboard/Layouts.Loader') }}">
 	</div>
 	<!-- /Loader -->
 	@include('Dashboard.layouts.main-sidebar')

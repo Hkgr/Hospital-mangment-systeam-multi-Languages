@@ -72,8 +72,8 @@
       var dot = ind.querySelector('.status-dot');
       var text = document.getElementById('online-indicator-text');
       if(dot){ dot.style.background = isOffline ? '#dc3545' : '#28a745'; }
-      if(text){ text.textContent = isOffline ? 'غير متصل' : 'متصل'; }
-      ind.title = isOffline ? 'غير متصل' : 'متصل';
+      if(text){ text.textContent = isOffline ? "{{ trans('Dashboard/Layouts.Offline') }}" : "{{ trans('Dashboard/Layouts.Online') }}"; }
+      ind.title = isOffline ? "{{ trans('Dashboard/Layouts.Offline') }}" : "{{ trans('Dashboard/Layouts.Online') }}";
     }
   }
 
