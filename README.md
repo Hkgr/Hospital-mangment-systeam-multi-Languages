@@ -1,11 +1,11 @@
 
 ## Requirements
-- Php 8.1
+- Php 8.4
 
 ## Installation
 ```sh
-git clone https://github.com/Samir-Gamal/hospital-management-system.git
-cd hospital-management-system
+git clone https://github.com/Hkgr/Hospital-mangment-systeam-multi-Languages.git
+cd Hospital-mangment-systeam-multi-Languages
 cp .env.example .env
 composer install
 php artisan key:generate
