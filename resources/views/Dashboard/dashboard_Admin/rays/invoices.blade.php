@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-الكشوفات
+{{ trans('Dashboard/RaysInvoices.Reports') }}
 @stop
 @section('css')
 
@@ -12,7 +12,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">الكشوفات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الفواتير</span>
+            <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/RaysInvoices.Reports') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/RaysInvoices.Invoices') }}</span>
         </div>
     </div>
 </div>
@@ -31,12 +31,12 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>تاريخ الفاتورة</th>
-                                <th>اسم المريض</th>
-                                <th>اسم الدكتور</th>
-                                <th>المطلوب</th>
-                                <th>حالة الفاتورة</th>
-                                <th>عرض الصور</th>
+                                <th>{{ trans('Dashboard/RaysInvoices.InvoiceDate') }}</th>
+                                <th>{{ trans('Dashboard/RaysInvoices.PatientName') }}</th>
+                                <th>{{ trans('Dashboard/RaysInvoices.DoctorName') }}</th>
+                                <th>{{ trans('Dashboard/RaysInvoices.Description') }}</th>
+                                <th>{{ trans('Dashboard/RaysInvoices.InvoiceStatus') }}</th>
+                                <th>{{ trans('Dashboard/RaysInvoices.ViewImages') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,7 +64,7 @@
                                 </td>
 
                                 <td>
-                                <a href="{{ route('admin.rays.view', $invoice->id) }}" class="btn btn-sm btn-primary">عرض الصور</a>
+                                <a href="{{ route('admin.rays.view', $invoice->id) }}" class="btn btn-sm btn-primary">{{ trans('Dashboard/RaysInvoices.ViewImages') }}</a>
                                 </td>
                             </tr>
                             @endforeach
