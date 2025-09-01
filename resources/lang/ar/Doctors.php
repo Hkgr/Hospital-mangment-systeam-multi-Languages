@@ -24,4 +24,8 @@ return array (
   'section' => 'القسم',
   'submit' => 'تاكيد',
   'update_password' => 'تغير كلمة المرور',
+  'EditData' => 'تعديل البيانات',
+  'ChangePassword' => 'تغير كلمة المرور',
+  'ChangeStatus' => 'تغير الحالة',
+  'DeleteData' => 'حذف البيانات',
 );

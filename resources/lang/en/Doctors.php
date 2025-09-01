@@ -24,4 +24,8 @@ return array (
   'section' => 'Section',
   'submit' => 'submit',
   'update_password' => 'Update Password',
+  'EditData' => 'Edit Data',
+  'ChangePassword' => 'Change Password',
+  'ChangeStatus' => 'Change Status',
+  'DeleteData' => 'Delete Data',
 );
