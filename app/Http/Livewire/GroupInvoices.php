@@ -59,6 +59,13 @@ class GroupInvoices extends Component
     }
     public function updated($propertyName)
     {
+        // Sanitize numeric inputs to allow commas as thousand separators
+        $numericProps = ['price','discount_value','tax_rate','insurance_discount','company_rate'];
+        if (in_array($propertyName, $numericProps, true)) {
+            $this->$propertyName = is_string($this->$propertyName)
+                ? str_replace(',', '', $this->$propertyName)
+                : $this->$propertyName;
+        }
         $this->validateOnly($propertyName);
     }
 

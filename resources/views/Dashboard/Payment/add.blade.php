@@ -50,7 +50,7 @@
                                     <label>المبلغ</label>
                                 </div>
                                 <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="credit" type="number">
+                                    <input class="form-control" name="credit" type="text" inputmode="decimal" pattern="[0-9,\.]*" oninput="this.value=this.value.replace(/[^0-9.,]/g,'');">
                                 </div>
                             </div>
 
