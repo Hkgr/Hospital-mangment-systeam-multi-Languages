@@ -45,12 +45,12 @@ $folder = 'patients';
                         <path d="M0 0h24v24H0V0z" fill="none" />
                         <path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3" />
                         <path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z" />
-                    </svg><span class="side-menu__label">عمليات المريض</span><i class="angle fe fe-chevron-down"></i></a>
+                    </svg><span class="side-menu__label">{{ trans('Sidebar/Patient.Operations') }}</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{route('invoices.patient')}}">قائمة الفواتير</a></li>
-                    <li><a class="slide-item" href="{{route('records.patient')}}">الكشوفات</a></li>
-                    <li><a class="slide-item" href="{{route('laboratories.patient')}}">المختبر</a></li>
-                    <li><a class="slide-item" href="{{route('rays.patient')}}">الاشعة</a></li>
+                    <li><a class="slide-item" href="{{route('invoices.patient')}}">{{ trans('Sidebar/Patient.InvoicesList') }}</a></li>
+                    <li><a class="slide-item" href="{{route('records.patient')}}">{{ trans('Sidebar/Patient.Records') }}</a></li>
+                    <li><a class="slide-item" href="{{route('laboratories.patient')}}">{{ trans('Sidebar/Patient.Laboratory') }}</a></li>
+                    <li><a class="slide-item" href="{{route('rays.patient')}}">{{ trans('Sidebar/Patient.Rays') }}</a></li>
                 </ul>
             </li>
 
@@ -59,10 +59,10 @@ $folder = 'patients';
                         <path d="M0 0h24v24H0V0z" fill="none" />
                         <path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3" />
                         <path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z" />
-                    </svg><span class="side-menu__label">المواعيد</span><i class="angle fe fe-chevron-down"></i></a>
+                    </svg><span class="side-menu__label">{{ trans('Sidebar/Patient.Appointments') }}</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('appointments.patient') }}">قائمة المواعيد</a></li>
-                    <li><a class="slide-item" href="{{ route('appointments.expired.patient') }}">المواعيد المنتهية</a></li>
+                    <li><a class="slide-item" href="{{ route('appointments.patient') }}">{{ trans('Sidebar/Patient.AppointmentsList') }}</a></li>
+                    <li><a class="slide-item" href="{{ route('appointments.expired.patient') }}">{{ trans('Sidebar/Patient.ExpiredAppointments') }}</a></li>
                 </ul>
             </li>
 
@@ -71,10 +71,10 @@ $folder = 'patients';
                         <path d="M0 0h24v24H0V0z" fill="none" />
                         <path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3" />
                         <path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z" />
-                    </svg><span class="side-menu__label">المحادثات</span><i class="angle fe fe-chevron-down"></i></a>
+                    </svg><span class="side-menu__label">{{ trans('Sidebar/Patient.Chats') }}</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{route('list.doctors')}}">قائمة الاطباء</a></li>
-                    <li><a class="slide-item" href="{{route('chat.doctors')}}">المحادثات الاخيرة</a></li>
+                    <li><a class="slide-item" href="{{route('list.doctors')}}">{{ trans('Sidebar/Patient.DoctorsList') }}</a></li>
+                    <li><a class="slide-item" href="{{route('chat.doctors')}}">{{ trans('Sidebar/Patient.RecentChats') }}</a></li>
                 </ul>
             </li> -->
         </ul>
