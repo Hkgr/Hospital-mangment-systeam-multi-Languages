@@ -5,6 +5,9 @@ namespace App\Repository\doctor_dashboard;
 use App\Interfaces\doctor_dashboard\LaboratoriesRepositoryInterface;
 use App\Models\Laboratorie;
 use App\Models\Invoice;
+use App\Models\LaboratorieEmployee;
+use App\Models\Notification;
+use App\Events\LaboratorieCreated;
 use Carbon\Carbon;
 
 class LaboratoriesRepository implements LaboratoriesRepositoryInterface
@@ -23,6 +26,27 @@ class LaboratoriesRepository implements LaboratoriesRepositoryInterface
             Invoice::findOrFail($request->invoice_id)->update([
                 'invoice_status' => 3,
             ]);
+            $message = 'تم إضافة طلب مختبر للمريض رقم ' . $request->patient_id;
+
+            foreach (LaboratorieEmployee::all() as $employee) {
+                Notification::create([
+                    'user_id' => $employee->id,
+                    'message' => $message,
+                ]);
+            }
+
+            Notification::create([
+                'user_id' => $request->patient_id,
+                'message' => $message,
+            ]);
+
+            Notification::create([
+                'user_id' => $request->doctor_id,
+                'message' => $message,
+            ]);
+
+            event(new LaboratorieCreated($message, $request->patient_id, $request->doctor_id));
+
             session()->flash('add');
             return redirect()->back();
         }
@@ -61,6 +85,26 @@ class LaboratoriesRepository implements LaboratoriesRepositoryInterface
             Invoice::findOrFail($request->invoice_id)->update([
                 'invoice_status' => 2 ,
             ]);
+            $message = 'تم إضافة مراجعة مختبر للمريض رقم ' . $request->patient_id;
+
+            foreach (LaboratorieEmployee::all() as $employee) {
+                Notification::create([
+                    'user_id' => $employee->id,
+                    'message' => $message,
+                ]);
+            }
+
+            Notification::create([
+                'user_id' => $request->patient_id,
+                'message' => $message,
+            ]);
+
+            Notification::create([
+                'user_id' => $request->doctor_id,
+                'message' => $message,
+            ]);
+
+            event(new LaboratorieCreated($message, $request->patient_id, $request->doctor_id));
 
             session()->flash('add');
             return redirect()->back();
