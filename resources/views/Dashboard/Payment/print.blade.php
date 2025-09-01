@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    سند صرف
+    {{ trans('Dashboard/Payment.Title') }}
 @stop
 @section('css')
     <style>
@@ -16,7 +16,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">سند صرف</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ طباعه سند</span>
+                <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/Payment.Title') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/Payment.BreadcrumbPrint') }}</span>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
                 <div class="card card-invoice">
                     <div class="card-body">
                         <div class="invoice-header">
-                            <h1 class="invoice-title">سند صرف</h1>
+                            <h1 class="invoice-title">{{ trans('Dashboard/Payment.Title') }}</h1>
                             <div class="billed-from">
                                 <h6>برنامج ادراه المستشفي </h6>
                                 <p>جامعة حلب الحرة<br>
@@ -40,9 +40,9 @@
                         </div><!-- invoice-header -->
                         <div class="row mg-t-20">
                             <div class="col-md">
-                                <label class="tx-gray-600">معلومات السند</label>
-                                <p class="invoice-info-row"><span>تاريخ الاصدار</span> <span>{{$payment_account->date}}</span></p>
-                                <p class="invoice-info-row "><span>اسم المريض</span> <span>{{$payment_account->patients->name}}</span></p>
+                                <label class="tx-gray-600">{{ trans('Dashboard/Payment.VoucherInfo') }}</label>
+                                <p class="invoice-info-row"><span>{{ trans('Dashboard/Payment.IssueDate') }}</span> <span>{{$payment_account->date}}</span></p>
+                                <p class="invoice-info-row "><span>{{ trans('Dashboard/Payment.PatientName') }}</span> <span>{{$payment_account->patients->name}}</span></p>
                             </div>
                         </div>
                         <div class="table-responsive mg-t-40">
@@ -50,8 +50,8 @@
                                 <thead>
                                 <tr>
                                     <th class="wd-20p">#</th>
-                                    <th class="wd-40p">ملاحظات</th>
-                                    <th class="tx-center">المبلغ</th>
+                                    <th class="wd-40p">{{ trans('Dashboard/Payment.Notes') }}</th>
+                                    <th class="tx-center">{{ trans('Dashboard/Payment.Amount') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -65,7 +65,7 @@
                         </div>
                         <hr class="mg-b-40">
                         <a href="#" class="btn btn-danger float-left mt-3 mr-2" id="print_Button" onclick="printDiv()">
-                            <i class="mdi mdi-printer ml-1"></i>طباعه
+                            <i class="mdi mdi-printer ml-1"></i>{{ trans('Dashboard/Payment.PrintButton') }}
                         </a>
                     </div>
                 </div>
