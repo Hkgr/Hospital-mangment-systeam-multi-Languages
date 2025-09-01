@@ -5,8 +5,10 @@ namespace App\Repository\doctor_dashboard;
 use App\Interfaces\doctor_dashboard\DiagnosisRepositoryInterface;
 use App\Models\Diagnostic;
 use App\Models\Invoice;
+use App\Models\Notification;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Events\DiagnosisCreated;
 
 class DiagnosisRepository implements DiagnosisRepositoryInterface
 {
@@ -28,6 +30,20 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
             $diagnosis->doctor_id = $request->doctor_id;
             $diagnosis->date = now();
             $diagnosis->save();
+
+            $message = 'تم إضافة تشخيص للمريض رقم ' . $request->patient_id;
+
+            Notification::create([
+                'user_id' => $request->patient_id,
+                'message' => $message,
+            ]);
+
+            Notification::create([
+                'user_id' => $request->doctor_id,
+                'message' => $message,
+            ]);
+
+            event(new DiagnosisCreated($message, $request->patient_id, $request->doctor_id));
 
             DB::commit();
             session()->flash('add');
@@ -61,6 +77,20 @@ class DiagnosisRepository implements DiagnosisRepositoryInterface
             $diagnosis->patient_id = $request->patient_id;
             $diagnosis->doctor_id = $request->doctor_id;
             $diagnosis->save();
+
+            $message = 'تم إضافة مراجعة للمريض رقم ' . $request->patient_id;
+
+            Notification::create([
+                'user_id' => $request->patient_id,
+                'message' => $message,
+            ]);
+
+            Notification::create([
+                'user_id' => $request->doctor_id,
+                'message' => $message,
+            ]);
+
+            event(new DiagnosisCreated($message, $request->patient_id, $request->doctor_id));
 
             DB::commit();
             session()->flash('add');
