@@ -3,14 +3,14 @@
 
 @endsection
 @section('title')
-معلومات المريض
+{{ trans('Patients.patient_info') }}
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">سجل المرضى</h4><span
+            <h4 class="content-title mb-0 my-auto">{{ trans('Patients.patients_record') }}</h4><span
                 class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{$Patient->name}}</span>
         </div>
     </div>
@@ -31,22 +31,20 @@
                                     <!-- Tabs -->
                                     <ul class="nav panel-tabs main-nav-line">
                                         <li class="nav-item"><a href="#tab1" class="nav-link active"
-                                                data-toggle="tab">معلومات المريض</a></li>
-                                        <li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">الفواتير</a>
+                                                data-toggle="tab">{{ trans('Patients.patient_info') }}</a></li>
+                                        <li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">{{ trans('Patients.invoices') }}</a>
                                         </li>
-                                        <li class="nav-item"><a href="#tab3" class="nav-link" data-toggle="tab">المدفوعات</a>
+                                        <li class="nav-item"><a href="#tab3" class="nav-link" data-toggle="tab">{{ trans('Patients.receipts') }}</a>
                                         </li>
-                                        <li class="nav-item"><a href="#tab4" class="nav-link" data-toggle="tab">كشف
-                                                حساب</a></li>
-                                        <li class="nav-item"><a href="#tab5" class="nav-link" data-toggle="tab">الاشعه</a>
+                                        <li class="nav-item"><a href="#tab4" class="nav-link" data-toggle="tab">{{ trans('Patients.account_statement') }}
+                                                </a></li>
+                                        <li class="nav-item"><a href="#tab5" class="nav-link" data-toggle="tab">{{ trans('Patients.rays') }}</a>
                                         </li>
-                                        <li class="nav-item"><a href="#tab6" class="nav-link" data-toggle="tab">المختبر</a>
+                                        <li class="nav-item"><a href="#tab6" class="nav-link" data-toggle="tab">{{ trans('Patients.laboratory') }}</a>
                                         </li>
-                                        <li class="nav-item"><a href="#tab7" class="nav-link" data-toggle="tab">المواعيد</a>
+                                        <li class="nav-item"><a href="#tab7" class="nav-link" data-toggle="tab">{{ trans('Patients.appointments') }}</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a href="#tab8" class="nav-link" data-toggle="tab">التشخيص</a>
-                                        </li>
+                    <li class="nav-item"><a href="#tab8" class="nav-link" data-toggle="tab">{{ trans('Patients.diagnosis') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -63,12 +61,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>اسم المريض</th>
-                                                        <th>رقم الهاتف</th>
-                                                        <th>البريد الالكتورني</th>
-                                                        <th>تاريخ الميلاد</th>
-                                                        <th>النوع</th>
-                                                        <th>فصيلة الدم</th>
+                                                        <th>{{ trans('Patients.name') }}</th>
+                                                        <th>{{ trans('Patients.phone') }}</th>
+                                                        <th>{{ trans('Patients.email') }}</th>
+                                                        <th>{{ trans('Patients.date_birth') }}</th>
+                                                        <th>{{ trans('Patients.gender') }}</th>
+                                                        <th>{{ trans('Patients.blood_group') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -78,7 +76,7 @@
                                                         <td>{{$Patient->Phone}}</td>
                                                         <td>{{$Patient->email}}</td>
                                                         <td>{{$Patient->Date_Birth}}</td>
-                                                        <td>{{$Patient->Gender == 1 ? '`ذكر' :  'انثي'}}</td>
+                                                        <td>{{$Patient->Gender == 1 ? trans('Patients.male') :  trans('Patients.female')}}</td>
                                                         <td>{{$Patient->Blood_Group}}</td>
                                                     </tr>
                                                 </tbody>
@@ -99,13 +97,13 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>اسم الخدمه</th>
-                                                        <th>تاريخ الفاتوره</th>
-                                                        <th>الاجمالي مع الضريبه</th>
-                                                        <th>شركة التأمين</th>
-                                                        <th>حصة المريض</th>
-                                                        <th>حصة التأمين</th>
-                                                        <th>نوع الفاتوره</th>
+                                                        <th>{{ trans('Patients.service_name') }}</th>
+                                                        <th>{{ trans('Patients.invoice_date') }}</th>
+                                                        <th>{{ trans('Patients.total_with_tax') }}</th>
+                                                        <th>{{ trans('Patients.insurance_company') }}</th>
+                                                        <th>{{ trans('Patients.patient_share') }}</th>
+                                                        <th>{{ trans('Patients.insurance_share') }}</th>
+                                                        <th>{{ trans('Patients.invoice_type') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -118,13 +116,13 @@
                                                         <td>{{ optional($invoice->insurance)->name }}</td>
                                                         <td>{{ number_format($invoice->patient_amount, 2) }}</td>
                                                         <td>{{ $invoice->insurance_id ? number_format($invoice->insurance_amount, 2) : '--' }}</td>
-                                                        <td>{{$invoice->type == 1 ? 'نقدي' : 'اجل'}}</td>
+                                                        <td>{{$invoice->type == 1 ? trans('Patients.cash') : trans('Patients.credit_invoice')}}</td>
                                                     </tr>
                                                     <br>
                                                     @endforeach
                                                     <tr>
                                                         <th colspan="5" scope="row" class="alert alert-success">
-                                                            الاجمالي
+                                                            {{ trans('Patients.total') }}
                                                         </th>
                                                         <td class="alert alert-primary">{{ number_format($invoices->sum('patient_amount'), 2) }}</td>
                                                         <td class="alert alert-primary">{{ number_format($invoices->sum('insurance_amount'), 2) }}</td>
@@ -147,9 +145,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>تاريخ الاضافه</th>
-                                                        <th>المبلغ</th>
-                                                        <th>البيان</th>
+                                                        <th>{{ trans('Patients.date_added') }}</th>
+                                                        <th>{{ trans('Patients.amount') }}</th>
+                                                        <th>{{ trans('Patients.description') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -163,7 +161,7 @@
                                                     <br>
                                                     @endforeach
                                                     <tr>
-                                                        <th scope="row" class="alert alert-success">الاجمالي
+                                                        <th scope="row" class="alert alert-success">{{ trans('Patients.total') }}
                                                         </th>
                                                         <td colspan="4"
                                                             class="alert alert-primary">{{ number_format( $receipt_accounts->sum('amount') , 2)}}</td>
@@ -183,11 +181,11 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>تاريخ الاضافه</th>
-                                                        <th>الوصف</th>
-                                                        <th>مدبن</th>
-                                                        <th>دائن</th>
-                                                        <th>الرصيد النهائي</th>
+                                                        <th>{{ trans('Patients.date_added') }}</th>
+                                                        <th>{{ trans('Patients.description') }}</th>
+                                                        <th>{{ trans('Patients.debit') }}</th>
+                                                        <th>{{ trans('Patients.credit') }}</th>
+                                                        <th>{{ trans('Patients.final_balance') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -215,12 +213,12 @@
                                                     @endforeach
                                                     <tr>
                                                         <th colspan="3" scope="row" class="alert alert-success">
-                                                            الاجمالي
+                                                            {{ trans('Patients.total') }}
                                                         </th>
                                                         <td class="alert alert-primary">{{ number_format( $Debit = $Patient_accounts->sum('Debit'), 2) }}</td>
                                                         <td class="alert alert-primary">{{ number_format( $credit = $Patient_accounts->sum('credit'), 2) }}</td>
                                                         <td class="alert alert-danger">
-                                                            <span class="text-danger"> {{$Debit - $credit}} {{ $Debit-$credit > 0 ? 'مدين' :'دائن'}}</span>
+                                                            <span class="text-danger"> {{$Debit - $credit}} {{ $Debit-$credit > 0 ? trans('Patients.debit') : trans('Patients.credit')}} </span>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -241,9 +239,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>الطبيب</th>
-                                                        <th>تاريخ الموعد</th>
-                                                        <th>الحالة</th>
+                                                        <th>{{ trans('Patients.doctor_name') }}</th>
+                                                        <th>{{ trans('Patients.appointment_date') }}</th>
+                                                        <th>{{ trans('Patients.status') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -269,11 +267,11 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>المطلوب</th>
-                                                        <th>اسم الدكتور</th>
-                                                        <th>اسم دكتور الأشعة</th>
-                                                        <th>ملاحظة دكتور الأشعة</th>
-                                                        <th>العمليات</th>
+                                                        <th>{{ trans('Patients.required') }}</th>
+                                                        <th>{{ trans('Patients.doctor_name') }}</th>
+                                                        <th>{{ trans('Patients.ray_doctor_name') }}</th>
+                                                        <th>{{ trans('Patients.ray_doctor_note') }}</th>
+                                                        <th>{{ trans('Patients.Processes') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -288,7 +286,7 @@
                                                             @if($ray->employee_id !== null)
                                                             <a class="btn btn-primary btn-sm"
                                                                 href="{{ route('admin.rays.view', $ray->id) }}">
-                                                                عرض الأشعة
+                                                                {{ trans('Patients.view_ray') }}
                                                             </a>
                                                             @endif
                                                         </td>
@@ -304,11 +302,11 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>المطلوب</th>
-                                                        <th>اسم الدكتور</th>
-                                                        <th>اسم دكتور المختبر</th>
-                                                        <th>ملاحظة المختبر</th>
-                                                        <th>العمليات</th>
+                                                        <th>{{ trans('Patients.required') }}</th>
+                                                        <th>{{ trans('Patients.doctor_name') }}</th>
+                                                        <th>{{ trans('Patients.lab_doctor_name') }}</th>
+                                                        <th>{{ trans('Patients.lab_doctor_note') }}</th>
+                                                        <th>{{ trans('Patients.Processes') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -323,7 +321,7 @@
                                                             @if($lab->employee_id !== null)
                                                             <a class="btn btn-primary btn-sm"
                                                                 href="{{ route('admin.laboratories.view', $lab->id) }}">
-                                                                عرض التحليل
+                                                                {{ trans('Patients.view_analysis') }}
                                                             </a>
                                                             @endif
                                                         </td>

@@ -3,15 +3,15 @@
     <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-				<!-- breadcrumb -->
-				<div class="breadcrumb-header justify-content-between">
-					<div class="my-auto">
-						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">المرضي</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة المرضي</span>
-						</div>
-					</div>
-				</div>
-				<!-- breadcrumb -->
+                                <!-- breadcrumb -->
+                                <div class="breadcrumb-header justify-content-between">
+                                        <div class="my-auto">
+                                                <div class="d-flex">
+                                                        <h4 class="content-title mb-0 my-auto">{{ trans('Patients.patients') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Patients.patients_list') }}</span>
+                                                </div>
+                                        </div>
+                                </div>
+                                <!-- breadcrumb -->
 @endsection
 @section('content')
     @include('Dashboard.messages_alert')
@@ -22,7 +22,7 @@
 						<div class="card">
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
-                                    <a href="{{route('Patients.create')}}" class="btn btn-primary">اضافة مريض جديد</a>
+                                    <a href="{{route('Patients.create')}}" class="btn btn-primary">{{ trans('Patients.add_patient') }}</a>
 								</div>
 							</div>
 							<div class="card-body">
@@ -31,14 +31,14 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>اسم المريض</th>
-												<th >البريد الالكتروني</th>
-												<th>تاريخ الميلاد</th>
-												<th>رقم الهاتف</th>
-												<th>الجنس</th>
-                                                <th >فصلية الدم</th>
-                                                <th >العنوان</th>
-                                                <th>العمليات</th>
+                                                                                                <th>{{ trans('Patients.name') }}</th>
+                                                                                                <th >{{ trans('Patients.email') }}</th>
+                                                                                                <th>{{ trans('Patients.date_birth') }}</th>
+                                                                                                <th>{{ trans('Patients.phone') }}</th>
+                                                                                                <th>{{ trans('Patients.gender') }}</th>
+                                                <th >{{ trans('Patients.blood_group') }}</th>
+                                                <th >{{ trans('Patients.address') }}</th>
+                                                <th>{{ trans('Patients.Processes') }}</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -49,7 +49,7 @@
                                                 <td>{{$Patient->email}}</td>
                                                 <td>{{$Patient->Date_Birth}}</td>
                                                 <td>{{$Patient->Phone}}</td>
-                                                <td>{{$Patient->Gender == 1 ? 'ذكر' :'انثي'}}</td>
+                                                <td>{{$Patient->Gender == 1 ? trans('Patients.male') : trans('Patients.female')}}</td>
                                                 <td>{{$Patient->Blood_Group}}</td>
                                                 <td>{{$Patient->Address}}</td>
                                                 <td>
