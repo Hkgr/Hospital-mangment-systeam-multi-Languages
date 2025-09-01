@@ -15,7 +15,7 @@
 @endsection
 
 @section('title')
-اضف موعد
+{{ trans('Dashboard/Appointments.Create') }}
 @stop
 
 @section('page-header')
@@ -23,8 +23,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">المواعيد</h4>
-            <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ اضف موعد</span>
+            <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/Appointments.Appointments') }}</h4>
+            <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/Appointments.Create') }}</span>
         </div>
     </div>
 </div>
@@ -44,11 +44,11 @@
 
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="patient_id">المريض</label>
+                                <label for="patient_id">{{ trans('Dashboard/Appointments.Patient') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <select id="patient_id" name="patient_id" class="form-control SlectBox">
-                                    <option value="" selected>مريض جديد</option>
+                                    <option value="" selected>{{ trans('Dashboard/Appointments.NewPatient') }}</option>
                                     @foreach($patients as $patient)
                                     <option value="{{ $patient->id }}"
                                         data-name="{{ $patient->name }}"
@@ -66,7 +66,7 @@
                         </div>
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="name">اسم المريض</label>
+                                <label for="name">{{ trans('Dashboard/Appointments.PatientName') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <input id="name" class="form-control" name="name" type="text" autofocus readonly>
@@ -75,21 +75,21 @@
 
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="email">{{ trans('doctors.email') }}</label>
+                                <label for="email">{{ trans('Dashboard/Appointments.Email') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <input id="email" class="form-control" name="email" type="email"
-                                    placeholder="البريد الالكتروني" readonly>
+                                    <input id="email" class="form-control" name="email" type="email"
+                                    placeholder="{{ trans('Dashboard/Appointments.Email') }}" readonly>
                             </div>
                         </div>
 
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="section_id">{{ trans('doctors.section') }}</label>
+                                <label for="section_id">{{ trans('Dashboard/Appointments.Section') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <select id="section_id" name="section_id" class="form-control SlectBox">
-                                    <option value="" selected disabled>------</option>
+                                    <option value="" selected disabled>{{ trans('Dashboard/Appointments.Select') }}</option>
                                     @foreach($Section as $section)
                                     <option value="{{ $section->id }}">{{ $section->name }}</option>
                                     @endforeach
@@ -99,11 +99,11 @@
 
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="doctor_id">الدكتور</label>
+                                <label for="doctor_id">{{ trans('Dashboard/Appointments.Doctor') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <select id="doctor_id" name="doctor_id" class="form-control SlectBox">
-                                    <option value="" selected disabled>------</option>
+                                    <option value="" selected disabled>{{ trans('Dashboard/Appointments.Select') }}</option>
                                     @foreach($doctors as $doctor)
                                     <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
                                     @endforeach
@@ -113,17 +113,17 @@
 
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="phone">رقم الهاتف</label>
+                                <label for="phone">{{ trans('Dashboard/Appointments.Phone') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <input id="phone" class="form-control" name="phone" type="text"
-                                    placeholder="رقم الهاتف" required readonly>
+                                    <input id="phone" class="form-control" name="phone" type="text"
+                                    placeholder="{{ trans('Dashboard/Appointments.Phone') }}" required readonly>
                             </div>
                         </div>
 
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="Date_Birth">تاريخ الميلاد</label>
+                                <label for="Date_Birth">{{ trans('Dashboard/Appointments.DateOfBirth') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <input id="Date_Birth" class="form-control" name="Date_Birth" type="date" disabled required>
@@ -132,24 +132,24 @@
 
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="Gender">الجنس</label>
+                                <label for="Gender">{{ trans('Dashboard/Appointments.Gender') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <select id="Gender" class="form-control" name="Gender" disabled>
-                                    <option value="">------</option>
-                                    <option value="1">ذكر</option>
-                                    <option value="2">انثي</option>
+                                    <option value="">{{ trans('Dashboard/Appointments.Select') }}</option>
+                                    <option value="1">{{ trans('Dashboard/Appointments.Male') }}</option>
+                                    <option value="2">{{ trans('Dashboard/Appointments.Female') }}</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="Blood_Group">فصلية الدم</label>
+                                <label for="Blood_Group">{{ trans('Dashboard/Appointments.BloodGroup') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <select id="Blood_Group" class="form-control" name="Blood_Group" disabled>
-                                    <option value="">------</option>
+                                    <option value="">{{ trans('Dashboard/Appointments.Select') }}</option>
                                     <option value="O-">O-</option>
                                     <option value="O+">O+</option>
                                     <option value="A+">A+</option>
@@ -164,7 +164,7 @@
 
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="Address">العنوان</label>
+                                <label for="Address">{{ trans('Dashboard/Appointments.Address') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <textarea id="Address" class="form-control" name="Address" disabled></textarea>
@@ -173,16 +173,16 @@
 
                         <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
-                                <label for="notes">ملاحظات</label>
+                                <label for="notes">{{ trans('Dashboard/Appointments.Notes') }}</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                <textarea id="notes" class="form-control" name="notes" placeholder="ملاحظات"></textarea>
+                                <textarea id="notes" class="form-control" name="notes" placeholder="{{ trans('Dashboard/Appointments.Notes') }}"></textarea>
                             </div>
                         </div>
 
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">
-                                <span class="txt">تأكيد</span>
+                                <span class="txt">{{ trans('Dashboard/Appointments.Confirm') }}</span>
                             </button>
                         </div>
 

@@ -13,8 +13,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">المواعيد</h4><span
-                class="text-muted mt-1 tx-13 mr-2 mb-0">/ المواعيد المؤكدة</span>
+              <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/Appointments.Appointments') }}</h4><span
+                  class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/Appointments.Confirmed') }}</span>
         </div>
     </div>
 </div>
@@ -32,14 +32,14 @@
                     <table class="table text-md-nowrap" id="example1">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>اسم المريض</th>
-                                <th>البريد الالكتروني</th>
-                                <th>القسم</th>
-                                <th>الدكتور</th>
-                                <th>تاريخ الموعد</th>
-                                <th>الهاتف</th>
-                                <!-- <th>العمليات</th> -->
+                                  <th>#</th>
+                                  <th>{{ trans('Dashboard/Appointments.PatientName') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.Email') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.Section') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.Doctor') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.AppointmentDate') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.Phone') }}</th>
+                                  <!-- <th>{{ trans('Dashboard/Appointments.Actions') }}</th> -->
                             </tr>
                         </thead>
                         <tbody>

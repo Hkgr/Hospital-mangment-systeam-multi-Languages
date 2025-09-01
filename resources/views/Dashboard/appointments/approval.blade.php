@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">تاكيد موعد المريض</h5>
+                 <h5 class="modal-title" id="exampleModalLabel">{{ trans('Dashboard/Appointments.AppointmentConfirmation') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -34,8 +34,8 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">{{ trans('insurance.close') }}</button>
-                        <button class="btn btn-success">{{ trans('insurance.save') }}</button>
+                            data-dismiss="modal">{{ trans('Dashboard/Appointments.Close') }}</button>
+                        <button class="btn btn-success">{{ trans('Dashboard/Appointments.Save') }}</button>
                     </div>
                 </form>
             </div>
