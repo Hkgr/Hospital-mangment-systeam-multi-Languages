@@ -223,9 +223,9 @@
 						<div class="d-flex align-items-center pb-2">
 							<p class="mb-0">مجموع صافي الربح</p>
 						</div>
-						<h4 class="font-weight-bold mb-2">{{ number_format($__sectionsRevenue, 2) }}</h4>
+                            <h4 class="font-weight-bold mb-2">{{ $__sectionsPercent }}%</h4>
 						<div class="progress progress-style progress-sm">
-							<div class="progress-bar bg-primary-gradient wd-80p" role="progressbar" aria-valuenow="20" aria-valuemin="20" aria-valuemax="20"></div>
+                        <div class="progress-bar bg-primary-gradient" style="width: {{ $__sectionsPercent }}%" role="progressbar" aria-valuenow="{{ $__sectionsPercent }}" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
 					<div class="col-md-6 mt-4 mt-md-0">

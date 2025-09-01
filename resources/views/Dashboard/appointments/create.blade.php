@@ -54,7 +54,7 @@
                                         data-name="{{ $patient->name }}"
                                         data-email="{{ $patient->email }}"
                                         data-phone="{{ $patient->Phone }}"
-                                                                                data-date-birth="{{ $patient->Date_Birth }}"
+                                        data-date-birth="{{ $patient->Date_Birth }}"
                                         data-gender="{{ $patient->Gender }}"
                                         data-blood-group="{{ $patient->Blood_Group }}"
                                         data-address="{{ $patient->Address }}">
@@ -122,7 +122,7 @@
                         </div>
 
                         <div class="row row-xs align-items-center mg-b-20">
-                                                        <div class="col-md-1">
+                            <div class="col-md-1">
                                 <label for="Date_Birth">تاريخ الميلاد</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
@@ -131,7 +131,7 @@
                         </div>
 
                         <div class="row row-xs align-items-center mg-b-20">
-                                                        <div class="col-md-1">
+                            <div class="col-md-1">
                                 <label for="Gender">الجنس</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
@@ -144,7 +144,7 @@
                         </div>
 
                         <div class="row row-xs align-items-center mg-b-20">
-                                                        <div class="col-md-1">
+                            <div class="col-md-1">
                                 <label for="Blood_Group">فصلية الدم</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
@@ -163,7 +163,7 @@
                         </div>
 
                         <div class="row row-xs align-items-center mg-b-20">
-                                                        <div class="col-md-1">
+                            <div class="col-md-1">
                                 <label for="Address">العنوان</label>
                             </div>
                             <div class="col-md-11 mg-t-5 mg-md-t-0">
@@ -297,7 +297,7 @@
 <script src="{{ URL::asset('dashboard/js/form-elements.js') }}"></script>
 
 <script>
-    $(function () {
+    $(function() {
         function handlePatientChange() {
             var patientSelect = $('#patient_id');
             var selectedOption = patientSelect.find(':selected');
@@ -324,6 +324,18 @@
 
         $('#patient_id').on('change', handlePatientChange);
         handlePatientChange();
+
+        @if(session('add'))
+        var $form = $('form').first();
+        if ($form.length) {
+            $form[0].reset();
+        }
+        $('#doctor_id').val('');
+        $('#section_id').val('');
+        $('#patient_id').val('');
+        $('#name,#email,#phone').val('').prop('readOnly', false);
+        $('#Gender,#Blood_Group,#Address,#Date_Birth').val('').prop('disabled', false);
+        @endif
     });
 </script>
 
