@@ -51,9 +51,9 @@
                                 <div class="text">{{trans('HomePage/HomePage.SubHead2')}}
                                 </div>
                                 <div class="btn-box">
-                                    <a href="contact.html" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}
+                                    <a href="#Appointment" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}
                                         </span></a>
-                                    <a href="services.html" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
+                                    <a href="http://127.0.0.1:8000/Services" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
                                 </div>
                             </div>
                         </div>
@@ -84,9 +84,9 @@
                                 <div class="text">{{trans('HomePage/HomePage.SubHead3')}}
                                 </div>
                                 <div class="btn-box">
-                                    <a href="contact.html" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}
+                                    <a href="#Appointment" class="theme-btn appointment-btn"><span class="txt">{{trans('HomePage/HomePage.Appointment')}}
                                         </span></a>
-                                    <a href="services.html" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
+                                    <a href="http://127.0.0.1:8000/Services" class="theme-btn services-btn">{{trans('HomePage/HomePage.Services')}}</a>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                         </div>
                         <div class="text">{{trans('HomePage/HomePage.PioneerSub')}}
                         </div>
-                        <a href="about.html" class="theme-btn btn-style-one"><span class="txt">{{trans('HomePage/HomePage.More')}}</span></a>
+                        <a href="http://127.0.0.1:8000/Services" class="theme-btn btn-style-one"><span class="txt">{{trans('HomePage/HomePage.More')}}</span></a>
                     </div>
                 </div>
 
@@ -253,7 +253,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
+                                <a href="http://127.0.0.1:8000/deps/Urology" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
                             </div>
                         </div>
 
@@ -277,7 +277,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
+                                <a href="http://127.0.0.1:8000/deps/Neurology" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
                             </div>
                         </div>
 
@@ -301,7 +301,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
+                                <a href="http://127.0.0.1:8000/deps/Gastroenterology" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
                             </div>
                         </div>
 
@@ -325,7 +325,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
+                                <a href="http://127.0.0.1:8000/deps/Cardiology" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
                             </div>
                         </div>
 
@@ -349,7 +349,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="doctors-detail.html" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
+                                <a href="http://127.0.0.1:8000/deps/eye" class="theme-btn btn-style-two"><span class="txt">{{trans('HomePage/HomePage.ViewMore')}}</span></a>
                             </div>
                         </div>
 
@@ -387,7 +387,7 @@
                                 <li><a href="#"><span class="fab fa-skype"></span></a></li>
                                 <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
                             </ul>
-                            <a href="#" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
+                            <a href="#Appointment" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
                         </div>
                     </div>
                     <div class="lower-content">
@@ -410,7 +410,7 @@
                                 <li><a href="#"><span class="fab fa-skype"></span></a></li>
                                 <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
                             </ul>
-                            <a href="#" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
+                            <a href="#Appointment" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
                         </div>
                     </div>
                     <div class="lower-content">
@@ -433,7 +433,7 @@
                                 <li><a href="#"><span class="fab fa-skype"></span></a></li>
                                 <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
                             </ul>
-                            <a href="#" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
+                            <a href="#Appointment" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
                         </div>
                     </div>
                     <div class="lower-content">
@@ -456,7 +456,7 @@
                                 <li><a href="#"><span class="fab fa-skype"></span></a></li>
                                 <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
                             </ul>
-                            <a href="#" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
+                            <a href="#Appointment" class="appointment">{{ trans('HomePage/HomePage.MakeAppointment') }}</a>
                         </div>
                     </div>
                     <div class="lower-content">
@@ -725,7 +725,7 @@
                         <div class="text">
                             {{ trans('HomePage/HomePage.DoctorScheduleText') }}
                         </div>
-                        <a href="#" class="detail">{{ trans('HomePage/HomePage.MoreDetails') }}</a>
+                        <!-- <a href="#" class="detail">{{ trans('HomePage/HomePage.MoreDetails') }}</a> -->
                     </div>
                 </div>
 
@@ -734,7 +734,7 @@
                     <div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
                         <h3>{{ trans('HomePage/HomePage.PrimaryCareTitle') }}</h3>
                         <div class="text">{{ trans('HomePage/HomePage.PrimaryCareText') }}</div>
-                        <a href="#" class="detail">{{ trans('HomePage/HomePage.CallNow') }}</a>
+                        <!-- <a href="#" class="detail">{{ trans('HomePage/HomePage.CallNow') }}</a> -->
                     </div>
                 </div>
 

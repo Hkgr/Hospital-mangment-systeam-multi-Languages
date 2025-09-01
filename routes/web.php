@@ -61,7 +61,17 @@ Route::group(
         });
 
         Route::get('/Articles/2', function () {
-            return view('art2');
+            return view('ar2');
+        });
+
+        Route::get('/privacy', function () {
+            return view('privacy');
+        });
+        Route::get('/terms', function () {
+            return view('terms');
+        });
+        Route::get('/contact', function () {
+            return view('communication');
         });
 
         Route::post('/ambulance-call', [AmbulanceCallController::class, 'store'])
