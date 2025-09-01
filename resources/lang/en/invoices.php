@@ -4,6 +4,7 @@ return array (
     'PrintInvoices' => 'Print Invoices',
     'Invoices' => 'Invoices',
     'GroupInvoiceTitle' => 'Group Services Invoice',
+    'SingleServiceInvoice' => 'Single Service Invoice',
     'InvoiceInfo' => 'Invoice Info',
     'InvoiceDate' => 'Invoice Date',
     'Doctor' => 'Doctor',
@@ -20,5 +21,7 @@ return array (
     'Patient_Share' => 'Patient Share',
     'Insurance_Discount' => 'Insurance Discount',
     'Company_Rate' => 'Company Rate',
+    'Cash' => 'Cash',
+    'Credit' => 'Credit',
     'PrintButton' => 'Print',
 );
