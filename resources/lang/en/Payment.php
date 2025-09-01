@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'PaymentVoucher' => 'Payment Voucher',
+    'PaymentVouchers' => 'Payment Vouchers',
+    'AddVoucher' => 'Add Voucher',
+    'EditVoucher' => 'Edit Voucher',
+    'DeleteVoucher' => 'Delete Voucher',
+    'Accounts' => 'Accounts',
+    'PatientName' => 'Patient Name',
+    'Amount' => 'Amount',
+    'Statement' => 'Statement',
+    'Notes' => 'Notes',
+    'CreatedAt' => 'Created At',
+    'Actions' => 'Actions',
+    'Print' => 'Print Payment Voucher',
+    'PrintButton' => 'Print',
+    'VoucherInfo' => 'Voucher Information',
+    'IssueDate' => 'Issue Date',
+    'Warning' => 'Are you sure about the deletion process?',
+    'Close' => 'Close',
+    'Confirm' => 'Confirm',
+    'Submit' => 'Save',
+    'ProgramName' => 'Hospital Management Program',
+    'UniversityName' => 'Free Aleppo University',
+];
