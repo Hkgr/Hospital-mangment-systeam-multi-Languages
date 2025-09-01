@@ -13,7 +13,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">المواعيد</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة المواعيد</span>
+            <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/Patient.Appointments') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/Patient.AppointmentsList') }}</span>
         </div>
     </div>
 </div>
@@ -32,13 +32,13 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>اسم الطبيب</th>
-                                <th>البريد الالكتروني</th>
-                                <th>القسم</th>
-                                <th>الهاتف</th>
-                                <th>حالة الموعد</th>
-                                <th>تاريخ الموعد</th>
-                                <th>ملاحظات</th>
+                                <th>{{ trans('Dashboard/Patient.DoctorName') }}</th>
+                        <th>{{ trans('Dashboard/Patient.Email') }}</th>
+                                <th>{{ trans('Dashboard/Patient.Section') }}</th>
+                                <th>{{ trans('Dashboard/Patient.Phone') }}</th>
+                                <th>{{ trans('Dashboard/Patient.AppointmentStatus') }}</th>
+                                <th>{{ trans('Dashboard/Patient.AppointmentDate') }}</th>
+                                <th>{{ trans('Dashboard/Patient.Notes') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,12 +50,12 @@
                                 <td>{{$appointment->section->name}}</td>
                                 <td>{{$appointment->doctor->phone}}</td>
                                 <td>
-                                @if($appointment->type == "غير مؤكد")
-                                <span class="badge badge-danger">غير مؤكد</span>
-                                @elseif($appointment->type == "منتهي")
-                                <span class="badge badge-warning">منتهي</span>
+                                @if($appointment->type == trans('Dashboard/Patient.Unconfirmed'))
+                                <span class="badge badge-danger">{{ trans('Dashboard/Patient.Unconfirmed') }}</span>
+                                @elseif($appointment->type == trans('Dashboard/Patient.Finished'))
+                                <span class="badge badge-warning">{{ trans('Dashboard/Patient.Finished') }}</span>
                                 @else
-                                <span class="badge badge-success">مؤكد</span>
+                                <span class="badge badge-success">{{ trans('Dashboard/Patient.Confirmed') }}</span>
                                 @endif
                                 </td>
                                 <td>{{$appointment->appointment}}</td>
