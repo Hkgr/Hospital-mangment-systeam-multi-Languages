@@ -626,6 +626,40 @@ $channel = auth('doctor')->check()
         notificationsWrapper.show();
     }
 
+    function handleRayCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
+        notificationsWrapper.show();
+    }
+
+    function handleLaboratorieCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
+        notificationsWrapper.show();
+    }
+
     // Subscribe to notifications channel
 
     function subscribeNotifications() {
@@ -663,6 +697,10 @@ $channel = auth('doctor')->check()
                 .listen('.appointment-confirmed', handleAppointmentConfirmedEvent);
             Echo.private('create-diagnosis.doctor.{{ auth('doctor')->id() }}')
                 .listen('.diagnosis-created', handleDiagnosisCreatedEvent);
+            Echo.private('create-ray.doctor.{{ auth('doctor')->id() }}')
+                .listen('.ray-created', handleRayCreatedEvent);
+            Echo.private('create-laboratorie.doctor.{{ auth('doctor')->id() }}')
+                .listen('.laboratorie-created', handleLaboratorieCreatedEvent);
             @elseif(auth('patient')->check())
             Echo.private('create-receipt.patient.{{ auth('patient')->id() }}')
                 .listen('.receipt-created', handleReceiptCreatedEvent);
@@ -672,6 +710,16 @@ $channel = auth('doctor')->check()
                 .listen('.appointment-confirmed', handleAppointmentConfirmedEvent);
             Echo.private('create-diagnosis.patient.{{ auth('patient')->id() }}')
                 .listen('.diagnosis-created', handleDiagnosisCreatedEvent);
+            Echo.private('create-ray.patient.{{ auth('patient')->id() }}')
+                .listen('.ray-created', handleRayCreatedEvent);
+            Echo.private('create-laboratorie.patient.{{ auth('patient')->id() }}')
+                .listen('.laboratorie-created', handleLaboratorieCreatedEvent);
+            @elseif(auth('ray_employee')->check())
+            Echo.private('create-ray.ray_employee')
+                .listen('.ray-created', handleRayCreatedEvent);
+            @elseif(auth('laboratorie_employee')->check())
+            Echo.private('create-laboratorie.laboratorie_employee')
+                .listen('.laboratorie-created', handleLaboratorieCreatedEvent);
             @endif
         } catch (e) {
             /* noop */
@@ -697,17 +745,25 @@ $channel = auth('doctor')->check()
                 Echo.leave('create-patient.admin');
                 Echo.leave('create-appointment.admin');
                 @if(auth('admin')->check())
-                Echo.leave('create-receipt.admin');
+            Echo.leave('create-receipt.admin');
                 Echo.leave('create-payment.admin');
             @elseif(auth('doctor')->check())
             Echo.leave('create-receipt.doctor.{{ auth('doctor')->id() }}');
             Echo.leave('confirm-appointment.doctor.{{ auth('doctor')->id() }}');
             Echo.leave('create-diagnosis.doctor.{{ auth('doctor')->id() }}');
+            Echo.leave('create-ray.doctor.{{ auth('doctor')->id() }}');
+            Echo.leave('create-laboratorie.doctor.{{ auth('doctor')->id() }}');
             @elseif(auth('patient')->check())
             Echo.leave('create-receipt.patient.{{ auth('patient')->id() }}');
             Echo.leave('create-payment.patient.{{ auth('patient')->id() }}');
             Echo.leave('confirm-appointment.patient.{{ auth('patient')->id() }}');
             Echo.leave('create-diagnosis.patient.{{ auth('patient')->id() }}');
+            Echo.leave('create-ray.patient.{{ auth('patient')->id() }}');
+            Echo.leave('create-laboratorie.patient.{{ auth('patient')->id() }}');
+            @elseif(auth('ray_employee')->check())
+            Echo.leave('create-ray.ray_employee');
+            @elseif(auth('laboratorie_employee')->check())
+            Echo.leave('create-laboratorie.laboratorie_employee');
             @endif
             }
         } catch (e) {}
