@@ -28,6 +28,8 @@ return [
     "close" => 'اغلاق',
     "Deleted" => 'هل انت متأكد من عمليه الحذف ؟',
     "Title_deleted" => 'حذف البيانات',
-
-
+    "AllServices" => 'جميع الخدمات',
+    "Active" => 'مفعل',
+    "Inactive" => 'غير مفعل',
+    "ActivationStatus" => 'حالة التفعيل',
 ];
