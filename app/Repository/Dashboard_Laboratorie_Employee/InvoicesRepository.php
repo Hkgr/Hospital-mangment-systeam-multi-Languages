@@ -3,10 +3,11 @@
 namespace App\Repository\Dashboard_Laboratorie_Employee;
 
 use App\Interfaces\Dashboard_Laboratorie_Employee\InvoicesRepositoryInterface;
-use App\Models\Diagnostic;
 use App\Models\Laboratorie;
 use App\Models\Patient;
-use App\Models\Ray;
+use App\Models\LaboratorieEmployee;
+use App\Models\Notification;
+use App\Events\LaboratorieDiagnosisCreated;
 use App\Traits\UploadTrait;
 
 class InvoicesRepository implements InvoicesRepositoryInterface
@@ -49,6 +50,27 @@ class InvoicesRepository implements InvoicesRepositoryInterface
                 $this->verifyAndStoreImageForeach($photo,'laboratories','upload_image',$invoice->id,'App\Models\Laboratorie');
             }
         }
+        $message = 'تم إضافة تشخيص تحليل للمريض رقم ' . $invoice->patient_id;
+
+        foreach (LaboratorieEmployee::all() as $employee) {
+            Notification::create([
+                'user_id' => $employee->id,
+                'message' => $message,
+            ]);
+        }
+
+        Notification::create([
+            'user_id' => $invoice->patient_id,
+            'message' => $message,
+        ]);
+
+        Notification::create([
+            'user_id' => $invoice->doctor_id,
+            'message' => $message,
+        ]);
+
+        event(new LaboratorieDiagnosisCreated($message, $invoice->patient_id, $invoice->doctor_id));
+
         session()->flash('edit');
         return redirect()->route('invoices_ray_employee.index');
 
