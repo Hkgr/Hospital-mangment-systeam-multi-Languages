@@ -4,14 +4,14 @@
     <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('title')
-   اضافة سيارة جديدة
+   {{ trans('Dashboard/Ambulances.AddAmbulance') }}
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">الاسعاف</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ اضافة سيارة جديدة</span>
+            <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/Ambulances.Ambulances') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/Ambulances.AddAmbulance') }}</span>
         </div>
     </div>
 </div>
@@ -28,25 +28,25 @@
                     @csrf
                     <div class="row">
                         <div class="col">
-                            <label>رقم السيارة</label>
+                            <label>{{ trans('Dashboard/Ambulances.CarNumber') }}</label>
                             <input type="text" name="car_number"  value="{{old('car_number')}}" class="form-control @error('car_number') is-invalid @enderror">
                         </div>
 
                         <div class="col">
-                            <label>موديل السيارة</label>
+                            <label>{{ trans('Dashboard/Ambulances.CarModel') }}</label>
                             <input type="text" name="car_model"  value="{{old('car_model')}}" class="form-control @error('car_model') is-invalid @enderror">
                         </div>
 
                         <div class="col">
-                            <label>سنة الصنع</label>
+                            <label>{{ trans('Dashboard/Ambulances.CarYearMade') }}</label>
                             <input type="number" name="car_year_made"  value="{{old('car_year_made')}}" class="form-control @error('car_year_made') is-invalid @enderror">
                         </div>
 
                         <div class="col">
-                            <label>نوع السيارة</label>
+                            <label>{{ trans('Dashboard/Ambulances.CarType') }}</label>
                             <select class="form-control" name="car_type">
-                                <option value="1">مملوكة</option>
-                                <option value="2">ايجار</option>
+                                <option value="1">{{ trans('Dashboard/Ambulances.Owned') }}</option>
+                                <option value="2">{{ trans('Dashboard/Ambulances.Rented') }}</option>
                             </select>
                         </div>
 
@@ -55,17 +55,17 @@
 
                     <div class="row">
                         <div class="col-3">
-                            <label>اسم السائق</label>
+                            <label>{{ trans('Dashboard/Ambulances.DriverName') }}</label>
                             <input type="text" name="driver_name"  value="{{old('driver_name')}}" class="form-control @error('driver_name') is-invalid @enderror">
                         </div>
 
                         <div class="col-3">
-                            <label>رقم رخصة القيادة</label>
+                            <label>{{ trans('Dashboard/Ambulances.DriverLicenseNumber') }}</label>
                             <input type="number" name="driver_license_number"  value="{{old('driver_license_number')}}" class="form-control @error('driver_license_number') is-invalid @enderror">
                         </div>
 
                         <div class="col-6">
-                            <label>رقم الهاتف</label>
+                            <label>{{ trans('Dashboard/Ambulances.DriverPhone') }}</label>
                             <input type="number" name="driver_phone"  value="{{old('driver_phone')}}" class="form-control @error('driver_phone') is-invalid @enderror">
                         </div>
 
@@ -75,7 +75,7 @@
 
                     <div class="row">
                         <div class="col">
-                            <label>ملاحظات</label>
+                            <label>{{ trans('Dashboard/Ambulances.Notes') }}</label>
                             <textarea rows="5" cols="10" class="form-control" name="notes"></textarea>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
 
                     <div class="row">
                         <div class="col">
-                            <button class="btn btn-success">حفظ البيانات</button>
+                            <button class="btn btn-success">{{ trans('Dashboard/Ambulances.Save') }}</button>
                         </div>
                     </div>
 
