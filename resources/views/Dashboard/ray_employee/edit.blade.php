@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">تعديل بيانات موظف</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{ trans('RayEmployee.EditEmployee') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,18 +14,18 @@
                 {{ csrf_field() }}
                 @csrf
                 <div class="modal-body">
-                    <label for="exampleInputPassword1">الاسم</label>
+                    <label for="exampleInputPassword1">{{ trans('RayEmployee.Name') }}</label>
                     <input type="text" value="{{$ray_employee->name}}" name="name" class="form-control"><br>
 
-                    <label for="exampleInputPassword1">البريد الالكتروني</label>
+                    <label for="exampleInputPassword1">{{ trans('RayEmployee.Email') }}</label>
                     <input type="email" value="{{$ray_employee->email}}" name="email" class="form-control"><br>
 
-                    <label for="exampleInputPassword1">كلمة المرور</label>
+                    <label for="exampleInputPassword1">{{ trans('RayEmployee.Password') }}</label>
                     <input type="password" name="password" class="form-control" autocomplete="new-password">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Dashboard/sections_trans.Close')}}</button>
-                    <button type="submit" class="btn btn-primary">{{trans('Dashboard/sections_trans.submit')}}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans('RayEmployee.Close') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ trans('RayEmployee.Submit') }}</button>
                 </div>
             </form>
         </div>
