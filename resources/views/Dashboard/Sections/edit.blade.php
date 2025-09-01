@@ -19,7 +19,7 @@
                     <input type="text" name="name" value="{{ $section->name }}" class="form-control">
                 </div>
                 <div class="modal-body">
-                    <label for="exampleInputPassword1">الوصف</label>
+                    <label for="exampleInputPassword1">{{ trans('sections_trans.description') }}</label>
                     <input type="text" name="description" value="{{$section->description}}" class="form-control">
                 </div>
                 <div class="modal-footer">
