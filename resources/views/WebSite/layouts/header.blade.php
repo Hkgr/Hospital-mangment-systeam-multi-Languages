@@ -11,7 +11,7 @@
 
         <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
             <ul class="navigation clearfix">
-                <li class="current"><a href="{{ LaravelLocalization::localizeURL('/') }}">الرئيسية</a>
+                <li class="current"><a href="{{ LaravelLocalization::localizeURL('/') }}">{{ trans('Layout/Header.Home') }}</a>
                     <!-- <ul>
                         <li><a href="index.html">Home page 01</a></li>
                         <li><a href="index-2.html">Home page 02</a></li>
@@ -27,12 +27,12 @@
                         </li>
                     </ul> -->
                 </li>
-                <li class="dropdown"><a href="{{ LaravelLocalization::localizeURL('/Services') }}">الخدمات</a>
+                <li class="dropdown"><a href="{{ LaravelLocalization::localizeURL('/Services') }}">{{ trans('Layout/Header.Services') }}</a>
                     <ul>
-                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">الرعاية الطارئة </a></li>
-                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">التشخيص</a></li>
-                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">العلاج</a></li>
-                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">الجراحة</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">{{ trans('Layout/Header.EmergencyCare') }} </a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">{{ trans('Layout/Header.Diagnostics') }}</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">{{ trans('Layout/Header.Treatment') }}</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">{{ trans('Layout/Header.Surgery') }}</a></li>
                     </ul>
                 </li>
                 <!-- <li class="dropdown has-mega-menu"><a href="#">الصفحات</a>
@@ -80,7 +80,7 @@
                         <li><a href="doctors-detail.html">Doctors Detail</a></li>
                     </ul>
                 </li> -->
-                <li class="dropdown"><a href="#">الاقسام</a>
+                <li class="dropdown"><a href="#">{{ trans('Layout/Header.Departments') }}</a>
                     <ul>
                         <li><a href="{{ LaravelLocalization::localizeURL('/deps/Urology') }}">{{trans('HomePage/HomePage.Sec1')}}</a></li>
                         <li><a href="{{ LaravelLocalization::localizeURL('/deps/Neurology') }}">{{trans('HomePage/HomePage.Sec2')}}</a></li>
@@ -92,18 +92,15 @@
                 </li>
                 <li class="dropdown"><a href="#">المقالات</a>
                     <ul>
-                        <li><a href="{{ LaravelLocalization::localizeURL('/Articles/1') }}">الجلطات الدماغية</a></li>
-                        <li><a href="{{ LaravelLocalization::localizeURL('/Articles/2') }}">النوبة القلبية الصامتة</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Articles/1') }}">{{ trans('Layout/Header.Article1') }}</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Articles/2') }}">{{ trans('Layout//Header.Article2') }}</a></li>
                     </ul>
                 </li>
-                <li class=""><a href="{{ LaravelLocalization::localizeURL('/privacy') }}">شروط الخصوصية</a> </li>
+                <li class=""><a href="{{ LaravelLocalization::localizeURL('/privacy') }}">{{ trans('Layout/Header.PrivacyPolicy') }}</a> </li>
 
+                <li class=""><a href="{{ LaravelLocalization::localizeURL('/terms') }}">{{ trans('Layout/Header.TermsOfUse') }}</a> </li>
 
-                <li class=""><a href="{{ LaravelLocalization::localizeURL('/terms') }}">سياية الاستخدام</a> </li>
-
-
-                <li><a href="{{ LaravelLocalization::localizeURL('/contact') }}">تواصل معانا</a></li>
-
+                <li><a href="{{ LaravelLocalization::localizeURL('/contact') }}">{{ trans('Layout/Header.ContactUs') }}</a></li>
                 <li class="dropdown"><a href="#">{{ LaravelLocalization::getCurrentLocaleNative() }}</a>
                     <ul>
                         @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
@@ -117,8 +114,7 @@
                 </li>
                 <li class="ml-auto">
                     <button class="btn btn-danger" data-toggle="modal" data-target="#ambulanceRequestModal">
-                        اطلب اسعاف الطوارئ!
-                    </button>
+                        {{ trans('Layout/Header.RequestEmergencyAmbulance') }} </button>
                 </li>
             </ul>
         </div>
