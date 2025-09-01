@@ -8,6 +8,9 @@ use App\Models\Patient;
 use App\Models\PatientAccount;
 use App\Models\PaymentAccount;
 use Illuminate\Support\Facades\DB;
+use App\Models\Notification;
+use App\Models\Admin;
+use App\Events\PaymentCreated;
 
 class PaymentRepository implements PaymentRepositoryInterface
 {
@@ -60,6 +63,22 @@ class PaymentRepository implements PaymentRepositoryInterface
             $patient_accounts->Debit = $request->credit;
             $patient_accounts->credit = 0.00;
             $patient_accounts->save();
+
+            $message = 'تم إضافة سند صرف بقيمة ' . $request->credit;
+
+            Notification::create([
+                'user_id' => $request->patient_id,
+                'message' => $message,
+            ]);
+
+            foreach (Admin::all() as $admin) {
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'message' => $message,
+                ]);
+            }
+
+            event(new PaymentCreated($message, $request->patient_id));
 
             DB::commit();
             session()->flash('add');
