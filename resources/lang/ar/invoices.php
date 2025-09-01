@@ -4,6 +4,7 @@ return array (
     'PrintInvoices' => 'طباعه الفواتير',
     'Invoices' => 'الفواتير',
     'GroupInvoiceTitle' => 'فاتوره مجموعة خدمات',
+    'SingleServiceInvoice' => 'فاتوره خدمه مفرده',
     'InvoiceInfo' => 'معلومات الفاتوره',
     'InvoiceDate' => 'تاريخ الفاتوره',
     'Doctor' => 'الدكتور',
@@ -20,5 +21,7 @@ return array (
     'Patient_Share' => 'حصة المريض',
     'Insurance_Discount' => 'خصم التأمين',
     'Company_Rate' => 'نسبة الشركة',
+    'Cash' => 'نقدي',
+    'Credit' => 'اجل',
     'PrintButton' => 'طباعه',
 );
