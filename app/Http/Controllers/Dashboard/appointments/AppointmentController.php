@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\appointments;
 
 use App\Events\AppointmentCreated;
+use App\Events\AppointmentConfirmed;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Appointment;
@@ -137,6 +138,23 @@ class AppointmentController extends Controller
             'type'        => 'مؤكد',
             'appointment' => $request->appointment,
         ]);
+
+        $patientMessage = 'تم تأكيد موعدك مع الطبيب ' . $appointment->doctor->name;
+        $doctorMessage  = 'تم تأكيد موعد مع المريض ' . $appointment->patient->name;
+
+        Notification::create([
+            'user_id' => $appointment->patient_id,
+            'message' => $patientMessage,
+        ]);
+
+        Notification::create([
+            'user_id' => $appointment->doctor_id,
+            'message' => $doctorMessage,
+        ]);
+
+        $eventMessage = 'تم تأكيد موعد المريض ' . $appointment->patient->name . ' مع الدكتور ' . $appointment->doctor->name;
+        event(new AppointmentConfirmed($eventMessage, $appointment->patient_id, $appointment->doctor_id));
+
         session()->flash('add');
         return back();
     }
