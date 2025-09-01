@@ -20,7 +20,7 @@
                     <input type="hidden" name="id" value="{{$service->id}}" class="form-control"><br>
 
                     <label for="price">{{trans('Services.price')}}</label>
-                    <input type="number" name="price" id="price" value="{{$service->price}}" class="form-control"><br>
+                    <input type="text" name="price" id="price" value="{{$service->price}}" class="form-control" inputmode="decimal" pattern="[0-9,\.]*" oninput="this.value=this.value.replace(/[^0-9.,]/g,'');"><br>
 
                     <label for="description">{{trans('Services.description')}}</label>
                     <textarea class="form-control" name="description" id="description" rows="5">{{$service->description}}</textarea>
