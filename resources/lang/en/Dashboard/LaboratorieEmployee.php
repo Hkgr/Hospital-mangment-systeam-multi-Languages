@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'EmployeeList' => 'Employee List',
+    'AddEmployee' => 'Add Employee',
+    'EditEmployee' => 'Edit Employee',
+    'DeleteEmployee' => 'Delete Employee',
+    'EmployeeName' => 'Employee Name',
+    'Email' => 'Email',
+    'Password' => 'Password',
+    'CreatedAt' => 'Created At',
+    'Close' => 'Close',
+    'Submit' => 'Submit',
     'DashboardTitle' => 'Laboratory Employee Dashboard',
     'WelcomeBack' => 'Welcome back again',
     'TotalInvoices' => 'Total invoices',

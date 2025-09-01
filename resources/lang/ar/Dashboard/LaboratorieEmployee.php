@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'EmployeeList' => 'قائمة الموظفين',
+    'AddEmployee' => 'اضافة موظف جديد',
+    'EditEmployee' => 'تعديل بيانات موظف',
+    'DeleteEmployee' => 'حذف بيانات موظف',
+    'EmployeeName' => 'الاسم',
+    'Email' => 'البريد الالكتروني',
+    'Password' => 'كلمة المرور',
+    'CreatedAt' => 'تاريخ الاضافة',
+    'Close' => 'اغلاق',
+    'Submit' => 'تاكيد',
     'DashboardTitle' => 'لوحة تحكم موظفي المختبر',
     'WelcomeBack' => 'مرحبا بعودتك مرة اخري',
     'TotalInvoices' => 'اجمالي عدد الفواتير',
