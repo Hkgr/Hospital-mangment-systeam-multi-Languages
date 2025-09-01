@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    الكشوفات
+    {{ trans('Dashboard/Laboratorie.Invoices') }}
 @stop
 @section('css')
 
@@ -10,7 +10,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">صور التحاليل</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{$laboratorie->Patient->name}}</span>
+                <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/Laboratorie.ViewAnalysis') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{$laboratorie->Patient->name}}</span>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
 @endsection
 @section('content')
     <div class="form-group">
-        <label for="exampleFormControlTextarea1">ملاحظات موظف المختبر</label>
+        <label for="exampleFormControlTextarea1">{{ trans('Dashboard/Laboratorie.LabNotes') }}</label>
         <textarea readonly class="form-control" id="exampleFormControlTextarea1" rows="3">{{$laboratorie->description_employee}}</textarea>
     </div>
     <!-- Gallery -->
@@ -27,7 +27,7 @@
             @foreach($laboratorie->images as $image)
                 <li class="col-sm-6 col-lg-4" data-responsive="{{URL::asset('Dashboard/img/laboratories/'.$image->filename)}}" data-src="{{URL::asset('Dashboard/img/laboratories/'.$image->filename)}}">
                     <a href="#">
-                        <img width="50px" height="350px" class="img-responsive" src="{{URL::asset('Dashboard/img/laboratories/'.$image->filename)}}" alt="NoImg">
+                        <img width="50px" height="350px" class="img-responsive" src="{{URL::asset('Dashboard/img/laboratories/'.$image->filename)}}" alt="{{ trans('Dashboard/LaboratorieEmployee.NoImage') }}">
                     </a>
                 </li>
             @endforeach
