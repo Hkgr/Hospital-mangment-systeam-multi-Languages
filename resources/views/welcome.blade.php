@@ -216,7 +216,7 @@
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <!-- Sec Title -->
                     <div class="sec-title light">
-                        <h2>الاقسام</h2>
+                        <h2>{{ trans('HomePage/HomePage.Departments') }}</h2>
                         <div class="separator"></div>
                     </div>
                     <!--Tab Btns-->

@@ -450,7 +450,7 @@ $folder = 'users';
 								<label class="form-label">الصورة</label>
 							</div>
 							<div class="col-md-7">
-								<input type="file" class="form-control" name="photo" disabled>
+								<input type="file" class="form-control" name="photo" accept="image/*" disabled>
 							</div>
 							<div class="col-md-2">
 								<label class="ckbox"><input type="checkbox" name="keep_photo" class="keep-toggle" data-target="photo" checked> <span>إبقاء المعلومات دون تغيير</span></label>
@@ -491,6 +491,23 @@ $folder = 'users';
 				}
 			});
 		});
+
+		// Validate that selected file is an image
+		var photoInput = document.querySelector('input[name="photo"]');
+		if (photoInput) {
+			// Ensure the accept attribute is set even if HTML changed later
+			photoInput.setAttribute('accept', 'image/*');
+			photoInput.addEventListener('change', function() {
+				var file = this.files && this.files[0];
+				if (!file) return;
+				var isImageMime = file.type && file.type.toLowerCase().startsWith('image/');
+				var isImageExt = /\.(png|jpe?g|gif|bmp|webp|svg)$/i.test(file.name || '');
+				if (!(isImageMime || isImageExt)) {
+					alert('يرجى اختيار ملف صورة فقط.');
+					this.value = '';
+				}
+			});
+		}
 	});
 </script>
 

@@ -130,9 +130,7 @@
                         </div>
                         <div class="content-box">
                             <h2>تعرف علينا</h2>
-                            <p class="text">Core values are the fundamental beliefs of a person or organization. The
-                                core values are the guiding prin ples that dictate behavior and action suas labore
-                                saperet has there any quote for write lorem percit latineu.</p>
+                            <p class="text">تبدأ حكاية مستشفانا من لحظة دخولك الباب: استقبال هادئ، وجوه مطمئِنة، وإحساس فوري بأنك لست مجرد حالة طبية بل إنسان له قصة واحتياج. في الطابق الأرضي تعمل الطوارئ على مدار الساعة، فريق مدرَّب يتعامل بثبات مع الدقائق الحرجة، وأجهزة مراقبة وتشخيص سريعة تمنح الأطباء صورة دقيقة للحالة. تمضي الرحلة بسلاسة إلى العيادات التخصصية حيث يجتمع الخبرة بالإنصات؛ طبيب يشرح، وممرضة تُطمئن، وخطة علاج تُبنى على بيانات واضحة واحترام لتفضيلاتك.</p>
                             <a href="#Appointment" class="theme-btn btn-style-two"><span class="txt">احجز موعد</span></a>
                         </div>
                         <div class="contact-info">
