@@ -6,14 +6,14 @@
 @endsection
 
 @section('title')
-    تعديل سند قبض
+    {{ trans('Dashboard/Receipt.EditVoucher') }}
 @stop
 @section('page-header')
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الحسابات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تعديل سند قبض </span>
+                <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/Receipt.Accounts') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/Receipt.EditVoucher') }} </span>
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
 
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-1">
-                                    <label>اسم المريض</label>
+                                    <label>{{ trans('Dashboard/Receipt.PatientName') }}</label>
                                     <input class="form-control" value="{{$receipt_accounts->id}}" name="id" type="hidden">
 
                                 </div>
@@ -49,7 +49,7 @@
 
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-1">
-                                    <label>المبلغ</label>
+                                    <label>{{ trans('Dashboard/Receipt.Amount') }}</label>
                                 </div>
                                 <div class="col-md-11 mg-t-5 mg-md-t-0">
                                     <input class="form-control" value="{{$receipt_accounts->Debit}}" name="Debit" type="text" inputmode="decimal" pattern="[0-9,\.]*" oninput="this.value=this.value.replace(/[^0-9.,]/g,'');">
@@ -58,7 +58,7 @@
 
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-1">
-                                    <label>البيان</label>
+                                    <label>{{ trans('Dashboard/Receipt.Description') }}</label>
                                 </div>
                                 <div class="col-md-11 mg-t-5 mg-md-t-0">
                                     <textarea class="form-control" name="description" rows="3">{{$receipt_accounts->description}}</textarea>
