@@ -31,19 +31,19 @@ $folder = 'users';
 <div class="breadcrumb-header justify-content-between">
 	<div class="my-auto">
 		<div class="d-flex">
-			<h4 class="content-title mb-0 my-auto">{{ $user->name ?? '' }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ @if(auth('admin')->check())
-				{{ __('مسؤول') }}
-				@elseif(auth('doctor')->check())
-				{{ __('دكتور') }}
-				@elseif(auth('patient')->check())
-				{{ __('مريض') }}
-				@elseif(auth('laboratorie_employee')->check())
-				{{ __('موظف مخبر') }}
-				@elseif(auth('ray_employee')->check())
-				{{ __('موظف أشعة') }}
-				@else
-				{{ __('User') }}
-				@endif</span>
+                        <h4 class="content-title mb-0 my-auto">{{ $user->name ?? '' }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ @if(auth('admin')->check())
+                                {{ trans('Dashboard/Profile.Admin') }}
+                                @elseif(auth('doctor')->check())
+                                {{ trans('Dashboard/Profile.Doctor') }}
+                                @elseif(auth('patient')->check())
+                                {{ trans('Dashboard/Profile.Patient') }}
+                                @elseif(auth('laboratorie_employee')->check())
+                                {{ trans('Dashboard/Profile.LaboratorieEmployee') }}
+                                @elseif(auth('ray_employee')->check())
+                                {{ trans('Dashboard/Profile.RayEmployee') }}
+                                @else
+                                {{ trans('Dashboard/Profile.User') }}
+                                @endif</span>
 		</div>
 	</div>
 </div>
@@ -119,24 +119,24 @@ $folder = 'users';
 						<div class="d-flex justify-content-between mg-b-20">
 							<div>
 								<h5 class="main-profile-name">{{ $user->name ?? '' }}</h5>
-								<p class="main-profile-name-text">
-									@if(auth('admin')->check())
-									{{ __('مسؤول') }}
-									@elseif(auth('doctor')->check())
-									{{ __('دكتور') }}
-									@elseif(auth('patient')->check())
-									{{ __('مريض') }}
-									@elseif(auth('laboratorie_employee')->check())
-									{{ __('موظف مخبر') }}
-									@elseif(auth('ray_employee')->check())
-									{{ __('موظف أشعة') }}
-									@else
-									{{ __('User') }}
-									@endif
-								</p>
+                                                                <p class="main-profile-name-text">
+                                                                        @if(auth('admin')->check())
+                                                                        {{ trans('Dashboard/Profile.Admin') }}
+                                                                        @elseif(auth('doctor')->check())
+                                                                        {{ trans('Dashboard/Profile.Doctor') }}
+                                                                        @elseif(auth('patient')->check())
+                                                                        {{ trans('Dashboard/Profile.Patient') }}
+                                                                        @elseif(auth('laboratorie_employee')->check())
+                                                                        {{ trans('Dashboard/Profile.LaboratorieEmployee') }}
+                                                                        @elseif(auth('ray_employee')->check())
+                                                                        {{ trans('Dashboard/Profile.RayEmployee') }}
+                                                                        @else
+                                                                        {{ trans('Dashboard/Profile.User') }}
+                                                                        @endif
+                                                                </p>
 							</div>
 						</div>
-						<h6>توصيف</h6>
+                                                <h6>{{ trans('Dashboard/Profile.DescriptionHeading') }}</h6>
 						<div class="main-profile-bio">
 							{{ $user->description ?? __('No description available.') }}
 						</div><!-- main-profile-bio -->
@@ -155,7 +155,7 @@ $folder = 'users';
 							</div>
 						</div> -->
 						<hr class="mg-y-30">
-						<label class="main-content-label tx-13 mg-b-20">وسائل التواصل الاجتماعي</label>
+                                                <label class="main-content-label tx-13 mg-b-20">{{ trans('Dashboard/Profile.SocialMedia') }}</label>
 						<div class="main-profile-social-list">
 							<div class="media">
 								<div class="media-icon bg-primary-transparent text-primary">
@@ -191,7 +191,7 @@ $folder = 'users';
 							</div>
 						</div>
 						<hr class="mg-y-30">
-						<h6>الخصائص</h6>
+                                                <h6>{{ trans('Dashboard/Profile.Attributes') }}</h6>
 						@php
 						$socialScore = min(100, max(0, $user->social_score ?? 0));
 						$physicalScore = min(100, max(0, $user->physical_health_score ?? 0));
@@ -200,7 +200,7 @@ $folder = 'users';
 						@endphp
 						<!-- skill bar -->
 						<div class="skill-bar mb-4 clearfix mt-3">
-							<span>التواصل الاجتماعي</span>
+                                                        <span>{{ trans('Dashboard/Profile.SocialCommunication') }}</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-primary-gradient"
 									role="progressbar"
@@ -214,7 +214,7 @@ $folder = 'users';
 
 						<!-- skill bar -->
 						<div class="skill-bar mb-4 clearfix">
-							<span>الصحة الجسدية</span>
+                                                        <span>{{ trans('Dashboard/Profile.PhysicalHealth') }}</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-danger-gradient"
 									role="progressbar"
@@ -228,7 +228,7 @@ $folder = 'users';
 
 						<!-- skill bar -->
 						<div class="skill-bar mb-4 clearfix">
-							<span>الصحة النفسية</span>
+                                                        <span>{{ trans('Dashboard/Profile.PsychologicalHealth') }}</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-success-gradient"
 									role="progressbar"
@@ -242,7 +242,7 @@ $folder = 'users';
 
 						<!-- skill bar -->
 						<div class="skill-bar clearfix">
-							<span>الصحة العقلية</span>
+                                                        <span>{{ trans('Dashboard/Profile.MentalHealth') }}</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-info-gradient"
 									role="progressbar"
@@ -306,23 +306,23 @@ $folder = 'users';
 	<div class="col-lg-8">
 		<div class="card">
 			<div class="card-body">
-				<div class="mb-4 main-content-label">تعديل المعلومات</div>
+                                <div class="mb-4 main-content-label">{{ trans('Dashboard/Profile.EditInfo') }}</div>
 				<form class="form-horizontal" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
 
-					<div class="mb-4 main-content-label">التفاصيل الشخصية</div>
+                                        <div class="mb-4 main-content-label">{{ trans('Dashboard/Profile.PersonalDetails') }}</div>
 
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-3">
-								<label class="form-label">الاسم</label>
+                                                                <label class="form-label">{{ trans('Dashboard/Profile.Name') }}</label>
 							</div>
 							<div class="col-md-7">
 								<input type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" disabled>
 							</div>
 							<div class="col-md-2">
-								<label class="ckbox"><input type="checkbox" name="keep_name" class="keep-toggle" data-target="name" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                                                                <label class="ckbox"><input type="checkbox" name="keep_name" class="keep-toggle" data-target="name" checked> <span>{{ trans('Dashboard/Profile.KeepUnchanged') }}</span></label>
 							</div>
 						</div>
 					</div>
@@ -330,29 +330,29 @@ $folder = 'users';
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-3">
-								<label class="form-label">الوصف</label>
+                                                                <label class="form-label">{{ trans('Dashboard/Profile.Description') }}</label>
 							</div>
 							<div class="col-md-7">
 								<input type="text" class="form-control" name="description" value="{{ old('description', $user->description) }}" disabled>
 							</div>
 							<div class="col-md-2">
-								<label class="ckbox"><input type="checkbox" name="keep_description" class="keep-toggle" data-target="description" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                                                                <label class="ckbox"><input type="checkbox" name="keep_description" class="keep-toggle" data-target="description" checked> <span>{{ trans('Dashboard/Profile.KeepUnchanged') }}</span></label>
 							</div>
 						</div>
 					</div>
 
-					<div class="mb-4 main-content-label">وسائل التواصل الاجتماعي</div>
+                                        <div class="mb-4 main-content-label">{{ trans('Dashboard/Profile.SocialMedia') }}</div>
 
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-3">
-								<label class="form-label">فيسبوك</label>
+                                                                <label class="form-label">{{ trans('Dashboard/Profile.Facebook') }}</label>
 							</div>
 							<div class="col-md-7">
 								<input type="text" class="form-control" name="facebook_url" value="{{ old('facebook_url', $user->facebook_url) }}" disabled>
 							</div>
 							<div class="col-md-2">
-								<label class="ckbox"><input type="checkbox" name="keep_facebook_url" class="keep-toggle" data-target="facebook_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                                                                <label class="ckbox"><input type="checkbox" name="keep_facebook_url" class="keep-toggle" data-target="facebook_url" checked> <span>{{ trans('Dashboard/Profile.KeepUnchanged') }}</span></label>
 							</div>
 						</div>
 					</div>
@@ -360,13 +360,13 @@ $folder = 'users';
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-3">
-								<label class="form-label">تويتر</label>
+                                                                <label class="form-label">{{ trans('Dashboard/Profile.Twitter') }}</label>
 							</div>
 							<div class="col-md-7">
 								<input type="text" class="form-control" name="twitter_url" value="{{ old('twitter_url', $user->twitter_url) }}" disabled>
 							</div>
 							<div class="col-md-2">
-								<label class="ckbox"><input type="checkbox" name="keep_twitter_url" class="keep-toggle" data-target="twitter_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                                                                <label class="ckbox"><input type="checkbox" name="keep_twitter_url" class="keep-toggle" data-target="twitter_url" checked> <span>{{ trans('Dashboard/Profile.KeepUnchanged') }}</span></label>
 							</div>
 						</div>
 					</div>
@@ -374,20 +374,20 @@ $folder = 'users';
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-3">
-								<label class="form-label">ليتكد إن</label>
+                                                                <label class="form-label">{{ trans('Dashboard/Profile.LinkedIn') }}</label>
 							</div>
 							<div class="col-md-7">
 								<input type="text" class="form-control" name="linkedin_url" value="{{ old('linkedin_url', $user->linkedin_url) }}" disabled>
 							</div>
 							<div class="col-md-2">
-								<label class="ckbox"><input type="checkbox" name="keep_linkedin_url" class="keep-toggle" data-target="linkedin_url" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                                                                <label class="ckbox"><input type="checkbox" name="keep_linkedin_url" class="keep-toggle" data-target="linkedin_url" checked> <span>{{ trans('Dashboard/Profile.KeepUnchanged') }}</span></label>
 							</div>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-3"><label class="form-label">واتساب</label></div>
+                                                        <div class="col-md-3"><label class="form-label">{{ trans('Dashboard/Profile.WhatsApp') }}</label></div>
 							<div class="col-md-7">
 								<input type="text" class="form-control" name="phone"
 									value="{{ old('phone', $user->phone) }}" disabled>
@@ -395,23 +395,23 @@ $folder = 'users';
 							<div class="col-md-2">
 								<label class="ckbox">
 									<input type="checkbox" name="keep_phone" class="keep-toggle" data-target="phone" checked>
-									<span>إبقاء المعلومات دون تغيير</span>
+                                                                        <span>{{ trans('Dashboard/Profile.KeepUnchanged') }}</span>
 								</label>
 							</div>
 						</div>
 					</div>
 
-					<div class="mb-4 main-content-label">معلومات الامان</div>
+                                        <div class="mb-4 main-content-label">{{ trans('Dashboard/Profile.SecurityInfo') }}</div>
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-3">
-								<label class="form-label">البريد الإلكتروني</label>
+                                                                <label class="form-label">{{ trans('Dashboard/Profile.Email') }}</label>
 							</div>
 							<div class="col-md-7">
 								<input type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}" disabled>
 							</div>
 							<div class="col-md-2">
-								<label class="ckbox"><input type="checkbox" name="keep_email" class="keep-toggle" data-target="email" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                                                                <label class="ckbox"><input type="checkbox" name="keep_email" class="keep-toggle" data-target="email" checked> <span>{{ trans('Dashboard/Profile.KeepUnchanged') }}</span></label>
 							</div>
 						</div>
 					</div>
@@ -419,13 +419,13 @@ $folder = 'users';
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-3">
-								<label class="form-label">كلمة المرور</label>
+                                                                <label class="form-label">{{ trans('Dashboard/Profile.Password') }}</label>
 							</div>
 							<div class="col-md-7">
 								<input type="password" class="form-control" name="password" disabled>
 							</div>
 							<div class="col-md-2">
-								<label class="ckbox"><input type="checkbox" name="keep_password" class="keep-toggle" data-target="password" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                                                                <label class="ckbox"><input type="checkbox" name="keep_password" class="keep-toggle" data-target="password" checked> <span>{{ trans('Dashboard/Profile.KeepUnchanged') }}</span></label>
 							</div>
 						</div>
 					</div>
@@ -433,13 +433,13 @@ $folder = 'users';
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-3">
-								<label class="form-label">تأكيد كلمة المرور</label>
+                                                                <label class="form-label">{{ trans('Dashboard/Profile.PasswordConfirmation') }}</label>
 							</div>
 							<div class="col-md-7">
 								<input type="password" class="form-control" name="password_confirmation" disabled>
 							</div>
 							<div class="col-md-2">
-								<label class="ckbox"><input type="checkbox" name="keep_password_confirmation" class="keep-toggle" data-target="password_confirmation" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                                                                <label class="ckbox"><input type="checkbox" name="keep_password_confirmation" class="keep-toggle" data-target="password_confirmation" checked> <span>{{ trans('Dashboard/Profile.KeepUnchanged') }}</span></label>
 							</div>
 						</div>
 					</div>
@@ -447,19 +447,19 @@ $folder = 'users';
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-3">
-								<label class="form-label">الصورة</label>
+                                                                <label class="form-label">{{ trans('Dashboard/Profile.Photo') }}</label>
 							</div>
 							<div class="col-md-7">
 								<input type="file" class="form-control" name="photo" accept="image/*" disabled>
 							</div>
 							<div class="col-md-2">
-								<label class="ckbox"><input type="checkbox" name="keep_photo" class="keep-toggle" data-target="photo" checked> <span>إبقاء المعلومات دون تغيير</span></label>
+                                                                <label class="ckbox"><input type="checkbox" name="keep_photo" class="keep-toggle" data-target="photo" checked> <span>{{ trans('Dashboard/Profile.KeepUnchanged') }}</span></label>
 							</div>
 						</div>
 					</div>
 
 					<div class="card-footer text-left">
-						<button type="submit" class="btn btn-primary waves-effect waves-light">تحديث</button>
+                                                <button type="submit" class="btn btn-primary waves-effect waves-light">{{ trans('Dashboard/Profile.Update') }}</button>
 					</div>
 				</form>
 			</div>
@@ -503,7 +503,7 @@ $folder = 'users';
 				var isImageMime = file.type && file.type.toLowerCase().startsWith('image/');
 				var isImageExt = /\.(png|jpe?g|gif|bmp|webp|svg)$/i.test(file.name || '');
 				if (!(isImageMime || isImageExt)) {
-					alert('يرجى اختيار ملف صورة فقط.');
+                                        alert('{{ trans('Dashboard/Profile.ImageFileAlert') }}');
 					this.value = '';
 				}
 			});
