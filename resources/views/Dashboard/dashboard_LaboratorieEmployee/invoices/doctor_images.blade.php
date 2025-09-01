@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    صور التحاليل للطبيب
+    {{ trans('Dashboard/LaboratorieEmployee.DoctorAnalysisImages') }}
 @stop
 @section('css')
 <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet" />
@@ -9,7 +9,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">صور التحاليل للطبيب</h4>
+                <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/LaboratorieEmployee.DoctorAnalysisImages') }}</h4>
             </div>
         </div>
     </div>
@@ -22,10 +22,10 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>اسم المريض</th>
-                            <th>الوصف</th>
-                            <th>الحالة</th>
-                            <th>إجراء</th>
+                            <th>{{ trans('Dashboard/LaboratorieEmployee.PatientName') }}</th>
+                            <th>{{ trans('Dashboard/LaboratorieEmployee.Description') }}</th>
+                            <th>{{ trans('Dashboard/LaboratorieEmployee.Status') }}</th>
+                            <th>{{ trans('Dashboard/LaboratorieEmployee.Operations') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,9 +36,9 @@
                                 <td>{{ $lab->description }}</td>
                                 <td>
                                     @if($lab->case == 0)
-                                        <span class="badge badge-danger">غير مكتمل</span>
+                                        <span class="badge badge-danger">{{ trans('Dashboard/LaboratorieEmployee.Incomplete') }}</span>
                                     @else
-                                        <span class="badge badge-success">مكتمل</span>
+                                        <span class="badge badge-success">{{ trans('Dashboard/LaboratorieEmployee.Completed') }}</span>
                                     @endif
                                 </td>
                                 <td>
@@ -48,7 +48,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <tr><td colspan="5" class="text-muted">لا توجد بيانات</td></tr>
+                            <tr><td colspan="5" class="text-muted">{{ trans('Dashboard/LaboratorieEmployee.NoData') }}</td></tr>
                         @endforelse
                     </tbody>
                 </table>

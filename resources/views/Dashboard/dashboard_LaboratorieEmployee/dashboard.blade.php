@@ -10,8 +10,8 @@
 <div class="breadcrumb-header justify-content-between">
 	<div class="left-content">
 		<div>
-			<h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">لوحة تحكم موظفي المختبر</h2><br>
-			<p class="mg-b-0">مرحبا بعودتك مرة اخري {{auth()->user()->name}}</p>
+                        <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{ trans('Dashboard/LaboratorieEmployee.DashboardTitle') }}</h2><br>
+                        <p class="mg-b-0">{{ trans('Dashboard/LaboratorieEmployee.WelcomeBack') }} {{auth()->user()->name}}</p>
 		</div>
 	</div>
 </div>
@@ -24,7 +24,7 @@
 		<div class="card overflow-hidden sales-card bg-primary-gradient">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 				<div class="">
-					<h6 class="mb-3 tx-12 text-white">اجمالي عدد الفواتير</h6>
+                                        <h6 class="mb-3 tx-12 text-white">{{ trans('Dashboard/LaboratorieEmployee.TotalInvoices') }}</h6>
 				</div>
 				<div class="pb-0 mt-0">
 					<div class="d-flex">
@@ -41,7 +41,7 @@
 		<div class="card overflow-hidden sales-card bg-danger-gradient">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 				<div class="">
-					<h6 class="mb-3 tx-12 text-white">اجمالي عدد الفواتير تحت الاجراء</h6>
+                                        <h6 class="mb-3 tx-12 text-white">{{ trans('Dashboard/LaboratorieEmployee.UnderProcessingInvoices') }}</h6>
 				</div>
 				<div class="pb-0 mt-0">
 					<div class="d-flex">
@@ -58,7 +58,7 @@
 		<div class="card overflow-hidden sales-card bg-success-gradient">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 				<div class="">
-					<h6 class="mb-3 tx-12 text-white">اجمالي عدد الفواتير المكتملة</h6>
+                                        <h6 class="mb-3 tx-12 text-white">{{ trans('Dashboard/LaboratorieEmployee.TotalCompletedInvoices') }}</h6>
 				</div>
 				<div class="pb-0 mt-0">
 					<div class="d-flex">
@@ -79,18 +79,18 @@
 	<div class="col-md-12 col-lg-12 col-xl-12">
 		<div class="card card-table-two">
 			<div class="d-flex justify-content-between">
-				<h2 class="card-title mb-1">اخر 5 فواتير علي النظام</h2>
+                                <h2 class="card-title mb-1">{{ trans('Dashboard/LaboratorieEmployee.LastInvoices') }}</h2>
 			</div><br>
 			<div class="table-responsive country-table">
 				<table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>تاريخ الفاتورة</th>
-							<th>اسم المريض</th>
-							<th>اسم الطبيب</th>
-							<th>المطلوب</th>
-							<th>حالة الفاتورة</th>
+                                                        <th>{{ trans('Dashboard/LaboratorieEmployee.InvoiceDate') }}</th>
+                                                        <th>{{ trans('Dashboard/LaboratorieEmployee.PatientName') }}</th>
+                                                        <th>{{ trans('Dashboard/LaboratorieEmployee.DoctorName') }}</th>
+                                                        <th>{{ trans('Dashboard/LaboratorieEmployee.Diagnosis') }}</th>
+                                                        <th>{{ trans('Dashboard/LaboratorieEmployee.InvoiceStatus') }}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -112,17 +112,17 @@
 							<td class="tx-right tx-medium tx-danger">{{$invoice->description}}</td>
 							<td class="tx-right tx-medium tx-inverse">
 								@if($invoice->case == 0)
-								<span class="badge badge-danger">تحت الاجراء</span>
-								@else
-								<span class="badge badge-success">مكتملة</span>
-								@endif
-							</td>
-						</tr>
-						@empty
-						لاتوجد بيانات
-						@endforelse
-					</tbody>
-				</table>
+                                                                <span class="badge badge-danger">{{ trans('Dashboard/LaboratorieEmployee.UnderProcessing') }}</span>
+                                                                @else
+                                                                <span class="badge badge-success">{{ trans('Dashboard/LaboratorieEmployee.Completed') }}</span>
+                                                                @endif
+                                                        </td>
+                                                </tr>
+                                                @empty
+                                                {{ trans('Dashboard/LaboratorieEmployee.NoData') }}
+                                                @endforelse
+                                        </tbody>
+                                </table>
 			</div>
 		</div>
 	</div>
