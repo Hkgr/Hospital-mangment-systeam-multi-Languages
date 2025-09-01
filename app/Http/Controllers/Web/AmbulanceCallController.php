@@ -24,8 +24,8 @@ class AmbulanceCallController extends Controller
             'address' => ['required', 'string'],
         ]);
 
-        $ambulance = Ambulance::available()->first();
-
+        $ambulance = Ambulance::where('is_available', 1)->first();
+        
         if (!$ambulance) {
             return back()->with('error', 'عذراً، لا توجد سيارات إسعاف متاحة حالياً');
         }
