@@ -40,7 +40,7 @@
 
                         <div class="col">
                             <label>{{ trans('Patients.date_birth') }}</label>
-                            <input class="form-control fc-datepicker" name="Date_Birth" placeholder="YYYY-MM-DD"
+                            <input class="form-control fc-datepicker" name="Date_Birth" placeholder="{{ trans('Patients.DatePlaceholder') }}"
                              type="text" required>
                         </div>
 

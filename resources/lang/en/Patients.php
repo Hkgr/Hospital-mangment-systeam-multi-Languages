@@ -10,6 +10,7 @@ return array (
   'name' => 'Patient Name',
   'email' => 'Email',
   'date_birth' => 'Date of Birth',
+  'DatePlaceholder' => 'YYYY-MM-DD',
   'phone' => 'Phone',
   'gender' => 'Gender',
   'blood_group' => 'Blood Group',

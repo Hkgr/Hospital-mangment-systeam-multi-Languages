@@ -10,6 +10,7 @@ return array (
   'name' => 'اسم المريض',
   'email' => 'البريد الالكتروني',
   'date_birth' => 'تاريخ الميلاد',
+  'DatePlaceholder' => 'YYYY-MM-DD',
   'phone' => 'رقم الهاتف',
   'gender' => 'الجنس',
   'blood_group' => 'فصيلة الدم',
