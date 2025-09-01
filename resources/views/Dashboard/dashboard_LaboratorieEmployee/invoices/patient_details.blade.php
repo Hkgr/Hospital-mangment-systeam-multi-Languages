@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    تفاصيل المريض
+    {{ trans('Dashboard/LaboratorieEmployee.PatientDetails') }}
 @stop
 @section('css')
 <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet" />
@@ -11,10 +11,10 @@
         <div class="my-auto">
             <div class="d-flex">
                 @if(isset($patient))
-                    <h4 class="content-title mb-0 my-auto">بيانات المريض</h4>
+                    <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/LaboratorieEmployee.PatientData') }}</h4>
                     <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ $patient->name }}</span>
                 @elseif(isset($laboratorie))
-                    <h4 class="content-title mb-0 my-auto">صور التحاليل</h4>
+                    <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/LaboratorieEmployee.AnalysisImages') }}</h4>
                     <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ $laboratorie->Patient->name }}</span>
                 @endif
             </div>
@@ -27,16 +27,16 @@
     @if(isset($patient))
         <div class="card">
             <div class="card-body">
-                <h5 class="mb-3">قائمة التحاليل للمريض: {{ $patient->name }}</h5>
+                <h5 class="mb-3">{{ trans('Dashboard/LaboratorieEmployee.PatientLaboratoriesList') }} {{ $patient->name }}</h5>
                 <div class="table-responsive">
                     <table class="table table-hover text-md-nowrap text-center">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>الوصف</th>
-                                <th>الطبيب</th>
-                                <th>الحالة</th>
-                                <th>إجراء</th>
+                                <th>{{ trans('Dashboard/LaboratorieEmployee.Description') }}</th>
+                                <th>{{ trans('Dashboard/LaboratorieEmployee.DoctorName') }}</th>
+                                <th>{{ trans('Dashboard/LaboratorieEmployee.Status') }}</th>
+                                <th>{{ trans('Dashboard/LaboratorieEmployee.Operations') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,9 +47,9 @@
                                     <td>{{ optional($lab->doctor)->name }}</td>
                                     <td>
                                         @if($lab->case == 0)
-                                            <span class="badge badge-danger">غير مكتمل</span>
+                                            <span class="badge badge-danger">{{ trans('Dashboard/LaboratorieEmployee.Incomplete') }}</span>
                                         @else
-                                            <span class="badge badge-success">مكتمل</span>
+                                            <span class="badge badge-success">{{ trans('Dashboard/LaboratorieEmployee.Completed') }}</span>
                                         @endif
                                     </td>
                                     <td>
@@ -59,7 +59,7 @@
                                     </td>
                                 </tr>
                             @empty
-                                <tr><td colspan="5" class="text-muted">لا توجد تحاليل</td></tr>
+                                <tr><td colspan="5" class="text-muted">{{ trans('Dashboard/LaboratorieEmployee.NoLaboratories') }}</td></tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -68,7 +68,7 @@
         </div>
     @elseif(isset($laboratorie))
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">تعليق فني المختبر</label>
+            <label for="exampleFormControlTextarea1">{{ trans('Dashboard/LaboratorieEmployee.LabTechComment') }}</label>
             <textarea readonly class="form-control" id="exampleFormControlTextarea1" rows="3">{{$laboratorie->description_employee}}</textarea>
         </div>
 
@@ -77,7 +77,7 @@
                 @foreach($laboratorie->images as $image)
                     <li class="col-sm-6 col-lg-4" data-responsive="{{URL::asset('Dashboard/img/laboratories/'.$image->filename)}}" data-src="{{URL::asset('Dashboard/img/laboratories/'.$image->filename)}}">
                         <a href="#">
-                            <img width="50px" height="350px" class="img-responsive" src="{{URL::asset('Dashboard/img/laboratories/'.$image->filename)}}" alt="NoImg">
+                            <img width="50px" height="350px" class="img-responsive" src="{{URL::asset('Dashboard/img/laboratories/'.$image->filename)}}" alt="{{ trans('Dashboard/LaboratorieEmployee.NoImage') }}">
                         </a>
                     </li>
                 @endforeach
