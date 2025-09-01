@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-{{ trans('Dashboard/RaysInvoices.Reports') }}
+{{ trans('Dashboard/RayEmployee.Reports') }}
 @stop
 @section('css')
 
@@ -12,7 +12,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/RaysInvoices.Reports') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/RaysInvoices.Invoices') }}</span>
+            <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/RayEmployee.Reports') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/RayEmployee.Invoices') }}</span>
         </div>
     </div>
 </div>
@@ -31,12 +31,12 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>{{ trans('Dashboard/RaysInvoices.InvoiceDate') }}</th>
-                                <th>{{ trans('Dashboard/RaysInvoices.PatientName') }}</th>
-                                <th>{{ trans('Dashboard/RaysInvoices.DoctorName') }}</th>
-                                <th>{{ trans('Dashboard/RaysInvoices.Description') }}</th>
-                                <th>{{ trans('Dashboard/RaysInvoices.InvoiceStatus') }}</th>
-                                <th>العمليات</th>
+                                <th>{{ trans('Dashboard/RayEmployee.InvoiceDate') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.PatientName') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.DoctorName') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.Description') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.InvoiceStatus') }}</th>
+                        <th>{{ trans('Dashboard/RayEmployee.Operations') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,17 +57,17 @@
                                 <td>{{ $invoice->description }}</td>
                                 <td>
                                     @if($invoice->case == 0)
-                                    <span class="badge badge-danger">تحت الاجراء</span>
+                                    <span class="badge badge-danger">{{ trans('Dashboard/RayEmployee.UnderProcessing') }}</span>
                                     @else
-                                    <span class="badge badge-success">مكتملة</span>
+                                    <span class="badge badge-success">{{ trans('Dashboard/RayEmployee.Completed') }}</span>
                                     @endif
                                 </td>
 
                                 <td>
                                     <div class="dropdown">
-                                        <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-outline-primary btn-sm" data-toggle="dropdown" type="button">{{trans('doctors.Processes')}}<i class="fas fa-caret-down mr-1"></i></button>
+                                        <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-outline-primary btn-sm" data-toggle="dropdown" type="button">{{ trans('Dashboard/RayEmployee.Operations') }}<i class="fas fa-caret-down mr-1"></i></button>
                                         <div class="dropdown-menu tx-13">
-                                            <a class="dropdown-item" href="{{route('invoices_ray_employee.edit',$invoice->id)}}"><i class="text-primary fa fa-stethoscope"></i>&nbsp;&nbsp;اضافة تشخيص </a>
+                                            <a class="dropdown-item" href="{{route('invoices_ray_employee.edit',$invoice->id)}}"><i class="text-primary fa fa-stethoscope"></i>&nbsp;&nbsp;{{ trans('Dashboard/RayEmployee.AddDiagnosis') }} </a>
                                         </div>
                                     </div>
                                 </td>

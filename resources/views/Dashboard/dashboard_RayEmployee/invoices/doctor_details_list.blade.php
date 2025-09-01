@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    تفاصيل الدكتور
+    {{ trans('Dashboard/RayEmployee.DoctorDetails') }}
 @stop
 @section('css')
 @endsection
@@ -9,7 +9,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">تفاصيل الدكتور</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ صور الاشعة</span>
+                <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/RayEmployee.DoctorDetails') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/RayEmployee.XRayImages') }}</span>
             </div>
         </div>
     </div>
@@ -26,12 +26,12 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>تاريخ الفاتورة</th>
-                                <th>اسم المريض</th>
-                                <th>اسم الدكتور</th>
-                                <th>المطلوب</th>
-                                <th>حالة الفاتورة</th>
-                                <th>العمليات</th>
+                                <th>{{ trans('Dashboard/RayEmployee.InvoiceDate') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.PatientName') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.DoctorName') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.Description') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.InvoiceStatus') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.Operations') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -44,13 +44,13 @@
                                     <td>{{ $ray->description }}</td>
                                     <td>
                                         @if($ray->case == 0)
-                                            <span class="badge badge-danger">تحت الاجراء</span>
+                                            <span class="badge badge-danger">{{ trans('Dashboard/RayEmployee.UnderProcessing') }}</span>
                                         @else
-                                            <span class="badge badge-success">مكتملة</span>
+                                            <span class="badge badge-success">{{ trans('Dashboard/RayEmployee.Completed') }}</span>
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('ray_view_rays', $ray->id) }}" class="btn btn-sm btn-primary">عرض الصور</a>
+                                        <a href="{{ route('ray_view_rays', $ray->id) }}" class="btn btn-sm btn-primary">{{ trans('Dashboard/RayEmployee.ViewImages') }}</a>
                                     </td>
                                 </tr>
                             @endforeach
