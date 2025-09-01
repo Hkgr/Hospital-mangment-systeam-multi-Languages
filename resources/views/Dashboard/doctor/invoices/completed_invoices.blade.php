@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-   الكشوفات المكتملة
+   {{ trans('Dashboard/Doctor.CompletedInvoices') }}
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -21,7 +21,7 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">الكشوفات المكتملة</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الفواتير</span>
+                                                        <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/Doctor.CompletedInvoices') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/Doctor.Invoices') }}</span>
 						</div>
 					</div>
 				</div>
@@ -40,15 +40,15 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>تاريخ الفاتورة</th>
-                                                <th>اسم الخدمة</th>
-                                                <th>اسم المريض</th>
-                                                <th>سعر الخدمة</th>
-                                                <th>قيمة الخصم</th>
-                                                <th>نسبة الضريبة</th>
-                                                <th>قيمة الضريبة</th>
-                                                <th>الاجمالي مع الضريبة</th>
-                                                <th>حالة الفاتورة</th>
+                                                  <th>{{ trans('Dashboard/Doctor.InvoiceDate') }}</th>
+                                                  <th>{{ trans('Dashboard/Doctor.ServiceName') }}</th>
+                                                  <th>{{ trans('Dashboard/Doctor.PatientName') }}</th>
+                                                  <th>{{ trans('Dashboard/Doctor.ServicePrice') }}</th>
+                                                  <th>{{ trans('Dashboard/Doctor.DiscountValue') }}</th>
+                                                  <th>{{ trans('Dashboard/Doctor.TaxRate') }}</th>
+                                                  <th>{{ trans('Dashboard/Doctor.TaxValue') }}</th>
+                                                  <th>{{ trans('Dashboard/Doctor.TotalWithTax') }}</th>
+                                                  <th>{{ trans('Dashboard/Doctor.InvoiceStatus') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -65,11 +65,11 @@
                                                    <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
                                                    <td>
                                                       @if($invoice->invoice_status == 1)
-                                                           <span class="badge badge-danger">تحت الاجراء</span>
+                                                            <span class="badge badge-danger">{{ trans('Dashboard/Doctor.UnderProcessing') }}</span>
                                                       @elseif($invoice->invoice_status == 2)
-                                                           <span class="badge badge-warning">مراجعة</span>
+                                                            <span class="badge badge-warning">{{ trans('Dashboard/Doctor.Review') }}</span>
                                                        @else
-                                                          <span class="badge badge-success">مكتملة</span>
+                                                           <span class="badge badge-success">{{ trans('Dashboard/Doctor.Completed') }}</span>
                                                        @endif
                                                    </td>
                                                </tr>
