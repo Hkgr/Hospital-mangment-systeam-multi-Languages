@@ -4,6 +4,9 @@ namespace App\Repository\RayEmployee;
 
 use App\Interfaces\RayEmployee\RayEmployeeRepositoryInterface;
 use App\Models\RayEmployee;
+use App\Models\Admin;
+use App\Models\Notification;
+use App\Events\RayEmployeeCreated;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,6 +28,14 @@ class RayEmployeeRepository implements RayEmployeeRepositoryInterface
             $ray_employee->email = $request->email;
             $ray_employee->password = Hash::make($request->password);
             $ray_employee->save();
+            foreach (Admin::all() as $admin) {
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'message' => 'موظف أشعة جديد: ' . $request->name,
+                ]);
+            }
+
+            event(new RayEmployeeCreated($request->name));
             session()->flash('add');
             return back();
 
