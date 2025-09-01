@@ -541,6 +541,40 @@ $channel = auth('doctor')->check()
         notificationsWrapper.show();
     }
 
+    function handleReceiptCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
+        notificationsWrapper.show();
+    }
+
+    function handlePaymentCreatedEvent(data) {
+        const text = $('<div>').text(data.message).html();
+        const time = $('<div>').text(data.created_at).html();
+
+        const newNotificationHtml = `
+                <h4 class="notification-label mb-1">${text}</h4>
+                <div class="notification-subtext">${time}</div>`;
+
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        updateNotifBadge();
+        notificationsWrapper.show();
+    }
+
     // Subscribe to notifications channel
 
     function subscribeNotifications() {
@@ -564,6 +598,20 @@ $channel = auth('doctor')->check()
                 .listen('.group-service-created', handleGroupServiceCreatedEvent);
             Echo.private('create-patient.admin')
                 .listen('.patient-created', handlePatientCreatedEvent);
+            @if(auth('admin')->check())
+            Echo.private('create-receipt.admin')
+                .listen('.receipt-created', handleReceiptCreatedEvent);
+            Echo.private('create-payment.admin')
+                .listen('.payment-created', handlePaymentCreatedEvent);
+            @elseif(auth('doctor')->check())
+            Echo.private('create-receipt.doctor.{{ auth('doctor')->id() }}')
+                .listen('.receipt-created', handleReceiptCreatedEvent);
+            @elseif(auth('patient')->check())
+            Echo.private('create-receipt.patient.{{ auth('patient')->id() }}')
+                .listen('.receipt-created', handleReceiptCreatedEvent);
+            Echo.private('create-payment.patient.{{ auth('patient')->id() }}')
+                .listen('.payment-created', handlePaymentCreatedEvent);
+            @endif
         } catch (e) {
             /* noop */
         }
@@ -586,6 +634,15 @@ $channel = auth('doctor')->check()
                 Echo.leave('create-single-service.admin');
                 Echo.leave('create-group-service.admin');
                 Echo.leave('create-patient.admin');
+                @if(auth('admin')->check())
+                Echo.leave('create-receipt.admin');
+                Echo.leave('create-payment.admin');
+                @elseif(auth('doctor')->check())
+                Echo.leave('create-receipt.doctor.{{ auth('doctor')->id() }}');
+                @elseif(auth('patient')->check())
+                Echo.leave('create-receipt.patient.{{ auth('patient')->id() }}');
+                Echo.leave('create-payment.patient.{{ auth('patient')->id() }}');
+                @endif
             }
         } catch (e) {}
     });
