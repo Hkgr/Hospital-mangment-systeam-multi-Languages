@@ -29,7 +29,7 @@
                             <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                 <div class="card-sigin">
                                     <div class="mb-5 d-flex"> <a href="{{ url('/') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}" class="sign-favicon ht-40" alt="logo"></a>
-                                    <h1  >النافذة الموحدة لتسجيل الدخول</h1></div>
+                                    <h1>{{ trans('Dashboard/UserAuth.LoginPortal') }}</h1></div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
                                             <h2>{{trans('Dashboard/login_trans.Welcome')}}</h2>
@@ -66,7 +66,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{trans('Dashboard/login_trans.password')}}</label> <input class="form-control" placeholder="******"   type="password"name="password" required autocomplete="current-password" >
-                                                    </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
+                                                    </div><button type="submit" class="btn btn-main-primary btn-block">{{ trans('Dashboard/UserAuth.Login') }}</button>
 
                                                 </form>
                                                 <!-- <div class="main-signin-footer mt-5">
@@ -85,7 +85,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{trans('Dashboard/login_trans.password')}}</label> <input class="form-control" placeholder="******"   type="password"name="password" required autocomplete="current-password" >
-                                                    </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
+                                                    </div><button type="submit" class="btn btn-main-primary btn-block">{{ trans('Dashboard/UserAuth.Login') }}</button>
 
                                                 </form>
                                                 <!-- <div class="main-signin-footer mt-5">
@@ -104,7 +104,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{trans('Dashboard/login_trans.password')}}</label> <input class="form-control" placeholder="******"   type="password"name="password" required autocomplete="current-password" >
-                                                    </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
+                                                    </div><button type="submit" class="btn btn-main-primary btn-block">{{ trans('Dashboard/UserAuth.Login') }}</button>
 
                                                 </form>
                                                 <!-- <div class="main-signin-footer mt-5">
@@ -123,7 +123,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{trans('Dashboard/login_trans.password')}}</label> <input class="form-control" placeholder="******"   type="password"name="password" required autocomplete="current-password" >
-                                                    </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
+                                                    </div><button type="submit" class="btn btn-main-primary btn-block">{{ trans('Dashboard/UserAuth.Login') }}</button>
 
                                                 </form>
                                                 <!-- <div class="main-signin-footer mt-5">
@@ -142,7 +142,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{trans('Dashboard/login_trans.password')}}</label> <input class="form-control" placeholder="******"   type="password"name="password" required autocomplete="current-password" >
-                                                    </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
+                                                    </div><button type="submit" class="btn btn-main-primary btn-block">{{ trans('Dashboard/UserAuth.Login') }}</button>
 
                                                 </form>
                                                 <!-- <div class="main-signin-footer mt-5">
