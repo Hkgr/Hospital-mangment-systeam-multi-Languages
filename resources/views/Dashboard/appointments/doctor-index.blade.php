@@ -47,10 +47,10 @@
                             @foreach($appointments as $appointment)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$appointment->patient->name}}</td>
-                                <td>{{$appointment->patient->email}}</td>
-                                <td>{{$appointment->section->name}}</td>
-                                <td>{{$appointment->patient->Phone}}</td>
+                                <td>{{ optional($appointment->patient)->name ?? '-' }}</td>
+                                <td>{{ optional($appointment->patient)->email ?? '-' }}</td>
+                                <td>{{ optional($appointment->section)->name ?? '-' }}</td>
+                                <td>{{ optional($appointment->patient)->Phone ?? '-' }}</td>
                                 <td>
                                 @if($appointment->type == "غير مؤكد")
                                 <span class="badge badge-danger">غير مؤكد</span>

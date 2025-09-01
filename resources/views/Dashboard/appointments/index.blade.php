@@ -46,11 +46,11 @@
                             @foreach($appointments as $appointment)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$appointment->patient->name}}</a></td>
-                                <td>{{$appointment->patient->email}}</td>
-                                <td>{{$appointment->section->name}}</td>
-                                <td>{{$appointment->doctor->name}}</td>
-                                <td>{{$appointment->patient->Phone}}</td>
+                                <td>{{ optional($appointment->patient)->name }}</td>
+                                <td>{{ optional($appointment->patient)->email }}</td>
+                                <td>{{ optional($appointment->section)->name }}</td>
+                                <td>{{ optional($appointment->doctor)->name }}</td>
+                                <td>{{ optional($appointment->patient)->Phone }}</td>
                                 <td>{{$appointment->notes}}</td>
                                 <td>
                                     <button class="btn btn-sm btn-success" data-toggle="modal"

@@ -61,7 +61,7 @@ Route::group(
         });
 
         Route::get('/Articles/2', function () {
-            return view('ar2');
+            return view('art2');
         });
 
         Route::get('/privacy', function () {

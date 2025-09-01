@@ -82,15 +82,66 @@ License        :   Licensed under ThemeForest License
 */
 /* ######## FONT ######## */
 /* ############### FONTS IMPORT ############### */
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900");
+/* @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900"); */
 /* ######## BOOTSTRAP ######## */
 /*Color variables*/
 /*gray variables*/
 /*white variables*/
 /*black variables*/
 /*shadow variables*/
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../../fonts/Tajawal/Tajawal-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../../fonts/Tajawal/Tajawal-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/* Map additional weights to nearest available local files */
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../../fonts/Tajawal/Tajawal-Regular.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../../fonts/Tajawal/Tajawal-Regular.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../../fonts/Tajawal/Tajawal-Regular.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../../fonts/Tajawal/Tajawal-Bold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../../fonts/Tajawal/Tajawal-Bold.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 html {
-  font-family: sans-serif;
+  font-family: 'Tajawal';
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }

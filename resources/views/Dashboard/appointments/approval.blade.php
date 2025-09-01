@@ -14,7 +14,7 @@
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="id" value="{{ $appointment->id }}">
-                    <p class="mg-b-20">{{$appointment->patient->name}}</p>
+                    <p class="mg-b-20">{{ optional($appointment->patient)->name }}</p>
                     <!--div-->
                     <div class="col-md-12 col-xl-12 col-xs-12 col-sm-12">
                         <div class="card">

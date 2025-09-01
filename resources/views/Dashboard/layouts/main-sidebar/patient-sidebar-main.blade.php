@@ -66,7 +66,7 @@ $folder = 'patients';
                 </ul>
             </li>
 
-            <li class="slide">
+            <!-- <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
                         <path d="M0 0h24v24H0V0z" fill="none" />
                         <path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3" />
@@ -76,7 +76,7 @@ $folder = 'patients';
                     <li><a class="slide-item" href="{{route('list.doctors')}}">قائمة الاطباء</a></li>
                     <li><a class="slide-item" href="{{route('chat.doctors')}}">المحادثات الاخيرة</a></li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
     </div>
 </aside>
