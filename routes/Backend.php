@@ -85,6 +85,7 @@ Route::group(
             Route::resource('Sections', SectionController::class);
             Route::get('create_section', [SectionController::class, 'create'])->name('Sections.index2');
 
+            
             //############################# end sections route ######################################
 
 

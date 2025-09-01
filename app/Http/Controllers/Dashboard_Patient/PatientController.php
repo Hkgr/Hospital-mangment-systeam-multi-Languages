@@ -16,21 +16,20 @@ class PatientController extends Controller
 {
     public function invoices()
     {
-
-        $invoices = Invoice::where('patient_id', auth()->user()->id)->get();
+        $invoices = Invoice::with(['Doctor','Service','Group'])
+            ->where('patient_id', auth()->user()->id)
+            ->get();
         return view('Dashboard.dashboard_patient.invoices', compact('invoices'));
     }
 
     public function laboratories()
     {
-
         $laboratories = Laboratorie::where('patient_id', auth()->user()->id)->get();
         return view('Dashboard.dashboard_patient.laboratories', compact('laboratories'));
     }
 
     public function viewLaboratories($id)
     {
-
         $laboratorie = Laboratorie::findorFail($id);
         if ($laboratorie->patient_id != auth()->user()->id) {
             return redirect()->route('404');
@@ -40,7 +39,6 @@ class PatientController extends Controller
 
     public function rays()
     {
-
         $rays = Ray::where('patient_id', auth()->user()->id)->get();
         return view('Dashboard.dashboard_patient.rays', compact('rays'));
     }
@@ -53,19 +51,19 @@ class PatientController extends Controller
         }
         return view('Dashboard.dashboard_RayEmployee.invoices.patient_details', compact('rays'));
     }
+
     public function records()
     {
-
         $records = Diagnostic::where('patient_id', auth()->user()->id)->get();
         return view('Dashboard.dashboard_patient.records', compact('records'));
     }
 
     public function payments()
     {
-
         $payments = ReceiptAccount::where('patient_id', auth()->user()->id)->get();
         return view('Dashboard.dashboard_patient.payments', compact('payments'));
     }
+
     public function appointments()
     {
         $appointments = Appointment::where('patient_id', auth()->id())

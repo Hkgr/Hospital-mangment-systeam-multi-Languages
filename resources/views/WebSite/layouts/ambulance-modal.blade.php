@@ -13,7 +13,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="ambulance-phone">رقم الهاتف</label>
-                        <input type="text" class="form-control" id="ambulance-phone" name="phone" required>
+                        <input type="tel" class="form-control" id="ambulance-phone" name="phone" required inputmode="numeric" pattern="[0-9]*" autocomplete="tel" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                     </div>
                     <div class="form-group">
                         <label for="ambulance-details">تفاصيل الحالة</label>

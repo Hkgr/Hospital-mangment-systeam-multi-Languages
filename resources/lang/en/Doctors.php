@@ -9,6 +9,7 @@ return array (
   'Status_change' => 'Status Change',
   'add_doctor' => 'Add Doctor',
   'appointments' => 'appointments',
+  'SelectAppointments' => 'Select appointments',
   'confirm_password' => 'Confirm Password',
   'created_at' => 'created_at',
   'delete_doctor' => 'Delete Doctor',
@@ -24,4 +25,8 @@ return array (
   'section' => 'Section',
   'submit' => 'submit',
   'update_password' => 'Update Password',
+  'EditData' => 'Edit Data',
+  'ChangePassword' => 'Change Password',
+  'ChangeStatus' => 'Change Status',
+  'DeleteData' => 'Delete Data',
 );

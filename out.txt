@@ -1,0 +1,38 @@
+   1 <?php
+   2 
+   3 namespace Database\Seeders;
+   4 
+   5 use Illuminate\Database\Seeder;
+   6 
+   7 class DatabaseSeeder extends Seeder
+   8 {
+   9     /**
+  10      * Seed the application's database.
+  11      *
+  12      * @return void
+  13      */
+  14     public function run()
+  15     {
+  16         $this->call([
+  17             UserTableSeeder::class,
+  18             AdminTableSeeder::class,
+  19             //AppointmentSeeder::class,
+  20             SectionTableSeeder::class,
+  21             DoctorTableSeeder::class,
+  22             ImageTableSeeder::class,
+  23             PatientTableSeeder::class,
+  24             PatientBulkSeeder::class,
+  25             RayEmployeeTableSeeder::class,
+  26             LaboratorieEmployeeTableSeeder::class,
+  27             ServiceTableSeeder::class,
+  28             InsuranceTableSeeder::class,
+  29             GroupServiceSeeder::class,
+  30             AmbulanceTableSeeder::class,
+  31             SingleServiceInvoicesSeeder::class,
+  32             GroupInvoicesSeeder::class,
+  33             ReceiptAccountsSeeder::class,
+  34             PaymentAccountsSeeder::class,
+  35         ]);
+  36 
+  37     }
+  38 }

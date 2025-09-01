@@ -6,7 +6,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">الاسعاف</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ مكالمات الاسعاف</span>
+            <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/AmbulanceCalls.Ambulance') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/AmbulanceCalls.Calls') }}</span>
         </div>
     </div>
 </div>
@@ -22,12 +22,12 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>رقم الاتصال</th>
-                                <th>زمن الاتصال</th>
-                                <th>سيارة الاسعاف</th>
-                                <th>عنوان الاتصال</th>
-                                <th>الحالة</th>
-                                <th>العمليات</th>
+                                <th>{{ trans('Dashboard/AmbulanceCalls.Phone') }}</th>
+                                <th>{{ trans('Dashboard/AmbulanceCalls.CallTime') }}</th>
+                                <th>{{ trans('Dashboard/AmbulanceCalls.AmbulanceCar') }}</th>
+                                <th>{{ trans('Dashboard/AmbulanceCalls.Address') }}</th>
+                                <th>{{ trans('Dashboard/AmbulanceCalls.Status') }}</th>
+                                <th>{{ trans('Dashboard/AmbulanceCalls.Operations') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,10 +40,10 @@
                                 <td>{{$call->address}}</td>
                                 <td>
                                     @switch($call->status)
-                                    @case('first_aid') اسعاف اولي @break
-                                    @case('transfer_to_hospital') نقل الى المشفى @break
-                                    @case('transfer_to_another_hospital') نقل الى مشفى اخر @break
-                                    @default غير معروف
+                                    @case('first_aid') {{ trans('Dashboard/AmbulanceCalls.FirstAid') }} @break
+                                    @case('transfer_to_hospital') {{ trans('Dashboard/AmbulanceCalls.TransferToHospital') }} @break
+                                    @case('transfer_to_another_hospital') {{ trans('Dashboard/AmbulanceCalls.TransferToAnotherHospital') }} @break
+                                    @default {{ trans('Dashboard/AmbulanceCalls.Unknown') }}
                                     @endswitch
                                 </td>
                                 <td>
@@ -53,22 +53,22 @@
                                             <form action="{{route('AmbulanceCalls.updateStatus',[$call->id,'first_aid'])}}" method="post">
                                                 @csrf
                                                 @method('PUT')
-                                                <button class="dropdown-item">🩹 اسعاف اولي</button>
+                                                <button class="dropdown-item">🩹 {{ trans('Dashboard/AmbulanceCalls.FirstAid') }}</button>
                                             </form>
                                             <form action="{{route('AmbulanceCalls.updateStatus',[$call->id,'transfer_to_hospital'])}}" method="post">
                                                 @csrf
                                                 @method('PUT')
-                                                <button class="dropdown-item">🏥 تحويل الى قسم داخل المشفى</button>
+                                                <button class="dropdown-item">🏥 {{ trans('Dashboard/AmbulanceCalls.TransferToHospital') }}</button>
                                             </form>
                                             <form action="{{route('AmbulanceCalls.updateStatus',[$call->id,'transfer_to_another_hospital'])}}" method="post">
                                                 @csrf
                                                 @method('PUT')
-                                                <button class="dropdown-item">🏨 تحويل الى مشفى اخر</button>
+                                                <button class="dropdown-item">🏨 {{ trans('Dashboard/AmbulanceCalls.TransferToAnotherHospital') }}</button>
                                             </form>
                                             <form action="{{route('AmbulanceCalls.destroy',$call->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="dropdown-item">🗑️ حذف</button>
+                                                <button class="dropdown-item">🗑️ {{ trans('Dashboard/AmbulanceCalls.Delete') }}</button>
                                             </form>
                                         </div>
                                     </div>

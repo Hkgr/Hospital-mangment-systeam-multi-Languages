@@ -1,0 +1,20 @@
+<?php
+return [
+    'Title' => 'Our Medical Services',
+    'Section_Title' => 'Services',
+    'Intro' => 'Hospitals provide a wide range of medical services for patients, including emergency care, diagnosis, treatment and surgery, in addition to preventive care services.',
+    'Emergency_Title' => '1. Emergency Care',
+    'Emergency_Description' => 'Hospitals offer around-the-clock emergency services for critical cases. These services include immediate care and urgent interventions.',
+    'Diagnosis_Title' => '2. Diagnosis',
+    'Diagnosis_Description' => 'Diagnostic services deliver high-quality care through laboratories, radiology, pathology and medical imaging.',
+    'ImageAlt' => 'Illustrative image',
+    'Treatment_Title' => '3. Treatment',
+    'Treatment_Description' => 'Hospitals provide therapeutic services for various conditions, including critical and acute cases. These services include medical care, specialized health services, and preventive healthcare.',
+    'Surgery_Title' => '4. Surgery',
+    'Surgery_Description' => 'Hospitals perform a variety of surgical procedures, including general, cardiac, orthopedic and neurosurgery, among others.',
+    'AI_Title' => 'Artificial Intelligence',
+    'AI_Intro' => 'Healthcare faces major challenges in diagnosing diseases, determining appropriate treatments and improving continuous care. Artificial intelligence offers an innovative solution by processing vast amounts of data and extracting key patterns and guidance to help make medical decisions faster and more accurately.',
+    'AI_Benefit1' => 'Improved diagnostic accuracy',
+    'AI_Benefit2' => 'Reduced medical errors',
+    'AI_Benefit3' => 'Enhanced management of medical information',
+];

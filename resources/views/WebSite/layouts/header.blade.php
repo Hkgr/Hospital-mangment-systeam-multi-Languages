@@ -11,7 +11,7 @@
 
         <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
             <ul class="navigation clearfix">
-                <li class="current"><a href="{{ url('/' . $page='#') }}">الرئيسية</a>
+                <li class="current"><a href="{{ LaravelLocalization::localizeURL('/') }}">{{ trans('Layout/Header.Home') }}</a>
                     <!-- <ul>
                         <li><a href="index.html">Home page 01</a></li>
                         <li><a href="index-2.html">Home page 02</a></li>
@@ -27,12 +27,12 @@
                         </li>
                     </ul> -->
                 </li>
-                <li class="dropdown"><a href="http://127.0.0.1:8000/Services">الخدمات</a>
+                <li class="dropdown"><a href="{{ LaravelLocalization::localizeURL('/Services') }}">{{ trans('Layout/Header.Services') }}</a>
                     <ul>
-                        <li><a href="http://127.0.0.1:8000/Services">الرعاية الطارئة </a></li>
-                        <li><a href="http://127.0.0.1:8000/Services">التشخيص</a></li>
-                        <li><a href="http://127.0.0.1:8000/Services">العلاج</a></li>
-                        <li><a href="http://127.0.0.1:8000/Services">الجراحة</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">{{ trans('Layout/Header.EmergencyCare') }} </a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">{{ trans('Layout/Header.Diagnostics') }}</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">{{ trans('Layout/Header.Treatment') }}</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Services') }}">{{ trans('Layout/Header.Surgery') }}</a></li>
                     </ul>
                 </li>
                 <!-- <li class="dropdown has-mega-menu"><a href="#">الصفحات</a>
@@ -80,38 +80,27 @@
                         <li><a href="doctors-detail.html">Doctors Detail</a></li>
                     </ul>
                 </li> -->
-                <li class="dropdown"><a href="http://127.0.0.1:8000/deps">الاقسام</a>
+                <li class="dropdown"><a href="#">{{ trans('Layout/Header.Departments') }}</a>
                     <ul>
-                        <li><a href="http://127.0.0.1:8000/deps/Urology">{{trans('HomePage/HomePage.Sec1')}}</a></li>
-                        <li><a href="http://127.0.0.1:8000/deps/Neurology">{{trans('HomePage/HomePage.Sec2')}}</a></li>
-                        <li><a href="http://127.0.0.1:8000/deps/Gastroenterology">{{trans('HomePage/HomePage.Sec3')}}</a></li>
-                        <li><a href="http://127.0.0.1:8000/deps/Cardiology">{{trans('HomePage/HomePage.Sec4')}}</a></li>
-                        <li><a href="http://127.0.0.1:8000/deps/eye">{{trans('HomePage/HomePage.Sec5')}}</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/deps/Urology') }}">{{trans('HomePage/HomePage.Sec1')}}</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/deps/Neurology') }}">{{trans('HomePage/HomePage.Sec2')}}</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/deps/Gastroenterology') }}">{{trans('HomePage/HomePage.Sec3')}}</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/deps/Cardiology') }}">{{trans('HomePage/HomePage.Sec4')}}</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/deps/eye') }}">{{trans('HomePage/HomePage.Sec5')}}</a></li>
 
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#">المقالات</a>
                     <ul>
-                        <li><a href="http://127.0.0.1:8000/Articles/1">الجلطات الدماغية</a></li>
-                        <li><a href="http://127.0.0.1:8000/Articles/1">النوبة القلبية الصامتة</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Articles/1') }}">{{ trans('Layout/Header.Article1') }}</a></li>
+                        <li><a href="{{ LaravelLocalization::localizeURL('/Articles/2') }}">{{ trans('Layout//Header.Article2') }}</a></li>
                     </ul>
                 </li>
-                <li class=""><a href="#">شروط الخصوصية</a>
-                    <!-- <ul>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="shoping-cart.html">Cart Page</a></li>
-                        <li><a href="checkout.html">Checkout Page</a></li>
-                    </ul> -->
-                </li>
-                <li class=""><a href="#">سياية الاستخدام</a>
-                    <!-- <ul>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="shoping-cart.html">Cart Page</a></li>
-                        <li><a href="checkout.html">Checkout Page</a></li>
-                    </ul> -->
-                </li>
-                <li><a href="contact.html">تواصل معانا</a></li>
+                <li class=""><a href="{{ LaravelLocalization::localizeURL('/privacy') }}">{{ trans('Layout/Header.PrivacyPolicy') }}</a> </li>
 
+                <li class=""><a href="{{ LaravelLocalization::localizeURL('/terms') }}">{{ trans('Layout/Header.TermsOfUse') }}</a> </li>
+
+                <li><a href="{{ LaravelLocalization::localizeURL('/contact') }}">{{ trans('Layout/Header.ContactUs') }}</a></li>
                 <li class="dropdown"><a href="#">{{ LaravelLocalization::getCurrentLocaleNative() }}</a>
                     <ul>
                         @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
@@ -125,8 +114,7 @@
                 </li>
                 <li class="ml-auto">
                     <button class="btn btn-danger" data-toggle="modal" data-target="#ambulanceRequestModal">
-                        اطلب اسعاف الطوارئ!
-                    </button>
+                        {{ trans('Layout/Header.RequestEmergencyAmbulance') }} </button>
                 </li>
             </ul>
         </div>

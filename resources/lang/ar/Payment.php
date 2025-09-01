@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'PaymentVoucher' => 'سند صرف',
+    'PaymentVouchers' => 'سندات الصرف',
+    'AddVoucher' => 'اضافة سند صرف جديد',
+    'EditVoucher' => 'تعديل سند صرف',
+    'DeleteVoucher' => 'حذف سند صرف',
+    'Accounts' => 'الحسابات',
+    'PatientName' => 'اسم المريض',
+    'Amount' => 'المبلغ',
+    'Statement' => 'البيان',
+    'Notes' => 'ملاحظات',
+    'CreatedAt' => 'تاريخ الاضافة',
+    'Actions' => 'العمليات',
+    'Print' => 'طباعه سند صرف',
+    'PrintButton' => 'طباعه',
+    'VoucherInfo' => 'معلومات السند',
+    'IssueDate' => 'تاريخ الاصدار',
+    'Warning' => 'هل انت متاكد من عملية الحذف ؟',
+    'Close' => 'اغلاق',
+    'Confirm' => 'تاكيد',
+    'Submit' => 'حفظ البيانات',
+    'ProgramName' => 'برنامج ادراه المستشفي',
+    'UniversityName' => 'جامعة حلب الحرة',
+];

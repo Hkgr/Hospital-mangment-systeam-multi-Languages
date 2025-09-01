@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Doctor;
+use App\Models\Admin;
 use App\Models\FundAccount;
 use App\Models\Group;
 use App\Models\group_invoice;
@@ -58,6 +59,13 @@ class GroupInvoices extends Component
     }
     public function updated($propertyName)
     {
+        // Sanitize numeric inputs to allow commas as thousand separators
+        $numericProps = ['price','discount_value','tax_rate','insurance_discount','company_rate'];
+        if (in_array($propertyName, $numericProps, true)) {
+            $this->$propertyName = is_string($this->$propertyName)
+                ? str_replace(',', '', $this->$propertyName)
+                : $this->$propertyName;
+        }
         $this->validateOnly($propertyName);
     }
 
@@ -182,6 +190,7 @@ class GroupInvoices extends Component
                     $this->show_table = true;
                     $this->rest();
                 }
+                
             } catch (\Exception $e) {
                 $this->catchError = $e->getMessage();
             }
@@ -268,12 +277,19 @@ class GroupInvoices extends Component
                 }
                 $invoiceType = $this->type == 1 ? 'نقدية' : 'آجل';
                 $message = 'تم إنشاء فاتورة جماعية ' . $invoiceType;
-                foreach ([$this->doctor_id, auth()->user()->id, $this->patient_id] as $userId) {
+                foreach ([$this->doctor_id, $this->patient_id] as $userId) {
                     $notification = new Notification();
                     $notification->user_id = $userId;
                     $notification->message = $message;
                     $notification->save();
                 }
+                foreach (Admin::all() as $admin) {
+                    Notification::create([
+                        'user_id' => $admin->id,
+                        'message' => $message,
+                    ]);
+                }
+                
 
                 $data = [
                     'patient' => $this->patient_id,

@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-الفواتير المكتملة
+{{ trans('Dashboard/RayEmployee.CompletedInvoices') }}
 @stop
 @section('css')
 
@@ -12,7 +12,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">الفواتير المكتملة</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الفواتير</span>
+            <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/RayEmployee.CompletedInvoices') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/RayEmployee.Invoices') }}</span>
         </div>
     </div>
 </div>
@@ -31,11 +31,11 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>تاريخ الفاتورة</th>
-                                <th>اسم المريض</th>
-                                <th>اسم الدكتور</th>
-                                <th>المطلوب</th>
-                                <th>حالة الفاتورة</th>
+                                <th>{{ trans('Dashboard/RayEmployee.InvoiceDate') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.PatientName') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.DoctorName') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.Description') }}</th>
+                                <th>{{ trans('Dashboard/RayEmployee.InvoiceStatus') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,9 +56,9 @@
                                 <td>{{ $invoice->description }}</td>
                                 <td>
                                     @if($invoice->case == 0)
-                                    <span class="badge badge-danger">تحت الاجراء</span>
+                                    <span class="badge badge-danger">{{ trans('Dashboard/RayEmployee.UnderProcessing') }}</span>
                                     @else
-                                    <span class="badge badge-success">مكتملة</span>
+                                    <span class="badge badge-success">{{ trans('Dashboard/RayEmployee.Completed') }}</span>
                                     @endif
                                 </td>
 

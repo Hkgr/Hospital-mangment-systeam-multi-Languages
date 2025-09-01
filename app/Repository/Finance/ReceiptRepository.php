@@ -11,6 +11,9 @@ use App\Models\PatientAccount;
 use App\Models\ReceiptAccount;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\Notification;
+use App\Models\Admin;
+use App\Events\ReceiptCreated;
 
 class ReceiptRepository implements ReceiptRepositoryInterface
 {
@@ -61,6 +64,31 @@ class ReceiptRepository implements ReceiptRepositoryInterface
             $patient_accounts->credit =$request->Debit;
             $patient_accounts->save();
 
+            $message = 'تم إضافة سند قبض بقيمة ' . $request->Debit;
+
+            $patient = Patient::find($request->patient_id);
+
+            Notification::create([
+                'user_id' => $request->patient_id,
+                'message' => $message,
+            ]);
+
+            foreach (Admin::all() as $admin) {
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'message' => $message,
+                ]);
+            }
+
+            if ($patient && $patient->doctor_id) {
+                Notification::create([
+                    'user_id' => $patient->doctor_id,
+                    'message' => $message,
+                ]);
+            }
+
+            event(new ReceiptCreated($message, $request->patient_id, $patient->doctor_id ?? null));
+            
             DB::commit();
             session()->flash('add');
             return redirect()->route('Receipt.create');

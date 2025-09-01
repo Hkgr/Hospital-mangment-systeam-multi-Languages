@@ -28,8 +28,8 @@
                         <div class="footer-column col-lg-5 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
                                 <div class="footer-title  clearfix">
-                                    <h2>الاقسام</h2>
-                                    <div class="separator"></div>
+                                <h2>{{ trans('Layout/Footer.Sections') }}</h2>
+                                                                    <div class="separator"></div>
                                 </div>
                                 <ul class="footer-list">
                                     <li><a href="http://127.0.0.1:8000/deps/Urology">{{trans('HomePage/HomePage.Sec1')}}</a></li>
@@ -52,8 +52,8 @@
                         <div class="footer-column col-lg-6 col-md-6 col-sm-12">
                             <div class="footer-widget news-widget">
                                 <div class="footer-title  clearfix">
-                                    <h2>أخر المقالات</h2>
-                                    <div class="separator"></div>
+                                <h2>{{ trans('Layout/Footer.LatestArticles') }}</h2>
+                                                                    <div class="separator"></div>
                                 </div>
 
                                 <!--News Widget Block-->
@@ -62,10 +62,10 @@
                                         <div class="image">
                                             <img src="{{URL::asset('WebSite/images/articals/1/min.png')}}" alt="photo" />
                                         </div>
-                                        <h3><a href="blog-detail.html">النوبة القلبية الصامتة</a>
-                                        </h3>
-                                        <div class="post-date">11 يونيو 2025</div>
-                                    </div>
+                                        <h3><a href="blog-detail.html">{{ trans('Layout/Footer.Article1Title') }}</a>
+                                                                            </h3>
+                                                                            <div class="post-date">{{ trans('Layout/Footer.Article1Date') }}</div>
+                                                                                                            </div>
                                 </div>
 
                                 <!--News Widget Block-->
@@ -74,8 +74,8 @@
                                         <div class="image">
                                             <img src="{{URL::asset('WebSite/images/articals/2/min.png')}}" alt="" />
                                         </div>
-                                        <h3><a href="blog-detail.html">الجلطات الدماغية</a></h3>
-                                        <div class="post-date">11 يوليو 2025</div>
+                                        <h3><a href="blog-detail.html">{{ trans('Layout/Footer.Article2Title') }}</a></h3>
+                                        <div class="post-date">{{ trans('Layout/Footer.Article2Date') }}</div>
                                     </div>
                                 </div>
 
@@ -86,18 +86,14 @@
                         <div class="footer-column col-lg-6 col-md-6 col-sm-12">
                             <div class="footer-widget contact-widget">
                                 <div class="footer-title  clearfix">
-                                    <h2>اتصل بنا</h2>
-                                    <div class="separator"></div>
+                                <h2>{{ trans('Layout/Footer.ContactUs') }}</h2>
+                                                                    <div class="separator"></div>
                                 </div>
 
                                 <ul class="contact-list">
-                                    <li><span class="icon flaticon-placeholder"></span>جامعة حلب في المناطق المحررة<br> سوريا - حلب - اعزاز</li>
-
-                                    </li>
-                                    <li><span class="icon flaticon-call"></span>من الإثنين إلى الجمعة: من الساعة 8:30 صباحًا حتى الساعة 18:00 مساءً<br> <a
-                                            href="tel:+905528779087">+90 552 877 90 87   </a></li>
-                                    <li><span class="icon flaticon-message"></span>هل لديك سؤال ؟ <a
-                                            href="mailto:info@moh.gov.sy">info@moh.gov.sy</a></li>
+                                <li><span class="icon flaticon-placeholder"></span>{!! trans('Layout/Footer.Address') !!}</li>
+                                    <li><span class="icon flaticon-call"></span>{{ trans('Layout/Footer.WorkHours') }}<br> <a href="tel:{{ trans('Layout/Footer.Phone') }}">{{ trans('Layout/Footer.Phone') }}   </a></li>
+                                    <li><span class="icon flaticon-message"></span>{{ trans('Layout/Footer.HaveQuestion') }} <a href="mailto:{{ trans('Layout/Footer.Email') }}">{{ trans('Layout/Footer.Email') }}</a></li>
                                 </ul>
 
                             </div>
@@ -113,7 +109,7 @@
     <!-- Footer Bottom -->
     <div class="footer-bottom">
         <div class="auto-container">
-            <div class="copyright">Helth Care &copy; All Rights Reserved By Free Aleepo University with love <i  class="flaticon-heart heart-icon"></i>
+            <div class="copyright">Helth Care &copy; All Rights Reserved By Free Aleepo University with love <i class="flaticon-heart heart-icon"></i>
             </div>
         </div>
     </div>

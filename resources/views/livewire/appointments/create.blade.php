@@ -1,4 +1,9 @@
 <div>
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert" style="direction: rtl; text-align: right;">
+            {{ session('success') }}
+        </div>
+    @endif
     @if($message === true)
     <script>
               alert('تم ارسال تفاصيل الحجز الي المستشفيي')
@@ -87,3 +92,37 @@
         </div>
     </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function sanitizeDigitsOnly(el) {
+            if (!el || el.dataset.digitsOnlyAttached) return;
+            el.dataset.digitsOnlyAttached = '1';
+            el.setAttribute('type', 'tel');
+            el.setAttribute('inputmode', 'numeric');
+            el.setAttribute('pattern', '[0-9]*');
+            el.setAttribute('autocomplete', 'tel');
+            el.addEventListener('input', function () {
+                var v = el.value || '';
+                var d = v.replace(/[^0-9]/g, '');
+                if (v !== d) el.value = d;
+            });
+        }
+
+        function initPhoneField() {
+            var phone = document.querySelector('input[name="phone"]');
+            sanitizeDigitsOnly(phone);
+        }
+
+        initPhoneField();
+
+        document.addEventListener('livewire:load', function () {
+            initPhoneField();
+            if (window.Livewire && Livewire.hook) {
+                Livewire.hook('message.processed', function () {
+                    initPhoneField();
+                });
+            }
+        });
+    });
+</script>

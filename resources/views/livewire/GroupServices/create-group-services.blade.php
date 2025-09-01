@@ -124,7 +124,7 @@
                             <tr>
                                 <td style="color: red">قيمة الخصم</td>
                                 <td width="125">
-                                    <input type="number" name="discount_value" class="form-control w-75 d-inline"
+                                    <input type="text" name="discount_value" class="form-control w-75 d-inline" inputmode="decimal" pattern="[0-9,\.]*" oninput="this.value=this.value.replace(/[^0-9.,]/g,'');"
                                            wire:model="discount_value">
                                 </td>
                             </tr>
@@ -132,7 +132,7 @@
                             <tr>
                                 <td style="color: red">نسبة الضريبة</td>
                                 <td>
-                                    <input type="number" name="taxes" class="form-control w-75 d-inline" min="0"
+                                    <input type="text" name="taxes" class="form-control w-75 d-inline" inputmode="decimal" pattern="[0-9,\.]*" oninput="this.value=this.value.replace(/[^0-9.,]/g,'');" min="0"
                                            max="100" wire:model="taxes"> %
                                 </td>
                             </tr>

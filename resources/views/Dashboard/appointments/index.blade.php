@@ -13,8 +13,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">المواعيد</h4><span
-                class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة المواعيد</span>
+            <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/Appointments.Appointments') }}</h4><span
+                class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/Appointments.List') }}</span>
         </div>
     </div>
 </div>
@@ -33,24 +33,24 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>اسم المريض</th>
-                                <th>البريد الالكتروني</th>
-                                <th>القسم</th>
-                                <th>الدكتور</th>
-                                <th>الهاتف</th>
-                                <th>ملاحظات</th>
-                                <th>العمليات</th>
+                                <th>{{ trans('Dashboard/Appointments.PatientName') }}</th>
+                                <th>{{ trans('Dashboard/Appointments.Email') }}</th>
+                                <th>{{ trans('Dashboard/Appointments.Section') }}</th>
+                                <th>{{ trans('Dashboard/Appointments.Doctor') }}</th>
+                                <th>{{ trans('Dashboard/Appointments.Phone') }}</th>
+                                <th>{{ trans('Dashboard/Appointments.Notes') }}</th>
+                                <th>{{ trans('Dashboard/Appointments.Actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($appointments as $appointment)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$appointment->patient->name}}</a></td>
-                                <td>{{$appointment->patient->email}}</td>
-                                <td>{{$appointment->section->name}}</td>
-                                <td>{{$appointment->doctor->name}}</td>
-                                <td>{{$appointment->patient->Phone}}</td>
+                                <td>{{ optional($appointment->patient)->name }}</td>
+                                <td>{{ optional($appointment->patient)->email }}</td>
+                                <td>{{ optional($appointment->section)->name }}</td>
+                                <td>{{ optional($appointment->doctor)->name }}</td>
+                                <td>{{ optional($appointment->patient)->Phone }}</td>
                                 <td>{{$appointment->notes}}</td>
                                 <td>
                                     <button class="btn btn-sm btn-success" data-toggle="modal"

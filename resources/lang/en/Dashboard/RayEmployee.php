@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'DashboardTitle' => 'Ray Employee Dashboard',
+    'WelcomeBack' => 'Welcome back',
+    'TotalInvoices' => 'Total Invoices',
+    'PendingInvoices' => 'Total Pending Invoices',
+    'CompletedInvoices' => 'Total Completed Invoices',
+    'LatestInvoices' => 'Latest 5 invoices on the system',
+    'Reports' => 'Reports',
+    'Invoices' => 'Invoices',
+    'InvoiceDate' => 'Invoice Date',
+    'PatientName' => 'Patient Name',
+    'DoctorName' => 'Doctor Name',
+    'Description' => 'Description',
+    'InvoiceStatus' => 'Invoice Status',
+    'Operations' => 'Operations',
+    'AddDiagnosis' => 'Add Diagnosis',
+    'UnderProcessing' => 'Under Processing',
+    'Completed' => 'Completed',
+    'NoData' => 'No data available',
+    'Diagnosis' => 'Diagnosis',
+    'Attachments' => 'Attachments',
+    'Confirm' => 'Confirm',
+    'DoctorDetails' => 'Doctor Details',
+    'PatientDetails' => 'Patient Details',
+    'XRayImages' => 'X-ray Images',
+    'ViewImages' => 'View Images',
+    'RadiologistNotes' => 'Radiologist Notes',
+];
+

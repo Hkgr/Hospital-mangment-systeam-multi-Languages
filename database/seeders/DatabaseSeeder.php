@@ -21,8 +21,18 @@ class DatabaseSeeder extends Seeder
             DoctorTableSeeder::class,
             ImageTableSeeder::class,
             PatientTableSeeder::class,
+            PatientBulkSeeder::class,
             RayEmployeeTableSeeder::class,
+            LaboratorieEmployeeTableSeeder::class,
             ServiceTableSeeder::class,
+            InsuranceTableSeeder::class,
+            GroupServiceSeeder::class,
+            AmbulanceTableSeeder::class,
+            SingleServiceInvoicesSeeder::class,
+            GroupInvoicesSeeder::class,
+            ReceiptAccountsSeeder::class,
+            PaymentAccountsSeeder::class,
+            AppointmentBulkSeeder::class,
         ]);
 
     }

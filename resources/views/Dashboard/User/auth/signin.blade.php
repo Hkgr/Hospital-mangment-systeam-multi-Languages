@@ -28,7 +28,8 @@
                         <div class="row">
                             <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                 <div class="card-sigin">
-                                    <div class="mb-5 d-flex"> <a href="{{ url('/') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}" class="sign-favicon ht-40" alt="logo"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28" >النافذة الموحدة لتسجيل الدخول</h1></div>
+                                    <div class="mb-5 d-flex"> <a href="{{ url('/') }}"><img src="{{URL::asset('Dashboard/img/brand/favicon.png')}}" class="sign-favicon ht-40" alt="logo"></a>
+                                    <h1>{{ trans('Dashboard/UserAuth.LoginPortal') }}</h1></div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
                                             <h2>{{trans('Dashboard/login_trans.Welcome')}}</h2>
@@ -65,13 +66,13 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{trans('Dashboard/login_trans.password')}}</label> <input class="form-control" placeholder="******"   type="password"name="password" required autocomplete="current-password" >
-                                                    </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
+                                                    </div><button type="submit" class="btn btn-main-primary btn-block">{{ trans('Dashboard/UserAuth.Login') }}</button>
 
                                                 </form>
-                                                <div class="main-signin-footer mt-5">
+                                                <!-- <div class="main-signin-footer mt-5">
                                                     <p><a href="">{{trans('Dashboard/login_trans.forgot_password')}}</a></p>
                                                     <p> {{trans('Dashboard/login_trans.have_account')}}<a href="{{ url('/' . $page='signup') }}"> {{trans('Dashboard/login_trans.create_account')}}</a></p>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             {{--form admin--}}
@@ -84,13 +85,13 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{trans('Dashboard/login_trans.password')}}</label> <input class="form-control" placeholder="******"   type="password"name="password" required autocomplete="current-password" >
-                                                    </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
+                                                    </div><button type="submit" class="btn btn-main-primary btn-block">{{ trans('Dashboard/UserAuth.Login') }}</button>
 
                                                 </form>
-                                                <div class="main-signin-footer mt-5">
+                                                <!-- <div class="main-signin-footer mt-5">
                                                     <p><a href="">{{trans('Dashboard/login_trans.forgot_password')}}</a></p>
                                                     <p> {{trans('Dashboard/login_trans.have_account')}}<a href="{{ url('/' . $page='signup') }}"> {{trans('Dashboard/login_trans.create_account')}}</a></p>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             {{--form Doctor--}}
@@ -103,13 +104,13 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{trans('Dashboard/login_trans.password')}}</label> <input class="form-control" placeholder="******"   type="password"name="password" required autocomplete="current-password" >
-                                                    </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
+                                                    </div><button type="submit" class="btn btn-main-primary btn-block">{{ trans('Dashboard/UserAuth.Login') }}</button>
 
                                                 </form>
-                                                <div class="main-signin-footer mt-5">
+                                                <!-- <div class="main-signin-footer mt-5">
                                                     <p><a href="">{{trans('Dashboard/login_trans.forgot_password')}}</a></p>
                                                     <p> {{trans('Dashboard/login_trans.have_account')}}<a href="{{ url('/' . $page='signup') }}"> {{trans('Dashboard/login_trans.create_account')}}</a></p>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             {{--form RayEmployee--}}
@@ -122,13 +123,13 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{trans('Dashboard/login_trans.password')}}</label> <input class="form-control" placeholder="******"   type="password"name="password" required autocomplete="current-password" >
-                                                    </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
+                                                    </div><button type="submit" class="btn btn-main-primary btn-block">{{ trans('Dashboard/UserAuth.Login') }}</button>
 
                                                 </form>
-                                                <div class="main-signin-footer mt-5">
+                                                <!-- <div class="main-signin-footer mt-5">
                                                     <p><a href="">{{trans('Dashboard/login_trans.forgot_password')}}</a></p>
                                                     <p> {{trans('Dashboard/login_trans.have_account')}}<a href="{{ url('/' . $page='signup') }}"> {{trans('Dashboard/login_trans.create_account')}}</a></p>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             {{--form laboratorie_employee--}}
@@ -141,13 +142,13 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{trans('Dashboard/login_trans.password')}}</label> <input class="form-control" placeholder="******"   type="password"name="password" required autocomplete="current-password" >
-                                                    </div><button type="submit" class="btn btn-main-primary btn-block">تسجيل الدخول</button>
+                                                    </div><button type="submit" class="btn btn-main-primary btn-block">{{ trans('Dashboard/UserAuth.Login') }}</button>
 
                                                 </form>
-                                                <div class="main-signin-footer mt-5">
+                                                <!-- <div class="main-signin-footer mt-5">
                                                     <p><a href="">{{trans('Dashboard/login_trans.forgot_password')}}</a></p>
                                                     <p> {{trans('Dashboard/login_trans.have_account')}}<a href="{{ url('/' . $page='signup') }}"> {{trans('Dashboard/login_trans.create_account')}}</a></p>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                         </div>

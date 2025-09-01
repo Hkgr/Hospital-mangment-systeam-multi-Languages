@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{trans('Services.add_Service')}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{ trans('Dashboard/Services.add_Service') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,13 +11,13 @@
             <form action="{{ route('Service.store') }}" method="post" autocomplete="off">
                 @csrf
                 <div class="modal-body">
-                    <label for="name">{{trans('Services.name')}}</label>
+                    <label for="name">{{ trans('Dashboard/Services.name') }}</label>
                     <input type="text" name="name" id="name" class="form-control"><br>
 
-                    <label for="price">{{trans('Services.price')}}</label>
-                    <input type="number" name="price" id="price" class="form-control"><br>
+                    <label for="price">{{ trans('Dashboard/Services.price') }}</label>
+                    <input type="text" name="price" id="price" class="form-control" inputmode="decimal" pattern="[0-9,\.]*" oninput="this.value=this.value.replace(/[^0-9.,]/g,'');"><br>
 
-                    <label for="description">{{trans('Services.description')}}</label>
+                    <label for="description">{{ trans('Dashboard/Services.description') }}</label>
                     <textarea class="form-control" name="description" id="description" rows="5"></textarea>
                 </div>
 

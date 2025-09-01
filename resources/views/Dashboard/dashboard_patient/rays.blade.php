@@ -13,7 +13,7 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">عمليات المريض</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الاشعة</span>
+                                                        <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/Patient.PatientOperations') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/Patient.Rays') }}</span>
 						</div>
 					</div>
 				</div>
@@ -34,11 +34,11 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>المطلوب</th>
-                                                <th >اسم الدكتور</th>
-                                                <th>اسم دكتور الاشعة</th>
-                                                <th>ملاحظة دكتور الاشعة</th>
-                                                <th>العمليات</th>
+                                                <th>{{ trans('Dashboard/Patient.Description') }}</th>
+                                                <th>{{ trans('Dashboard/Patient.DoctorName') }}</th>
+                                                <th>{{ trans('Dashboard/Patient.RayDoctor') }}</th>
+                                                <th>{{ trans('Dashboard/Patient.RayNote') }}</th>
+                                                <th>{{ trans('Dashboard/Patient.Actions') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -51,7 +51,7 @@
                                                    <td>{{$ray->description_employee}}</td>
                                                    <td>
                                                        @if($ray->employee_id !== null)
-                                                       <a class="btn btn-primary btn-sm" href="{{route('rays.view',$ray->id)}}" role="button">عرض الاشعة</a>
+                                                       <a class="btn btn-primary btn-sm" href="{{route('rays.view',$ray->id)}}" role="button">{{ trans('Dashboard/Patient.ViewRay') }}</a>
                                                        @endif
                                                    </td>
                                                </tr>

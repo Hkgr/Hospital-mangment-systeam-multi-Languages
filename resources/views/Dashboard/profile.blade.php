@@ -29,19 +29,19 @@ $folder = 'users';
 <div class="breadcrumb-header justify-content-between">
 	<div class="my-auto">
 		<div class="d-flex">
-			<h4 class="content-title mb-0 my-auto">{{ $user->name ?? '' }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ @if(auth('admin')->check())
-				{{ __('مسؤول') }}
-				@elseif(auth('doctor')->check())
-				{{ __('دكتور') }}
-				@elseif(auth('patient')->check())
-				{{ __('مريض') }}
-				@elseif(auth('laboratorie_employee')->check())
-				{{ __('موظف مخبر') }}
-				@elseif(auth('ray_employee')->check())
-				{{ __('موظف أشعة') }}
-				@else
-				{{ __('User') }}
-				@endif</span>
+                        <h4 class="content-title mb-0 my-auto">{{ $user->name ?? '' }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ @if(auth('admin')->check())
+                                {{ trans('Dashboard/Profile.Admin') }}
+                                @elseif(auth('doctor')->check())
+                                {{ trans('Dashboard/Profile.Doctor') }}
+                                @elseif(auth('patient')->check())
+                                {{ trans('Dashboard/Profile.Patient') }}
+                                @elseif(auth('laboratorie_employee')->check())
+                                {{ trans('Dashboard/Profile.LaboratorieEmployee') }}
+                                @elseif(auth('ray_employee')->check())
+                                {{ trans('Dashboard/Profile.RayEmployee') }}
+                                @else
+                                {{ trans('Dashboard/Profile.User') }}
+                                @endif</span>
 		</div>
 	</div>
 	<!-- <div class="d-flex my-xl-auto right-content">
@@ -115,24 +115,24 @@ $folder = 'users';
 						<div class="d-flex justify-content-between mg-b-20">
 							<div>
 								<h5 class="main-profile-name">{{ $user->name ?? '' }}</h5>
-								<p class="main-profile-name-text">
-									@if(auth('admin')->check())
-									{{ __('مسؤول') }}
-									@elseif(auth('doctor')->check())
-									{{ __('دكتور') }}
-									@elseif(auth('patient')->check())
-									{{ __('مريض') }}
-									@elseif(auth('laboratorie_employee')->check())
-									{{ __('موظف مخبر') }}
-									@elseif(auth('ray_employee')->check())
-									{{ __('موظف أشعة') }}
-									@else
-									{{ __('User') }}
-									@endif
-								</p>
+                                                                <p class="main-profile-name-text">
+                                                                        @if(auth('admin')->check())
+                                                                        {{ trans('Dashboard/Profile.Admin') }}
+                                                                        @elseif(auth('doctor')->check())
+                                                                        {{ trans('Dashboard/Profile.Doctor') }}
+                                                                        @elseif(auth('patient')->check())
+                                                                        {{ trans('Dashboard/Profile.Patient') }}
+                                                                        @elseif(auth('laboratorie_employee')->check())
+                                                                        {{ trans('Dashboard/Profile.LaboratorieEmployee') }}
+                                                                        @elseif(auth('ray_employee')->check())
+                                                                        {{ trans('Dashboard/Profile.RayEmployee') }}
+                                                                        @else
+                                                                        {{ trans('Dashboard/Profile.User') }}
+                                                                        @endif
+                                                                </p>
 							</div>
 						</div>
-						<h6>توصيف</h6>
+                                                <h6>{{ trans('Dashboard/Profile.DescriptionHeading') }}</h6>
 						<div class="main-profile-bio">
 							{{ $user->description ?? __('No description available.') }}
 						</div><!-- main-profile-bio -->
@@ -151,7 +151,7 @@ $folder = 'users';
 							</div>
 						</div> -->
 						<hr class="mg-y-30">
-						<label class="main-content-label tx-13 mg-b-20">وسائل التواصل الاجتماعي</label>
+                                                <label class="main-content-label tx-13 mg-b-20">{{ trans('Dashboard/Profile.SocialMedia') }}</label>
 						<div class="main-profile-social-list">
 							<div class="media">
 								<div class="media-icon bg-primary-transparent text-primary">
@@ -187,7 +187,7 @@ $folder = 'users';
 							</div>
 						</div>
 						<hr class="mg-y-30">
-						<h6>الخصائص</h6>
+                                                <h6>{{ trans('Dashboard/Profile.Attributes') }}</h6>
 						@php
 						$socialScore = min(100, max(0, $user->social_score ?? 0));
 						$physicalScore = min(100, max(0, $user->physical_health_score ?? 0));
@@ -196,7 +196,7 @@ $folder = 'users';
 						@endphp
 						<!-- skill bar -->
 						<div class="skill-bar mb-4 clearfix mt-3">
-							<span>التواصل الاجتماعي</span>
+                                                        <span>{{ trans('Dashboard/Profile.SocialCommunication') }}</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-primary-gradient"
 									role="progressbar"
@@ -210,7 +210,7 @@ $folder = 'users';
 
 						<!-- skill bar -->
 						<div class="skill-bar mb-4 clearfix">
-							<span>الصحة الجسدية</span>
+                                                        <span>{{ trans('Dashboard/Profile.PhysicalHealth') }}</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-danger-gradient"
 									role="progressbar"
@@ -224,7 +224,7 @@ $folder = 'users';
 
 						<!-- skill bar -->
 						<div class="skill-bar mb-4 clearfix">
-							<span>الصحة النفسية</span>
+                                                        <span>{{ trans('Dashboard/Profile.PsychologicalHealth') }}</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-success-gradient"
 									role="progressbar"
@@ -238,7 +238,7 @@ $folder = 'users';
 
 						<!-- skill bar -->
 						<div class="skill-bar clearfix">
-							<span>الصحة العقلية</span>
+                                                        <span>{{ trans('Dashboard/Profile.MentalHealth') }}</span>
 							<div class="progress mt-2">
 								<div class="progress-bar bg-info-gradient"
 									role="progressbar"
@@ -265,9 +265,9 @@ $folder = 'users';
 								<i class="icon-layers text-primary"></i>
 							</div>
 							<div class="mr-auto">
-								<h5 class="tx-13">عدد الاطباء</h5>
+                                                                <h5 class="tx-13">{{ trans('Dashboard/Profile.NumberDoctors') }}</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">{{\App\Models\Doctor::count()}}</h2>
-								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i> زيادة </p>
+                                                                <p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i> {{ trans('Dashboard/Profile.Increase') }} </p>
 							</div>
 						</div>
 					</div>
@@ -281,9 +281,9 @@ $folder = 'users';
 								<i class="icon-paypal text-danger"></i>
 							</div>
 							<div class="mr-auto">
-								<h5 class="tx-13">عدد المرضى</h5>
+                                                                <h5 class="tx-13">{{ trans('Dashboard/Profile.NumberPatients') }}</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">{{\App\Models\Patient::count()}}</h2>
-								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i> زيادة </p>
+                                                                <p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i> {{ trans('Dashboard/Profile.Increase') }} </p>
 							</div>
 						</div>
 					</div>
@@ -297,9 +297,9 @@ $folder = 'users';
 								<i class="icon-rocket text-success"></i>
 							</div>
 							<div class="mr-auto">
-								<h5 class="tx-13">عدد الاقسام</h5>
+                                                                <h5 class="tx-13">{{ trans('Dashboard/Profile.NumberSections') }}</h5>
 								<h2 class="mb-0 tx-22 mb-1 mt-1">{{\App\Models\Section::count()}}</h2>
-								<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i> زيادة </p>
+                                                                <p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i> {{ trans('Dashboard/Profile.Increase') }} </p>
 							</div>
 						</div>
 					</div>
@@ -312,7 +312,7 @@ $folder = 'users';
 					<!-- Tabs -->
 					<ul class="nav nav-tabs profile navtab-custom panel-tabs">
 						<li class="active">
-							<a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">نبذة عني</span> </a>
+                                                        <a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{ trans('Dashboard/Profile.AboutMe') }}</span> </a>
 						</li>
 						<!-- <li class="">
 							<a href="#profile" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">GALLERY</span> </a>

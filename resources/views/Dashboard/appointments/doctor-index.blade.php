@@ -13,8 +13,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">المواعيد</h4><span
-                class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة المواعيد الخاصة بي</span>
+              <h4 class="content-title mb-0 my-auto">{{ trans('Dashboard/Appointments.Appointments') }}</h4><span
+                  class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ trans('Dashboard/Appointments.DoctorList') }}</span>
         </div>
     </div>
 </div>
@@ -32,40 +32,40 @@
                     <table class="table text-md-nowrap" id="example1">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>اسم المريض</th>
-                                <th>البريد الالكتروني</th>
-                                <th>القسم</th>
-                                <th>الهاتف</th>
-                                <th>حالة الموعد</th>
-                                <th>تاريخ الموعد</th>
-                                <th>ملاحظات</th>
-                                <th>إنهاء الموعد</th>
+                                  <th>#</th>
+                                  <th>{{ trans('Dashboard/Appointments.PatientName') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.Email') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.Section') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.Phone') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.Status') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.AppointmentDate') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.Notes') }}</th>
+                                  <th>{{ trans('Dashboard/Appointments.Finish') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($appointments as $appointment)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$appointment->patient->name}}</td>
-                                <td>{{$appointment->patient->email}}</td>
-                                <td>{{$appointment->section->name}}</td>
-                                <td>{{$appointment->patient->Phone}}</td>
+                                <td>{{ optional($appointment->patient)->name ?? '-' }}</td>
+                                <td>{{ optional($appointment->patient)->email ?? '-' }}</td>
+                                <td>{{ optional($appointment->section)->name ?? '-' }}</td>
+                                <td>{{ optional($appointment->patient)->Phone ?? '-' }}</td>
                                 <td>
-                                @if($appointment->type == "غير مؤكد")
-                                <span class="badge badge-danger">غير مؤكد</span>
-                                @elseif($appointment->type == "منتهي")
-                                <span class="badge badge-warning">منتهي</span>
-                                @else
-                                <span class="badge badge-success">مؤكد</span>
-                                @endif
+                                  @if($appointment->type == "غير مؤكد")
+                                  <span class="badge badge-danger">{{ trans('Dashboard/Appointments.Unconfirmed') }}</span>
+                                  @elseif($appointment->type == "منتهي")
+                                  <span class="badge badge-warning">{{ trans('Dashboard/Appointments.Finished') }}</span>
+                                  @else
+                                  <span class="badge badge-success">{{ trans('Dashboard/Appointments.ConfirmedStatus') }}</span>
+                                  @endif
                                 </td>
                                 <td>{{$appointment->appointment}}</td>
                                 <td>{{$appointment->notes}}</td>
                                 <td>
                                     <form action="{{ route('doctor.appointments.finish', $appointment->id) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-primary">تحويل</button>
+                                          <button type="submit" class="btn btn-sm btn-primary">{{ trans('Dashboard/Appointments.Finish') }}</button>
                                     </form>
                                 </td>
                             </tr>

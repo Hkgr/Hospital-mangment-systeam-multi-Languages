@@ -11,7 +11,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('main-sidebar_trans.Services')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{trans('main-sidebar_trans.Insurance')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{ trans('insurance.AllServices') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{trans('main-sidebar_trans.Insurance')}}</span>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
                                 <th >{{trans('insurance.Company_name')}}</th>
                                 <th >{{trans('insurance.discount_percentage')}}</th>
                                 <th >{{trans('insurance.Insurance_bearing_percentage')}}</th>
-                                <th >{{trans('insurance.status')}}</th>
+                                <th >{{ trans('insurance.ActivationStatus') }}</th>
                                 <th >{{trans('insurance.notes')}}</th>
                                 <th >{{trans('insurance.Processes')}}</th>
                             </tr>
@@ -51,7 +51,7 @@
                                     <td>{{$insurance->name}}</td>
                                     <td>{{$insurance->discount_percentage}}</td>
                                     <td>{{$insurance->Company_rate}}</td>
-                                    <td class="{{$insurance->status == 1 ? 'bg-success':'bg-danger'}}">{{$insurance->status == 1 ? 'مفعل' : 'غير مفعل'}}</td>
+                                    <td class="{{$insurance->status == 1 ? 'bg-success':'bg-danger'}}">{{$insurance->status == 1 ? trans('insurance.Active') : trans('insurance.Inactive')}}</td>
                                     <td>{{$insurance->notes}}</td>
                                     <td>
                                         <a href="{{route('insurance.edit',$insurance->id)}}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>

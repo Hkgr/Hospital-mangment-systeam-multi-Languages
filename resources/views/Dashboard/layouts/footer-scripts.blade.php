@@ -72,8 +72,8 @@
       var dot = ind.querySelector('.status-dot');
       var text = document.getElementById('online-indicator-text');
       if(dot){ dot.style.background = isOffline ? '#dc3545' : '#28a745'; }
-      if(text){ text.textContent = isOffline ? 'غير متصل' : 'متصل'; }
-      ind.title = isOffline ? 'غير متصل' : 'متصل';
+      if(text){ text.textContent = isOffline ? "{{ trans('Dashboard/Layouts.Offline') }}" : "{{ trans('Dashboard/Layouts.Online') }}"; }
+      ind.title = isOffline ? "{{ trans('Dashboard/Layouts.Offline') }}" : "{{ trans('Dashboard/Layouts.Online') }}";
     }
   }
 
@@ -99,5 +99,38 @@
   window.addEventListener('online', onNetChange);
   window.addEventListener('offline', onNetChange);
   document.addEventListener('DOMContentLoaded', onNetChange);
+})();
+</script>
+
+<script>
+// Normalize numbers with thousands separators before submit across dashboard
+(function(){
+  function stripThousands(val){
+    if(typeof val !== 'string') return val;
+    // Only strip if removing commas yields a valid number
+    if(val.indexOf(',') === -1) return val;
+    var noCommas = val.replace(/,/g,'');
+    return isNaN(Number(noCommas)) ? val : noCommas;
+  }
+
+  function preprocessForm(form){
+    form.addEventListener('submit', function(){
+      var elements = form.querySelectorAll('input, textarea, select');
+      elements.forEach(function(el){
+        if(el.disabled || el.readOnly) return;
+        // Skip obvious non-numeric fields based on type
+        var t = (el.getAttribute('type')||'').toLowerCase();
+        if(['checkbox','radio','file','password','email','date','datetime-local','time','month'].indexOf(t) !== -1) return;
+        var v = el.value;
+        if(typeof v !== 'string' || v.length === 0) return;
+        var cleaned = stripThousands(v.trim());
+        if(cleaned !== v) el.value = cleaned;
+      });
+    }, {capture:true});
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('form').forEach(preprocessForm);
+  });
 })();
 </script>

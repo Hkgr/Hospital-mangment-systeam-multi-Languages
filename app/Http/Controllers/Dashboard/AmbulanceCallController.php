@@ -25,6 +25,13 @@ class AmbulanceCallController extends Controller
         $call = AmbulanceCall::findOrFail($id);
         $call->status = $status;
         $call->save();
+
+
+        if ($status !== 'unknown' && $call->ambulance) {
+            $call->ambulance->is_available = 1;
+            $call->ambulance->save();
+        }
+
         session()->flash('edit');
         return redirect()->route('AmbulanceCalls.index');
     }
@@ -34,7 +41,12 @@ class AmbulanceCallController extends Controller
      */
     public function destroy($id)
     {
-        AmbulanceCall::destroy($id);
+        $call = AmbulanceCall::findOrFail($id);
+        if ($call->ambulance) {
+            $call->ambulance->is_available = 1;
+            $call->ambulance->save();
+        }
+        $call->delete();
         session()->flash('delete');
         return redirect()->route('AmbulanceCalls.index');
     }

@@ -29,6 +29,7 @@ return [
     'Sec3' => 'Gastroenterology Department',
     'Sec4' => 'Cardiology Department',
     'Sec5' => 'Eye Care Department',
+    'Departments' => 'Departments',
 
     'SecHead1' => 'Your Kidney Comfort Starts Here',
     'SecDesc1' => 'This department specializes in diagnosing and treating kidney, ureter, and bladder diseases for both men and women, using flexible endoscopes and surgical robots for microscopic precision and minimally invasive surgery, reducing pain and hospital stays. Holmium laser lithotripsy and advanced tumor removals are offered, while the “Men’s Health” program provides integrated solutions for infertility and prostate disorders, from hormonal testing to microsurgery and fertility preservation, all supported by digital follow-up for continuity of care even after discharge.',

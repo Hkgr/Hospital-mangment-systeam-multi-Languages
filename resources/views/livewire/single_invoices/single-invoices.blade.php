@@ -126,11 +126,11 @@
         <div class="row mt-2">
             <div class="col">
                 <label>حصة التأمين</label>
-                <input wire:model="insurance_amount" type="text" class="form-control" readonly>
+                <input type="text" class="form-control" readonly value="{{$insurance_amount}}">
             </div>
             <div class="col">
                 <label>حصة المريض</label>
-                <input wire:model="patient_amount" type="text" class="form-control" readonly>
+                <input type="text" class="form-control" readonly value="{{$patient_amount}}">
             </div>
         </div>
 
