@@ -6,6 +6,9 @@ use App\Interfaces\LaboratorieEmployee\LaboratorieEmployeeRepositoryInterface;
 use App\Models\LaboratorieEmployee;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Admin;
+use App\Models\Notification;
+use App\Events\LaboratorieEmployeeCreated;
 
 class LaboratorieEmployeeRepository implements LaboratorieEmployeeRepositoryInterface
 {
@@ -25,6 +28,15 @@ class LaboratorieEmployeeRepository implements LaboratorieEmployeeRepositoryInte
             $laboratorie_employee->email = $request->email;
             $laboratorie_employee->password = Hash::make($request->password);
             $laboratorie_employee->save();
+
+            
+            foreach (Admin::all() as $admin) {
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'message' => 'موظف مختبر جديد: ' . $request->name,
+                ]);
+            }
+            event(new LaboratorieEmployeeCreated($request->name));
             session()->flash('add');
             return back();
 
