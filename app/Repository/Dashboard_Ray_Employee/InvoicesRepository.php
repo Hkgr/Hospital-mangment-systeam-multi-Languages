@@ -4,6 +4,9 @@ namespace App\Repository\Dashboard_Ray_Employee;
 
 use App\Interfaces\Dashboard_Ray_Employee\InvoicesRepositoryInterface;
 use App\Models\Ray;
+use App\Models\RayEmployee;
+use App\Models\Notification;
+use App\Events\RayDiagnosisCreated;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\DB;
 
@@ -48,6 +51,28 @@ class InvoicesRepository implements InvoicesRepositoryInterface
          }
 
        }
+
+       $message = 'تم إضافة تشخيص أشعة للمريض رقم ' . $invoice->patient_id;
+
+       foreach (RayEmployee::all() as $employee) {
+           Notification::create([
+               'user_id' => $employee->id,
+               'message' => $message,
+           ]);
+       }
+
+       Notification::create([
+           'user_id' => $invoice->patient_id,
+           'message' => $message,
+       ]);
+
+       Notification::create([
+           'user_id' => $invoice->doctor_id,
+           'message' => $message,
+       ]);
+
+       event(new RayDiagnosisCreated($message, $invoice->patient_id, $invoice->doctor_id));
+
        session()->flash('edit');
        return redirect()->route('invoices_ray_employee.index');
 
