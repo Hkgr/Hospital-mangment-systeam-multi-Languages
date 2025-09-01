@@ -364,9 +364,12 @@ $folder = 'users';
 
 
 @php
-$channel = auth('doctor')->check()
-? 'create-invoice.' . auth('doctor')->id()
-: 'create-invoice.admin';
+$channel = null;
+if(auth('doctor')->check()) {
+    $channel = 'create-invoice.' . auth('doctor')->id();
+} elseif(auth('admin')->check()) {
+    $channel = 'create-invoice.admin';
+}
 @endphp
 
 <script>
@@ -699,8 +702,10 @@ $channel = auth('doctor')->check()
     function subscribeNotifications() {
         if (!navigator.onLine || typeof Echo === 'undefined') return;
         try {
+            @if($channel)
             Echo.private(`{{ $channel }}`)
                 .listen('.create-invoice', handleCreateInvoiceEvent);
+            @endif
             Echo.private('create-section.admin')
                 .listen('.section-created', handleSectionCreatedEvent);
             Echo.private('create-doctor.admin')
@@ -780,7 +785,9 @@ $channel = auth('doctor')->check()
     window.addEventListener('offline', function() {
         try {
             if (typeof Echo !== 'undefined') {
+                @if($channel)
                 Echo.leave(`{{ $channel }}`);
+                @endif
                 Echo.leave('create-section.admin');
                 Echo.leave('create-doctor.admin');
                 Echo.leave('create-ambulance-call.admin');
