@@ -27,7 +27,7 @@
                                 <h6 class="timeline-title">{{$record->diagnosis}}</h6>
                             </div>
                             <div class="timeline-body">
-                                <p>{{$record->diagnosis}}</p>
+                                <p>{{$record->medicine}}</p>
                             </div>
                             <div class="timeline-footer d-flex align-items-center flex-wrap">
                                 <i class="fas fa-user-md"></i>&nbsp;
