@@ -18,7 +18,7 @@ class AppointmentBulkSeeder extends Seeder
             return; // need patients and doctors
         }
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $patient = Patient::find($patientIds[array_rand($patientIds)]);
             $doctor = Doctor::find($doctorIds[array_rand($doctorIds)]);
 

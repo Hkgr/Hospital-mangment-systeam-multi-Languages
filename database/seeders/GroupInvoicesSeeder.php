@@ -24,7 +24,7 @@ class GroupInvoicesSeeder extends Seeder
             return; // require base data
         }
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $patientId = $patients[array_rand($patients)];
             $doctorId = $doctorIds[array_rand($doctorIds)];
             $doctor = Doctor::find($doctorId);

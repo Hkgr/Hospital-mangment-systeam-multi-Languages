@@ -15,7 +15,7 @@ class DoctorTableSeeder extends Seeder
      */
     public function run()
     {
-        Doctor::factory()->count(30)->create();
+        Doctor::factory()->count(10)->create();
 //        $Appointments = Appointment::all();
 //
 ////        foreach ($doctors as $doctor){

@@ -14,7 +14,7 @@ class ArabicDoctorSeeder extends Seeder
         $sectionIds = [1, 2, 4, 5, 7];
 
         // Create 60 Arabic-named doctors; phone digits-only; random section assignment
-        for ($i = 1; $i <= 60; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $arabicName = $faker->name;
             // Digits-only 10-digit local-style number starting with 05
             $phone = '05' . str_pad((string)random_int(0, 99999999), 8, '0', STR_PAD_LEFT);

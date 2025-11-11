@@ -17,7 +17,7 @@ class ReceiptAccountsSeeder extends Seeder
             return; // need patients
         }
 
-        for ($i = 0; $i < 200; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             $patientId = $patientIds[array_rand($patientIds)];
             $amount = random_int(10, 500);
 

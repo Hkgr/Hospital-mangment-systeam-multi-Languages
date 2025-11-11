@@ -14,7 +14,7 @@ class PatientBulkSeeder extends Seeder
         $fakerAr = Faker::create('ar_SA');
         $bloodGroups = ['A+','A-','B+','B-','O+','O-','AB+','AB-'];
 
-        for ($i = 1; $i <= 150; $i++) {
+        for ($i = 1; $i <= 25; $i++) {
             $patient = new Patient();
             $patient->email = 'patient' . str_pad((string)$i, 3, '0', STR_PAD_LEFT) . '@example.com';
             $patient->password = Hash::make('password');

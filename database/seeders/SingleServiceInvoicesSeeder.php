@@ -26,7 +26,7 @@ class SingleServiceInvoicesSeeder extends Seeder
             return; // need base data
         }
 
-        for ($i = 0; $i < 500; $i++) {
+        for ($i = 0; $i < 35; $i++) {
             $patientId = $patients[array_rand($patients)];
             $doctorId = $doctorIds[array_rand($doctorIds)];
             $doctor = Doctor::find($doctorId);

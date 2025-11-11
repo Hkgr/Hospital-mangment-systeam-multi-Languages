@@ -17,7 +17,7 @@ class PaymentAccountsSeeder extends Seeder
             return; // patients required
         }
 
-        for ($i = 0; $i < 75; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             $patientId = $patientIds[array_rand($patientIds)];
             $amount = random_int(20, 400);
 

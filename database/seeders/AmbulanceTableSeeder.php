@@ -9,7 +9,7 @@ class AmbulanceTableSeeder extends Seeder
 {
     public function run()
     {
-        $count = 35;
+        $count = 10;
         for ($i = 1; $i <= $count; $i++) {
             $ambulance = new Ambulance();
             $ambulance->car_number = 'AMB-' . str_pad((string)$i, 3, '0', STR_PAD_LEFT);
